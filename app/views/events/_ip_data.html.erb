@@ -1,0 +1,14 @@
+<br />
+Source IP: <%= IPAddr.new_ntoh([@event.iphdr.ip_src].pack('N')) %><br />
+Destination IP: <%= IPAddr.new_ntoh([@event.iphdr.ip_dst].pack('N')) %><br />
+IP Version: <%= @event.iphdr.ip_ver %><br />
+IP Header Length: <%= @event.iphdr.ip_hlen %><br />
+IP Type Of Service: <%= @event.iphdr.ip_tos %><br />
+IP Length: <%= @event.iphdr.ip_len %><br />
+IP ID: <%= @event.iphdr.ip_id %><br />
+IP Flags: <%= @event.iphdr.ip_flags %><br />
+IP Offset: <%= @event.iphdr.ip_off %><br />
+IP TTL (Time To Live): <%= @event.iphdr.ip_ttl %><br />
+IP Protocol: <%= @event.iphdr.ip_proto %><br />
+IP CheckSum: <%= @event.iphdr.ip_csum %><br />
+<br />

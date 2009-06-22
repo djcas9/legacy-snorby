@@ -1,17 +1,28 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  
-  
-  def sensor?(s)
-    Sensor.find_by_sid(s.sid).hostname
+
+  ## Signature Data
+  def get_sig_type_for?(s)
+    SigClass.find(s).sig_class_name
   end
-  
-  def iphdr_info?(s)
-    Iphdr.find_by_cid(s.cid)
+  ## END
+
+
+  ## Encoding Data
+  def get_encoding_for?(s)
+    Encoding.find_by_encoding_type(s).encoding_text
   end
-  
-  def get_sig_name(s)
-    Signature.find_by_sig_id(s).sig_name
+  ## END
+
+  ## Reference Data
+  def get_ref_type_for?(s)
+    r_s_n = Reference.find_by_ref_id(s)
+    ReferenceSystem.find_by_ref_system_id(r_s_n.ref_id).ref_system_name
   end
-  
+
+  def get_ref_data_for?(s)
+    Reference.find_by_ref_id(s).ref_tag
+  end
+  ## END
+
 end

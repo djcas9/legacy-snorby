@@ -1,10 +1,13 @@
 class PagesController < ApplicationController
-  
+
   def welcome
-    @sensor = Sensor.all
-    @event = Event.all :order => 'timestamp DESC', :limit => '20'
-    @signature = Signature.all
-    @tcp = Tcphdr.all
   end
-  
+
+  def clean_out_database
+    @events = Event.find(:all)
+    @events.each do |e|
+      e.destroy
+    end
+  end
+
 end

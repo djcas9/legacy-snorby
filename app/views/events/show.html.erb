@@ -1,0 +1,25 @@
+<h1><%= @event.sig.sig_name %></h1>
+
+<%- unless @event.iphdr.nil? -%>
+	<%= render :partial => 'ip_data' %>
+<%- end -%>
+
+<%- unless @event.tcphdr.nil? -%>
+	<%= render :partial => 'tcp_data' %>
+<%- end -%>
+
+<%- unless @event.udphdr.nil? -%>
+	<%= render :partial => 'udp_data' %>
+<%- end -%>
+
+<%- unless @event.icmphdr.nil? -%>
+	<%= render :partial => 'icmp_data' %>
+<%- end -%>
+
+<%- unless @event.opt.nil? -%>
+	<%= render :partial => 'payload_data' %>
+<%- end -%>
+
+<%- unless @event.data_info.nil? -%>
+	<%= render :partial => 'payload_data' %>
+<%- end -%>

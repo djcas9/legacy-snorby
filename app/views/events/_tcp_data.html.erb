@@ -1,0 +1,11 @@
+<br />
+Source Port: <%= @event.tcphdr.tcp_sport %> <br />
+Destination Port: <%= @event.tcphdr.tcp_dport %> <br />
+TCP Sequence Number: <%= @event.tcphdr.tcp_seq %> <br />
+TCP Acknowledgment: <%= @event.tcphdr.tcp_ack %> <br />
+TCP Offset: <%= @event.tcphdr.tcp_off %> <br />
+TCP Reset: <%= @event.tcphdr.tcp_res %> <br />
+TCP Flags: <%= @event.tcphdr.tcp_flags %> <br />
+TCP Window: <%= @event.tcphdr.tcp_win %> <br />
+TCP CheckSum: <%= @event.tcphdr.tcp_csum %> <br />
+TCP Urgent Pointer: <%= @event.tcphdr.tcp_urp %> <br />

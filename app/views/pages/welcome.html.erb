@@ -1,12 +1,1 @@
-<% if !@event.blank? %>
-  <% for event in @event %>
-    <%= get_sig_name(event.signature) %><br />
-		<%= sensor?(event) %><br />
-		<%= event.timestamp %><br />
-		----------<br />
-		<%= iphdr_info?(event).ip_src %><br /><br />
-  <% end %>
-<% else %>
-  
-<% end %>
 
