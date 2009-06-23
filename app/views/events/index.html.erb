@@ -1,12 +1,6 @@
-<% if !@event.blank? %>
-  <% for event in @event %>
-		<%= link_to "#{event.sig.sig_name}", event_path(event) %><br />
-		<%- unless event.sig_reference.blank? or event.sig_reference-%>
-			<%= get_ref_type_for?(event.sig_reference.ref_id) %> - <%= get_ref_data_for?(event.sig_reference.ref_id) %><br />
-		<%- end -%>
-		<%= time_ago_in_words(event.timestamp.utc + 6.hours, true) %> - <%= event.timestamp.strftime('%B %d %Y - %I:%M:%S %p') %><br />
-		<br />
-  <% end %>
-<% else %>
-  
-<% end %>
+<div id="events" clas='events'>
+	<%= render :partial => @events %>
+</div>
+
+<div id="pagination"><%= link_to "more", root_path, :class => 'round more', :id => 'more' %></div>
+<br />

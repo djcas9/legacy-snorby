@@ -1,4 +1,7 @@
 <h1>Payload</h1>
-Encoding: <%= get_encoding_for?(@event.sensor.encoding) %><br />
-<%= @event.data_info.data_payload.to_s.scan(/../).each { | tuple | puts tuple.hex.chr } %>
+<pre>
+<%= [@event.data_info.data_payload].pack("H*") %>
+<br />
+<%= Hexy.new(@event.data_info.data_payload, :annotate => :ascii) %>
+</pre>
 <br />

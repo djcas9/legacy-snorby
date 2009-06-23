@@ -1,0 +1,23 @@
+<% if !@events.blank? %>
+
+  <% for event in @events %>
+		<% div_for event do %>
+			<%= link_to "#{event.sig.sig_name}", event_path(event) %><br />
+		
+			<%- if event.sig.sig_class_id == 0-%>
+				None -
+			<%- else -%>
+				<%= get_sig_type_for?(event.sig.sig_class_id) %> -
+			<%- end -%>
+		
+			<%- unless event.sig_reference.blank? or event.sig_reference-%>
+				<%= get_ref_type_for?(event.sig_reference.ref_id) %> - <%= get_ref_data_for?(event.sig_reference.ref_id) %><br />
+			<%- end -%>
+		
+			<%= time_ago_in_words(event.timestamp) %> - <%= event.timestamp.strftime('%B %d %Y - %I:%M:%S %p') %><br />
+			<br />
+		<%- end -%>
+  <% end %>
+<% else %>
+  
+<% end %>

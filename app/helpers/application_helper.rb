@@ -3,7 +3,7 @@ module ApplicationHelper
 
   ## Signature Data
   def get_sig_type_for?(s)
-    SigClass.find(s).sig_class_name
+    SigClass.find(s).sig_class_name.titleize
   end
   ## END
 
