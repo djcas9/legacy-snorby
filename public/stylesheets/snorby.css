@@ -325,7 +325,7 @@ body {
 
 #menubar{
 	float: right;
-	width: 500px;
+	margin-top: -2px;
 }
 
 ul, li{margin:0; border:0; padding:0; list-style:none;}
@@ -341,7 +341,6 @@ height:30px;
 background:url(lm.png) left top no-repeat;
 height:30px;
 float:left;
-margin-right:10px;
 }
 #menubar .menu li a{
 color: #fbf5ff;
@@ -351,49 +350,12 @@ height:30px;
 line-height:30px;
 display:block;
 float:left;
-padding:0 26px 0 10px;
 background:url(rm.png) right top no-repeat;
 }
 #menubar .menu li a:hover{
 color:#666666;
 }
 
-#menubar ul .submenu {
-border:solid 1px #c9dea1;
-border-top:none;
-background:#FFFFFF;
-position:relative;
-top:4px;
-width:150px;
-padding:6px 0;
-clear:both;
-z-index:2;
-display:none;
-}
-#menubar ul .submenu li{
-background:none;
-display:block;
-float:none;
-margin:0 6px;
-border:0;
-height:auto;
-line-height:normal;
-border-top:solid 1px #DEDEDE;
-}
-#menubar .submenu li a{
-background:none;
-display:block;
-float:none;
-padding:6px 6px;
-margin:0;
-border:0;
-height:auto;
-color:#105cbe;
-line-height:normal;
-}
-#menubar .submenu li a:hover{
-background:#e3edef;
-}
 
 /* @end */
 
@@ -419,7 +381,7 @@ background:#e3edef;
 
 .more{
 	background-color: white;
-	background-image: url(https://static.twitter.com/images/more.gif);
+	background-image: url(../images/more.gif);
 	background-position-x: 0%;
 	background-position-y: 0%;
 	background-repeat: repeat-x;
@@ -430,7 +392,6 @@ background:#e3edef;
 	font-size: 14px;
 	height: 22px;
 	line-height: 1.5em;
-	margin-bottom: 6px;
 	outline: none;
 	padding: 6px 0px;
 	text-align: center;
@@ -445,7 +406,7 @@ background:#e3edef;
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
 	border: 1px solid #eee;
-	background-image: url('https://static.twitter.com/images/ajax.gif');
+	background-image: url('../images/ajax.gif');
 }
 
 .more::-moz-focus-inner {

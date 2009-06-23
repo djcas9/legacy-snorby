@@ -2,6 +2,14 @@
 
   <% for event in @events %>
 		<% div_for event do %>
+			<%- if event.sig.sig_priority == 3 -%>
+				<%= image_tag('severity/low.png') %>
+			<%- elsif event.sig.sig_priority == 2 -%>
+				<%= image_tag('severity/warn.png') %>
+			<%- else -%>
+				<%= image_tag('severity/high.png') %>
+			<%- end -%>
+			<%= severity_image(event.sig.sig_priority) %>
 			<%= link_to "#{event.sig.sig_name}", event_path(event) %><br />
 		
 			<%- if event.sig.sig_class_id == 0-%>
@@ -19,5 +27,5 @@
 		<%- end -%>
   <% end %>
 <% else %>
-  
+  No Events
 <% end %>

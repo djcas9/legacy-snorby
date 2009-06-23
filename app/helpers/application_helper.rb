@@ -25,4 +25,16 @@ module ApplicationHelper
   end
   ## END
 
+  ## Severity
+  def severity_image(s)
+    if s == 1
+      return "<% image_tag('severity/high.png') %>"
+    elsif s == 2
+      return "<% image_tag('severity/warn.png') %>"
+    else
+      return "<% image_tag('severity/low.png') %>"
+    end
+  end
+  ## END
+
 end
