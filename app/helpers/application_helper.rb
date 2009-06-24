@@ -28,13 +28,29 @@ module ApplicationHelper
   ## Severity
   def severity_image(s)
     if s == 1
-      return "<% image_tag('severity/high.png') %>"
+      "<p>#{image_tag('severity/high.png')}</p>"
     elsif s == 2
-      return "<% image_tag('severity/warn.png') %>"
+      "#{image_tag('severity/warn.png')}"
     else
-      return "<% image_tag('severity/low.png') %>"
+      "#{image_tag('severity/low.png')}"
     end
   end
   ## END
 
+  def no_data
+    "<tr><td><span id='no_data_holder'>#{image_tag('no_data.png', :size=>'12x12', :id=>'no_data')} No Data Available!</font></td></tr>"
+  end
+
+  def toggle_div(div)
+    update_page do |page|
+      page[div].toggle
+      page[div].visual_effect :highlight
+    end
+  end
+
+  def fade_div(div)
+    update_page do |page|
+      page[div].visual_effect :fade
+    end
+  end
 end

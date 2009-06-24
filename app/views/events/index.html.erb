@@ -1,5 +1,5 @@
-<div id="events" clas='events'>
+<div id="events" class='events'>
 	<%= render :partial => @events %>
 </div>
 
-<div id="pagination"><%= link_to "more", root_path, :class => 'round more', :id => 'more' %></div>
+<div id="pagination"><%= link_to_remote "more", :url => { :action => :load_more }, :html => { :class => 'round more', :id => 'more' } %></div>

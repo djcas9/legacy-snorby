@@ -2,28 +2,34 @@
 
   <% for event in @events %>
 		<% div_for event do %>
-			<%- if event.sig.sig_priority == 3 -%>
-				<%= image_tag('severity/low.png') %>
-			<%- elsif event.sig.sig_priority == 2 -%>
-				<%= image_tag('severity/warn.png') %>
-			<%- else -%>
-				<%= image_tag('severity/high.png') %>
-			<%- end -%>
-			<%= severity_image(event.sig.sig_priority) %>
-			<%= link_to "#{event.sig.sig_name}", event_path(event) %><br />
+			<div id="event_holder" class='round'>
+				
+				<div id="event_timestamp">
+					<%= event.timestamp.strftime('%B %d %Y - %I:%M:%S %p') %>
+				</div>
+				
+				<div id="event_holder_header">
+					<%= severity_image(event.sig.sig_priority) %>
+					<strong class='title'><%= link_to "#{event.sig.sig_name}", event_path(event) %></strong><br />
+				</div>
 		
-			<%- if event.sig.sig_class_id == 0-%>
-				None -
-			<%- else -%>
-				<%= get_sig_type_for?(event.sig.sig_class_id) %> -
-			<%- end -%>
-		
-			<%- unless event.sig_reference.blank? or event.sig_reference-%>
-				<%= get_ref_type_for?(event.sig_reference.ref_id) %> - <%= get_ref_data_for?(event.sig_reference.ref_id) %><br />
-			<%- end -%>
-		
-			<%= time_ago_in_words(event.timestamp) %> - <%= event.timestamp.strftime('%B %d %Y - %I:%M:%S %p') %><br />
-			<br />
+				<div id='event_holder_body'>
+					Source: <%= IPAddr.new_ntoh([event.iphdr.ip_src].pack('N')) %> -
+					Destination: <%= IPAddr.new_ntoh([event.iphdr.ip_dst].pack('N')) %><br />
+					
+					Event Type: 
+					<%- if event.sig.sig_class_id == 0-%>
+						Unclassified
+					<%- else -%>
+						<%= get_sig_type_for?(event.sig.sig_class_id) %>
+					<%- end -%>
+
+					<%- unless event.sig_reference.blank? or event.sig_reference-%>
+						<%= get_ref_type_for?(event.sig_reference.ref_id) %> - <%= get_ref_data_for?(event.sig_reference.ref_id) %><br />
+					<%- end -%>
+				</div>
+
+			</div>
 		<%- end -%>
   <% end %>
 <% else %>
