@@ -8,9 +8,9 @@
 				<th>Destination</th>
 			</tr>
 			<tr>
-				<td><%= IPAddr.new_ntoh([@event.iphdr.ip_src].pack('N')) %> - 
+				<td><%= IPAddr.new_ntoh([@event.iphdr.ip_src].pack('N')) %> <%= image_tag('show_event/magnifier.png') %> - 
 				<%= get_address_for?(IPAddr.new_ntoh([@event.iphdr.ip_src].pack('N'))) %></td>
-				<td><%= IPAddr.new_ntoh([@event.iphdr.ip_dst].pack('N')) %> - 
+				<td><%= IPAddr.new_ntoh([@event.iphdr.ip_dst].pack('N')) %> <%= image_tag('show_event/magnifier.png') %> - 
 				<%= get_address_for?(IPAddr.new_ntoh([@event.iphdr.ip_dst].pack('N'))) %></td>
 			</tr>
 		</table>

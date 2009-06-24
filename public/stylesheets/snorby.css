@@ -17,11 +17,14 @@ tr.even {
 #more_information table {
 	text-align: left;
 	width: 100%;
+	font-size: small;
 }
 
 #more_information td {
-	padding: 2px 30px 2px 20px;
 	text-align: left;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 20px;
 }
 
 #more_information tr {
@@ -645,10 +648,36 @@ strong.event_title{
 
 /* @end */
 
-/* @group Code */
+/* @group Code/Payload */
 
 pre {
-	font-family: "Courier New", Courier, mono;
+	font: small Courier;
+}
+
+#ascii_payload{
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 5px;
+	overflow: auto;
+	background-color: #eee;
+	padding: 10px;
+	font-size: medium;
+	color: #000;
+	margin: 10px 10px 0;
+	border: 3px solid #e4e4e4;
+}
+
+#raw_payload{
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 5px;
+	overflow: auto;
+	background-color: #eee;
+	padding: 10px;
+	font-size: medium;
+	color: #000;
+	margin: 10px 10px 0;
+	border-width: 1px;
+	border-color: #828282;
+	border: 3px solid #e4e4e4;
 }
 
 /* @end */

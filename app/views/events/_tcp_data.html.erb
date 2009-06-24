@@ -1,11 +1,34 @@
+<h2>TCP Information:</h2>
+<div id="more_information">
+	<div id="more_information_in">
+		<table>
+			<tr>
+				<th>S. Port</th>
+				<th>D. Port</th>
+				<th>Seq #</th>
+				<th>Ack</th>
+				<th>Offset</th>
+				<th>Reset</th>
+				<th>Flags</th>
+				<th>Window</th>
+				<th>CheckSum</th>
+				<th>Urgent Pointer</th>
+			</tr>
+			<tr>
+				<td><%= @event.tcphdr.tcp_sport %></td>
+				<td><%= @event.tcphdr.tcp_dport %></td>
+				<td><%= @event.tcphdr.tcp_seq %></td>
+				<td><%= @event.tcphdr.tcp_ack %></td>
+				<td><%= @event.tcphdr.tcp_off %></td>
+				<td><%= @event.tcphdr.tcp_res %></td>
+				<td><%= @event.tcphdr.tcp_flags %></td>
+				<td><%= @event.tcphdr.tcp_win %></td>
+				<td><%= @event.tcphdr.tcp_csum %></td>
+				<td><%= @event.tcphdr.tcp_urp %></td>
+			</tr>
+		</table>
+		
+	</div>
+</div>
+
 <br />
-Source Port: <%= @event.tcphdr.tcp_sport %> <br />
-Destination Port: <%= @event.tcphdr.tcp_dport %> <br />
-TCP Sequence Number: <%= @event.tcphdr.tcp_seq %> <br />
-TCP Acknowledgment: <%= @event.tcphdr.tcp_ack %> <br />
-TCP Offset: <%= @event.tcphdr.tcp_off %> <br />
-TCP Reset: <%= @event.tcphdr.tcp_res %> <br />
-TCP Flags: <%= @event.tcphdr.tcp_flags %> <br />
-TCP Window: <%= @event.tcphdr.tcp_win %> <br />
-TCP CheckSum: <%= @event.tcphdr.tcp_csum %> <br />
-TCP Urgent Pointer: <%= @event.tcphdr.tcp_urp %> <br />

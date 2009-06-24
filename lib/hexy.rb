@@ -97,7 +97,7 @@ class Hexy
       str << @prefix
       str << "%07X: " % (i) if @numbering == :hex_bytes 
       str << ("%-#{len}s" % hex)
-      str << " #{string}" if @annotate == :ascii
+      str << string.to_s if @annotate == :ascii
       str << "\n" 
       
     }
