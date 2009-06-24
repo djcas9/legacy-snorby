@@ -1,4 +1,22 @@
-Source Port: <%= @event.udphdr.udp_sport %><br />
-Destination Port: <%= @event.udphdr.udp_dport %><br />
-UDP Length: <%= @event.udphdr.udp_len %><br />
-UDP CheckSum: <%= @event.udphdr.udp_csum %><br />
+<h2>UDP Information:</h2>
+<div id="more_information">
+	<div id="more_information_in" class='round'>
+		<table>
+			<tr>
+				<th>Source Port</th>
+				<th>Destination Port</th>
+				<th>Length</th>
+				<th>CheckSum</th>
+			</tr>
+			<tr>
+				<td><%= @event.udphdr.udp_sport %></td>
+				<td><%= @event.udphdr.udp_dport %></td>
+				<td><%= @event.udphdr.udp_len %></td>
+				<td><%= @event.udphdr.udp_csum %></td>
+			</tr>
+		</table>
+		
+	</div>
+</div>
+
+<br />

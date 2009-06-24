@@ -57,8 +57,11 @@ h1 {
 }
 
 h2 {
-	color: #828282;
+	color: #555;
 	font-size: large;
+	text-decoration: none;
+	font-weight: normal;
+	font-style: normal;
 }
 
 /* @end */

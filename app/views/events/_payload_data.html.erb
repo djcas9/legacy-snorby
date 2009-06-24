@@ -11,10 +11,4 @@
 
 <br />
 
-<%= link_to_function "#{image_tag('show_event/Terminal.png', :size => '16x16')} Packet Representation", toggle_div('raw_payload') %> <br />
-
-<div id="raw_payload" style='display:none;'>
-
-	<pre><%= Hexy.new(@event.data_info.data_payload, :annotate => :ascii) %></pre>
-
-</div>
+<div id="raw_payload"><pre><%= Hexy.new(@event.data_info.data_payload, :annotate => :ascii) %></pre></div>
