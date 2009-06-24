@@ -1,14 +1,37 @@
-<br />
-Source IP: <%= IPAddr.new_ntoh([@event.iphdr.ip_src].pack('N')) %><br />
-Destination IP: <%= IPAddr.new_ntoh([@event.iphdr.ip_dst].pack('N')) %><br />
-IP Version: <%= @event.iphdr.ip_ver %><br />
-IP Header Length: <%= @event.iphdr.ip_hlen %><br />
-IP Type Of Service: <%= @event.iphdr.ip_tos %><br />
-IP Length: <%= @event.iphdr.ip_len %><br />
-IP ID: <%= @event.iphdr.ip_id %><br />
-IP Flags: <%= @event.iphdr.ip_flags %><br />
-IP Offset: <%= @event.iphdr.ip_off %><br />
-IP TTL (Time To Live): <%= @event.iphdr.ip_ttl %><br />
-IP Protocol: <%= @event.iphdr.ip_proto %><br />
-IP CheckSum: <%= @event.iphdr.ip_csum %><br />
+<h2>IP Address Information:</h2>
+
+<div id="ip_info">
+	<div id="ip_info_in">
+		<table>
+			<tr>
+				<th>Source</th>
+				<th>Destination</th>
+				<th>Ver</th>
+				<th>Hdr Len</th>
+				<th>TOS</th>
+				<th>Length</th>
+				<th>ID</th>
+				<th>Flags</th>
+				<th>Offset</th>
+				<th>TTL</th>
+				<th>Protocol</th>
+				<th>CheckSum</th>
+			</tr>
+			<tr>
+				<td><%= IPAddr.new_ntoh([@event.iphdr.ip_src].pack('N')) %></td>
+				<td><%= IPAddr.new_ntoh([@event.iphdr.ip_dst].pack('N')) %></td>
+				<td><%= @event.iphdr.ip_ver %></td>
+				<td><%= @event.iphdr.ip_hlen %></td>
+				<td><%= @event.iphdr.ip_tos %></td>
+				<td><%= @event.iphdr.ip_len %></td>
+				<td><%= @event.iphdr.ip_flags %></td>
+				<td><%= @event.iphdr.ip_off %></td>
+				<td><%= @event.iphdr.ip_ttl %></td>
+				<td><%= @event.iphdr.ip_proto %></td>
+				<td><%= @event.iphdr.ip_csum %></td>
+			</tr>
+		</table>
+	</div>
+</div>
+
 <br />

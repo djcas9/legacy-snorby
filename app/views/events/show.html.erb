@@ -1,25 +1,32 @@
-<h1><%= @event.sig.sig_name %></h1>
+<strong class='event_title'><%= @event.sig.sig_name %></strong>
 
-<%- unless @event.iphdr.nil? -%>
-	<%= render :partial => 'ip_data' %>
-<%- end -%>
+<div id="event_show_information">
+	
+	<br />
+	
+	<%= render :partial => 'summary' %>
 
-<%- unless @event.tcphdr.nil? -%>
-	<%= render :partial => 'tcp_data' %>
-<%- end -%>
+	<%- unless @event.iphdr.nil? -%>
+		<%= render :partial => 'ip_data' %>
+	<%- end -%>
 
-<%- unless @event.udphdr.nil? -%>
-	<%= render :partial => 'udp_data' %>
-<%- end -%>
+	<%- unless @event.tcphdr.nil? -%>
+		<%= render :partial => 'tcp_data' %>
+	<%- end -%>
 
-<%- unless @event.icmphdr.nil? -%>
-	<%= render :partial => 'icmp_data' %>
-<%- end -%>
+	<%- unless @event.udphdr.nil? -%>
+		<%= render :partial => 'udp_data' %>
+	<%- end -%>
 
-<%- unless @event.opt.nil? -%>
-	<%= render :partial => 'payload_data' %>
-<%- end -%>
+	<%- unless @event.icmphdr.nil? -%>
+		<%= render :partial => 'icmp_data' %>
+	<%- end -%>
 
-<%- unless @event.data_info.nil? -%>
-	<%= render :partial => 'payload_data' %>
-<%- end -%>
+	<%- unless @event.opt.nil? -%>
+		<%= render :partial => 'payload_data' %>
+	<%- end -%>
+
+	<%- unless @event.data_info.nil? -%>
+		<%= render :partial => 'payload_data' %>
+	<%- end -%>
+</div>

@@ -53,4 +53,9 @@ module ApplicationHelper
       page[div].visual_effect :fade
     end
   end
+  
+  def total_event_count_for?(event)
+    Event.find_all_by_signature(event.signature).length
+  end
+  
 end

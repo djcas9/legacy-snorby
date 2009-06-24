@@ -1,5 +1,24 @@
-ICMP Type: <%= @event.icmphdr.icmp_type %><br />
-ICMP Code: <%= @event.icmphdr.icmp_code %><br />
-ICMP CheckSum:<%= @event.icmphdr.icmp_csum %><br />
-ICMP ID:<%= @event.icmphdr.icmp_id %><br />
-ICMP Sequence Number:<%= @event.icmphdr.icmp_seq %><br />
+<h2>ICMP Information:</h2>
+
+<div id="icmp_info">
+	<div id="icmp_info_in">
+		<table border="0" cellspacing="5" cellpadding="5">
+			<tr>
+				<th>Type</th>
+				<th>Code</th>
+				<th>CheckSum</th>
+				<th>ID</th>
+				<th>Sequence Number</th>
+			</tr>
+			<tr>
+				<td><%= @event.icmphdr.icmp_type %></td>
+				<td><%= @event.icmphdr.icmp_code %></td>
+				<td><%= @event.icmphdr.icmp_csum %></td>
+				<td><%= @event.icmphdr.icmp_id %></td>
+				<td><%= @event.icmphdr.icmp_seq %></td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<br />

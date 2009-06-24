@@ -1,3 +1,29 @@
+/* @group Tables */
+
+tr.odd {
+	
+}
+
+tr.even {
+	background-color: rgba(205,241,250,0.33);
+}
+
+/* @end */
+
+/* @group H1 Stuff */
+
+h1 {
+	font-size: xx-large;
+	color: #000;
+}
+
+h2 {
+	color: #828282;
+	font-size: large;
+}
+
+/* @end */
+
 /* @group Flash Notice */
 
 #flash_notice, #flash_error {
@@ -419,6 +445,8 @@ color:#666666;
 
 /* @group Events */
 
+/* Events */
+
 strong.title{
 	font-weight: normal;
 	text-decoration: none;
@@ -447,5 +475,133 @@ strong.title{
 	font-size: small;
 	color: #ababab;
 }
+
+#event_show_information{
+	color: #636363;
+}
+
+/* Show Page For Events */
+
+strong.event_title{
+	font-size: large;
+	color: #262626;
+}
+
+#summary_info_in {
+	border: 5px solid #eee;
+	overflow: hidden;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+#summary_info table {
+	text-align: left;
+	width: 100%;
+}
+
+#summary_info td {
+	padding: 2px 30px 2px 20px;
+	text-align: left;
+}
+
+#summary_info tr {
+	border-bottom: 1px solid #f2f2f2;
+	text-align: left;
+}
+
+#summary_info th {
+	padding: 2px 30px 2px 15px;
+	color: #464546;
+	background-color: #eee;
+	font-size: x-small;
+}
+
+/* @end */
+
+/* @group IP Info */
+
+#ip_info_in {
+	border: 5px solid #eee;
+	overflow: hidden;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+#ip_info table {
+	text-align: left;
+	width: 100%;
+}
+
+#ip_info td {
+	padding: 2px 30px 2px 20px;
+	text-align: left;
+}
+
+#ip_info tr {
+	border-bottom: 1px solid #f2f2f2;
+	text-align: left;
+}
+
+#ip_info th {
+	padding: 2px 30px 2px 15px;
+	color: #464546;
+	background-color: #eee;
+	font-size: x-small;
+}
+
+
+/* @end */
+
+/* @group TCP Info */
+
+/* @group UDP Info */
+
+
+
+/* @end */
+
+
+
+/* @end */
+
+/* @group ICMP Info */
+
+#icmp_info_in {
+	border: 5px solid #eee;
+	overflow: hidden;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+#icmp_info table {
+	text-align: left;
+	width: 100%;
+}
+
+#icmp_info td {
+	padding: 2px 30px 2px 20px;
+	text-align: left;
+}
+
+#icmp_info tr {
+	border-bottom: 1px solid #f2f2f2;
+	text-align: left;
+}
+
+#icmp_info th {
+	padding: 2px 30px 2px 15px;
+	color: #464546;
+	background-color: #eee;
+	font-size: x-small;
+}
+
+
+
+
+/* @end */
+
+/* @group UDP Info */
+
+
 
 /* @end */
