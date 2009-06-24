@@ -1,14 +1,33 @@
 <h2>IP Address Information:</h2>
-
+<br />
 <div id="ip_info">
 	<div id="ip_info_in">
 		<table>
 			<tr>
 				<th>Source</th>
 				<th>Destination</th>
-				<th>Ver</th>
-				<th>Hdr Len</th>
-				<th>TOS</th>
+			</tr>
+			<tr>
+				<td><%= IPAddr.new_ntoh([@event.iphdr.ip_src].pack('N')) %> - 
+				<%= get_address_for?(IPAddr.new_ntoh([@event.iphdr.ip_src].pack('N'))) %></td>
+				<td><%= IPAddr.new_ntoh([@event.iphdr.ip_dst].pack('N')) %> - 
+				<%= get_address_for?(IPAddr.new_ntoh([@event.iphdr.ip_dst].pack('N'))) %></td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div class='move_right'>
+<%= link_to_function "#{image_tag('show_event/information.png', :size=>'10x10')} More", toggle_div('more_information_in') %>
+</div>
+
+<br />
+<div id="more_information">
+	<div id="more_information_in"  style='display:none;'>
+		<table>
+			<tr>
+				<th>Version</th>
+				<th>Header Length</th>
+				<th>Type-of-Service</th>
 				<th>Length</th>
 				<th>ID</th>
 				<th>Flags</th>
@@ -18,8 +37,6 @@
 				<th>CheckSum</th>
 			</tr>
 			<tr>
-				<td><%= IPAddr.new_ntoh([@event.iphdr.ip_src].pack('N')) %></td>
-				<td><%= IPAddr.new_ntoh([@event.iphdr.ip_dst].pack('N')) %></td>
 				<td><%= @event.iphdr.ip_ver %></td>
 				<td><%= @event.iphdr.ip_hlen %></td>
 				<td><%= @event.iphdr.ip_tos %></td>
@@ -31,6 +48,7 @@
 				<td><%= @event.iphdr.ip_csum %></td>
 			</tr>
 		</table>
+		
 	</div>
 </div>
 

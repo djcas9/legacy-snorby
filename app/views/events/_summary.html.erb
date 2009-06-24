@@ -1,4 +1,5 @@
 <h2>Event Summary:</h2>
+<br />
 <div id="summary_info">
 	<div id="summary_info_in">
 		<table border="0" cellspacing="5" cellpadding="5">
@@ -8,7 +9,7 @@
 				<th>Hostname</th>
 				<th>Event ID</th>
 				<th>Severity</th>
-				<th>References</th>
+				<th>Event %</th>
 				<th>Event Count</th>
 			</tr>
 			<tr>
@@ -17,8 +18,8 @@
 				<td><%= @event.sensor.hostname %></td>
 				<td><%= @event.id[1] %></td>
 				<td><%= severity_image(@event.sig.sig_priority) %></td>
-				<td><%= @event.iphdr.ip_len %></td>
-				<td><%= total_event_count_for?(@event) %></td>
+				<td><%= total_event_count_for?(@event).to_f/100 %>%</td>
+				<td><%= total_event_count_for?(@event) %>/<%= Event.all.size %></td>
 			</tr>
 		</table>
 	</div>

@@ -53,9 +53,17 @@ module ApplicationHelper
       page[div].visual_effect :fade
     end
   end
-  
+
   def total_event_count_for?(event)
     Event.find_all_by_signature(event.signature).length
   end
-  
+
+  def get_address_for?(a)
+    begin
+      Resolv.getname("#{a}")
+    rescue Resolv::ResolvError
+      "#{image_tag('show_event/failed.png', :size => '12x12')} Unable To Resolve Address."
+    end
+  end
+
 end

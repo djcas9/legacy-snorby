@@ -18,3 +18,4 @@ end
 require 'composite_primary_keys'
 require 'ipaddr'
 require 'cgi'
+require 'resolv'

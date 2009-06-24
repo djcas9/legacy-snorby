@@ -8,6 +8,34 @@ tr.even {
 	background-color: rgba(205,241,250,0.33);
 }
 
+#more_information_in {
+	border: 5px solid #faffbb;
+	overflow: hidden;
+	margin-top: 10px;
+}
+
+#more_information table {
+	text-align: left;
+	width: 100%;
+}
+
+#more_information td {
+	padding: 2px 30px 2px 20px;
+	text-align: left;
+}
+
+#more_information tr {
+	border-bottom: 1px solid #f2f2f2;
+	text-align: left;
+}
+
+#more_information th {
+	padding: 2px 30px 2px 15px;
+	color: #464546;
+	background-color: #faffbb;
+	font-size: x-small;
+}
+
 /* @end */
 
 /* @group H1 Stuff */
@@ -46,6 +74,11 @@ h2 {
 /* @end */
 
 /* @group Format */
+
+.move_right{
+	float: right;
+	font-size: small;
+}
 
 .round{
 	-webkit-border-radius: 4px;
@@ -527,6 +560,12 @@ strong.event_title{
 	-webkit-border-radius: 4px;
 }
 
+#ip_info_in_more {
+	border: 5px solid #eee;
+	overflow: hidden;
+	margin-top: 10px;
+}
+
 #ip_info table {
 	text-align: left;
 	width: 100%;
@@ -603,5 +642,13 @@ strong.event_title{
 /* @group UDP Info */
 
 
+
+/* @end */
+
+/* @group Code */
+
+pre {
+	font-family: "Courier New", Courier, mono;
+}
 
 /* @end */
