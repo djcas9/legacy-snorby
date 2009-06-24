@@ -170,24 +170,6 @@ input[type=hidden]{
 	background-color: #fff;
 }
 
-input[type=submit]{
-	background-color: #a9a9a9;
-	color: #fff;
-	border-style: none;
-	margin-right: 5px;
-}
-
-input[type=submit]:hover{
-	background-color: #656565;
-	color: #fff;
-	border: 1px solid #666;
-}
-
-input[type=submit]{
-	color: #fff;
-	border: 1px solid #8a8a8a;
-}
-
 ol, ul {
 	list-style: none;
 }

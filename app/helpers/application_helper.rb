@@ -7,6 +7,12 @@ module ApplicationHelper
   end
   ## END
 
+  ## Sensor
+  def events_for_sensor(s)
+    c = Event.find(:all, :conditions => ['sid = ?', s.id]).size
+    return "#{pluralize(c, 'event')}"
+  end
+  ## END
 
   ## Encoding Data
   def get_encoding_for?(s)

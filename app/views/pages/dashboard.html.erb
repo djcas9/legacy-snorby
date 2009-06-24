@@ -1,0 +1,24 @@
+<div id='dashboard'>
+	<div id="db_sensors">
+		<h2>Sensors:</h2>
+		<% if !@sensors.blank? %>
+		  <% for s in @sensors %>
+		    <%= s.hostname %> - <%= events_for_sensor(s) %><br />
+		  <% end %>
+		<% else %>
+		<% end %>
+		
+	</div>
+	
+	<br />
+	
+	<div id="db_event">
+		<h2>Events</h2>
+		Total Event Count: <%= @events.size %><br />
+		Unique Events: <%= @uniq_events.size %><br />
+		Unique Sources: <%= @uniq_source.size %><br />
+		Unique Destination: <%= @uniq_dest.size %>
+	</div>
+	
+	
+</div>
