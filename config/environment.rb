@@ -12,6 +12,7 @@ Rails::Initializer.run do |config|
   config.time_zone = 'UTC'
   
   config.gem 'mislav-will_paginate', :version => '~> 2.3.8', :lib => 'will_paginate', :source => 'http://gems.github.com'
+  config.gem 'mlightner-universal_ruby_whois', :lib => 'universal_ruby_whois', :source => 'http://gems.github.com'
   
 end
 

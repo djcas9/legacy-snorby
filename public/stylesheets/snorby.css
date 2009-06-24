@@ -8,6 +8,14 @@ tr.even {
 	background-color: rgba(205,241,250,0.33);
 }
 
+th {
+	font-size: x-small;
+}
+
+td, tr {
+	font-size: x-small;
+}
+
 #more_information_in {
 	border: 5px solid #faffbb;
 	overflow: hidden;
