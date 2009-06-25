@@ -365,15 +365,15 @@ body {
 	width: 987px;
 	height: 52px;
 	background-image: url(../images/c_footer.png);
-	left: -43px;
 	position: relative;
+	margin: auto;
 	margin-bottom: 20px;
 }*/
 
 #c_footer{
 	width: 1000px;
 	height: 51px;
-	background-image: url(../images/c_footer2.png);
+	background-image: url(../images/c_footer3.png);
 	left: -43px;
 	margin: auto;
 }
@@ -687,7 +687,6 @@ pre {
 
 #dash_holder_first{
 	width: 260px;
-	background-color: #e1e1e1;
 	display: block;
 	position: relative;
 	padding: 5px;
@@ -695,10 +694,37 @@ pre {
 	overflow: visible;
 }
 
+#dash_top{
+	width: 260px;
+	background-image: url(../images/dashboard/dash_top.png);
+	height: 20px;
+}
+
+#dash_top h2{
+	padding-left: 15px;
+	padding-top: 5px;
+	font-size: medium;
+	color: #2f2f2f;
+}
+
+#dash_content{
+	width: 260px;
+	background: url(../images/dashboard/dash_content.png) repeat-y;
+	padding-top: 10px;
+	padding-left: 20px;
+	color: #505050;
+	font-size: small;
+}
+
+#dash_bottom{
+	width: 260px;
+	background-image: url(../images/dashboard/dash_bottom.png);
+	height: 20px;
+}
+
 #dash_holder{
 	width: 260px;
 	float: right;
-	background-color: #e1e1e1;
 	display: block;
 	margin-right: 3px;
 	padding: 5px;

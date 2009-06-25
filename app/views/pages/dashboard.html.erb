@@ -1,47 +1,65 @@
 <div id='dashboard'>
 	
 	
-	<div id="dash_holder" class='round'>
-		<div id="db_signatures">
+	<div id="dash_holder">
+		<div id="dash_top">
 			<h2>Categories:</h2>
+		</div>
+		<div id="dash_content">
+			<%= image_tag('dashboard/folder_page.png', :size=>'10x10') %>
 			Unclassified - <%= Event.find(:all, :include => :sig, :conditions => ['signature.sig_class_id = 0']).size %><br />
 			<% if !@categories.blank? %>
 			  <% for c in @categories %>
-			    <%= c.sig_class_name.titleize %> - <%= c.events_for_category %><br />
+			    <%= image_tag('dashboard/folder_page.png', :size=>'10x10') %>
+					<%= c.sig_class_name.titleize %> - <%= c.events_for_category %><br />
 			  <% end %>
 			<% else %>
 			  
 			<% end %>
 			
 		</div>
+		<div id="dash_bottom"></div>
 	</div>
 
-	<div id="dash_holder" class='round'>
-		<div id="db_event">
-			<h2>Events:</h2>
-			Total Event Count: <%= @events.size %><br />
-			Unique Events: <%= @uniq_events.size %><br />
-			Unique Sources: <%= @uniq_source.size %><br />
-			Unique Destination: <%= @uniq_dest.size %><br />
-			High Severity: <%= Event.find(:all, :include => :sig, :conditions => ['signature.sig_priority = 1']).size %><br />
-			Medium Severity: <%= Event.find(:all, :include => :sig, :conditions => ['signature.sig_priority = 2']).size %><br />
-			Low Severity: <%= Event.find(:all, :include => :sig, :conditions => ['signature.sig_priority = 3']).size %><br />
-		</div>
-	</div>
-
-	<div id="dash_holder_first" class='round'>
-		<div id="db_sensors">
-			<h2>Sensors:</h2>
-			<% if !@sensors.blank? %>
-			  <% for s in @sensors %>
-			    <%= s.id %>. <%= s.hostname %> - <%= events_for_sensor(s) %><br />
-			  <% end %>
-			<% else %>
-			<% end %>
-
-		</div>
-	</div>
 	
-	<br />
+	<div id="dash_holder">
+		<div id="dash_top">
+			<h2>Events:</h2>
+		</div>
+		<div id="dash_content">
+			<%= image_tag('severity/high.png', :size=>'10x10') %> 
+			High Severity: <%= Event.find(:all, :include => :sig, :conditions => ['signature.sig_priority = 1']).size %><br />
+			<%= image_tag('severity/warn.png', :size=>'10x10') %>
+			Medium Severity: <%= Event.find(:all, :include => :sig, :conditions => ['signature.sig_priority = 2']).size %><br />
+			<%= image_tag('severity/low.png', :size=>'10x10') %>
+			Low Severity: <%= Event.find(:all, :include => :sig, :conditions => ['signature.sig_priority = 3']).size %><br />
+			<%= image_tag('dashboard/box.png', :size=>'10x10') %>
+			Total Event Count: <%= @events.size %><br />
+			<%= image_tag('dashboard/box.png', :size=>'10x10') %>
+			Unique Events: <%= @uniq_events.size %><br />
+			<%= image_tag('dashboard/box.png', :size=>'10x10') %>
+			Unique Sources: <%= @uniq_source.size %><br />
+			<%= image_tag('dashboard/box.png', :size=>'10x10') %>
+			Unique Destination: <%= @uniq_dest.size %><br />
+		</div>
+		<div id="dash_bottom"></div>
+	</div>
+
+	<div id="dash_holder_first">
+		<div id="dash_top">
+			<h2>Sensors:</h2>
+		</div>
+			<div id="dash_content">
+				<% if !@sensors.blank? %>
+				  <% for s in @sensors %>
+						<%= image_tag('dashboard/pill.png', :size=>'12x12') %>
+						<%= s.hostname %> - <%= events_for_sensor(s) %><br />
+				  <% end %>
+				<% else %>
+				<% end %>
+
+			</div>
+			<div id="dash_bottom"></div>
+	</div>
 	
 </div>
