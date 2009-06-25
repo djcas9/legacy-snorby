@@ -1,22 +1,10 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
-  ## Signature Data
-  def get_sig_type_for?(s)
-    SigClass.find(s).sig_class_name.titleize
-  end
-  ## END
-
   ## Sensor
   def events_for_sensor(s)
     c = Event.find(:all, :conditions => ['sid = ?', s.id]).size
     return "#{pluralize(c, 'event')}"
-  end
-  ## END
-
-  ##
-  def events_for_category(c)
-    Event.find(:all, :include => :sig, :conditions => ['signature.sig_class_id = ?', "%#{c}%"]).size
   end
   ## END
 

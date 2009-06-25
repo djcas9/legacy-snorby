@@ -17,16 +17,15 @@
 					Source: <%= IPAddr.new_ntoh([event.iphdr.ip_src].pack('N')) %> -
 					Destination: <%= IPAddr.new_ntoh([event.iphdr.ip_dst].pack('N')) %><br />
 					
+					Sensor: <%= event.sensor.id %> -
+					
 					Event Type: 
 					<%- if event.sig.sig_class_id == 0-%>
 						Unclassified
 					<%- else -%>
-						<%= get_sig_type_for?(event.sig.sig_class_id) %>
+						<%= event.sig.sig_class.sig_class_name.titleize %>
 					<%- end -%>
 
-					<%- unless event.sig_reference.blank? or event.sig_reference-%>
-						<%= get_ref_type_for?(event.sig_reference.ref_id) %> - <%= get_ref_data_for?(event.sig_reference.ref_id) %><br />
-					<%- end -%>
 				</div>
 
 			</div>

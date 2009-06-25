@@ -4,9 +4,10 @@
 	<div id="dash_holder" class='round'>
 		<div id="db_signatures">
 			<h2>Categories:</h2>
+			Unclassified - <%= Event.find(:all, :include => :sig, :conditions => ['signature.sig_class_id = 0']).size %><br />
 			<% if !@categories.blank? %>
 			  <% for c in @categories %>
-			    <%= c.sig_class_name %> - <br />
+			    <%= c.sig_class_name.titleize %> - <%= c.events_for_category %><br />
 			  <% end %>
 			<% else %>
 			  
@@ -21,7 +22,10 @@
 			Total Event Count: <%= @events.size %><br />
 			Unique Events: <%= @uniq_events.size %><br />
 			Unique Sources: <%= @uniq_source.size %><br />
-			Unique Destination: <%= @uniq_dest.size %>
+			Unique Destination: <%= @uniq_dest.size %><br />
+			High Severity: <%= Event.find(:all, :include => :sig, :conditions => ['signature.sig_priority = 1']).size %><br />
+			Medium Severity: <%= Event.find(:all, :include => :sig, :conditions => ['signature.sig_priority = 2']).size %><br />
+			Low Severity: <%= Event.find(:all, :include => :sig, :conditions => ['signature.sig_priority = 3']).size %><br />
 		</div>
 	</div>
 
@@ -37,5 +41,7 @@
 
 		</div>
 	</div>
+	
+	<br />
 	
 </div>
