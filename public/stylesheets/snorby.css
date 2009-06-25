@@ -328,6 +328,7 @@ body {
 	margin-left: auto;
 	margin: auto;
 	overflow: visible;
+	position: relative;
 }
 
 #logo{
