@@ -12,7 +12,4 @@ class Event < ActiveRecord::Base
   belongs_to :sig, :class_name => "Signature", :foreign_key => 'signature', :dependent => :destroy
   belongs_to :sig_reference, :class_name => "SigReference", :foreign_key => 'signature', :dependent => :destroy
   
-  
-  
-  
 end

@@ -6,7 +6,7 @@
 			<h2>Categories:</h2>
 			<% if !@categories.blank? %>
 			  <% for c in @categories %>
-			    <%= c.sig_class_name %> - <%= c.events %><br />
+			    <%= c.sig_class_name %> - <br />
 			  <% end %>
 			<% else %>
 			  

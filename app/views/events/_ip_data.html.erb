@@ -59,7 +59,11 @@
 				<td><%= @event.iphdr.ip_off %></td>
 				<td><%= @event.iphdr.ip_ttl %></td>
 				<td><%= @event.iphdr.ip_proto %></td>
-				<td><%= @event.iphdr.ip_csum %></td>
+				<%- if @event.iphdr.ip_csum.blank? -%>
+					<td>0</td>
+				<%- else -%>
+					<td><%= @event.iphdr.ip_csum %></td>
+				<%- end -%>
 			</tr>
 		</table>
 		

@@ -2,7 +2,7 @@ class EventsController < ApplicationController
 
   def index
     #@events = Event.paginate(:include => :sig, :page => params[:page], :per_page => 5, :order => 'signature.sig_priority ASC')
-    @events = Event.paginate(:page => params[:page], :per_page => 5, :order => 'timestamp DESC')
+    @events = Event.paginate(:page => params[:page], :per_page => 1, :order => 'timestamp DESC')
     respond_to do |format|
       format.html
       format.js
@@ -14,7 +14,7 @@ class EventsController < ApplicationController
   end
 
   def load_more
-    @events ||= Event.paginate(:page => params[:page], :per_page => 5, :order => 'timestamp DESC')
+    @events ||= Event.paginate(:page => params[:page], :per_page => 1, :order => 'timestamp DESC')
     respond_to do |format|
       format.html { render :layout => :false}
       format.js

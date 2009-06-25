@@ -2,28 +2,26 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 
-// endless_page.js
-var currentPage = 1;
+document.observe("dom:loaded", function() {
+  // the element in which we will observe all clicks and capture
+  // ones originating from pagination links
+  var container = $(document.body)
 
-function checkScroll() {
-  if (nearBottomOfPage()) {
-    currentPage++;
-    new Ajax.Request('/products.js?page=' + currentPage, {asynchronous:true, evalScripts:true, method:'get'});
-  } else {
-    setTimeout("checkScroll()", 250);
+  if (container) {
+    var img = new Image
+    img.src = '/images/spinner.gif'
+
+    function createSpinner() {
+      new Element('img', { src: img.src, 'class': 'spinner' })
+    }
+
+    container.observe('click', function(e) {
+      var el = e.element()
+      if (el.match('.pagination a')) {
+        el.up('.pagination').insert(createSpinner())
+        new Ajax.Request(el.href, { method: 'get' })
+        e.stop()
+      }
+    })
   }
-}
-
-function nearBottomOfPage() {
-  return scrollDistanceFromBottom() < 150;
-}
-
-function scrollDistanceFromBottom(argument) {
-  return pageHeight() - (window.pageYOffset + self.innerHeight);
-}
-
-function pageHeight() {
-  return Math.max(document.body.scrollHeight, document.body.offsetHeight);
-}
-
-document.observe('dom:loaded', checkScroll);
+})
