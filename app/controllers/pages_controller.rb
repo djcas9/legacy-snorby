@@ -9,7 +9,8 @@ class PagesController < ApplicationController
     @uniq_source ||= Iphdr.all :group => 'ip_src'
     @uniq_dest ||= Iphdr.all :group => 'ip_dst'
     @sigs ||= Signature.all
-    @sensors ||= Sensor.all
+    @categories ||= SigClass.all
+    @sensors ||= Sensor.all :order => 'sid ASC'
   end
 
   def clean_out_database

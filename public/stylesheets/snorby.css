@@ -664,13 +664,41 @@ pre {
 	-moz-border-radius: 5px;
 	overflow: auto;
 	background-color: #eee;
-	padding: 10px;
 	font-size: medium;
 	color: #000;
 	margin: 10px 10px 0;
 	border-width: 1px;
 	border-color: #828282;
 	border: 3px solid #e4e4e4;
+	text-align: left;
+	padding: 10px 10px 10px 20px;
+}
+
+/* @end */
+
+/* @group DashBoard */
+
+#dash_holder_first{
+	width: 260px;
+	background-color: #e1e1e1;
+	display: block;
+	position: relative;
+	padding: 5px;
+	margin-right: 3px;
+}
+
+#dash_holder{
+	width: 260px;
+	float: right;
+	background-color: #e1e1e1;
+	display: block;
+	position: relative;
+	margin-right: 3px;
+	padding: 5px;
+}
+
+#dashboard{
+	position: relative;
 }
 
 /* @end */

@@ -14,6 +14,12 @@ module ApplicationHelper
   end
   ## END
 
+  ##
+  def events_for_category(c)
+    Event.find(:all, :include => :sig, :conditions => ['signature.sig_class_id = ?', "%#{c}%"]).size
+  end
+  ## END
+
   ## Encoding Data
   def get_encoding_for?(s)
     Encoding.find_by_encoding_type(s).encoding_text
@@ -34,7 +40,7 @@ module ApplicationHelper
   ## Severity
   def severity_image(s)
     if s == 1
-      "<p>#{image_tag('severity/high.png')}</p>"
+      "#{image_tag('severity/high.png')}"
     elsif s == 2
       "#{image_tag('severity/warn.png')}"
     else
