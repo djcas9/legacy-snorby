@@ -685,13 +685,17 @@ pre {
 
 /* @group DashBoard */
 
-#dash_holder_first{
-	width: 260px;
-	display: block;
-	position: relative;
+
+#graph_holder{
+	left: -15px;
+	margin-left: -20px;
+	margin-bottom: 10px;
+}
+
+#data_count_holder{
+	background-color: rgba(171,171,171,0.14);
 	padding: 5px;
-	margin-right: 3px;
-	overflow: visible;
+	border: 1px solid rgba(192,192,192,0.63);
 }
 
 #dash_top{
@@ -722,13 +726,36 @@ pre {
 	height: 20px;
 }
 
+#dash_holder_first{
+	width: 260px;
+	display: block;
+	padding: 5px;
+	overflow: visible;
+	margin-right: 3px;
+}
+
 #dash_holder{
 	width: 260px;
 	float: right;
 	display: block;
-	margin-right: 3px;
 	padding: 5px;
 	overflow: visible;
+}
+
+#g_dash_holder_first{
+	width: 260px;
+	display: block;
+	padding: 5px;
+	overflow: visible;
+}
+
+#g_dash_holder{
+	width: 260px;
+	float: right;
+	display: block;
+	padding: 5px;
+	overflow: visible;
+	margin-right: 5px;
 }
 
 #dashboard{

@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 
   def index
-    @events ||= Event.paginate(:page => params[:page], :per_page => 2, :order => 'timestamp DESC')
+    @events ||= Event.paginate(:page => params[:page], :per_page => 10, :order => 'timestamp DESC')
     # if params[:severity]
     #   @events ||= Event.paginate(:include => :sig, :page => params[:page], :per_page => 5, :conditions => ['signature.sig_priority = ?', params[:severity]], :order => 'timestamp DESC')
     # else
