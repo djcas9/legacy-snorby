@@ -90,13 +90,6 @@ ActiveRecord::Schema.define(:version => 20090626044640) do
     t.datetime "ctime", :null => false
   end
 
-  create_table "searches", :force => true do |t|
-    t.string   "keywords"
-    t.integer  "sid"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "sensor", :primary_key => "sid", :force => true do |t|
     t.text    "hostname"
     t.text    "interface"

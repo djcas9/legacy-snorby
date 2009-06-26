@@ -1,36 +1,30 @@
-<% if !@events.blank? %>
 
-  <% for event in @events %>
-		<% div_for event do %>
-			<div id="event_holder" class='round'>
-				
-				<div id="event_timestamp">
-					<%= event.timestamp.strftime('%B %d %Y - %I:%M:%S %p') %>
-				</div>
-				
-				<div id="event_holder_header">
-					<%= severity_image(event.sig.sig_priority) %>
-					<strong class='title'><%= link_to "#{event.sig.sig_name}", event_path(event) %></strong><br />
-				</div>
+<% div_for event do %>
+	<div id="event_holder" class='round'>
 		
-				<div id='event_holder_body'>
-					Source: <%= IPAddr.new_ntoh([event.iphdr.ip_src].pack('N')) %> -
-					Destination: <%= IPAddr.new_ntoh([event.iphdr.ip_dst].pack('N')) %><br />
-					
-					Sensor: <%= event.sensor.id %> -
-					
-					Event Type: 
-					<%- if event.sig.sig_class_id == 0-%>
-						Unclassified
-					<%- else -%>
-						<%= event.sig.sig_class.sig_class_name.titleize %>
-					<%- end -%>
+		<div id="event_timestamp">
+			<%= event.timestamp.strftime('%B %d %Y - %I:%M:%S %p') %>
+		</div>
+		
+		<div id="event_holder_header">
+			<%= severity_image(event.sig.sig_priority) %>
+			<strong class='title'><%= link_to "#{event.sig.sig_name}", event_path(event) %></strong><br />
+		</div>
 
-				</div>
+		<div id='event_holder_body'>
+			Source: <%= IPAddr.new_ntoh([event.iphdr.ip_src].pack('N')) %> -
+			Destination: <%= IPAddr.new_ntoh([event.iphdr.ip_dst].pack('N')) %><br />
+			
+			Sensor: <%= event.sensor.id %> -
+			
+			Event Type: 
+			<%- if event.sig.sig_class_id == 0-%>
+				Unclassified
+			<%- else -%>
+				<%= event.sig.sig_class.sig_class_name.titleize %>
+			<%- end -%>
 
-			</div>
-		<%- end -%>
-  <% end %>
-<% else %>
-  No Events
-<% end %>
+		</div>
+
+	</div>
+<%- end -%>

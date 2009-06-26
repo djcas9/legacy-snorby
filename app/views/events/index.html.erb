@@ -2,7 +2,6 @@
 	<%= render :partial => @events %>
 </div>
 
-<!-- <div id="pagination"><%= link_to_remote "more", :url => { :action => :load_more }, :html => { :class => 'round more', :id => 'more' } %></div> -->
-
+<br />
 <script type="text/javascript">current_page = 2;</script>
 <div id="pagination"><a class="round more" href="#" id="more" onclick="new Ajax.Request('/events/index?page=' + current_page, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('<%= form_authenticity_token %>')}); current_page = current_page + 1; return false;">more</a></div>
