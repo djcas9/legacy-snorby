@@ -1,92 +1,3 @@
-/* @group Tables */
-
-tr.odd {
-	
-}
-
-tr.even {
-	background-color: rgba(205,241,250,0.33);
-}
-
-th {
-	font-size: x-small;
-}
-
-td, tr {
-	font-size: x-small;
-}
-
-#more_information_in {
-	border: 5px solid #faffbb;
-	overflow: hidden;
-	margin-top: 10px;
-}
-
-#more_information table {
-	text-align: left;
-	width: 100%;
-	font-size: small;
-}
-
-#more_information td {
-	text-align: left;
-	padding-top: 2px;
-	padding-bottom: 2px;
-	padding-left: 20px;
-}
-
-#more_information tr {
-	border-bottom: 1px solid #f2f2f2;
-	text-align: left;
-}
-
-#more_information th {
-	padding: 2px 30px 2px 15px;
-	color: #464546;
-	background-color: #faffbb;
-	font-size: x-small;
-}
-
-/* @end */
-
-/* @group H1 Stuff */
-
-h1 {
-	font-size: xx-large;
-	color: #000;
-}
-
-h2 {
-	color: #555;
-	font-size: large;
-	text-decoration: none;
-	font-weight: normal;
-	font-style: normal;
-}
-
-/* @end */
-
-/* @group Flash Notice */
-
-#flash_notice, #flash_error {
-  padding: 5px 8px;
-  margin: 10px 0;
-}
-
-#flash_notice {
-  background-color: #CFC;
-  border: solid 1px #6C6;
-}
-
-#flash_error {
-  background-color: #FCC;
-  border: solid 1px #C66;
-}
-
-
-
-/* @end */
-
 /* @group Format */
 
 .move_right{
@@ -275,6 +186,108 @@ body {
 
 /* @end */
 
+/* @group Tables */
+
+tr.odd {
+	
+}
+
+tr.even {
+	background-color: rgba(205,241,250,0.33);
+}
+
+th {
+	font-size: x-small;
+}
+
+td, tr {
+	font-size: x-small;
+}
+
+#more_information_in {
+	border: 5px solid #faffbb;
+	overflow: hidden;
+	margin-top: 10px;
+}
+
+#more_information table {
+	text-align: left;
+	width: 100%;
+	font-size: small;
+}
+
+#more_information td {
+	text-align: left;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 20px;
+}
+
+#more_information tr {
+	border-bottom: 1px solid #f2f2f2;
+	text-align: left;
+}
+
+#more_information th {
+	padding: 2px 30px 2px 15px;
+	color: #464546;
+	background-color: #faffbb;
+	font-size: x-small;
+}
+
+/* @end */
+
+/* @group H1 Stuff */
+
+h1 {
+	font-size: xx-large;
+	color: #000;
+}
+
+h2 {
+	color: #555;
+	font-size: large;
+	text-decoration: none;
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* @end */
+
+/* @group Flash Notice */
+
+#close_box{
+	float: right;
+}
+
+#flash_notice, #flash_error {
+  	padding: 5px 8px;
+  	min-height: 30px;
+	font-size: small;
+	margin-left: 11px;
+	margin-right: 11px;
+	margin-top: 10px;
+	font-weight: normal;
+	font-style: normal;
+	text-decoration: none;
+	font-variant: normal;
+	color: #454545;
+}
+
+#flash_notice {
+  background-color: #CFC;
+  border: solid 1px #6C6;
+}
+
+#flash_error {
+  background-color: #FCC;
+  border: solid 1px #C66;
+}
+
+
+
+/* @end */
+
 /* @group Errors */
 
 .fieldWithErrors {
@@ -327,7 +340,7 @@ body {
 	margin-top: auto;
 	margin-left: auto;
 	margin: auto;
-	overflow: visible;
+	overflow: hidden;
 	position: relative;
 }
 
@@ -596,12 +609,6 @@ strong.event_title{
 
 /* @group TCP Info */
 
-/* @group UDP Info */
-
-
-
-/* @end */
-
 
 
 /* @end */
@@ -666,6 +673,18 @@ pre {
 	border: 3px solid #e4e4e4;
 }
 
+#ascii_hex_payload{
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 5px;
+	overflow: auto;
+	background-color: #eee;
+	padding: 10px;
+	font-size: medium;
+	color: #000;
+	margin: 10px 10px 0;
+	border: 3px solid #e4e4e4;
+}
+
 #raw_payload{
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 5px;
@@ -681,10 +700,20 @@ pre {
 	padding: 10px 10px 10px 20px;
 }
 
+#payload_title{
+	color: #7e7e7e;
+	margin-bottom: 10px;
+	text-align: right;
+}
+
 /* @end */
 
 /* @group DashBoard */
 
+
+#dashboard{
+	overflow: hidden;
+}
 
 #graph_holder{
 	left: -15px;
@@ -694,8 +723,13 @@ pre {
 
 #data_count_holder{
 	background-color: rgba(171,171,171,0.14);
-	padding: 5px;
 	border: 1px solid rgba(192,192,192,0.63);
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	margin: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 #dash_top{
@@ -718,6 +752,7 @@ pre {
 	padding-left: 20px;
 	color: #505050;
 	font-size: small;
+	min-height: 120px;
 }
 
 #dash_bottom{
@@ -728,33 +763,25 @@ pre {
 
 #dash_holder_first{
 	width: 260px;
-	display: block;
 	padding: 5px;
-	overflow: visible;
 	margin-right: 3px;
 }
 
 #dash_holder{
 	width: 260px;
 	float: right;
-	display: block;
-	padding: 5px;
-	overflow: visible;
+	margin-right: 10px;
 }
 
 #g_dash_holder_first{
 	width: 260px;
-	display: block;
 	padding: 5px;
-	overflow: visible;
 }
 
 #g_dash_holder{
 	width: 260px;
 	float: right;
-	display: block;
 	padding: 5px;
-	overflow: visible;
 	margin-right: 5px;
 }
 
@@ -762,5 +789,38 @@ pre {
 	position: relative;
 	overflow: visible;
 }
+
+/* @group Dash Table */
+
+#dash_table_in {
+	border: 5px solid #eee;
+	overflow: hidden;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+#dash_table table {
+	text-align: left;
+	width: 100%;
+}
+
+#dash_table td {
+	padding: 2px 30px 2px 20px;
+	text-align: left;
+}
+
+#dash_table tr {
+	border-bottom: 1px solid #f2f2f2;
+	text-align: left;
+}
+
+#dash_table th {
+	padding: 2px 30px 2px 15px;
+	color: #464546;
+	background-color: #eee;
+	font-size: x-small;
+}
+
+/* @end */
 
 /* @end */

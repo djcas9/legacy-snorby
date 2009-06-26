@@ -13,12 +13,17 @@
 			
 			<%= render :partial => 'layouts/header' %>
 			
+			<%- flash.each do |name, msg| -%>
+				<div id="flash_<%= name %>" class='round'>
+					<div id="close_box">
+						<%= link_to_function "#{image_tag('close.png', :size => '16x16')}", fade_div("flash_#{name}") %>
+					</div>
+					<%= msg %>
+				</div>
+      <%- end -%>
+			
 			<div id='c_header'></div>
 			<div id="c_body">
-	      
-				<%- flash.each do |name, msg| -%>
-	        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-	      <%- end -%>
       
 	      <%- if show_title? -%>
 	        <h1><%=h yield(:title) %></h1>

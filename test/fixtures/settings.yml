@@ -1,0 +1,5 @@
+one:
+  events_per_page: false
+
+two:
+  events_per_page: false

@@ -1,0 +1,22 @@
+
+<% for s in Sensor.all %>
+	<%= s.hostname %> - <%= link_to "Remove", :controller => 'pages', :action => 'remove_sensor', :remove_sensor_id => s.id %><br />
+<%- end -%>
+
+
+<br /><br /><br />
+<table>
+  <tr>
+    <th>Events Per Page</th>
+  </tr>
+  <% for setting in @settings %>
+    <tr>
+      <td><%=h setting.events_per_page %></td>
+      <td><%= link_to "Show", setting %></td>
+      <td><%= link_to "Edit", edit_setting_path(setting) %></td>
+      <td><%= link_to "Destroy", setting, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+<br /><br />
+<p><%= link_to "New Setting", new_setting_path %></p>

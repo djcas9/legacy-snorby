@@ -51,6 +51,7 @@ module ApplicationHelper
   def fade_div(div)
     update_page do |page|
       page[div].visual_effect :fade
+      flash.discard
     end
   end
 

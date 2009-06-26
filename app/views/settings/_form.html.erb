@@ -1,0 +1,8 @@
+<% form_for @setting do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :events_per_page %><br />
+    <%= f.check_box :events_per_page %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

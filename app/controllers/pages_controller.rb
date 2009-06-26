@@ -22,5 +22,14 @@ class PagesController < ApplicationController
       e.destroy
     end
   end
+  
+  
+  def remove_sensor
+    @sensor = Sensor.find(params[:remove_sensor_id])
+    if @sensor.destroy
+      flash[:notice] = "Sensor destroyed successfully."
+    end
+    redirect_to settings_path
+  end
 
 end

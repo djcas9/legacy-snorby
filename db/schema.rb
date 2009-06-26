@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090624072358) do
+ActiveRecord::Schema.define(:version => 20090626044640) do
 
   create_table "data", :id => false, :force => true do |t|
     t.integer "sid",          :null => false
@@ -104,6 +104,12 @@ ActiveRecord::Schema.define(:version => 20090624072358) do
     t.integer "detail",    :limit => 1
     t.integer "encoding",  :limit => 1
     t.integer "last_cid",               :null => false
+  end
+
+  create_table "settings", :force => true do |t|
+    t.boolean  "events_per_page"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "sig_class", :primary_key => "sig_class_id", :force => true do |t|
