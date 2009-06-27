@@ -65,9 +65,9 @@ module ApplicationHelper
 
   def get_address_for?(a)
     begin
-      Resolv.getname(a)
+      "#{image_tag('show_event/pass.png', :size => '12x12')} #{Resolv.getname("#{a}")}"
     rescue Resolv::ResolvError
-      "#{image_tag('cross.png', :size => '10x10')} Unable To Resolve Address."
+      "#{image_tag('show_event/fail.png', :size => '12x12')} Unable To Resolve Address."
     end
   end
 

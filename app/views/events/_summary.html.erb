@@ -9,8 +9,8 @@
 				<th>Hostname</th>
 				<th>Event ID</th>
 				<th>Severity</th>
-				<th>Event %</th>
-				<th>Event Count</th>
+				<th>Event Percentage</th>
+				<th>Event Total</th>
 			</tr>
 			<tr>
 				<td><%= @event.sensor.id %></td>
@@ -21,7 +21,7 @@
 				<td>
 					<%= horizontal_bar_graph  [["Event Percentage", ((total_event_count_for?(@event)/Event.all.size.to_f) * 100).round(2)]] %>
 				</td>  
-				<td><%= total_event_count_for?(@event) %>/<%= Event.all.size %></td>
+				<td><%= total_event_count_for?(@event) %></td>
 			</tr>
 		</table>
 	</div>

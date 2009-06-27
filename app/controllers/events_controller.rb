@@ -17,29 +17,25 @@ class EventsController < ApplicationController
 
   def whois
     begin
-      host = Resolv.getname(params[:whois_host])
-      unless host.nil?
-        whois = Whois.find(host)
-      end
+      whois = Whois::Whois.new("#{params[:whois_host]}").search_whois
       if whois
-        @output = whois.whois_output
+        @output = whois
       else
-        @output = "An error has occurred while resolving address <b>#{host}</b>"
+        @output = "An error has occurred while resolving address <b>#{params[:whois_host]}</b>"
       end
       render :layout => false
     rescue ArgumentError
-      @output = "Unable to resolve address <b>#{host}</b>"
+      @output = "Unable to resolve address <b>#{params[:whois_host]}</b>"
       render :layout => false
     rescue Resolv::ResolvError
-      @output = "Unable to resolve address <b>#{host}</b>"
+      @output = "Unable to resolve address <b>#{params[:whois_host]}</b>"
       render :layout => false
     end
   end
-  
+
   def livelook
     @events ||= Event.find(:all, :limit => 20, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr, :udphdr, :icmphdr, :tcphdr])
-    flash[:error] = 'LiveLook is a nifty way to keep up-to-date with new events in realtime. Who wants to hit refresh every 5 seconds?
-    this feature is currently in beta so it may get a bit bumpy.'
+    #flash[:notice] = 'LiveLook is a nifty way to keep up-to-date with new events in realtime. Who wants to hit refresh every 5 seconds? LiveLook is currently in beta so it may get a bit bumpy.'
     respond_to do |format|
       format.html
       format.js { render :layout => false }

@@ -391,6 +391,13 @@ h2 {
 	margin: auto;
 }
 
+#footer_text{
+	color: #b1b1b1;
+	font-size: xx-small;
+	text-align: center;
+	padding-top: 5px;
+}
+
 
 /* @end */
 
