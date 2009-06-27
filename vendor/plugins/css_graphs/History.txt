@@ -1,0 +1,14 @@
+== 0.1.0
+
+* Converted to Hoe
+* Available as a RubyGem
+
+== April 13, 2007
+
+* Added sizing and multi-graph bar enhancements by Maximiliano Guzman
+* Added test suite that generates HTML files in test/output
+
+== Feb 5, 2007
+
+* Enhanced all methods to take an array instead of requiring you to use *array
+* bar_graph() normalizes the data when rendering to make it usable for many values.

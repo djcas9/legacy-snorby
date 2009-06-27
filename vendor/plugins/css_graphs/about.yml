@@ -1,0 +1,7 @@
+author: topfunky
+summary: A helper to make graphs with CSS and XHTML. Includes a generator for copying relevant images to the public directory.
+homepage: http://nubyonrails.com/pages/css_graphs
+plugin: http://topfunky.net/svn/plugins/css_graphs
+license: MIT
+version: 0.2
+rails_version: 1.0+

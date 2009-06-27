@@ -2,50 +2,49 @@
 <br />
 <div id='dashboard'>
 	
-	<div id="graph_holder">
-		
-		<div id="g_dash_holder">
-			<%= @g_category_information %>
+	
+	<div id="dash_table">
+		<div id="dash_table_in">
+			<table>
+				<tr>
+					<th>Sensor ID</th>
+					<th>Hostname</th>
+					<th>Interface</th>
+					<th>Detail</th>
+					<th>Encoding</th>
+					<th>Last Event</th>
+					<th>Total Event Count</th>
+				</tr>
+				<%- for s in @sensors -%>
+				<tr>
+					<td><%= image_tag('dashboard/pill.png', :size=>'12x12') %> <%= s.id %></td>
+					<td><%= s.hostname %></td>
+					<td><%= s.interface %></td>
+					<td><%= s.detail %></td>
+					<td><%= s.encoding %></td>
+					<td><%= s.last_cid %></td>
+					<td><%= horizontal_bar_graph  [["Event Percentage", ((events_for_sensor_only(s)/Event.all.size.to_f) * 100).round(2)]] %></td>
+				</tr>
+				<%- end -%>
+			</table>
 		</div>
-		
-		<div id="g_dash_holder">
-			<%= @g_event_severity %>
-		</div>
-
-		<div id="g_dash_holder_first">
-			<%= @g_sensor_information %>
-		</div>
-		
 	</div>
 	
-		<div id="dash_table">
-			<div id="dash_table_in">
-				<table>
-					<tr>
-						<th>Sensor ID</th>
-						<th>Hostname</th>
-						<th>Interface</th>
-						<th>Detail</th>
-						<th>Encoding</th>
-						<th>Last Event</th>
-						<th>Total Event Count</th>
-					</tr>
-					<%- for s in @sensors -%>
-					<tr>
-						<td><%= image_tag('dashboard/pill.png', :size=>'12x12') %> <%= s.id %></td>
-						<td><%= s.hostname %></td>
-						<td><%= s.interface %></td>
-						<td><%= s.detail %></td>
-						<td><%= s.encoding %></td>
-						<td><%= s.last_cid %></td>
-						<td><%= events_for_sensor(s) %></td>
-					</tr>
-					<%- end -%>
-				</table>
-			</div>
-		</div>
 	
-	<br />
+	<br /><br />
+	
+	<div id="graph_holder">
+		
+
+			<%= @g_category_information %>		
+
+			<%= @g_event_severity %>
+
+
+		<div id="g_dash_holder_first">
+			
+		</div>
+	</div>
 	
 	<div id="data_count_holder" class='round'>
 		<div id="dash_holder">

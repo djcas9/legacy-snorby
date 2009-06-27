@@ -6,6 +6,10 @@ module ApplicationHelper
     c = Event.find(:all, :conditions => ['sid = ?', s.id]).size
     return "#{pluralize(c, 'event')}"
   end
+  
+  def events_for_sensor_only(s)
+    Event.find(:all, :conditions => ['sid = ?', s.id]).size
+  end
   ## END
 
   ## Encoding Data

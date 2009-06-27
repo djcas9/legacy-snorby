@@ -9,22 +9,22 @@
 			</tr>
 			<tr>
 				<td>
-				<%= IPAddr.new_ntoh([@event.iphdr.ip_src].pack('N')) %> 
+				<%= @source_ip %> 
 				<%= link_to "#{image_tag('show_event/magnifier.png', :size=>'12x12')}", { :action => 'whois', :id => @event.id, 
-				:whois_host => 	IPAddr.new_ntoh([@event.iphdr.ip_src].pack('N')) }, :rel => 'facebox' %><br />
+				:whois_host => @source_ip }, :rel => 'facebox' %><br />
 				</td>
 				<td>
-					<%= IPAddr.new_ntoh([@event.iphdr.ip_dst].pack('N')) %> 
+					<%= @destination_ip %> 
 					<%= link_to "#{image_tag('show_event/magnifier.png', :size=>'12x12')}", { :action => 'whois', :id => @event.id, 
-					:whois_host => 	IPAddr.new_ntoh([@event.iphdr.ip_dst].pack('N')) }, :rel => 'facebox' %><br />
+					:whois_host => @destination_ip }, :rel => 'facebox' %><br />
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<%= get_address_for?("#{IPAddr.new_ntoh([@event.iphdr.ip_src].pack('N'))}") %>
+					<%= get_address_for?(@source_ip) %>
 				</td>
 				<td>
-					<%= get_address_for?("#{IPAddr.new_ntoh([@event.iphdr.ip_dst].pack('N'))}") %>
+					<%= get_address_for?(@destination_ip) %>
 				</td>
 			</tr>
 		</table>

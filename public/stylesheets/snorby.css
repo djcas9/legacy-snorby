@@ -240,7 +240,7 @@ td, tr {
 /* @group H1 Stuff */
 
 h1 {
-	font-size: xx-large;
+	font-size: large;
 	color: #000;
 }
 
@@ -508,6 +508,10 @@ strong.title{
 	margin-bottom: 10px;
 }
 
+#events{
+	padding-bottom: 1px;
+}
+
 #event_holder{
 	background-color: #efefef;
 	border: 1px solid #dcdcdc;
@@ -716,9 +720,10 @@ pre {
 }
 
 #graph_holder{
-	left: -15px;
-	margin-left: -20px;
-	margin-bottom: 10px;
+	margin-bottom: 30px;
+	text-align: center;
+	overflow: hidden;
+	width: 100%;
 }
 
 #data_count_holder{

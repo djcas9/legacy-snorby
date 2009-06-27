@@ -1,0 +1,7 @@
+<div id="events" class='events'>
+	<%= render :partial => @events %>
+</div>
+
+<%= periodically_call_remote(:url => { :action => 'livelook' },
+ 		:frequency => 30,
+		:update => { :success => "events", :failure => "error" }) %>
