@@ -276,7 +276,7 @@ h2 {
 
 #flash_notice {
   background-color: #CFC;
-  border: solid 1px #6C6;
+  border: 1px solid #7cfa7c;
 }
 
 #flash_error {
@@ -829,3 +829,4 @@ pre {
 /* @end */
 
 /* @end */
+

@@ -1,7 +1,8 @@
 class EventsController < ApplicationController
 
   def index
-    @events ||= Event.paginate(:page => params[:page], :per_page => 10, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr, :udphdr, :icmphdr, :tcphdr])
+    session[:page] = params[:page]
+    @events ||= Event.paginate(:page => params[:page], :per_page => 20, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr, :udphdr, :icmphdr, :tcphdr])
     respond_to do |format|
       format.html
       format.js
@@ -36,7 +37,9 @@ class EventsController < ApplicationController
   end
   
   def livelook
-    @events ||= Event.find(:all, :limit => 10, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr, :udphdr, :icmphdr, :tcphdr])
+    @events ||= Event.find(:all, :limit => 20, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr, :udphdr, :icmphdr, :tcphdr])
+    flash[:error] = 'LiveLook is a nifty way to keep up-to-date with new events in realtime. Who wants to hit refresh every 5 seconds?
+    this feature is currently in beta so it may get a bit bumpy.'
     respond_to do |format|
       format.html
       format.js { render :layout => false }

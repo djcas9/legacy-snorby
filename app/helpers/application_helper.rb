@@ -67,7 +67,7 @@ module ApplicationHelper
     begin
       Resolv.getname(a)
     rescue Resolv::ResolvError
-      "#{image_tag('show_event/failed.png', :size => '12x12')} Unable To Resolve Address."
+      "#{image_tag('cross.png', :size => '10x10')} Unable To Resolve Address."
     end
   end
 

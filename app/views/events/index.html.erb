@@ -3,5 +3,5 @@
 </div>
 <%- unless @events.blank? or @events.size < 1 -%>
 <script type="text/javascript">current_page = 2;</script>
-<div id="pagination"><a class="round more" href="#" id="more" onclick="new Ajax.Request('/events/index?page=' + current_page, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('<%= form_authenticity_token %>')}); current_page = current_page + 1; return false;">more</a></div>
+<div id="pagination"><a class="round more" href="#load_more_events" id="more" onclick="new Ajax.Request('/events/index?page=' + current_page, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('<%= form_authenticity_token %>')}); current_page = current_page + 1; return false;">more</a></div>
 <%- end -%>
