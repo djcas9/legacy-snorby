@@ -1,1 +1,0 @@
-chart director = 100$
