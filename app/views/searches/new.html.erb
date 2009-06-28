@@ -1,0 +1,40 @@
+
+<% form_for @search do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :keywords %><br />
+    <%= f.text_field :keywords %>
+  </p>
+  <p>
+    <%= f.label :sid, "Sensor" %><br />
+    <%= f.collection_select :sid, Sensor.all, :id, :hostname, :include_blank => true %>
+  </p>
+  <p>
+    <%= f.label :sid_class_id, "Event Category" %><br />
+    <%= f.select :sid_class_id, SigClass.new.all_even_nil, :multiple => false, :include_blank => true %>
+  </p>
+  <p>
+    <%= f.label :sig_priority, "Event Severity" %><br />
+    <%= f.select :sig_priority, [["High Severity", 1], ["Medium Severity", 2], ["Low Severity", 3]], :multiple => false, :include_blank => true %>
+  </p>
+  <p>
+    <%= f.label :ip_src, "Source IP Address" %><br />
+    <%= f.text_field :ip_src %>
+  </p>
+  <p>
+    <%= f.label :ip_dst, "Destination IP Address" %><br />
+    <%= f.text_field :ip_dst %>
+  </p>
+  <p>
+    <%= f.label :sport, "Source Port" %><br />
+    <%= f.text_field :sport %>
+  </p>
+  <p>
+    <%= f.label :dport, "Destination Port" %><br />
+    <%= f.text_field :dport %>
+  </p>
+	<br />
+  <p><%= f.submit "Submit" %></p>
+<% end %>
+
+

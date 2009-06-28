@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090626044640) do
+ActiveRecord::Schema.define(:version => 20090628064454) do
 
   create_table "data", :id => false, :force => true do |t|
     t.integer "sid",          :null => false
@@ -88,6 +88,21 @@ ActiveRecord::Schema.define(:version => 20090626044640) do
 
   create_table "schema", :primary_key => "vseq", :force => true do |t|
     t.datetime "ctime", :null => false
+  end
+
+  create_table "searches", :force => true do |t|
+    t.string   "keywords"
+    t.integer  "sid"
+    t.integer  "sid_class_id"
+    t.integer  "ip_src"
+    t.integer  "ip_dst"
+    t.integer  "sport"
+    t.integer  "dport"
+    t.integer  "sig_priority"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "sensor", :primary_key => "sid", :force => true do |t|

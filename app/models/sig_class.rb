@@ -8,4 +8,13 @@ class SigClass < ActiveRecord::Base
     self.signatures.collect { |sig| sig.events }.flatten.uniq.size
   end
   
+  def all_even_nil
+    data = []
+    for s in SigClass.all
+      data << [s.sig_class_name, s.sig_class_id]
+    end
+    data << ["Unclassified", 0]
+    return data
+  end
+  
 end

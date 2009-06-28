@@ -1,8 +1,10 @@
-<div id="events" class='events'>
+<div id="events">
+	<div id='last_pull_time' align='right'>Last Pull Time: <%= @time.strftime('%I:%M:%S %p') %></div>
+	
 	<%= render :partial => @events %>
 </div>
 
-<%= periodically_call_remote(:complete => visual_effect(:pulsate, "event_#{@events.first.id}", :duration => 2), 
+<%= periodically_call_remote(:complete => visual_effect(:highlight, "livelook", :duration => 2), 
 		:url => { :action => 'livelook' },
- 		:frequency => 20,
+ 		:frequency => 40,
 		:update => { :success => "events", :failure => "error" }) %>

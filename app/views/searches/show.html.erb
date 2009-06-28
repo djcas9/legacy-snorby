@@ -1,0 +1,9 @@
+<h1>Search Results</h1>
+<br />
+
+<%= render :partial => @search.events %>
+
+<%- if @search.events.empty? -%>
+<font color='red'>No results found.</font>
+<%- end -%>
+<br />

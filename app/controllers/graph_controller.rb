@@ -12,7 +12,7 @@ class GraphController < ApplicationController
     pie = Pie.new
     pie.start_angle = 35
     pie.animate = true
-    pie.tooltip = '#val# Evnets of #total# Total.<br>#percent# of 100%'
+    pie.tooltip = '#val# Events of #total# Total.<br>#percent# of 100%<br>'
     pie.colours = ["#adffa2", "#f8f9a4", "#fb9c9c"]
 
     data << PieValue.new(low, "Low Severity") unless low == 0
@@ -80,7 +80,7 @@ class GraphController < ApplicationController
 
     pie.start_angle = 35
     pie.animate = true
-    pie.tooltip = '#val# Evnets of #total# Total.<br>#percent# of 100%'
+    pie.tooltip = '#val# Events of #total# Total.<br>#percent# of 100%'
     pie.colours = ["#fb9c9c", "#f8f9a4", "#adffa2"]
     pie.values  = data
 
