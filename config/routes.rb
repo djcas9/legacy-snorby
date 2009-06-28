@@ -1,5 +1,11 @@
 ActionController::Routing::Routes.draw do |map|
   
+  map.resource :user_session
+  map.resource :account, :controller => "users"
+  map.resources :users
+  map.login '/login', :controller => "user_sessions", :action => "new"
+  map.logout '/logout', :controller => "user_sessions", :action => "destroy"
+  
   map.welcome "/welcome", :controller => 'pages', :action => 'welcome'
   map.dashboard "/dashboard", :controller => 'pages', :action => 'dashboard'
   map.livelook "/livelook", :controller => 'events', :action => 'livelook'

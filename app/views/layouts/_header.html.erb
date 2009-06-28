@@ -7,7 +7,15 @@
 			<li><%= link_to "Reports", root_path %></li>
 			<li><%= link_to "Search", new_search_path %></li>
 			<li><%= link_to "Settings", root_path %></li>
-			<li><%= link_to "Logout", root_path %></li>
+			
+			
+			<% if !current_user %>
+			  <li><%= link_to "Log In", login_path %></li>
+			<% else %>
+			  <li><%= link_to "Logout", logout_path, :method => :delete, :confirm => "Are you sure you want to logout?" %></li>
+			<% end %>
+			
+			
 		</ul>
 	</div>
 	<div id="logo"><%= link_to image_tag('snorby_logo.png'), dashboard_path %></div>

@@ -79,6 +79,7 @@ input:focus, select:focus, textarea:focus{
 input[type=hidden]{
 	border-style: none;
 	background-color: #fff;
+	visibility: hidden;
 }
 
 ol, ul {
@@ -370,6 +371,7 @@ h2 {
 #c_body{
 	width: 900px;
 	background: url(../images/c_content.png) repeat-y;
+	padding-bottom: 5px;
 }
 
 #c_content_holder{
@@ -867,10 +869,33 @@ pre {
 
 /* @end */
 
+/* @group LOGIN */
 
-"#fb9c9c", "#f8f9a4", "#adffa2"
-.test{
-	background-color: #99f1fd;
+#logo_big{
+	text-align: center;
+	margin-bottom: 20px;
 }
 
+#login{
+	width: 600px;
+	margin-bottom: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
 
+#login_header{
+	width: 600px;
+	height: 183px;
+	background-image: url(../images/snorby_login.png);
+	margin-bottom: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#login_data{
+	margin-bottom: 30px;
+	margin-top: -100px;
+	margin-left: 60px;
+}
+
+/* @end */

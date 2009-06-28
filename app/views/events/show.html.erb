@@ -1,7 +1,5 @@
 <div id="event_show_page">
-	<strong class='event_title'><%= @event.sig.sig_name %> 
-	<%= link_to "#{@event.sig.sig_sid}", { :action => 'get_sig_information', :id => @event.id, 
-	:snort_sig_id => @event.sig.sig_sid }, :rel => 'facebox' %></strong>
+	<strong class='event_title'><%= @event.sig.sig_name %></strong>
 
 	<div id="event_show_information">
 
