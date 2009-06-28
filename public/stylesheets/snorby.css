@@ -803,6 +803,25 @@ pre {
 
 /* @group Dash Table */
 
+
+#statistics{
+	position: relative;
+	overflow: hidden;
+	margin-bottom: 25px;
+	padding-right: 20px;
+	padding-left: 20px;
+}
+
+.grid_1{
+	width: 380px;
+	float: left;
+}
+
+.grid_2{
+	width: 380px;
+	float: right;
+}
+
 #dash_table_in {
 	border: 5px solid #eee;
 	overflow: hidden;

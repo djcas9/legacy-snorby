@@ -2,8 +2,73 @@
 <br />
 <div id='dashboard'>
 	
+	<div id="statistics">
+	
+		<div id="dash_table" class='grid_1'>
+			<div id="dash_table_in">
+				<table>
+					<tr>
+						<th>Severity Statistics</th>
+						<th>Event Count for Severity</th>
+					</tr>
+					<tr>
+						<td><%= image_tag('severity/high.png', :size=>'10x10') %> High Severity</td>
+						<td><%= pluralize(Event.find(:all, :include => :sig, :conditions => ['signature.sig_priority = 1']).size, "Event") %></td>
+					</tr>
+				
+					<tr>
+						<td><%= image_tag('severity/warn.png', :size=>'10x10') %> Medium Severity</td>
+						<td><%= pluralize(Event.find(:all, :include => :sig, :conditions => ['signature.sig_priority = 2']).size, "Event") %></td>
+					</tr>
+				
+					<tr>
+						<td><%= image_tag('severity/low.png', :size=>'10x10') %> Low Severity</td>
+						<td><%= pluralize(Event.find(:all, :include => :sig, :conditions => ['signature.sig_priority = 3']).size, "Event") %></td>
+					</tr>
+
+				</table>
+			</div>
+		</div>
+	
+		<div id="dash_table" class='grid_2'>
+			<div id="dash_table_in">
+				<table>
+					<tr>
+						<th>Severity Statistics</th>
+						<th>Event Count for Severity</th>
+					</tr>
+					<tr>
+						<td><%= image_tag('severity/high.png', :size=>'10x10') %> High Severity</td>
+						<td><%= pluralize(Event.find(:all, :include => :sig, :conditions => ['signature.sig_priority = 1']).size, "Event") %></td>
+					</tr>
+				
+					<tr>
+						<td><%= image_tag('severity/warn.png', :size=>'10x10') %> Medium Severity</td>
+						<td><%= pluralize(Event.find(:all, :include => :sig, :conditions => ['signature.sig_priority = 2']).size, "Event") %></td>
+					</tr>
+				
+					<tr>
+						<td><%= image_tag('severity/low.png', :size=>'10x10') %> Low Severity</td>
+						<td><%= pluralize(Event.find(:all, :include => :sig, :conditions => ['signature.sig_priority = 3']).size, "Event") %></td>
+					</tr>
+
+				</table>
+			</div>
+		</div>
+	
+	</div>
+	
+	<div id="graph_holder">
+		
+
+			<%= @g_category_information %>		
+
+			<%= @g_event_severity %>
+
+	</div>
 	
 	<div id="dash_table">
+		<h3>Sensor Information:</h3><br />
 		<div id="dash_table_in">
 			<table>
 				<tr>
@@ -12,7 +77,7 @@
 					<th>Interface</th>
 					<th>Encoding</th>
 					<th>Last Event</th>
-					<th>Total Event Count</th>
+					<th>Event Percentage</th>
 				</tr>
 				<%- for s in @sensors -%>
 				<tr class="<%= cycle('odd', 'even') %>">
@@ -28,84 +93,38 @@
 		</div>
 	</div>
 	
+	<br />
 	
-	<br /><br />
-	
-	<div id="graph_holder">
-		
-
-			<%= @g_category_information %>		
-
-			<%= @g_event_severity %>
-
-
-		<div id="g_dash_holder_first">
-			
+	<div id="dash_table">
+		<h3>Event Category Information:</h3><br />
+		<div id="dash_table_in">
+			<table>
+				<tr>
+					<th>Event Category</th>
+					<th>Event Count For Category</th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th>Event Percentage</th>
+				</tr>
+				<td><%= image_tag('dashboard/folder_page.png', :size=>'10x10') %> Unclassified</td>
+				<td><%= pluralize(Event.find(:all, :include => :sig, :conditions => ['signature.sig_class_id = 0']).size, "Event") %></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><%= horizontal_bar_graph  [["Event Percentage", ((Event.find(:all, :include => :sig, :conditions => ['signature.sig_class_id = 0']).size/Event.all.size.to_f) * 100).round(2)]] %></td>
+				<%- for c in @categories -%>
+				<tr class="<%= cycle('even', 'odd') %>">
+					<td><%= image_tag('dashboard/folder_page.png', :size=>'10x10') %> <%= c.sig_class_name.titleize %></td>
+					<td><%= pluralize(c.events_for_category, "Event") %></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><%= horizontal_bar_graph  [["Event Percentage", ((c.events_for_category/Event.all.size.to_f) * 100).round(2)]] %></td>
+				</tr>
+				<%- end -%>
+			</table>
 		</div>
 	</div>
-	
-	<div id="data_count_holder" class='round'>
-		<div id="dash_holder">
-			<div id="dash_top">
-				<h2>Categories:</h2>
-			</div>
-			<div id="dash_content">
-				<%= image_tag('dashboard/folder_page.png', :size=>'10x10') %>
-				Unclassified - <%= Event.find(:all, :include => :sig, :conditions => ['signature.sig_class_id = 0']).size %><br />
-				<% if !@categories.blank? %>
-				  <% for c in @categories %>
-				    <%= image_tag('dashboard/folder_page.png', :size=>'10x10') %>
-						<%= c.sig_class_name.titleize %> - <%= c.events_for_category %><br />
-				  <% end %>
-				<% else %>
-			  
-				<% end %>
-			
-			</div>
-			<div id="dash_bottom"></div>
-		</div>
-
-	
-		<div id="dash_holder">
-			<div id="dash_top">
-				<h2>Events:</h2>
-			</div>
-			<div id="dash_content">
-				<%= image_tag('severity/high.png', :size=>'10x10') %> 
-				High Severity: <%= Event.find(:all, :include => :sig, :conditions => ['signature.sig_priority = 1']).size %><br />
-				<%= image_tag('severity/warn.png', :size=>'10x10') %>
-				Medium Severity: <%= Event.find(:all, :include => :sig, :conditions => ['signature.sig_priority = 2']).size %><br />
-				<%= image_tag('severity/low.png', :size=>'10x10') %>
-				Low Severity: <%= Event.find(:all, :include => :sig, :conditions => ['signature.sig_priority = 3']).size %><br />
-				<%= image_tag('dashboard/box.png', :size=>'10x10') %>
-				Total Event Count: <%= @events.size %><br />
-				<%= image_tag('dashboard/box.png', :size=>'10x10') %>
-				Unique Events: <%= @uniq_events.size %><br />
-				<%= image_tag('dashboard/box.png', :size=>'10x10') %>
-				Unique Sources: <%= @uniq_source.size %><br />
-				<%= image_tag('dashboard/box.png', :size=>'10x10') %>
-				Unique Destination: <%= @uniq_dest.size %><br />
-			</div>
-			<div id="dash_bottom"></div>
-		</div>
-
-		<div id="dash_holder">
-			<div id="dash_top">
-				<h2>Sensors:</h2>
-			</div>
-				<div id="dash_content">
-					<% if !@sensors.blank? %>
-					  <% for s in @sensors %>
-							<%= image_tag('dashboard/pill.png', :size=>'12x12') %>
-							<%= s.hostname %> - <%= events_for_sensor(s) %><br />
-					  <% end %>
-					<% else %>
-					<% end %>
-
-				</div>
-				<div id="dash_bottom"></div>
-		</div>
-	
-	</div>
-	
+	<br />
 </div>
