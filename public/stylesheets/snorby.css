@@ -518,6 +518,10 @@ strong.title{
 	padding-bottom: 1px;
 }
 
+#events a{
+	font-size: small;
+}
+
 #event_holder{
 	background-color: #efefef;
 	border: 1px solid #dcdcdc;
@@ -540,6 +544,10 @@ strong.title{
 }
 
 /* Show Page For Events */
+
+#event_show_page a{
+	font-size: x-small;
+}
 
 strong.event_title{
 	font-size: large;
