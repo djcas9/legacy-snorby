@@ -11,8 +11,8 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id], :include => [:sig, :sensor, :iphdr, :udphdr, :icmphdr, :tcphdr])
-    @source_ip ||= IPAddr.new_ntoh([@event.iphdr.ip_src].pack('N'))
-    @destination_ip ||= IPAddr.new_ntoh([@event.iphdr.ip_dst].pack('N'))
+    @source_ip = IPAddr.new_ntoh([@event.iphdr.ip_src].pack('N'))
+    @destination_ip = IPAddr.new_ntoh([@event.iphdr.ip_dst].pack('N'))
   end
 
   def whois
@@ -29,6 +29,16 @@ class EventsController < ApplicationController
       render :layout => false
     rescue Resolv::ResolvError
       @output = "Unable to resolve address <b>#{params[:whois_host]}</b>"
+      render :layout => false
+    end
+  end
+
+  def get_sig_information
+    begin
+      @sig_data = File.open("#{RAILS_ROOT}/public/signatures/#{params[:snort_sig_id]}.txt")
+      render :layout => false
+    rescue Errno::ENOENT
+      @sig_data = "<font color='red'><b>Not signature information found.</b></font>"
       render :layout => false
     end
   end

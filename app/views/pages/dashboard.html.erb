@@ -38,18 +38,18 @@
 						<th></th>
 					</tr>
 					<tr>
-						<td><%= image_tag('severity/high.png', :size=>'10x10') %> High Severity</td>
-						<td><%= pluralize(Event.find(:all, :include => :sig, :conditions => ['signature.sig_priority = 1']).size, "Event") %></td>
+						<td><%= image_tag('dashboard/box.png', :size=>'10x10') %> Total Event Count:</td>
+						<td><%= pluralize(@events.size, "Event") %></td>
 					</tr>
 				
 					<tr>
-						<td><%= image_tag('severity/warn.png', :size=>'10x10') %> Medium Severity</td>
-						<td><%= pluralize(Event.find(:all, :include => :sig, :conditions => ['signature.sig_priority = 2']).size, "Event") %></td>
+						<td><%= image_tag('dashboard/box.png', :size=>'10x10') %> Unique Events</td>
+						<td><%= pluralize(@uniq_events.size, "Unique Event") %></td>
 					</tr>
 				
 					<tr>
-						<td><%= image_tag('severity/low.png', :size=>'10x10') %> Low Severity</td>
-						<td><%= pluralize(Event.find(:all, :include => :sig, :conditions => ['signature.sig_priority = 3']).size, "Event") %></td>
+						<td><%= image_tag('dashboard/box.png', :size=>'10x10') %> Unique Addresses</td>
+						<td><%= pluralize(@uniq_adds, "Unique Address") %></td>
 					</tr>
 
 				</table>

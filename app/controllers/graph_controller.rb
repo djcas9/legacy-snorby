@@ -81,7 +81,7 @@ class GraphController < ApplicationController
     pie.start_angle = 35
     pie.animate = true
     pie.tooltip = '#val# Events of #total# Total.<br>#percent# of 100%'
-    pie.colours = ["#fb9c9c", "#f8f9a4", "#adffa2"]
+    pie.colours = ["#fb9c9c", "#f8f9a4", "#adffa2", "#99f1fd", "#ff8ee5", "#f895ff"]
     pie.values  = data
 
     chart = OpenFlashChart.new
