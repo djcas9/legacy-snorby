@@ -204,6 +204,10 @@ td, tr {
 	font-size: x-small;
 }
 
+table.form td{
+	padding: 5px;
+}
+
 #more_information_in {
 	border: 5px solid #faffbb;
 	overflow: hidden;
