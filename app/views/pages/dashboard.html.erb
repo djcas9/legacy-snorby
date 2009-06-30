@@ -43,8 +43,8 @@
 					</tr>
 				
 					<tr>
-						<td><%= image_tag('dashboard/box.png', :size=>'10x10') %> Unique Events</td>
-						<td><%= pluralize(@uniq_events.size, "Unique Event") %></td>
+						<td><%= image_tag('dashboard/box.png', :size=>'10x10') %> Unique Events Types</td>
+						<td><%= pluralize(@uniq_events.size, "Unique Event Type") %></td>
 					</tr>
 				
 					<tr>
@@ -84,7 +84,7 @@
 					<td><%= image_tag('dashboard/pill.png', :size=>'12x12') %> <%= s.id %></td>
 					<td><%= s.hostname %></td>
 					<td><%= s.interface %></td>
-					<td><%= s.encoding %></td>
+					<td><%= s.encoding_type %></td>
 					<td><%= s.last_cid %></td>
 					<td><%= horizontal_bar_graph  [["Event Percentage", ((events_for_sensor_only(s)/Event.all.size.to_f) * 100).round(2)]] %></td>
 				</tr>
