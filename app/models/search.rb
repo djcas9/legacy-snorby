@@ -7,7 +7,7 @@ class Search < ActiveRecord::Base
   private
 
   def find_events
-    Event.find(:all, :include => [:sensor, :sig, :iphdr, :icmphdr, :tcphdr, :udphdr], :conditions => conditions)
+    Event.find(:all, :include => [:sensor, :sig, :iphdr, :icmphdr, :tcphdr, :udphdr], :order => 'timestamp DESC', :conditions => conditions)
   end
 
   def keyword_conditions
@@ -40,6 +40,14 @@ class Search < ActiveRecord::Base
   
   def sig_priority_conditions
     ["signature.sig_priority = ?", sig_priority] unless sig_priority.blank?
+  end
+
+  def start_time_conditions
+    ["timestamp >= ?", start_time] unless start_time.blank?
+  end
+  
+  def end_time_conditions
+    ["timestamp <= ?", end_time] unless end_time.blank?
   end
 
   def conditions

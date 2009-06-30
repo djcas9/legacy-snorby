@@ -13,9 +13,12 @@ Rails::Initializer.run do |config|
   
   config.gem 'mislav-will_paginate', :version => '~> 2.3.8', :lib => 'will_paginate', :source => 'http://gems.github.com'
   config.gem "authlogic"
+  config.gem 'javan-whenever', :lib => false, :source => 'http://gems.github.com'
+  config.gem "calendar_date_select"
   
 end
 
 require 'composite_primary_keys'
 require 'ipaddr'
 require 'resolv'
+require 'chronic'

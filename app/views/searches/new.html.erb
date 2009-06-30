@@ -1,11 +1,27 @@
-<h1>Snorby Search</h1>
+<h1>Snorby Super Search</h1>
 <br />
 <% form_for @search do |f| %>
   <%= f.error_messages %>
 
 	<p>
-    <%= f.label :keywords, "Event Keywords" %><br />
-    <%= f.text_field :keywords %>
+		<table class='form'>
+			<tr>
+				<th><%= f.label :keywords, "Event Keywords" %></th>
+				<th>Start Time</th>
+				<th>End Time</th>
+			</tr>
+			<tr>
+				<td>
+			    <%= f.text_field :keywords %>
+				</td>
+				<td>
+					<%= f.calendar_date_select :start_time, :popup => :force, :time => :true %>
+				</td>
+				<td>
+					<%= f.calendar_date_select :end_time, :popup => :force, :time => :true %>
+				</td>
+			</tr>
+		</table>
   </p>
 
 	<br />

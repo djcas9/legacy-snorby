@@ -12,4 +12,18 @@ class Event < ActiveRecord::Base
   belongs_to :sig, :class_name => "Signature", :foreign_key => 'signature', :dependent => :destroy
   belongs_to :sig_reference, :class_name => "SigReference", :foreign_key => 'signature', :dependent => :destroy
   
+  
+  
+  def run_daily_report
+    self.find(:all, :conditions => ['timestamp >= ?', Chronic.parse('one day ago')])
+  end
+  
+  def run_weekly_report
+    self.find(:all, :conditions => ['timestamp >= ?', Chronic.parse('one week ago')])
+  end
+  
+  def run_monthly_report
+    self.find(:all, :conditions => ['timestamp >= ?', Chronic.parse('one month ago')])
+  end
+  
 end
