@@ -19,14 +19,16 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.day, :at => '1:00 am' do
+set :cron_log, "#{RAILS_ROOT}/log/snorby_reports.log"
+
+every 1.day, :at => '10:45 pm' do
   runner "Event.run_daily_report"
 end
 
-every :sunday, :at => '12pm' do
+every :week do
   runner "Event.run_weekly_report"
 end
 
-every :month, :at => '12pm' do
+every :month do
   runner "Event.run_monthly_report"
 end

@@ -14,15 +14,16 @@ class Event < ActiveRecord::Base
   
   
   
-  def run_daily_report
-    self.find(:all, :conditions => ['timestamp >= ?', Chronic.parse('one day ago')])
+  def self.run_daily_report
+    e = self.find(:all, :conditions => ['timestamp >= ?', Chronic.parse('one day ago')])
+    ReportMailer.deliver_daily_report(current_user, e, 'blah')
   end
   
-  def run_weekly_report
+  def self.run_weekly_report
     self.find(:all, :conditions => ['timestamp >= ?', Chronic.parse('one week ago')])
   end
   
-  def run_monthly_report
+  def self.run_monthly_report
     self.find(:all, :conditions => ['timestamp >= ?', Chronic.parse('one month ago')])
   end
   

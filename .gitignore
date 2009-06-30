@@ -2,6 +2,7 @@
 log/*.log
 tmp/**/*
 config/database.yml
+config/environments/
 db/*.sqlite3
 public/assets/*
 public/signatures/

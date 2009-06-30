@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090628215615) do
+ActiveRecord::Schema.define(:version => 20090630040338) do
 
   create_table "data", :id => false, :force => true do |t|
     t.integer "sid",          :null => false
@@ -84,6 +84,13 @@ ActiveRecord::Schema.define(:version => 20090628215615) do
 
   create_table "reference_system", :primary_key => "ref_system_id", :force => true do |t|
     t.string "ref_system_name", :limit => 20
+  end
+
+  create_table "reports", :force => true do |t|
+    t.string   "title"
+    t.datetime "from_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "schema", :primary_key => "vseq", :force => true do |t|

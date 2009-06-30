@@ -4,7 +4,7 @@
 	<%= render :partial => @events %>
 </div>
 
-<%= periodically_call_remote(:complete => visual_effect(:pulsate, "last_pull_time", :duration => 10), 
+<%= periodically_call_remote(:complete => visual_effect(:highlight, "last_pull_time", :duration => 2), 
 		:url => { :action => 'livelook' },
- 		:frequency => 40,
+ 		:frequency => 60,
 		:update => { :success => "events", :failure => "error" }) %>
