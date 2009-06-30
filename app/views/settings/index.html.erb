@@ -1,7 +1,4 @@
 
-
-<%= Event.run_daily_report %>
-
 <% for s in Sensor.all %>
 	<%= s.hostname %> - <%= link_to "Remove", :controller => 'pages', :action => 'remove_sensor', :remove_sensor_id => s.id %><br />
 <%- end -%>
