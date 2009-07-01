@@ -2,7 +2,7 @@
 	<div id="event_holder" class='round'>
 		
 		<div id="event_timestamp">
-			<%= time_ago_in_words(event.timestamp) %> ago - <%= event.timestamp.strftime('%B %d %Y - %I:%M:%S %p') %>
+			<%= time_ago_in_words(Chronic.parse(event.timestamp.in_time_zone('UTC'))) %> ago - <%= event.timestamp.getutc.strftime('%B %d %Y - %I:%M:%S %p') %>
 		</div>
 		
 		<div id="event_holder_header">

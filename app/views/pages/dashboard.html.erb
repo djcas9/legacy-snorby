@@ -112,7 +112,9 @@
 				<td></td>
 				<td></td>
 				<td></td>
+				<% unless Event.find(:all, :include => :sig, :conditions => ['signature.sig_class_id = 0']).blank? %>
 				<td><%= horizontal_bar_graph  [["Event Percentage", ((Event.find(:all, :include => :sig, :conditions => ['signature.sig_class_id = 0']).size/Event.all.size.to_f) * 100).round(2)]] %></td>
+				<%- end -%>
 				<%- for c in @categories -%>
 				<tr class="<%= cycle('even', 'odd') %>">
 					<td><%= image_tag('dashboard/folder_page.png', :size=>'10x10') %> <%= c.sig_class_name.titleize %></td>

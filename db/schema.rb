@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090701003204) do
+ActiveRecord::Schema.define(:version => 20090630040338) do
 
   create_table "data", :id => false, :force => true do |t|
     t.integer "sid",          :null => false
@@ -89,9 +89,9 @@ ActiveRecord::Schema.define(:version => 20090701003204) do
   create_table "reports", :force => true do |t|
     t.string   "title"
     t.datetime "from_time"
+    t.string   "rtype"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "rtype"
   end
 
   create_table "schema", :primary_key => "vseq", :force => true do |t|
@@ -198,6 +198,7 @@ ActiveRecord::Schema.define(:version => 20090701003204) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "login",                            :null => false
+    t.string   "email",                            :null => false
     t.string   "crypted_password",                 :null => false
     t.string   "password_salt",                    :null => false
     t.string   "persistence_token",                :null => false

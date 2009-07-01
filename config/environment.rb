@@ -8,18 +8,18 @@ require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
 
-  config.time_zone = 'Central Time (US & Canada)'
-  #config.time_zone = 'UTC'
+  #config.time_zone = 'Central Time (US & Canada)'
+  config.time_zone = 'UTC'
   
   config.gem 'mislav-will_paginate', :version => '~> 2.3.8', :lib => 'will_paginate', :source => 'http://gems.github.com'
   config.gem "authlogic"
   config.gem 'javan-whenever', :lib => false, :source => 'http://gems.github.com'
   config.gem "calendar_date_select"
   config.gem "ambethia-smtp-tls", :lib => "smtp-tls", :source => "http://gems.github.com/"
+  config.gem "composite_primary_keys"
+  config.gem "chronic"
   
 end
 
-require 'composite_primary_keys'
 require 'ipaddr'
 require 'resolv'
-require 'chronic'

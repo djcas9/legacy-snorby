@@ -1,0 +1,1 @@
+#ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS[:db] = lambda { |time| time.getutc.strftime( "%Y-%m-%d %H:%M:%S" ) }
