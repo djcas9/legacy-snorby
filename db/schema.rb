@@ -134,7 +134,10 @@ ActiveRecord::Schema.define(:version => 20090630040338) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "settings", :force => true do |t|
-    t.boolean  "events_per_page"
+    t.integer  "events_per_page"
+    t.boolean  "accept_email"
+    t.boolean  "super_user"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -209,7 +212,7 @@ ActiveRecord::Schema.define(:version => 20090630040338) do
     t.datetime "current_login_at"
     t.string   "last_login_ip"
     t.string   "current_login_ip"
-    t.string   "time_zone"
+    t.string   "setting_id"
   end
 
   add_index "users", ["last_request_at"], :name => "index_users_on_last_request_at"

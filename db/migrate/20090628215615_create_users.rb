@@ -13,7 +13,7 @@ class CreateUsers < ActiveRecord::Migration
       t.datetime :current_login_at
       t.string :last_login_ip
       t.string :current_login_ip
-      t.string :time_zone
+      t.string :setting_id
     end
         
     add_index :users, :login

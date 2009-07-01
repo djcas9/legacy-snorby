@@ -9,7 +9,6 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      Time.zone = @user.time_zone
       flash[:notice] = "Account registered!"
       redirect_back_or_default account_url
     else
@@ -28,7 +27,6 @@ class UsersController < ApplicationController
   def update
     @user = @current_user # makes our views "cleaner" and more consistent
     if @user.update_attributes(params[:user])
-      Time.zone = @user.time_zone
       flash[:notice] = "Account updated!"
       redirect_to account_url
     else

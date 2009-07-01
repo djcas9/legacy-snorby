@@ -1,12 +1,14 @@
 class SettingsController < ApplicationController
   def index
+    @user = @current_user
     @settings = Setting.all
-    Event.run_daily_report
+    #Event.run_daily_report
     #Event.run_weekly_report
     #Event.run_monthly_report
   end
   
   def show
+    @user = @current_user
     @setting = Setting.find(params[:id])
   end
   

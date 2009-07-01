@@ -3,8 +3,25 @@
 	<%= s.hostname %> - <%= link_to "Remove", :controller => 'pages', :action => 'remove_sensor', :remove_sensor_id => s.id %><br />
 <%- end -%>
 
+<br /><br />
 
-<br /><br /><br />
+<%= render :partial => @users %>
+
+
+<h1>Edit My Account</h1><br />
+
+<% form_for @user, :url => account_path do |f| %>
+  <%= f.error_messages %>
+  <%= render :partial => "users/form", :object => f %><br />
+	<br />
+<br />
+  <%= f.submit "Update" %>
+<% end %>
+
+<br /><%= link_to "My Profile", account_path %>
+
+
+<br />
 <table>
   <tr>
     <th>Events Per Page</th>
