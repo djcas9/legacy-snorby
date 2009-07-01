@@ -1,0 +1,12 @@
+development:
+  :address: smtp.gmail.com
+  :port: 587
+  :authentication: plain
+  :user_name: snorby@snorby.com
+  :password: snorby
+production:
+  :address: smtp.server.com
+  :port: 25
+  :authentication: plain
+  :user_name: user
+  :password: pass
