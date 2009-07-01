@@ -5,7 +5,7 @@ class ReportsController < ApplicationController
   
   def show
     @report = Report.find(params[:id])
-    @events = Event.find(:all, :conditions => ['timestamp >= ?', @report.from_time], :include => [:sig, :sensor, :iphdr, :udphdr, :icmphdr, :tcphdr])
+    @events = Event.find(:all, :conditions => ['timestamp >= ? AND timestamp <= ?', DateTime.parse(@report.from_time), DateTime.parse(@report.to_time)], :include => [:sig, :sensor, :iphdr, :udphdr, :icmphdr, :tcphdr])
   end
   
   def new

@@ -18,7 +18,7 @@
 					<%= f.calendar_date_select :start_time, :popup => :force, :time => :true %>
 				</td>
 				<td>
-					<%= f.calendar_date_select :end_time, :popup => :force, :time => :true %>
+					<%= f.calendar_date_select :end_time, :popup => :force, :time => :true, :value => Time.now.strftime('%B %d, %Y %I:%M %p') %>
 				</td>
 			</tr>
 		</table>

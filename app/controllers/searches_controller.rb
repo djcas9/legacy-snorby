@@ -9,7 +9,7 @@ class SearchesController < ApplicationController
       if @search.events.empty?
         flash[:error] = "Sorry! No results found."
       else
-        flash[:notice] = "Successfully submitted search and found #{@search.events.size} results."
+        flash[:notice] = "Successfully submitted search and found #{@search.events.size} results. #{@search.end_time}"
       end
       redirect_to @search
     else

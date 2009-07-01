@@ -3,6 +3,7 @@ class CreateReports < ActiveRecord::Migration
     create_table :reports do |t|
       t.string :title
       t.string :from_time
+      t.string :to_time
       t.string :rtype
       t.timestamps
     end
