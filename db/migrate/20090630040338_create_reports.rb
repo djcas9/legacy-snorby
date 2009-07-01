@@ -2,7 +2,7 @@ class CreateReports < ActiveRecord::Migration
   def self.up
     create_table :reports do |t|
       t.string :title
-      t.datetime :from_time
+      t.string :from_time
       t.string :rtype
       t.timestamps
     end

@@ -15,8 +15,8 @@ class Event < ActiveRecord::Base
   
   
   def self.run_daily_report
-    @events = self.find(:all, :conditions => ['timestamp >= ?', "#{Chronic.parse('one day ago').utc}"])
-    report = Report.new(:title => "Daily Report For #{Chronic.parse('one day ago')}", :rtype => 'daily', :from_time => Chronic.parse('one day ago'))
+    @events = self.find(:all, :conditions => ['timestamp >= ?', Chronic.parse('one day ago')])
+    report = Report.new(:title => "Daily Report For #{Chronic.parse('one day ago')}", :rtype => 'daily', :from_time => "#{Chronic.parse('one day ago')}")
     if report.save!
       #pdf = report.make_pdf_for_report
       ReportMailer.deliver_daily_report(@events, Chronic.parse('one day ago'))
@@ -24,7 +24,7 @@ class Event < ActiveRecord::Base
   end
   
   def self.run_weekly_report
-    @events = self.find(:all, :conditions => ['timestamp >= ?', Chronic.parse('one week ago').utc])
+    @events = self.find(:all, :conditions => ['timestamp >= ?', Chronic.parse('one week ago')])
     report = Report.new(:title => "Weekly Report For #{Chronic.parse('one week ago')}", :rtype => 'weekly', :from_time => Chronic.parse('one week ago'))
     if report.save!
       #pdf = report.make_pdf_for_report

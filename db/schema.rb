@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(:version => 20090630040338) do
 
   create_table "reports", :force => true do |t|
     t.string   "title"
-    t.datetime "from_time"
+    t.string   "from_time"
     t.string   "rtype"
     t.datetime "created_at"
     t.datetime "updated_at"
