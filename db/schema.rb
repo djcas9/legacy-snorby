@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090630040338) do
+ActiveRecord::Schema.define(:version => 20090701003204) do
 
   create_table "data", :id => false, :force => true do |t|
     t.integer "sid",          :null => false
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20090630040338) do
     t.datetime "from_time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "rtype"
   end
 
   create_table "schema", :primary_key => "vseq", :force => true do |t|
@@ -206,6 +207,7 @@ ActiveRecord::Schema.define(:version => 20090630040338) do
     t.datetime "current_login_at"
     t.string   "last_login_ip"
     t.string   "current_login_ip"
+    t.string   "time_zone"
   end
 
   add_index "users", ["last_request_at"], :name => "index_users_on_last_request_at"

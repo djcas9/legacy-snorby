@@ -1,13 +1,14 @@
-<% title "Report" %>
+<h1>Report</h1>
 
 <p>
   <strong>Title:</strong>
   <%=h @report.title %>
 </p>
-<p>
-  <strong>From Time:</strong>
-  <%=h @report.from_time %>
-</p>
+
+<%- for event in @events -%>
+	<%= event.sig.sig_name %> - <%= event.timestamp.strftime('%B %d %Y - %I:%M:%S %p') %><br />
+<%- end -%>
+<br />
 
 <p>
   <%= link_to "Edit", edit_report_path(@report) %> |

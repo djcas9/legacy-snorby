@@ -1,23 +1,23 @@
 class ReportMailer < ActionMailer::Base
   
-  def daily_report(user, events, date)
+  def daily_report(events, date)
     recipients  'dustin.webber@gmail.com'
     from        "reports@snorby.org"
-    subject     "Snorby Report for #{date}"
+    subject     "Snorby Daily Report: #{date.strftime('%D')}"
     body        :events => events
   end
   
-  def weekly_report(user, events, date)
+  def weekly_report(events, date)
     recipients  'dustin.webber@gmail.com'
     from        "reports@snorby.org"
-    subject     "Snorby Report for #{date}"
+    subject     "Snorby Weekly Report: #{date.strftime('%D')} - #{Time.now.strftime('%D')}"
     body        :events => events
   end
   
-  def monthly_report(user, events, date)
+  def monthly_report(events, date)
     recipients  'dustin.webber@gmail.com'
     from        "reports@snorby.org"
-    subject     "Snorby Report for #{date}"
+    subject     "Snorby Monthly Report: #{date.strftime('%D')} - #{Time.now.strftime('%D')}"
     body        :events => events
   end
 

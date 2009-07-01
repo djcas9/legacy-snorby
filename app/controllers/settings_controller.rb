@@ -1,6 +1,9 @@
 class SettingsController < ApplicationController
   def index
     @settings = Setting.all
+    Event.run_daily_report
+    #Event.run_weekly_report
+    #Event.run_monthly_report
   end
   
   def show
