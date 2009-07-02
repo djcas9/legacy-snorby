@@ -24,7 +24,7 @@ pdf.line_width(1)
 @l_c = []
 @l = []
 
-@search.count_events.each do |event, count|
+@report.count_events.each do |event, count|
   r = event.split('|')
   sig_name = r[0]
   src_ip = IPAddr.new_ntoh([r[1].to_i].pack('N'))
@@ -66,7 +66,7 @@ if !@h.blank? and !@m.blank? and !@l.blank?
 end
 pdf.move_down(20)
 header = ["Low Severity", "Medium Severity", "High Severity", "Total Event Count"]
-pdf.table [[pluralize(@l_c.size, "Event"), pluralize(@m_c.size, "Event"), pluralize(@h_c.size, "Event"), pluralize(@search.events.size, "Event")]],
+pdf.table [[pluralize(@l_c.size, "Event"), pluralize(@m_c.size, "Event"), pluralize(@h_c.size, "Event"), pluralize(@events.size, "Event")]],
 :headers => header,
 :position => :center,
 :width => 500,

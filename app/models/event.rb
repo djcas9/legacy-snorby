@@ -12,8 +12,6 @@ class Event < ActiveRecord::Base
   belongs_to :sig, :class_name => "Signature", :foreign_key => 'signature', :dependent => :destroy
   belongs_to :sig_reference, :class_name => "SigReference", :foreign_key => 'signature', :dependent => :destroy
   
-  
-  
   def self.run_daily_report
     @events = self.find(:all, :conditions => ['timestamp >= ?', Chronic.parse('one day ago')])
     report = Report.new(:title => "Daily Report For #{Chronic.parse('one day ago')}", :rtype => 'daily', :from_time => "#{Chronic.parse('one day ago')}", :to_time => "#{Chronic.parse('now')}")
