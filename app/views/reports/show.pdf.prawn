@@ -53,7 +53,7 @@ pdf.start_new_page
 ###
 
 ### Summary
-pdf.move_down(5)
+pdf.move_down(2)
 pdf.text "#{@report.rtype.capitalize} Report Summary", :size => 20, :style => :bold, :align => :center
 pdf.stroke_horizontal_rule
 pdf.move_down(50)
@@ -66,7 +66,7 @@ if !@h.blank? and !@m.blank? and !@l.blank?
 end
 pdf.move_down(20)
 header = ["Low Severity", "Medium Severity", "High Severity", "Total Event Count"]
-pdf.table [[pluralize(@l_c.size, "Event"), pluralize(@m_c.size, "Event"), pluralize(@h_c.size, "Event"), pluralize(@events.size, "Event")]],
+pdf.table [[pluralize(@l_c.size, "Event"), pluralize(@m_c.size, "Event"), pluralize(@h_c.size, "Event"), pluralize(@report.events.size, "Event")]],
 :headers => header,
 :position => :center,
 :width => 500,

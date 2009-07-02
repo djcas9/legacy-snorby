@@ -53,7 +53,7 @@ pdf.start_new_page
 ###
 
 ### Summary
-pdf.move_down(5)
+pdf.move_down(2)
 pdf.text "Snorby Report Summary", :size => 20, :style => :bold, :align => :center
 pdf.stroke_horizontal_rule
 pdf.move_down(50)
