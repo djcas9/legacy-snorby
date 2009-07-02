@@ -59,12 +59,12 @@ pdf.stroke_horizontal_rule
 pdf.move_down(50)
 if !@h.blank? and !@m.blank? and !@l.blank?
   begin
-    pdf.image open(Gchart.line(:labels => ["High", "Medium", "Low"], :theme => :thirty7signals, :data => [@h, @m, @l], :size => '500x230')), :position => :center
+    pdf.image open(Gchart.line(:line_color => ["adffa2", "f8f9a4", "fb9c9c"], :labels => ["High", "Medium", "Low"], :data => [@h, @m, @l], :size => '500x230')), :position => :center
   rescue
     pdf.text "Error Creating Graphs.", :size => 15, :style => :bold, :align => :left
   end
 end
-pdf.move_down(20)
+pdf.move_down(30)
 header = ["Low Severity", "Medium Severity", "High Severity", "Total Event Count"]
 pdf.table [[pluralize(@l_c.size, "Event"), pluralize(@m_c.size, "Event"), pluralize(@h_c.size, "Event"), pluralize(@search.events.size, "Event")]],
 :headers => header,
@@ -72,7 +72,7 @@ pdf.table [[pluralize(@l_c.size, "Event"), pluralize(@m_c.size, "Event"), plural
 :width => 500,
 :border_width => 1,
 :font_size => 12
-pdf.move_down(10)
+pdf.move_down(20)
 begin
   pdf.image open(Gchart.pie_3d(:line_color => ["adffa2", "f8f9a4", "fb9c9c"], :labels => ['Low', 'Medium', 'High'], :data => [@l.size, @m.size, @h.size], :size => '400x200')), :position => :center
 rescue
@@ -81,7 +81,6 @@ rescue
 end
 pdf.move_down(40)
 pdf.start_new_page
-
 ### END
 
 ### Start Of Data
