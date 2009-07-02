@@ -75,11 +75,11 @@ module ApplicationHelper
   
   def get_address_for_pdf?(a)
     begin
-      "#{image_tag('show_event/pass.png', :size => '12x12')} #{Resolv.getname(a)}"
+      "#{Resolv.getname(a)}"
     rescue Resolv::ResolvError
-      "#{image_tag('show_event/fail.png', :size => '12x12')} Unable To Resolve Address."
+      "Unable To Resolve Address."
     rescue => e
-      "#{image_tag('show_event/fail.png', :size => '12x12')} Snorbby Needs To be Restarted."
+      "Snorbby Needs To be Restarted."
     end
   end
 
