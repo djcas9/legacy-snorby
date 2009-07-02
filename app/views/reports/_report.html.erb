@@ -1,5 +1,8 @@
 <tr class="<%= cycle('odd', 'even') %>">
   <td><%= check_box_tag "report_ids[]", report.id %></td>
 	<td>Snorby <%=h report.rtype %> Report</td>
-  <td><%=h report.from_time %></td>
+  <td><%=h DateTime.parse(report.from_time).strftime('%B %d %Y - %I:%M:%S %p') %></td>
+	<td><%= image_tag('export/pdf.png') %></td>
+	<td><%= image_tag('export/xml.png') %></td>
+	<td><%= image_tag('export/csv.png') %></td>
 </tr>

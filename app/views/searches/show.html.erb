@@ -1,6 +1,11 @@
+<div id="search_options" class='round'>
+	<%= link_to "#{image_tag('export/pdf.png')}", { :format => 'pdf' } %>
+	<%= link_to "#{image_tag('export/xml.png')}", { :format => 'pdf' } %>
+	<%= link_to "#{image_tag('export/csv.png')}", { :format => 'pdf' } %>
+	<%= link_to "#{image_tag('export/email.png')}", { :format => 'pdf' } %>
+</div>
 <h1>Search Results</h1>
 <br />
-
 <%= render :partial => @search.events %>
 
 <%- if @search.events.empty? -%>

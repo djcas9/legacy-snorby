@@ -931,3 +931,24 @@ pre {
 }
 
 /* @end */
+
+/* @group Search */
+
+#search_options{
+	background-color: #fdffc7;
+	border: 1px solid #fef99e;
+	color: #373737;
+	position: relative;
+	padding: 10px;
+	float: right;
+	margin-top: -10px;
+	margin-right: -20px;
+}
+
+#search_options img{
+	padding-right: 5px;
+	padding-left: 5px;
+}
+
+
+/* @end */
