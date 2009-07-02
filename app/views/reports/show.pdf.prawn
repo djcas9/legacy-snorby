@@ -74,7 +74,7 @@ pdf.table [[pluralize(@l_c.size, "Event"), pluralize(@m_c.size, "Event"), plural
 :font_size => 12
 pdf.move_down(10)
 begin
-  pdf.image open(Gchart.pie_3d(:labels => ['Low', 'Medium', 'High'], :data => [@l.size, @m.size, @h.size], :size => '400x200')), :position => :center
+  pdf.image open(Gchart.pie_3d(:theme => :thirty7signals, :labels => ['Low', 'Medium', 'High'], :data => [@l.size, @m.size, @h.size], :size => '400x200')), :position => :center
 rescue
   pdf.move_down(40)
   pdf.text "Error Creating Graphs.", :size => 15, :style => :bold, :align => :left
