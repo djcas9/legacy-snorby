@@ -14,6 +14,7 @@ Rails::Initializer.run do |config|
   config.gem "authlogic"
   config.gem 'javan-whenever', :lib => false, :source => 'http://gems.github.com'
   config.gem "calendar_date_select"
+  config.gem "prawn"
   config.gem "ambethia-smtp-tls", :lib => "smtp-tls", :source => "http://gems.github.com/"
   config.gem "composite_primary_keys"
   config.gem "chronic"
