@@ -4,6 +4,14 @@ class Search < ActiveRecord::Base
     @events ||= find_events
   end
 
+  def count_events
+    counts = Hash.new(0)
+    self.events.each do |ev|
+      counts["#{ev.sig.sig_name}|#{ev.iphdr.ip_src}|#{ev.iphdr.ip_dst}"] += 1
+    end
+    counts
+  end
+
   private
 
   def find_events
