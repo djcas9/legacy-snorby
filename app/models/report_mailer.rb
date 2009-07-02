@@ -6,7 +6,7 @@ class ReportMailer < ActionMailer::Base
     recipients  'dustin.webber@gmail.com'
     from        "reports@snorby.org"
     subject     "Snorby Daily Report: #{date.strftime('%D')}"
-    body        :events => events
+    body        :events => events, :report => report
     # attachment "application/pdf" do |a|
     #   a.body = open(report_url(report.id, :format => 'pdf')).read
     # end
@@ -16,7 +16,7 @@ class ReportMailer < ActionMailer::Base
     recipients  'dustin.webber@gmail.com'
     from        "reports@snorby.org"
     subject     "Snorby Weekly Report: #{date.strftime('%D')} - #{Time.now.strftime('%D')}"
-    body        :events => events
+    body        :events => events, :report => report
     # attachment "application/pdf" do |a|
     #   a.body = report_path(report.id, :format => 'pdf')
     # end
@@ -26,7 +26,7 @@ class ReportMailer < ActionMailer::Base
     recipients  'dustin.webber@gmail.com'
     from        "reports@snorby.org"
     subject     "Snorby Monthly Report: #{date.strftime('%D')} - #{Time.now.strftime('%D')}"
-    body        :events => events
+    body        :events => events, :report => report
     # attachment "application/pdf" do |a|
     #   a.body = report_path(report.id, :format => 'pdf')
     # end

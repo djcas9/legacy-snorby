@@ -1,1 +1,7 @@
-<%= @events.size %>
+
+Attached is the Snorby <%= @report.rtype %> report for <%= DateTime.parse(@report.from_time).strftime('%D') %>. If you need more information this report can be viewed at: <%= report_url(@report.id) %>.
+
+Best Regards,
+
+Snorby
+http://www.snorby.org
