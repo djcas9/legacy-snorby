@@ -109,6 +109,7 @@ unless @h_c.blank?
   @h_c.each do |event|
     h += 1
     pdf.text "#{h}. <b>#{event[1]}</b> (#{pluralize(event[0], "Session")})"
+    pdf.text "    * Sensor: #{event[5]}"
     pdf.text "    * Source: #{event[2]} - Destination: #{event[3]}"
     pdf.move_down(7)
   end
@@ -136,6 +137,7 @@ unless @l_c.blank?
   @l_c.each do |event|
     l += 1
     pdf.text "#{l}. <b>#{event[1]}</b> (#{pluralize(event[0], "Session")})"
+    pdf.text "    * Sensor: #{event[5]}"
     pdf.text "    * Source: #{event[2]} - Destination: #{event[3]}"
     pdf.move_down(7)
   end

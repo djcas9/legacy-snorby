@@ -44,7 +44,7 @@ end
 
 pdf.move_down(100)
 pdf.image snorby_logo, :scale=>0.7, :position => :center
-pdf.text "Security Report", :size => 25, :style => :bold, :align => :center
+pdf.text "#{@report.rtype.capitalize} Security Report", :size => 25, :style => :bold, :align => :center
 pdf.text "This report was generated: #{Time.now.strftime('%A, %B %d, %Y')}", :size => 12, :style => :bold, :align => :center
 
 pdf.move_down(30)
@@ -54,7 +54,7 @@ pdf.start_new_page
 
 ### Summary
 pdf.move_down(5)
-pdf.text "Snorby Report Summary", :size => 20, :style => :bold, :align => :center
+pdf.text "#{@report.rtype.capitalize} Report Summary", :size => 20, :style => :bold, :align => :center
 pdf.stroke_horizontal_rule
 pdf.move_down(50)
 if !@h.blank? and !@m.blank? and !@l.blank?
@@ -86,7 +86,7 @@ pdf.start_new_page
 
 ### Start Of Data
 pdf.header [pdf.margin_box.left, pdf.margin_box.top + 20] do
-  pdf.text "- #{Time.now.strftime('%A, %B %d, %Y')} - Snorby Report. -", :size => 7, :align => :center, :style => :italic, :color => 'black'
+  pdf.text "- #{Time.now.strftime('%A, %B %d, %Y')} - #{@report.rtype.capitalize} Snorby Report. -", :size => 7, :align => :center, :style => :italic, :color => 'black'
   pdf.move_down 2
   pdf.stroke_horizontal_rule
   pdf.move_down 30
@@ -109,6 +109,7 @@ unless @h_c.blank?
   @h_c.each do |event|
     h += 1
     pdf.text "#{h}. <b>#{event[1]}</b> (#{pluralize(event[0], "Session")})"
+    pdf.text "    * Sensor: #{event[5]}"
     pdf.text "    * Source: #{event[2]} - Destination: #{event[3]}"
     pdf.move_down(7)
   end
@@ -136,6 +137,7 @@ unless @l_c.blank?
   @l_c.each do |event|
     l += 1
     pdf.text "#{l}. <b>#{event[1]}</b> (#{pluralize(event[0], "Session")})"
+    pdf.text "    * Sensor: #{event[5]}"
     pdf.text "    * Source: #{event[2]} - Destination: #{event[3]}"
     pdf.move_down(7)
   end
