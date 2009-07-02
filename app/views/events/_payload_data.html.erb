@@ -15,8 +15,5 @@
 </div>
 
 <div id="raw_payload">
-	<pre><%= h("#{Hexy.new([@event.data_info.data_payload].pack('H*'), 
-	:width => 20, 
-	:format => :twos,
-	:annotate => :ascii)}") %></pre>
+	<pre><%= h("#{Hexy.new([@event.data_info.data_payload].pack('H*'), :width => 20, :format => :twos, :annotate => :ascii)}") %></pre>
 </div>
