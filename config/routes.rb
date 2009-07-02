@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :reports
-
   
+  map.resources :reports
+  map.resources :reports, :collection => { :delete_multiple => :post }
   map.resource :user_session
   map.resource :account, :controller => "users"
   map.resources :users
@@ -21,4 +21,5 @@ ActionController::Routing::Routes.draw do |map|
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
   map.connect ':controller/:action/:id', :id => /\w+(,\w+)*/
+  
 end

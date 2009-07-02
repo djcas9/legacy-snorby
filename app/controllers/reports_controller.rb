@@ -1,11 +1,14 @@
 class ReportsController < ApplicationController
   def index
-    @reports = Report.all
+    @reports = Report.paginate(:page => params[:page], :per_page => 20, :order => 'created_at DESC')
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
   
   def show
     @report = Report.find(params[:id])
-    #prawnto :inline => false
   end
   
   def new
@@ -42,4 +45,14 @@ class ReportsController < ApplicationController
     flash[:notice] = "Successfully destroyed report."
     redirect_to reports_url
   end
+  
+  def delete_multiple
+    @reports = Report.find(params[:report_ids])
+    @reports.each do |report|
+      report.destroy
+    end
+    flash[:notice] = "Reports were successfully removed!"
+    redirect_to reports_path
+  end
+  
 end

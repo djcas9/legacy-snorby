@@ -1,0 +1,5 @@
+<tr class="<%= cycle('odd', 'even') %>">
+  <td><%= check_box_tag "report_ids[]", report.id %></td>
+	<td>Snorby <%=h report.rtype %> Report</td>
+  <td><%=h report.from_time %></td>
+</tr>

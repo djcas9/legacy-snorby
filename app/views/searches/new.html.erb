@@ -32,7 +32,7 @@
 				<th><%= f.label :sig_priority, "Event Severity" %>:</th>
 			</tr>
 			<tr>
-				<td><%= f.collection_select :sid, Sensor.all, :id, :hostname, :include_blank => true %></td>
+				<td><%= f.collection_select :sid, Sensor.all(:order => 'sid DESC'), :id, :hostname, :include_blank => true %></td>
 				<td><%= f.select :sid_class_id, SigClass.new.all_even_nil, :multiple => false, :include_blank => true %></td>
 				<td><%= f.select :sig_priority, [["High Severity", 1], ["Medium Severity", 2], ["Low Severity", 3]], :multiple => false, :include_blank => true %></td>
 			</tr>

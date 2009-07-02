@@ -898,3 +898,36 @@ pre {
 }
 
 /* @end */
+
+/* @group Reports */
+
+#report_table_in {
+	border: 5px solid #eee;
+	overflow: hidden;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+#report_table table {
+	text-align: left;
+	width: 100%;
+}
+
+#report_table td {
+	padding: 2px 30px 2px 20px;
+	text-align: left;
+}
+
+#report_table tr {
+	border-bottom: 1px solid #f2f2f2;
+	text-align: left;
+}
+
+#report_table th {
+	padding: 2px 30px 2px 15px;
+	color: #464546;
+	background-color: #eee;
+	font-size: x-small;
+}
+
+/* @end */

@@ -10,7 +10,7 @@ class SigClass < ActiveRecord::Base
   
   def all_even_nil
     data = []
-    for s in SigClass.all
+    for s in SigClass.all(:order => 'sig_class_name')
       data << [s.sig_class_name, s.sig_class_id]
     end
     data << ["Unclassified", 0]

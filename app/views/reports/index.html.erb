@@ -1,19 +1,42 @@
 <h1>Snorby Reports</h1>
 <br />
-<table>
-  <tr>
-    <th>Title</th>
-    <th>From Time</th>
-  </tr>
-  <% for report in @reports %>
-    <tr>
-      <td><%=h report.title %></td>
-      <td><%=h report.from_time %></td>
-      <td><%= link_to "Show", report %></td>
-      <td><%= link_to "Edit", edit_report_path(report) %></td>
-      <td><%= link_to "Destroy", report, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
-</table>
 
-<p><%= link_to "New Report", new_report_path %></p>
+<% if @reports.blank? %>
+<div id="report_table">
+	<div id="report_table_in">
+		<table>
+		  <tr>
+		    <th></th>
+		  </tr>
+				<tr>
+					<td>You currently have no reports.</td>
+				</tr>
+		</table>
+	</div>
+</div>
+<br />
+<%- else -%>
+
+<% form_tag delete_multiple_reports_path do %>
+<div id="report_table">
+	<div id="paginate" align='right'>
+		<%= will_paginate @reports %>
+	</div>
+	<div id="report_table_in">
+		<table>
+		  <tr>
+		    <th></th>
+				<th>Report Type</th>
+		    <th>Report Time</th>
+		  </tr>
+			<div id="reports">
+				<%= render :partial => @reports %>
+			</div>
+		</table>
+	</div>
+</div>
+<br />
+<%= submit_tag "Remove Checked" %>
+<% end %>
+
+<% end %>
