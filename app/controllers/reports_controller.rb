@@ -9,6 +9,12 @@ class ReportsController < ApplicationController
   
   def show
     @report = Report.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf
+      format.csv
+      format.xml { render :xml => @report.events }
+    end
   end
   
   def new

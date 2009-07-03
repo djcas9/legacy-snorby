@@ -16,8 +16,7 @@
 </div>
 <br />
 <%- else -%>
-
-<% form_tag delete_multiple_reports_path do %>
+<% form_tag delete_multiple_reports_path, {:id => 'form'} do %>
 <div id="report_table">
 	<div id="paginate" align='right'>
 		<%= will_paginate @reports %>
@@ -36,6 +35,9 @@
 	</div>
 </div>
 <br />
+<div id="move_right" align='right'>
+	<input id="check_all" name="check_all" type="checkbox" onclick="Form.getInputs('form','checkbox').each(function(box){box.checked = $('check_all').checked})" /> Select All
+</div>
 <%= submit_tag "Remove Checked" %>
 <% end %>
 
