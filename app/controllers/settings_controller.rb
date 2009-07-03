@@ -2,9 +2,14 @@ class SettingsController < ApplicationController
   def index
     @user = @current_user
     @settings = Setting.all
-    Event.run_daily_report
+    #Event.run_daily_report
     #Event.run_weekly_report
     #Event.run_monthly_report
+  end
+  
+  def sensor_settings
+    @sensors = Sensor.all(:order => 'sid ASC')
+    render :layout => false
   end
   
   def show
@@ -46,4 +51,14 @@ class SettingsController < ApplicationController
     flash[:notice] = "Successfully destroyed setting."
     redirect_to settings_url
   end
+  
+  def sensor_delete_multiple
+    @sensors = Sensor.find(params[:sensor_ids])
+    @sensors.each do |sensor|
+      sensor.destroy
+    end
+    flash[:notice] = "Sensor were successfully removed!"
+    redirect_to settings_path
+  end
+  
 end

@@ -10,23 +10,7 @@ class PagesController < ApplicationController
     @categories ||= SigClass.all
     @sensors ||= Sensor.all :include => :events, :order => 'sid ASC'
   end
-
-  def clean_out_database
-    @events = Event.find(:all)
-    @events.each do |e|
-      e.destroy
-    end
-  end
   
-  
-  def remove_sensor
-    @sensor = Sensor.find(params[:remove_sensor_id])
-    if @sensor.destroy
-      flash[:notice] = "Sensor destroyed successfully."
-    end
-    redirect_to settings_path
-  end
-
   def credits
   end
 

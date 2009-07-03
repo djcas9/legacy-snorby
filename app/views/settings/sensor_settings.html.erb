@@ -1,0 +1,11 @@
+<div id="sensor_settings">
+<% form_tag sensor_delete_multiple_settings_path do %>
+
+			<%- for sensor in @sensors -%>
+				<%= check_box_tag "sensor_ids[]", sensor.id %> <%= sensor.hostname %> - <%= sensor.interface %><br />
+				<br />
+			<%- end -%>
+<br />
+<%= submit_tag "Remove Checked" %>
+<% end %>
+</div>

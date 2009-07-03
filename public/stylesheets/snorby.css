@@ -952,3 +952,30 @@ pre {
 
 
 /* @end */
+
+/* @group Settings */
+
+#sensor_settings{
+	width: 600px;
+	font-size: medium;
+	color: #383838;
+}
+
+#settings{
+	min-height: 200px;
+	overflow: visible;
+	display: inline-block;
+	position: relative;
+}
+
+#user_info{
+	float: left;
+}
+
+#b_settings {
+	width: 400px;
+	float: right;
+	margin: auto auto 20px;
+}
+
+/* @end */

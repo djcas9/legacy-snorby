@@ -1,6 +1,4 @@
 class ReportMailer < ActionMailer::Base
-  include ActionController::UrlWriter
-  default_url_options[:host] = '127.0.0.1:3000'
   
   def daily_report(report, events, date)
     recipients  'dustin.webber@gmail.com'

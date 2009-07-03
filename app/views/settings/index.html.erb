@@ -1,39 +1,59 @@
+<div id="settings">
+	<div id="user_info">
+		<p>
+		  <b>Login:</b>
+		  <%=h @user.login %>
+		</p>
 
-<% for s in Sensor.all %>
-	<%= s.hostname %> - <%= link_to "Remove", :controller => 'pages', :action => 'remove_sensor', :remove_sensor_id => s.id %><br />
-<%- end -%>
+		<p>
+		  <b>Login count:</b>
+		  <%=h @user.login_count %>
+		</p>
 
-<br /><br />
+		<p>
+		  <b>Last request at:</b>
+		  <%=h @user.last_request_at %>
+		</p>
 
-<%= render :partial => @users %>
+		<p>
+		  <b>Last login at:</b>
+		  <%=h @user.last_login_at %>
+		</p>
 
+		<p>
+		  <b>Current login at:</b>
+		  <%=h @user.current_login_at %>
+		</p>
 
-<h1>Edit My Account</h1><br />
+		<p>
+		  <b>Last login ip:</b>
+		  <%=h @user.last_login_ip %>
+		</p>
 
-<% form_for @user, :url => account_path do |f| %>
-  <%= f.error_messages %>
-  <%= render :partial => "users/form", :object => f %><br />
+		<p>
+		  <b>Current login ip:</b>
+		  <%=h @user.current_login_ip %>
+		</p>
+	
+	</div>
+
+	<div id="b_settings">
+	<%= link_to "Sensor Settings", {:action => 'sensor_settings', :id => 'all'}, 
+	:rel => 'facebox', :class => 'round more blah', :id => 'more' %>
+	</div>
 	<br />
-<br />
-  <%= f.submit "Update" %>
-<% end %>
-
-<br /><%= link_to "My Profile", account_path %>
-
-
-<br />
-<table>
-  <tr>
-    <th>Events Per Page</th>
-  </tr>
-  <% for setting in @settings %>
-    <tr>
-      <td><%=h setting.events_per_page %></td>
-      <td><%= link_to "Show", setting %></td>
-      <td><%= link_to "Edit", edit_setting_path(setting) %></td>
-      <td><%= link_to "Destroy", setting, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
-</table>
-<br /><br />
-<p><%= link_to "New Setting", new_setting_path %></p>
+	<div id="b_settings">
+	<%= link_to "My Settings", {:controller => 'users', :action => 'edit', :id => @user.id}, 
+	:rel => 'facebox', :class => 'round more blah', :id => 'more' %>
+	</div>
+	<br />
+	<div id="b_settings">
+	<%= link_to "User Settings", {:controller => 'users', :action => 'edit', :id => @user.id}, 
+	:rel => 'facebox', :class => 'round more blah', :id => 'more' %>
+	</div>
+	<br />
+	<div id="b_settings">
+	<%= link_to "Admin Settings", {:controller => 'users', :action => 'edit', :id => @user.id}, 
+	:rel => 'facebox', :class => 'round more blah', :id => 'more' %>
+	</div>
+</div>

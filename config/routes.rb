@@ -2,6 +2,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :reports
   map.resources :reports, :collection => { :delete_multiple => :post }
+  map.resources :settings, :collection => { :sensor_delete_multiple => :post }
   map.resource :user_session
   map.resource :account, :controller => "users"
   map.resources :users
