@@ -6,7 +6,6 @@ class ReportMailer < ActionMailer::Base
     subject     "Snorby Daily Report: #{date.strftime('%D')}"
     body        :events => events, :report => report
     attachment "application/pdf" do |attachment|
-      attachment.transfer_encoding = "base64"
       attachment.body = File.read("#{RAILS_ROOT}/tmp/tmp.pdf")
       attachment.filename = "Snorby Daily Report - #{date.strftime('%D')}.pdf"
     end

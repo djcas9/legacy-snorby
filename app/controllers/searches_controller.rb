@@ -21,7 +21,10 @@ class SearchesController < ApplicationController
   def show
     @search = Search.find(params[:id])
     respond_to do |format|
-      format.xml { render :xml => @search.events }
+      format.html
+      format.pdf
+      format.csv
+      format.xml { render :xml => @report.events }
     end
   end
 end
