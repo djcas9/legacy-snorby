@@ -1,3 +1,4 @@
+require 'prawn'
 require 'prawn/layout'
 require 'prawn/format'
 require File.dirname(__FILE__) + "/../config/environment"
@@ -15,6 +16,7 @@ class Pdf_for_email
 
   def self.make_pdf(report, events)
     Prawn::Document.generate("#{RAILS_ROOT}/tmp/tmp.pdf") do
+      
       tags :h1 => { :font_size => "2em", :font_weight => :bold },
       :h2 => { :font_size => "0.5em", :font_weight => :bold },
       :title => { :font_weight => :bold, :font_size => "1.5em" },
@@ -79,9 +81,9 @@ class Pdf_for_email
         end
       end
       move_down(30)
-      header = ["Low Severity", "Medium Severity", "High Severity", "Total Event Count"]
+      xheader = ["Low Severity", "Medium Severity", "High Severity", "Total Event Count"]
       table [[@l_c.size, @m_c.size, @h_c.size, events.size]],
-      :headers => header,
+      :headers => xheader,
       :position => :center,
       :width => 500,
       :border_width => 1,
@@ -94,9 +96,26 @@ class Pdf_for_email
         text "Error Creating Graphs.", :size => 15, :style => :bold, :align => :left
       end
       move_down(40)
+
       start_new_page
 
       ### END
+
+      header [margin_box.left, margin_box.top + 20] do
+        text "- #{Time.now.strftime('%A, %B %d, %Y')} - Snorby Report. -", :size => 7, :align => :center, :style => :italic, :color => 'black'
+        move_down 2
+        stroke_horizontal_rule
+        move_down 30
+      end
+
+      footer [margin_box.left, margin_box.bottom + 5] do
+        move_down 7
+        stroke_horizontal_rule
+        move_down 3
+        text "- #{page_count} -", :size => 7, :align => :center
+        move_down 1
+        text "Copyright (c) Snorby.org", :size => 7, :align => :center, :style => :italic, :color => 'black'
+      end
 
       ### Start Of Data
 
