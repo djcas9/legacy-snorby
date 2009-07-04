@@ -3,7 +3,6 @@
 <% form_for @search do |f| %>
   <%= f.error_messages %>
 
-	<p>
 		<table class='form'>
 			<tr>
 				<th><%= f.label :keywords, "Event Keywords" %></th>
@@ -22,7 +21,6 @@
 				</td>
 			</tr>
 		</table>
-  </p>
 
 	<br />
 		<table class='form'>
@@ -71,5 +69,4 @@
 	<br />
   <p><%= f.submit "Submit Search" %></p>
 <% end %>
-
 
