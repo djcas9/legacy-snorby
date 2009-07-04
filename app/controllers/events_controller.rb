@@ -12,6 +12,11 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id], :include => [:sig, :sensor, :iphdr, :udphdr, :icmphdr, :tcphdr])
     @source_ip = IPAddr.new_ntoh([@event.iphdr.ip_src].pack('N'))
     @destination_ip = IPAddr.new_ntoh([@event.iphdr.ip_dst].pack('N'))
+    respond_to do |format|
+      format.html
+      format.pdf
+      format.xml { render :xml => @event }
+    end
   end
 
   def whois

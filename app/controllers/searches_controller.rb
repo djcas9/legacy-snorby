@@ -24,7 +24,7 @@ class SearchesController < ApplicationController
       format.html
       format.pdf
       format.csv
-      format.xml { render :xml => @report.events }
+      format.xml { render :xml => @search.events }
     end
   end
 end

@@ -16,9 +16,10 @@ class ReportMailer < ActionMailer::Base
     from        "reports@snorby.org"
     subject     "Snorby Weekly Report: #{date.strftime('%D')} - #{Time.now.strftime('%D')}"
     body        :events => events, :report => report
-    # attachment "application/pdf" do |a|
-    #   a.body = report_path(report.id, :format => 'pdf')
-    # end
+    attachment "application/pdf" do |attachment|
+      attachment.body = File.read("#{RAILS_ROOT}/tmp/tmp.pdf")
+      attachment.filename = "Snorby Daily Report - #{date.strftime('%D')}.pdf"
+    end
   end
 
   def monthly_report(report, events, date)
@@ -26,9 +27,10 @@ class ReportMailer < ActionMailer::Base
     from        "reports@snorby.org"
     subject     "Snorby Monthly Report: #{date.strftime('%D')} - #{Time.now.strftime('%D')}"
     body        :events => events, :report => report
-    # attachment "application/pdf" do |a|
-    #   a.body = report_path(report.id, :format => 'pdf')
-    # end
+    attachment "application/pdf" do |attachment|
+      attachment.body = File.read("#{RAILS_ROOT}/tmp/tmp.pdf")
+      attachment.filename = "Snorby Daily Report - #{date.strftime('%D')}.pdf"
+    end
   end
 
 end
