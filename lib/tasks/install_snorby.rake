@@ -14,5 +14,4 @@ namespace :snorby do
     puts "Installing Snorby Cron Jobs."
     system('whenever --update-crontab snorby --set environment=development')
   end
-  
 end

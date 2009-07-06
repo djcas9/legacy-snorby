@@ -4,10 +4,10 @@ class SettingsController < ApplicationController
   def index
     @user = @current_user
     @settings = Setting.all
-    
-    # spawn do
-    #   Event.run_daily_report
-    # end
+
+    spawn do
+      Event.run_daily_report
+    end
     #Event.run_weekly_report
     #Event.run_monthly_report
   end

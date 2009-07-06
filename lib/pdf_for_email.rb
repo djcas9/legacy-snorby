@@ -72,46 +72,56 @@ class Pdf_for_email
       move_down(2)
       text "#{report.rtype.capitalize} Report Summary", :size => 20, :style => :bold, :align => :center
       stroke_horizontal_rule
-      move_down(50)
+      move_down(25)
+
+      text "Event Severity Summary", :size => 15, :style => :bold, :align => :center
+      move_down(5)
+      xheader = ["Low Severity", "Medium Severity", "High Severity", "Total Event Count"]
+      table [[@l_c.size, @m_c.size, @h_c.size, events.size]],
+      :headers => xheader,
+      :header_color => 'f8f8f8',
+      :header_text_color => "323233",
+      :padding => 5,
+      :border_style => :grid,
+      :position => :center,
+      :row_colors => ["FFFFFF", "e8f9ff"],
+      :width => 535,
+      :border_width => 1,
+      :font_size => 9
+
       @_line_data = []
       @_line_color = []
       @_line_label = []
       unless @l.blank?
         @_line_data << @l unless @l.blank?
-        @_line_color << "adffa2"
+        @_line_color << "00ff28"
         @_line_label << "Low"
       end
       unless @m.blank?
         @_line_data << @m unless @m.blank?
-        @_line_color << "f8f9a4"
+        @_line_color << "ffac00"
         @_line_label << "Medium"
       end
       unless @h.blank?
         @_line_data << @h unless @h.blank?
-        @_line_color << "fb9c9c"
+        @_line_color << "ff3715"
         @_line_label << "High"
       end
+
       unless events.blank?
-        image open(Gchart.line(:line_color => @_line_color, :labels => @_line_label, :data => @_line_data, :size => '500x230')), :position => :center
         move_down(30)
+        text "Event Severity vs Sessions", :size => 15, :style => :bold, :align => :center
+        move_down(5)
+        image open(Gchart.line(:axis_with_labels => ['x','y','r'], :line_color => @_line_color, :data => @_line_data, :size => '500x230')), :position => :center
+        move_down(20)
       end
-      xheader = ["Low Severity", "Medium Severity", "High Severity", "Total Event Count"]
-      table [[@l_c.size, @m_c.size, @h_c.size, events.size]],
-      :headers => xheader,
-      :position => :center,
-      :width => 500,
-      :border_width => 1,
-      :font_size => 10
-      begin
-        unless events.blank?
-          move_down(30)
-          image open(Gchart.pie_3d(:line_color => ["adffa2", "f8f9a4", "fb9c9c"], :labels => ["Low (#{@l.size})", "Medium (#{@m.size})", "High (#{@h.size})"], :data => [@l.size, @m.size, @h.size], :size => '440x200')), :position => :center
-        end
-      rescue
-        move_down(40)
-        text "Error Creating Graphs.", :size => 15, :style => :bold, :align => :left
+      unless events.blank?
+        move_down(30)
+        text "Event Severity", :size => 15, :style => :bold, :align => :center
+        move_down(5)
+        image open(Gchart.pie(:line_color => ["00ff28", "ffac00", "ff3715"], :labels => ["Low (#{@l.size})", "Medium (#{@m.size})", "High (#{@h.size})"], :data => [@l.size, @m.size, @h.size], :size => '440x200')), :position => :center
       end
-      move_down(40)
+      move_down(30)
 
       start_new_page
 
@@ -154,12 +164,15 @@ class Pdf_for_email
         h_header = ["Event Name", "Sensor ID", "Source Address", "Destination Address", "Session Count"]
         table @h_t_data,
         :headers => h_header,
+        :header_color => 'f8f8f8',
+        :header_text_color => "323233",
+        :padding => 5,
         :border_style => :grid,
         :position => :center,
-        :row_colors => ["FFFFFF", "ededed"],
+        :row_colors => ["FFFFFF", "e8f9ff"],
         :width => 535,
         :border_width => 1,
-        :font_size => 10
+        :font_size => 9
       end
 
       unless @m_c.blank?
@@ -175,12 +188,15 @@ class Pdf_for_email
         m_header = ["Event Name", "Sensor ID", "Source Address", "Destination Address", "Session Count"]
         table @m_t_data,
         :headers => m_header,
+        :header_color => 'f8f8f8',
+        :header_text_color => "323233",
+        :padding => 5,
         :border_style => :grid,
         :position => :center,
-        :row_colors => ["FFFFFF", "ededed"],
+        :row_colors => ["FFFFFF", "e8f9ff"],
         :width => 535,
         :border_width => 1,
-        :font_size => 10
+        :font_size => 9
       end
 
       unless @l_c.blank?
@@ -196,12 +212,15 @@ class Pdf_for_email
         l_header = ["Event Name", "Sensor ID", "Source Address", "Destination Address", "Session Count"]
         table @l_t_data,
         :headers => l_header,
+        :header_color => 'f8f8f8',
+        :header_text_color => "323233",
+        :padding => 5,
         :border_style => :grid,
         :position => :center,
-        :row_colors => ["FFFFFF", "ededed"],
+        :row_colors => ["FFFFFF", "e8f9ff"],
         :width => 535,
         :border_width => 1,
-        :font_size => 10
+        :font_size => 9
       end
 
     end
@@ -273,10 +292,15 @@ class Pdf_for_email
       a_header = ["Sensor", "Interface", "Hostname", "Event ID"]
       table [[event.sensor.id, event.sensor.interface, event.sensor.hostname, event.id[1]]],
       :headers => a_header,
+      :header_color => 'f8f8f8',
+      :header_text_color => "323233",
+      :padding => 5,
+      :border_style => :grid,
       :position => :center,
-      :width => 500,
+      :row_colors => ["FFFFFF", "e8f9ff"],
+      :width => 535,
       :border_width => 1,
-      :font_size => 10
+      :font_size => 9
 
 
       move_down(25)
@@ -285,20 +309,30 @@ class Pdf_for_email
       b_header = ["Source IP", "Destination IP"]
       table [["#{IPAddr.new_ntoh([event.iphdr.ip_src].pack('N'))}", "#{IPAddr.new_ntoh([event.iphdr.ip_dst].pack('N'))}"]],
       :headers => b_header,
+      :header_color => 'f8f8f8',
+      :header_text_color => "323233",
+      :padding => 5,
+      :border_style => :grid,
       :position => :center,
-      :width => 500,
+      :row_colors => ["FFFFFF", "e8f9ff"],
+      :width => 535,
       :border_width => 1,
-      :font_size => 10
+      :font_size => 9
 
       move_down(25)
 
       c_header = ["Version", "Header Length", "Type of Service", "Length", "ID", "Flags", "Offset", "TTL", "Protocol", "Check Sum"]
       table [[event.iphdr.ip_ver, event.iphdr.ip_hlen, event.iphdr.ip_tos, event.iphdr.ip_len, event.iphdr.ip_id, event.iphdr.ip_flags, event.iphdr.ip_off, event.iphdr.ip_ttl, event.iphdr.ip_proto, event.iphdr.ip_csum]],
       :headers => c_header,
+      :header_color => 'f8f8f8',
+      :header_text_color => "323233",
+      :padding => 5,
+      :border_style => :grid,
       :position => :center,
-      :width => 500,
+      :row_colors => ["FFFFFF", "e8f9ff"],
+      :width => 535,
       :border_width => 1,
-      :font_size => 10
+      :font_size => 9
 
       unless event.tcphdr.blank?
         move_down(25)
@@ -306,10 +340,15 @@ class Pdf_for_email
         d_header = ["S. Port", "D. Port", "Seq #", "Ack", "Offset", "Reset", "Flags", "Window", "Check Sum", "Urgent Pointer"]
         table [[event.tcphdr.tcp_sport, event.tcphdr.tcp_dport, event.tcphdr.tcp_seq, event.tcphdr.tcp_ack, event.tcphdr.tcp_off, event.tcphdr.tcp_res, event.tcphdr.tcp_flags, event.tcphdr.tcp_win, event.tcphdr.tcp_csum, event.tcphdr.tcp_urp]],
         :headers => d_header,
+        :header_color => 'f8f8f8',
+        :header_text_color => "323233",
+        :padding => 5,
+        :border_style => :grid,
         :position => :center,
-        :width => 500,
+        :row_colors => ["FFFFFF", "e8f9ff"],
+        :width => 535,
         :border_width => 1,
-        :font_size => 10
+        :font_size => 9
 
         move_down(25)
       end
@@ -321,10 +360,15 @@ class Pdf_for_email
         c_header = ["Source Port", "Destination Port", "Length", "CheckSum"]
         table [[event.udphdr.udp_sport, event.udphdr.udp_dport, event.udphdr.udp_len, event.udphdr.udp_csum]],
         :headers => c_header,
+        :header_color => 'f8f8f8',
+        :header_text_color => "323233",
+        :padding => 5,
+        :border_style => :grid,
         :position => :center,
-        :width => 500,
+        :row_colors => ["FFFFFF", "e8f9ff"],
+        :width => 535,
         :border_width => 1,
-        :font_size => 10
+        :font_size => 9
 
         move_down(25)
       end
@@ -336,10 +380,15 @@ class Pdf_for_email
         f_header = ["Type", "Code", "CheckSum", "ID", "Sequence Number"]
         table [[event.icmphdr.icmp_type, event.icmphdr.icmp_code, event.icmphdr.icmp_csum, event.icmphdr.icmp_id, event.icmphdr.icmp_seq]],
         :headers => f_header,
+        :header_color => 'f8f8f8',
+        :header_text_color => "323233",
+        :padding => 5,
+        :border_style => :grid,
         :position => :center,
-        :width => 500,
+        :row_colors => ["FFFFFF", "e8f9ff"],
+        :width => 535,
         :border_width => 1,
-        :font_size => 10
+        :font_size => 9
 
         move_down(25)
       end
@@ -404,50 +453,59 @@ class Pdf_for_email
 
       ### Summary
       move_down(2)
-      text "Snorby Search Report Summary", :size => 20, :style => :bold, :align => :center
+      text "Search Report Summary", :size => 20, :style => :bold, :align => :center
       stroke_horizontal_rule
-      move_down(50)
+      move_down(25)
+
+      text "Event Severity Summary", :size => 15, :style => :bold, :align => :center
+      move_down(5)
+      xheader = ["Low Severity", "Medium Severity", "High Severity", "Total Event Count"]
+      table [[@l_c.size, @m_c.size, @h_c.size, search.events.size]],
+      :headers => xheader,
+      :header_color => 'f8f8f8',
+      :header_text_color => "323233",
+      :padding => 5,
+      :border_style => :grid,
+      :position => :center,
+      :row_colors => ["FFFFFF", "e8f9ff"],
+      :width => 535,
+      :border_width => 1,
+      :font_size => 9
+
       @_line_data = []
       @_line_color = []
       @_line_label = []
       unless @l.blank?
         @_line_data << @l unless @l.blank?
-        @_line_color << "adffa2"
+        @_line_color << "00ff28"
         @_line_label << "Low"
       end
       unless @m.blank?
         @_line_data << @m unless @m.blank?
-        @_line_color << "f8f9a4"
+        @_line_color << "ffac00"
         @_line_label << "Medium"
       end
       unless @h.blank?
         @_line_data << @h unless @h.blank?
-        @_line_color << "fb9c9c"
+        @_line_color << "ff3715"
         @_line_label << "High"
       end
-      
+
       unless search.events.blank?
-        image open(Gchart.line(:line_color => @_line_color, :labels => @_line_label, :data => @_line_data, :size => '500x230')), :position => :center
         move_down(30)
+        text "Event Severity vs Sessions", :size => 15, :style => :bold, :align => :center
+        move_down(5)
+        image open(Gchart.line(:axis_with_labels => ['x','y','r'], :line_color => @_line_color, :data => @_line_data, :size => '500x230')), :position => :center
+        move_down(20)
       end
-      
-      xheader = ["Low Severity", "Medium Severity", "High Severity", "Total Event Count"]
-      table [[@l_c.size, @m_c.size, @h_c.size, search.events.size]],
-      :headers => xheader,
-      :position => :center,
-      :width => 500,
-      :border_width => 1,
-      :font_size => 10
-      begin
-        unless search.events.blank?
-          move_down(30)
-          image open(Gchart.pie_3d(:line_color => ["adffa2", "f8f9a4", "fb9c9c"], :labels => ["Low (#{@l.size})", "Medium (#{@m.size})", "High (#{@h.size})"], :data => [@l.size, @m.size, @h.size], :size => '440x200')), :position => :center
-        end
-      rescue
-        move_down(40)
-        text "Error Creating Graphs.", :size => 15, :style => :bold, :align => :left
+      unless search.events.blank?
+        move_down(30)
+        text "Event Severity", :size => 15, :style => :bold, :align => :center
+        move_down(5)
+        image open(Gchart.pie(:line_color => ["00ff28", "ffac00", "ff3715"], :labels => ["Low (#{@l.size})", "Medium (#{@m.size})", "High (#{@h.size})"], :data => [@l.size, @m.size, @h.size], :size => '440x200')), :position => :center
       end
-      move_down(40)
+      move_down(30)
+
       start_new_page
       ### END
 
@@ -486,12 +544,15 @@ class Pdf_for_email
         h_header = ["Event Name", "Sensor ID", "Source Address", "Destination Address", "Session Count"]
         table @h_t_data,
         :headers => h_header,
+        :header_color => 'f8f8f8',
+        :header_text_color => "323233",
+        :padding => 5,
         :border_style => :grid,
         :position => :center,
-        :row_colors => ["FFFFFF", "ededed"],
+        :row_colors => ["FFFFFF", "e8f9ff"],
         :width => 535,
         :border_width => 1,
-        :font_size => 10
+        :font_size => 9
       end
 
       unless @m_c.blank?
@@ -507,12 +568,15 @@ class Pdf_for_email
         m_header = ["Event Name", "Sensor ID", "Source Address", "Destination Address", "Session Count"]
         table @m_t_data,
         :headers => m_header,
+        :header_color => 'f8f8f8',
+        :header_text_color => "323233",
+        :padding => 5,
         :border_style => :grid,
         :position => :center,
-        :row_colors => ["FFFFFF", "ededed"],
+        :row_colors => ["FFFFFF", "e8f9ff"],
         :width => 535,
         :border_width => 1,
-        :font_size => 10
+        :font_size => 9
       end
 
       unless @l_c.blank?
@@ -528,12 +592,15 @@ class Pdf_for_email
         l_header = ["Event Name", "Sensor ID", "Source Address", "Destination Address", "Session Count"]
         table @l_t_data,
         :headers => l_header,
+        :header_color => 'f8f8f8',
+        :header_text_color => "323233",
+        :padding => 5,
         :border_style => :grid,
         :position => :center,
-        :row_colors => ["FFFFFF", "ededed"],
+        :row_colors => ["FFFFFF", "e8f9ff"],
         :width => 535,
         :border_width => 1,
-        :font_size => 10
+        :font_size => 9
       end
     end
     ### End Of Data

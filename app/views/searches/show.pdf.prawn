@@ -56,46 +56,57 @@ pdf.start_new_page
 pdf.move_down(2)
 pdf.text "Snorby Report Summary", :size => 20, :style => :bold, :align => :center
 pdf.stroke_horizontal_rule
-pdf.move_down(50)
+pdf.move_down(25)
+
+pdf.text "Event Severity Summary", :size => 15, :style => :bold, :align => :center
+pdf.move_down(5)
+xheader = ["Low Severity", "Medium Severity", "High Severity", "Total Event Count"]
+pdf.table [[@l_c.size, @m_c.size, @h_c.size, @search.events.size]],
+:headers => xheader,
+:header_color => 'f8f8f8',
+:header_text_color => "323233",
+:padding => 5,
+:border_style => :grid,
+:position => :center,
+:row_colors => ["FFFFFF", "e8f9ff"],
+:width => 535,
+:border_width => 1,
+:font_size => 9
+
 @_line_data = []
 @_line_color = []
 @_line_label = []
 unless @l.blank?
   @_line_data << @l unless @l.blank?
-  @_line_color << "adffa2"
+  @_line_color << "00ff28"
   @_line_label << "Low"
 end
 unless @m.blank?
   @_line_data << @m unless @m.blank?
-  @_line_color << "f8f9a4"
+  @_line_color << "ffac00"
   @_line_label << "Medium"
 end
 unless @h.blank?
   @_line_data << @h unless @h.blank?
-  @_line_color << "fb9c9c"
+  @_line_color << "ff3715"
   @_line_label << "High"
 end
+
 unless @search.events.blank?
-  pdf.image open(Gchart.line(:line_color => @_line_color, :labels => @_line_label, :data => @_line_data, :size => '500x230')), :position => :center
   pdf.move_down(30)
+  pdf.text "Event Severity vs Sessions", :size => 15, :style => :bold, :align => :center
+  pdf.move_down(5)
+  pdf.image open(Gchart.line(:axis_with_labels => ['x','y','r'], :line_color => @_line_color, :data => @_line_data, :size => '500x230')), :position => :center
+  pdf.move_down(20)
 end
-header = ["Low Severity", "Medium Severity", "High Severity", "Total Event Count"]
-pdf.table [[pluralize(@l_c.size, "Event"), pluralize(@m_c.size, "Event"), pluralize(@h_c.size, "Event"), pluralize(@search.events.size, "Event")]],
-:headers => header,
-:position => :center,
-:width => 500,
-:border_width => 1,
-:font_size => 10
-begin
-  unless @search.events.blank?
-    pdf.move_down(30)
-    pdf.image open(Gchart.pie_3d(:line_color => ["adffa2", "f8f9a4", "fb9c9c"], :labels => ["Low (#{@l.size})", "Medium (#{@m.size})", "High (#{@h.size})"], :data => [@l.size, @m.size, @h.size], :size => '440x200')), :position => :center
-  end
-rescue
-  pdf.move_down(40)
-  pdf.text "Error Creating Graphs.", :size => 15, :style => :bold, :align => :left
+unless @search.events.blank?
+  pdf.move_down(30)
+  pdf.text "Event Severity", :size => 15, :style => :bold, :align => :center
+  pdf.move_down(5)
+  pdf.image open(Gchart.pie(:line_color => ["00ff28", "ffac00", "ff3715"], :labels => ["Low (#{@l.size})", "Medium (#{@m.size})", "High (#{@h.size})"], :data => [@l.size, @m.size, @h.size], :size => '440x200')), :position => :center
 end
-pdf.move_down(40)
+pdf.move_down(30)
+
 pdf.start_new_page
 ### END
 
@@ -134,12 +145,15 @@ unless @h_c.blank?
   h_header = ["Event Name", "Sensor ID", "Source Address", "Destination Address", "Session Count"]
   pdf.table @h_t_data,
   :headers => h_header,
+  :header_color => 'f8f8f8',
+  :header_text_color => "323233",
+  :padding => 5,
   :border_style => :grid,
   :position => :center,
-  :row_colors => ["FFFFFF", "ededed"],
+  :row_colors => ["FFFFFF", "e8f9ff"],
   :width => 535,
   :border_width => 1,
-  :font_size => 10
+  :font_size => 9
 end
 
 unless @m_c.blank?
@@ -155,12 +169,15 @@ unless @m_c.blank?
   m_header = ["Event Name", "Sensor ID", "Source Address", "Destination Address", "Session Count"]
   pdf.table @m_t_data,
   :headers => m_header,
+  :header_color => 'f8f8f8',
+  :header_text_color => "323233",
+  :padding => 5,
   :border_style => :grid,
   :position => :center,
-  :row_colors => ["FFFFFF", "ededed"],
+  :row_colors => ["FFFFFF", "e8f9ff"],
   :width => 535,
   :border_width => 1,
-  :font_size => 10
+  :font_size => 9
 end
 
 unless @l_c.blank?
@@ -176,11 +193,14 @@ unless @l_c.blank?
   l_header = ["Event Name", "Sensor ID", "Source Address", "Destination Address", "Session Count"]
   pdf.table @l_t_data,
   :headers => l_header,
+  :header_color => 'f8f8f8',
+  :header_text_color => "323233",
+  :padding => 5,
   :border_style => :grid,
   :position => :center,
-  :row_colors => ["FFFFFF", "ededed"],
+  :row_colors => ["FFFFFF", "e8f9ff"],
   :width => 535,
   :border_width => 1,
-  :font_size => 10
+  :font_size => 9
 end
 ### End Of Data

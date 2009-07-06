@@ -12,14 +12,14 @@ module LayoutHelper
     @show_title
   end
 
-  # def outside_content(show_outside_content = false)
-  #   @show_outside_content = show_outside_content
-  # end
-  # 
-  # def show_outside_content?
-  #   @show_outside_content
-  # end
-  # 
+  def outside_content(show_outside_content = false)
+    @show_outside_content = show_outside_content
+  end
+  
+  def show_outside_content?
+    @show_outside_content
+  end
+  
   def stylesheet(*args)
     content_for(:head) { stylesheet_link_tag(*args.map(&:to_s)) }
   end
