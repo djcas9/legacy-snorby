@@ -16,7 +16,7 @@ class Pdf_for_email
 
   def self.make_pdf(report, events)
     Prawn::Document.generate("#{RAILS_ROOT}/tmp/tmp.pdf") do
-      
+
       tags :h1 => { :font_size => "2em", :font_weight => :bold },
       :h2 => { :font_size => "0.5em", :font_weight => :bold },
       :title => { :font_weight => :bold, :font_size => "1.5em" },
@@ -73,14 +73,14 @@ class Pdf_for_email
       text "#{report.rtype.capitalize} Report Summary", :size => 20, :style => :bold, :align => :center
       stroke_horizontal_rule
       move_down(50)
-      if !@h.blank? and !@m.blank? and !@l.blank?
-        begin
-          image open(Gchart.line(:line_color => ["adffa2", "f8f9a4", "fb9c9c"], :labels => ["Low", "Medium", "High"], :data => [@l, @m, @h], :size => '500x230')), :position => :center
-        rescue
-          text "Error Creating Graphs.", :size => 15, :style => :bold, :align => :left
-        end
+      @_line_data = []
+      @_line_data << @l unless @l.blank?
+      @_line_data << @m unless @m.blank?
+      @_line_data << @h unless @h.blank?
+      unless events.blank?
+        image open(Gchart.line(:line_color => ["adffa2", "f8f9a4", "fb9c9c"], :labels => ["Low", "Medium", "High"], :data => @_line_data, :size => '500x230')), :position => :center
+        move_down(30)
       end
-      move_down(30)
       xheader = ["Low Severity", "Medium Severity", "High Severity", "Total Event Count"]
       table [[@l_c.size, @m_c.size, @h_c.size, events.size]],
       :headers => xheader,
@@ -88,9 +88,11 @@ class Pdf_for_email
       :width => 500,
       :border_width => 1,
       :font_size => 12
-      move_down(20)
       begin
-        image open(Gchart.pie_3d(:line_color => ["adffa2", "f8f9a4", "fb9c9c"], :labels => ["Low (#{@l.size})", "Medium (#{@m.size})", "High (#{@h.size})"], :data => [@l.size, @m.size, @h.size], :size => '440x200')), :position => :center
+        unless events.blank?
+          image open(Gchart.pie_3d(:line_color => ["adffa2", "f8f9a4", "fb9c9c"], :labels => ["Low (#{@l.size})", "Medium (#{@m.size})", "High (#{@h.size})"], :data => [@l.size, @m.size, @h.size], :size => '440x200')), :position => :center
+          move_down(30)
+        end
       rescue
         move_down(40)
         text "Error Creating Graphs.", :size => 15, :style => :bold, :align => :left
@@ -118,6 +120,11 @@ class Pdf_for_email
       end
 
       ### Start Of Data
+
+
+      if events.blank?
+        text "NO DATA", :size => 30, :style => :bold, :align => :center, :color => :red
+      end
 
 
       unless @h_c.blank?
@@ -182,8 +189,8 @@ class Pdf_for_email
         :border_width => 1,
         :font_size => 10
       end
-      
+
     end
   end
 end
-  ### End Of Data
+### End Of Data

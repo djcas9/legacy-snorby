@@ -57,14 +57,14 @@ pdf.move_down(2)
 pdf.text "#{@report.rtype.capitalize} Report Summary", :size => 20, :style => :bold, :align => :center
 pdf.stroke_horizontal_rule
 pdf.move_down(50)
-if !@h.blank? and !@m.blank? and !@l.blank?
-  begin
-    pdf.image open(Gchart.line(:line_color => ["adffa2", "f8f9a4", "fb9c9c"], :labels => ["Low", "Medium", "High"], :data => [@l, @m, @h], :size => '500x230')), :position => :center
-  rescue
-    pdf.text "Error Creating Graphs.", :size => 15, :style => :bold, :align => :left
-  end
+@_line_data = []
+@_line_data << @l unless @l.blank?
+@_line_data << @m unless @m.blank?
+@_line_data << @h unless @h.blank?
+unless @report.events.blank?
+  pdf.image open(Gchart.line(:line_color => ["adffa2", "f8f9a4", "fb9c9c"], :labels => ["Low", "Medium", "High"], :data => @_line_data, :size => '500x230')), :position => :center
+  pdf.move_down(30)
 end
-pdf.move_down(30)
 header = ["Low Severity", "Medium Severity", "High Severity", "Total Event Count"]
 pdf.table [[pluralize(@l_c.size, "Event"), pluralize(@m_c.size, "Event"), pluralize(@h_c.size, "Event"), pluralize(@report.events.size, "Event")]],
 :headers => header,
@@ -72,9 +72,11 @@ pdf.table [[pluralize(@l_c.size, "Event"), pluralize(@m_c.size, "Event"), plural
 :width => 500,
 :border_width => 1,
 :font_size => 12
-pdf.move_down(20)
 begin
-  pdf.image open(Gchart.pie_3d(:line_color => ["adffa2", "f8f9a4", "fb9c9c"], :labels => ["Low (#{@l.size})", "Medium (#{@m.size})", "High (#{@h.size})"], :data => [@l.size, @m.size, @h.size], :size => '440x200')), :position => :center
+  unless @report.events.blank?
+    pdf.image open(Gchart.pie_3d(:line_color => ["adffa2", "f8f9a4", "fb9c9c"], :labels => ["Low (#{@l.size})", "Medium (#{@m.size})", "High (#{@h.size})"], :data => [@l.size, @m.size, @h.size], :size => '440x200')), :position => :center
+    pdf.move_down(30)
+  end
 rescue
   pdf.move_down(40)
   pdf.text "Error Creating Graphs.", :size => 15, :style => :bold, :align => :left
@@ -99,6 +101,11 @@ pdf.footer [pdf.margin_box.left, pdf.margin_box.bottom + 5] do
   pdf.text "- #{pdf.page_count} -", :size => 7, :align => :center
   pdf.move_down 1
   pdf.text "Copyright (c) Snorby.org", :size => 7, :align => :center, :style => :italic, :color => 'black'
+end
+
+if @report.events.blank?
+  pdf.move_down(30)
+  pdf.text "NO DATA", :size => 30, :style => :bold, :align => :center
 end
 
 unless @h_c.blank?
