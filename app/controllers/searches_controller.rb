@@ -40,6 +40,7 @@ class SearchesController < ApplicationController
 
     @emails = []
     @myteam = params[:user_id] ||= []
+
     @myteam.each do |m|
       @emails << User.find(m).email
     end
