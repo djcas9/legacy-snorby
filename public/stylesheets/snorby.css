@@ -192,6 +192,22 @@ body {
 
 /* @group Tables */
 
+.grid td{
+	font: small "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+
+.grid tr:hover{
+	background-color: #ededed;
+}
+
+.grid a{
+	color: #1f00ff;
+	font-weight: normal;
+	font-style: normal;
+	text-decoration: none;
+	font-variant: normal;
+}
+
 tr.odd {
 	
 }
