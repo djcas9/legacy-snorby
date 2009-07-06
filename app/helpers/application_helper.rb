@@ -3,7 +3,7 @@ module ApplicationHelper
 
   ## Sensor
   def events_for_sensor(s)
-    c = Event.find(:all, :conditions => ['sid = ?', s.id]).size
+    c = Event.find(:all, :conditions => ['sid = ?', s.id]).size + 0
     return "#{pluralize(c, 'event')}"
   end
   

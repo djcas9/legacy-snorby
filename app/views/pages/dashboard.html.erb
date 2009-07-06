@@ -86,7 +86,7 @@
 					<td><%= s.interface %></td>
 					<td><%= s.encoding_type %></td>
 					<td><%= s.last_cid %></td>
-					<td><%= horizontal_bar_graph  [["Event Percentage", ((events_for_sensor_only(s)/Event.all.size.to_f) * 100).round(2)]] unless Event.last.blank? %></td>
+					<td><%= horizontal_bar_graph  [["Event Percentage", ((events_for_sensor_only(s)/Event.all.size.to_f) * 100).round(2)]] %></td>
 				</tr>
 				<%- end -%>
 			</table>
@@ -109,11 +109,11 @@
 				</tr>
 				<tr>
 				<td><%= image_tag('dashboard/folder_page.png', :size=>'10x10') %> Unclassified</td>
-				<td><%= pluralize(Event.find(:all, :include => :sig, :conditions => ['signature.sig_class_id = 0']).size, "Event") %></td>
+				<td><%= pluralize(Event.find(:all, :include => :sig, :conditions => ['signature.sig_class_id = 0']).size + 0, "Event") %></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td><%= horizontal_bar_graph  [["Event Percentage", ((Event.find(:all, :include => :sig, :conditions => ['signature.sig_class_id = 0']).size/Event.all.size.to_f) * 100).round(2)]] unless Event.find(:all, :include => :sig, :conditions => ['signature.sig_class_id = 0']).blank? %></td>
+				<td><%= horizontal_bar_graph  [["Event Percentage", ((Event.find(:all, :include => :sig, :conditions => ['signature.sig_class_id = 0']).size+0/Event.all.size.to_f) * 100).round(2)]] %></td>
 				</tr>
 				<%- for c in @categories -%>
 				<tr class="<%= cycle('even', 'odd') %>">
