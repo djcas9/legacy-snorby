@@ -4,7 +4,7 @@ class SettingsController < ApplicationController
   def index
     @user = @current_user
     @settings = Setting.all
-    #Event.run_daily_report
+    Event.run_daily_report
     #Event.run_weekly_report
     #Event.run_monthly_report
   end

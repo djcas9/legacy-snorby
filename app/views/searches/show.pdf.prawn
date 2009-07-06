@@ -58,11 +58,25 @@ pdf.text "Snorby Report Summary", :size => 20, :style => :bold, :align => :cente
 pdf.stroke_horizontal_rule
 pdf.move_down(50)
 @_line_data = []
-@_line_data << @l unless @l.blank?
-@_line_data << @m unless @m.blank?
-@_line_data << @h unless @h.blank?
+@_line_color = []
+@_line_label = []
+unless @l.blank?
+  @_line_data << @l unless @l.blank?
+  @_line_color << "adffa2"
+  @_line_label << "Low"
+end
+unless @m.blank?
+  @_line_data << @m unless @m.blank?
+  @_line_color << "f8f9a4"
+  @_line_label << "Medium"
+end
+unless @h.blank?
+  @_line_data << @h unless @h.blank?
+  @_line_color << "fb9c9c"
+  @_line_label << "High"
+end
 unless @search.events.blank?
-  pdf.image open(Gchart.line(:line_color => ["adffa2", "f8f9a4", "fb9c9c"], :labels => ["Low", "Medium", "High"], :data => @_line_data, :size => '500x230')), :position => :center
+  pdf.image open(Gchart.line(:line_color => @_line_color, :labels => @_line_label, :data => @_line_data, :size => '500x230')), :position => :center
   pdf.move_down(30)
 end
 header = ["Low Severity", "Medium Severity", "High Severity", "Total Event Count"]

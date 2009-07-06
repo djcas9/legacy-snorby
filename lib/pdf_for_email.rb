@@ -74,11 +74,25 @@ class Pdf_for_email
       stroke_horizontal_rule
       move_down(50)
       @_line_data = []
-      @_line_data << @l unless @l.blank?
-      @_line_data << @m unless @m.blank?
-      @_line_data << @h unless @h.blank?
+      @_line_color = []
+      @_line_label = []
+      unless @l.blank?
+        @_line_data << @l unless @l.blank?
+        @_line_color << "adffa2"
+        @_line_label << "Low"
+      end
+      unless @m.blank?
+        @_line_data << @m unless @m.blank?
+        @_line_color << "f8f9a4"
+        @_line_label << "Medium"
+      end
+      unless @h.blank?
+        @_line_data << @h unless @h.blank?
+        @_line_color << "fb9c9c"
+        @_line_label << "High"
+      end
       unless events.blank?
-        image open(Gchart.line(:line_color => ["adffa2", "f8f9a4", "fb9c9c"], :labels => ["Low", "Medium", "High"], :data => @_line_data, :size => '500x230')), :position => :center
+        image open(Gchart.line(:line_color => @_line_color, :labels => @_line_label, :data => @_line_data, :size => '500x230')), :position => :center
         move_down(30)
       end
       xheader = ["Low Severity", "Medium Severity", "High Severity", "Total Event Count"]
