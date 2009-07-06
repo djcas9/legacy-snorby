@@ -15,27 +15,30 @@ class Event < ActiveRecord::Base
   def self.run_daily_report
     @events = self.find(:all, :conditions => ['timestamp >= ?', Chronic.parse('one day ago')])
     report = Report.new(:title => "Daily Report For #{Chronic.parse('one day ago')}", :rtype => 'daily', :from_time => "#{Chronic.parse('one day ago')}", :to_time => "#{Time.now}")
+    emails = User.who_accepts_email
     if report.save!
       Pdf_for_email.make_pdf(report, @events)
-      ReportMailer.deliver_daily_report(report, @events, Chronic.parse('one day ago'))
+      ReportMailer.deliver_daily_report(report, emails, @events, Chronic.parse('one day ago'))
     end
   end
   
   def self.run_weekly_report
     @events = self.find(:all, :conditions => ['timestamp >= ?', Chronic.parse('one week ago')])
     report = Report.new(:title => "Weekly Report For #{Chronic.parse('one week ago')}", :rtype => 'weekly', :from_time => "#{Chronic.parse('one week ago')}", :to_time => "#{Time.now}")
+    emails = User.who_accepts_email
     if report.save!
       Pdf_for_email.make_pdf(report, @events)
-      ReportMailer.deliver_weekly_report(report, @events, Chronic.parse('one week ago'))
+      ReportMailer.deliver_weekly_report(report, emails, @events, Chronic.parse('one week ago'))
     end
   end
   
   def self.run_monthly_report
     @events = self.find(:all, :conditions => ['timestamp >= ?', Chronic.parse('one month ago')])
     report = Report.new(:title => "Monthly Report For #{Chronic.parse('one month ago')}", :rtype => 'monthly', :from_time => "#{Chronic.parse('one month ago')}", :to_time => "#{Time.now}")
+    emails = User.who_accepts_email
     if report.save!
       Pdf_for_email.make_pdf(report, @events)
-      ReportMailer.deliver_monthly_report(report, @events, Chronic.parse('one month ago'))
+      ReportMailer.deliver_monthly_report(report, emails, @events, Chronic.parse('one month ago'))
     end
   end
   

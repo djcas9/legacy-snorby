@@ -7,6 +7,7 @@
 				<th></th>
 				<th>User</th>
 				<th>Email</th>
+				<th>Administrator</th>
 				<th>Edit</th>
 			</tr>
 			<%- for user in @users -%>
@@ -14,6 +15,11 @@
 				<td><%= check_box_tag "user_ids[]", user.id %></td>
 				<td><%= image_tag('dashboard/user.png', :size=>'12x12') %> <%= user.login %></td>
 				<td><%= user.email %></td>
+				<%- if user.admin -%>
+				<td><%= image_tag('yes.png', :size=>'12x12') %></td>
+				<%- else -%>
+				<td><%= image_tag('cross.png', :size=>'12x12') %></td>
+				<%- end -%>
 				<td><%= image_tag('dashboard/user_edit.png', :size=>'12x12') %> <%= link_to "Edit", edit_user_path(user) %></td>
 			</tr>
 			<%- end -%>
