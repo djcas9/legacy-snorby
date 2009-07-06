@@ -1,0 +1,20 @@
+<div id="send_event_box">
+	<h3><%= @report.rtype.capitalize %> Report</h3><br />
+	
+	<% form_tag :controller => 'reports', :action => "send_report_now", :report_id => params[:report_id] do %>
+  	To: 
+		<%- if User.find(:all).empty? -%>
+		<font color='red'>No Users Have Been Added To This Account!</font>
+		<%- else -%>
+			<%- for user in User.find(:all) -%>
+				<%= check_box_tag "[user_id][]", user.id, user.id %>
+			  <%= user.login.capitalize %>
+			<%- end -%>
+		<%- end -%>
+		<br /><br />
+		Notes:
+		<%= text_area_tag :msg, nil, :size=>'40x10'%><br /><br />
+		<%= submit_tag "Send Report", :name => nil, :disable_with => 'Sending...' %>
+
+	<%- end -%>
+</div>

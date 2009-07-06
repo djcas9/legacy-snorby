@@ -68,7 +68,7 @@ class ReportMailer < ActionMailer::Base
       a.transfer_encoding = "base64"
     end
   end
-  
+
   def search_report(user, search, emails, msg)
     recipients    emails
     from          "search_report@snorby.org"
@@ -85,5 +85,22 @@ class ReportMailer < ActionMailer::Base
       a.transfer_encoding = "base64"
     end
   end
-  
+
+  def report_report(user, report, emails, msg)
+    recipients    emails
+    from          "reports@snorby.org"
+    subject       "Snorby #{report.rtype.capitalize} Report: #{DateTime.parse(report.from_time).strftime('%D')}-#{DateTime.parse(report.to_time).strftime('%D')}"
+    sent_on       Time.now
+
+    part "text/plain" do |p|
+      p.body = render_message("report_report.html.erb", :report => report)
+    end
+
+    attachment "application/pdf" do |a|
+      a.body = File.read("#{RAILS_ROOT}/tmp/tmp.pdf")
+      a.filename = "Snorby #{report.rtype.capitalize} Report - #{DateTime.parse(report.from_time).strftime('%D')}-#{DateTime.parse(report.to_time).strftime('%D')}.pdf"
+      a.transfer_encoding = "base64"
+    end
+  end
+
 end

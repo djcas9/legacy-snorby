@@ -63,4 +63,29 @@ class ReportsController < ApplicationController
     redirect_to reports_path
   end
   
+  def send_report
+    @report = Report.find(params[:report_id])
+    render :layout => false
+  end
+
+  def send_report_now
+    @report = Report.find(params[:report_id])
+    @events = @report.events
+    @msg = params[:msg]
+    @user = current_user
+
+    Pdf_for_email.make_pdf(@report, @events)
+
+    @emails = []
+    @myteam = params[:user_id] ||= []
+    @myteam.each do |m|
+      @emails << User.find(m).email
+    end
+    ReportMailer.deliver_report_report(@user, @report, @emails, @msg)
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js
+    end
+  end
+  
 end
