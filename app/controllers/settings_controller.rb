@@ -1,12 +1,12 @@
 class SettingsController < ApplicationController
-  before_filter :require_admin, :only => [:sensor_delete_multiple]
+  before_filter :require_admin, :only => [:sensor_delete_multiple, :user_delete_multiple]
   
   def index
     @user = @current_user
     @settings = Setting.all
     #Event.run_daily_report
     #Event.run_weekly_report
-    Event.run_monthly_report
+    #Event.run_monthly_report
   end
   
   def sensor_settings
@@ -59,6 +59,15 @@ class SettingsController < ApplicationController
       sensor.destroy
     end
     flash[:notice] = "Sensor were successfully removed!"
+    redirect_to settings_path
+  end
+  
+  def user_delete_multiple
+    @users = User.find(params[:user_ids])
+    @users.each do |user|
+      user.destroy
+    end
+    flash[:notice] = "User(s) successfully removed!"
     redirect_to settings_path
   end
   

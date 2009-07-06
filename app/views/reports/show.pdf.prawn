@@ -74,8 +74,8 @@ pdf.table [[pluralize(@l_c.size, "Event"), pluralize(@m_c.size, "Event"), plural
 :font_size => 12
 begin
   unless @report.events.blank?
-    pdf.image open(Gchart.pie_3d(:line_color => ["adffa2", "f8f9a4", "fb9c9c"], :labels => ["Low (#{@l.size})", "Medium (#{@m.size})", "High (#{@h.size})"], :data => [@l.size, @m.size, @h.size], :size => '440x200')), :position => :center
     pdf.move_down(30)
+    pdf.image open(Gchart.pie_3d(:line_color => ["adffa2", "f8f9a4", "fb9c9c"], :labels => ["Low (#{@l.size})", "Medium (#{@m.size})", "High (#{@h.size})"], :data => [@l.size, @m.size, @h.size], :size => '440x200')), :position => :center
   end
 rescue
   pdf.move_down(40)
