@@ -1,8 +1,8 @@
 class PagesController < ApplicationController
 
   def dashboard
-    @g_event_severity ||= open_flash_chart_object(400,210,"/graph/event_severity")
-    @g_category_information ||= open_flash_chart_object(400,210,"/graph/category_information")
+    @g_event_severity ||= open_flash_chart_object(400,200,"/graph/event_severity")
+    @g_category_information ||= open_flash_chart_object(400,200,"/graph/category_information")
     @events ||= Event.all :include => :sig
     @uniq_events ||= Event.all :group => 'signature'
     @uniq_adds ||= Iphdr.find(:all, :group => 'ip_src').uniq.size + Iphdr.find(:all, :group => 'ip_dst').uniq.size

@@ -113,7 +113,7 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td><%= horizontal_bar_graph  [["Event Percentage", ((Event.find(:all, :include => :sig, :conditions => ['signature.sig_class_id = 0']).size+0/Event.all.size.to_f) * 100).round(2)]] %></td>
+				<td><%= horizontal_bar_graph  [["Event Percentage", ((0 + Event.find(:all, :include => :sig, :conditions => ['signature.sig_class_id = 0']).size/Event.all.size.to_f) * 100).round(2)]] %></td>
 				</tr>
 				<%- for c in @categories -%>
 				<tr class="<%= cycle('even', 'odd') %>">
