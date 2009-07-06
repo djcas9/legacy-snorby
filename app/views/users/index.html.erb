@@ -1,0 +1,25 @@
+<% form_tag sensor_delete_multiple_settings_path do %>
+<div id="settings_table">
+	<h1>User Settings:</h1><br />
+	<div id="settings_table_in">
+		<table>
+			<tr>
+				<th></th>
+				<th>User</th>
+				<th>Email</th>
+				<th>Edit</th>
+			</tr>
+			<%- for user in @users -%>
+			<tr class="<%= cycle('odd', 'even') %>">
+				<td><%= check_box_tag "user_ids[]", user.id %></td>
+				<td><%= image_tag('dashboard/user.png', :size=>'12x12') %> <%= user.login %></td>
+				<td><%= user.email %></td>
+				<td><%= image_tag('dashboard/user_edit.png', :size=>'12x12') %> <%= link_to "Edit", edit_user_path(user) %></td>
+			</tr>
+			<%- end -%>
+		</table>
+	</div>
+</div>
+<br />
+<%= submit_tag "Remove User(s)" %> <%= link_to "Back To Settings", settings_path %>
+<% end %>

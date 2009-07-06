@@ -1,3 +1,9 @@
+<%- if current_user.admin -%>
+<%= form.check_box :admin %> <%= form.label :admin, "System Administrator" %><br />
+<br />
+<%- end -%>
+<%= form.check_box :accept_email %> <%= form.label :accept_email, "Accept email notifications and reports" %><br />
+<br />
 <%= form.label :login %><br />
 <%= form.text_field :login %><br />
 <br />

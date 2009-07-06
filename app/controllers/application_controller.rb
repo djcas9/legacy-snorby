@@ -42,6 +42,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_admin
+    unless current_user.admin
+      store_location
+      flash[:error] = "You must be an administrator to perform this task"
+      redirect_to root_path
+      return false
+    end
+  end
+
   def store_location
     session[:return_to] = request.request_uri
   end

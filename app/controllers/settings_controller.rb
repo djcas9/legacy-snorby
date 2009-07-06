@@ -1,4 +1,6 @@
 class SettingsController < ApplicationController
+  before_filter :require_admin, :only => [:sensor_delete_multiple]
+  
   def index
     @user = @current_user
     @settings = Setting.all
@@ -9,7 +11,6 @@ class SettingsController < ApplicationController
   
   def sensor_settings
     @sensors = Sensor.all(:order => 'sid ASC')
-    render :layout => false
   end
   
   def show

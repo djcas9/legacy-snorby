@@ -14,8 +14,18 @@ class CreateUsers < ActiveRecord::Migration
       t.string :last_login_ip
       t.string :current_login_ip
       t.string :setting_id
+      t.boolean :accept_email, :null => false
+      t.boolean :admin, :null => false
     end
         
+    user = User.create(:login => 'admin', 
+    :email => 'change_me@example.com', 
+    :password => 'admin', 
+    :password_confirmation => 'admin', 
+    :admin => true, 
+    :accept_email => true)    
+    user.save!
+    
     add_index :users, :login
     add_index :users, :persistence_token
     add_index :users, :last_request_at

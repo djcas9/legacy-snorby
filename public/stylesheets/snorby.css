@@ -5,6 +5,10 @@
 	font-size: small;
 }
 
+#back_button{
+	float: right;
+}
+
 .round{
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 5px;
@@ -967,6 +971,35 @@ pre {
 	width: 600px;
 	font-size: medium;
 	color: #383838;
+}
+
+#settings_table_in {
+	border: 5px solid #eee;
+	overflow: hidden;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+#settings_table table {
+	text-align: left;
+	width: 100%;
+}
+
+#settings_table td {
+	padding: 2px 30px 2px 20px;
+	text-align: left;
+}
+
+#settings_table tr {
+	border-bottom: 1px solid #f2f2f2;
+	text-align: left;
+}
+
+#settings_table th {
+	padding: 2px 30px 2px 15px;
+	color: #464546;
+	background-color: #eee;
+	font-size: x-small;
 }
 
 #settings_menu{
