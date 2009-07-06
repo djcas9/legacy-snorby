@@ -1,59 +1,25 @@
 <div id="settings">
-	<div id="user_info">
-		<p>
-		  <b>Login:</b>
-		  <%=h @user.login %>
-		</p>
-
-		<p>
-		  <b>Login count:</b>
-		  <%=h @user.login_count %>
-		</p>
-
-		<p>
-		  <b>Last request at:</b>
-		  <%=h @user.last_request_at %>
-		</p>
-
-		<p>
-		  <b>Last login at:</b>
-		  <%=h @user.last_login_at %>
-		</p>
-
-		<p>
-		  <b>Current login at:</b>
-		  <%=h @user.current_login_at %>
-		</p>
-
-		<p>
-		  <b>Last login ip:</b>
-		  <%=h @user.last_login_ip %>
-		</p>
-
-		<p>
-		  <b>Current login ip:</b>
-		  <%=h @user.current_login_ip %>
-		</p>
-	
+	<div id="login_header"></div>
+	<div id="settings_menu">
+		<div id="b_settings">
+		<%= link_to "Sensor Settings", {:action => 'sensor_settings', :id => 'all'}, 
+		:rel => 'facebox', :class => 'round more blah', :id => 'more' %>
+		</div>
+		<br />
+		<div id="b_settings">
+		<%= link_to "My Settings", {:controller => 'users', :action => 'edit', :id => @user.id}, 
+		:rel => 'facebox', :class => 'round more blah', :id => 'more' %>
+		</div>
+		<br />
+		<div id="b_settings">
+		<%= link_to "User Settings", users_path, 
+		:rel => 'facebox', :class => 'round more blah', :id => 'more' %>
+		</div>
+		<br />
+		<div id="b_settings">
+		<%= link_to "Admin Settings", {:controller => 'users', :action => 'edit', :id => @user.id}, 
+		:rel => 'facebox', :class => 'round more blah', :id => 'more' %>
+		</div>
 	</div>
-
-	<div id="b_settings">
-	<%= link_to "Sensor Settings", {:action => 'sensor_settings', :id => 'all'}, 
-	:rel => 'facebox', :class => 'round more blah', :id => 'more' %>
-	</div>
-	<br />
-	<div id="b_settings">
-	<%= link_to "My Settings", {:controller => 'users', :action => 'edit', :id => @user.id}, 
-	:rel => 'facebox', :class => 'round more blah', :id => 'more' %>
-	</div>
-	<br />
-	<div id="b_settings">
-	<%= link_to "User Settings", users_path, 
-	:rel => 'facebox', :class => 'round more blah', :id => 'more' %>
-	</div>
-	<br />
-	<div id="b_settings">
-	<%= link_to "Admin Settings", {:controller => 'users', :action => 'edit', :id => @user.id}, 
-	:rel => 'facebox', :class => 'round more blah', :id => 'more' %>
-	</div>
+	<div id="login_footer"></div>
 </div>

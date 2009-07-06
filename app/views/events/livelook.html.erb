@@ -1,6 +1,10 @@
-<div id="events">
+
+<%- content_for(:outside_content) do -%>
+	<div id="show_filter"> HEY! </div>
 	<div id='last_pull_time' align='right'>Last Pull Time: <%= @time.strftime('%I:%M:%S %p') %></div>
-	
+<%- end -%>
+
+<div id="events">	
 	<%= render :partial => @events %>
 </div>
 

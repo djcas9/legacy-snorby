@@ -891,8 +891,16 @@ pre {
 	margin-right: auto;
 }
 
-#login_data{
+#login_footer{
+	width: 600px;
+	height: 28px;
+	background-image: url(../images/snorby_login_bottom.png);
 	margin-bottom: 30px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#login_data{
 	margin-top: -100px;
 	margin-left: 60px;
 }
@@ -961,21 +969,36 @@ pre {
 	color: #383838;
 }
 
+#settings_menu{
+	margin-top: -90px;
+}
+
 #settings{
+	margin: auto auto 20px;
 	min-height: 200px;
-	overflow: visible;
-	display: inline-block;
-	position: relative;
 }
 
 #user_info{
 	float: left;
+	background-color: rgba(202,202,202,0.37);
+	padding: 10px;
+	border: 3px solid rgba(101,101,101,0.53);
 }
 
 #b_settings {
-	width: 400px;
-	float: right;
-	margin: auto auto 20px;
+	width: 500px;
+	margin: auto;
+}
+
+/* @end */
+
+/* @group OUTSIDE */
+
+#outside_content{
+	background-color: #fff5b8;
+	border: 1px solid #fcff8e;
+	padding: 10px;
+	margin: 10px 11px auto;
 }
 
 /* @end */

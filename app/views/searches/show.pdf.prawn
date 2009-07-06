@@ -104,41 +104,56 @@ unless @h_c.blank?
   pdf.move_down(20)
   pdf.text "High Severity", :size => 20, :style => :bold, :align => :left
   h = 0
+  @h_t_data = Array.new
   pdf.move_down(10)
   @h_c.each do |event|
     h += 1
-    pdf.text "#{h}. <b>#{event[1]}</b> (#{pluralize(event[0], "Session")})"
-    pdf.text "    * Sensor: #{event[5]}"
-    pdf.text "    * Source: #{event[2]} - Destination: #{event[3]}"
-    pdf.move_down(7)
+    @h_t_data << ["#{event[1]}", "#{event[5]}", "#{event[2]}", "#{event[3]}", "#{pluralize(event[0], "Session")}"]
   end
+  h_header = ["Event Name", "Sensor", "Source Address", "Destination Address", "Session Count"]
+  pdf.table @h_t_data,
+  :headers => h_header,
+  :position => :center,
+  :width => 535,
+  :border_width => 1,
+  :font_size => 10
 end
 
 unless @m_c.blank?
   pdf.move_down(20)
   pdf.text "Medium Severity", :size => 20, :style => :bold, :align => :left
   m = 0
+  @m_t_data = Array.new
   pdf.move_down(10)
   @m_c.each do |event|
     m += 1
-    pdf.text "#{m}. <b>#{event[1]}</b> (#{pluralize(event[0], "Session")})"
-    pdf.text "    * Sensor: #{event[5]}"
-    pdf.text "    * Source: #{event[2]} - Destination: #{event[3]}"
-    pdf.move_down(7)
+    @m_t_data << ["#{event[1]}", "#{event[5]}", "#{event[2]}", "#{event[3]}", "#{pluralize(event[0], "Session")}"]
   end
+  m_header = ["Event Name", "Sensor", "Source Address", "Destination Address", "Session Count"]
+  pdf.table @m_t_data,
+  :headers => m_header,
+  :position => :center,
+  :width => 535,
+  :border_width => 1,
+  :font_size => 10
 end
 
 unless @l_c.blank?
   pdf.move_down(20)
   pdf.text "Low Severity", :size => 20, :style => :bold, :align => :left
-  l = 0
+  h = 0
+  @l_t_data = Array.new
   pdf.move_down(10)
   @l_c.each do |event|
-    l += 1
-    pdf.text "#{l}. <b>#{event[1]}</b> (#{pluralize(event[0], "Session")})"
-    pdf.text "    * Sensor: #{event[5]}"
-    pdf.text "    * Source: #{event[2]} - Destination: #{event[3]}"
-    pdf.move_down(7)
+    h += 1
+    @l_t_data << ["#{event[1]}", "#{event[5]}", "#{event[2]}", "#{event[3]}", "#{pluralize(event[0], "Session")}"]
   end
+  l_header = ["Event Name", "Sensor", "Source Address", "Destination Address", "Session Count"]
+  pdf.table @l_t_data,
+  :headers => l_header,
+  :position => :center,
+  :width => 535,
+  :border_width => 1,
+  :font_size => 10
 end
 ### End Of Data
