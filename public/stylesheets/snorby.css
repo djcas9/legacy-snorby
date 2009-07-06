@@ -260,6 +260,14 @@ h2 {
 	font-style: normal;
 }
 
+h3 {
+	color: #434343;
+	font-size: small;
+	text-decoration: none;
+	font-weight: normal;
+	font-style: normal;
+}
+
 /* @end */
 
 /* @group Flash Notice */
@@ -1028,10 +1036,16 @@ pre {
 /* @group OUTSIDE */
 
 #outside_content{
-	background-color: #fff5b8;
-	border: 1px solid #fcff8e;
+	background-color: rgba(20,20,20,0.66);
+	border: 1px solid #5b5b59;
 	padding: 10px;
 	margin: 10px 11px auto;
+	color: #fff;
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	text-decoration: none;
+	font-variant: normal;
 }
 
 /* @end */

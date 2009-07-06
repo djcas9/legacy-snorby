@@ -56,5 +56,28 @@ class EventsController < ApplicationController
       format.js { render :layout => false }
     end
   end
+  
+  def send_event
+    @event = Event.find(params[:event_id])
+    render :layout => false
+  end
+
+  def send_event_now
+    @event = Event.find(params[:event_id])
+    @msg = params[:msg]
+    @user = current_user
+
+    @emails = []
+    @myteam = params[:user_id] ||= []
+    @myteam.each do |m|
+      @emails << User.find(m).email
+    end
+    ReportMailer.deliver_event_report(@user, @event, @emails, @msg)
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js
+    end
+  end
+  
 
 end

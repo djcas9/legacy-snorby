@@ -51,4 +51,14 @@ class ReportMailer < ActionMailer::Base
     end
   end
 
+
+  def event_report(user, event, emails, msg)
+    recipients    emails
+    from          "event_report@snorby.org"
+    subject       "Snorby Event Report: #{event.sig.sig_name}"
+    sent_on       Time.now
+    content_type  "text/plain"
+    body          :event => event, :user => user, :msg => msg
+  end
+
 end

@@ -118,7 +118,7 @@ unless @h_c.blank?
     h += 1
     @h_t_data << ["#{event[1]}", "#{event[5]}", "#{event[2]}", "#{event[3]}", "#{pluralize(event[0], "Session")}"]
   end
-  h_header = ["Event Name", "Sensor", "Source Address", "Destination Address", "Session Count"]
+  h_header = ["Event Name", "Sensor ID", "Source Address", "Destination Address", "Session Count"]
   pdf.table @h_t_data,
   :headers => h_header,
   :border_style => :grid,
@@ -139,7 +139,7 @@ unless @m_c.blank?
     m += 1
     @m_t_data << ["#{event[1]}", "#{event[5]}", "#{event[2]}", "#{event[3]}", "#{pluralize(event[0], "Session")}"]
   end
-  m_header = ["Event Name", "Sensor", "Source Address", "Destination Address", "Session Count"]
+  m_header = ["Event Name", "Sensor ID", "Source Address", "Destination Address", "Session Count"]
   pdf.table @m_t_data,
   :headers => m_header,
   :border_style => :grid,
@@ -160,7 +160,7 @@ unless @l_c.blank?
     h += 1
     @l_t_data << ["#{event[1]}", "#{event[5]}", "#{event[2]}", "#{event[3]}", "#{pluralize(event[0], "Session")}"]
   end
-  l_header = ["Event Name", "Sensor", "Source Address", "Destination Address", "Session Count"]
+  l_header = ["Event Name", "Sensor ID", "Source Address", "Destination Address", "Session Count"]
   pdf.table @l_t_data,
   :headers => l_header,
   :border_style => :grid,

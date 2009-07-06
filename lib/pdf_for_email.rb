@@ -137,7 +137,7 @@ class Pdf_for_email
           h += 1
           @h_t_data << ["#{event[1]}", "#{event[5]}", "#{event[2]}", "#{event[3]}", "#{event[0]}"]
         end
-        h_header = ["Event Name", "Sensor", "Source Address", "Destination Address", "Session Count"]
+        h_header = ["Event Name", "Sensor ID", "Source Address", "Destination Address", "Session Count"]
         table @h_t_data,
         :headers => h_header,
         :border_style => :grid,
@@ -158,7 +158,7 @@ class Pdf_for_email
           m += 1
           @m_t_data << ["#{event[1]}", "#{event[5]}", "#{event[2]}", "#{event[3]}", "#{event[0]}"]
         end
-        m_header = ["Event Name", "Sensor", "Source Address", "Destination Address", "Session Count"]
+        m_header = ["Event Name", "Sensor ID", "Source Address", "Destination Address", "Session Count"]
         table @m_t_data,
         :headers => m_header,
         :border_style => :grid,
@@ -179,7 +179,7 @@ class Pdf_for_email
           h += 1
           @l_t_data << ["#{event[1]}", "#{event[5]}", "#{event[2]}", "#{event[3]}", "#{event[0]}"]
         end
-        l_header = ["Event Name", "Sensor", "Source Address", "Destination Address", "Session Count"]
+        l_header = ["Event Name", "Sensor ID", "Source Address", "Destination Address", "Session Count"]
         table @l_t_data,
         :headers => l_header,
         :border_style => :grid,

@@ -14,6 +14,7 @@ ActionController::Routing::Routes.draw do |map|
   map.livelook "/livelook", :controller => 'events', :action => 'livelook'
   map.clean "/clean", :controller => 'pages', :action => 'clean_out_database'
   
+  map.send_event "events/:event_id/send_event", :controller => 'events', :action => 'send_event'
   map.resources :events
   map.root :dashboard
   map.resources :searches
