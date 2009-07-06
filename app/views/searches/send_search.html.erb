@@ -1,7 +1,7 @@
 <div id="send_event_box">
-	<h3><%= @event.sig.sig_name %></h3><br />
+	<h3>Search</h3><br />
 	
-	<% form_tag :controller => 'events', :action => "send_event_now", :event_id => params[:event_id] do %>
+	<% form_tag :controller => 'searches', :action => "send_search_now", :search_id => params[:search_id] do %>
   	To: 
 		<%- if User.find(:all).empty? -%>
 		<font color='red'>No Users Have Been Added To This Account!</font>
@@ -14,7 +14,7 @@
 		<br /><br />
 		Notes:
 		<%= text_area_tag :msg, nil, :size=>'40x10'%><br /><br />
-		<%= submit_tag "Send Event Report", :name => nil, :disable_with => 'Sending...' %>
+		<%= submit_tag "Send Search Report", :name => nil, :disable_with => 'Sending...' %>
 
 	<%- end -%>
 </div>

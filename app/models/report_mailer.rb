@@ -69,4 +69,21 @@ class ReportMailer < ActionMailer::Base
     end
   end
   
+  def search_report(user, search, emails, msg)
+    recipients    emails
+    from          "search_report@snorby.org"
+    subject       "Snorby Search Report"
+    sent_on       Time.now
+
+    part "text/plain" do |p|
+      p.body = render_message("search_report.html.erb", :search => search, :user => user, :msg => msg)
+    end
+
+    attachment "application/pdf" do |a|
+      a.body = File.read("#{RAILS_ROOT}/tmp/tmp-search.pdf")
+      a.filename = "Snorby Search Report - #{search.id}.pdf"
+      a.transfer_encoding = "base64"
+    end
+  end
+  
 end
