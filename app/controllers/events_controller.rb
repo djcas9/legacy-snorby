@@ -67,6 +67,8 @@ class EventsController < ApplicationController
     @msg = params[:msg]
     @user = current_user
 
+    Pdf_for_email.make_pdf_for_event(@event)
+
     @emails = []
     @myteam = params[:user_id] ||= []
     @myteam.each do |m|

@@ -65,7 +65,7 @@ pdf.table [[@event.sensor.id, @event.sensor.interface, @event.sensor.hostname, @
 :position => :center,
 :width => 500,
 :border_width => 1,
-:font_size => 12
+:font_size => 10
 
 
 pdf.move_down(25)
@@ -77,7 +77,7 @@ pdf.table [["#{@source_ip}<br />" + get_address_for_pdf?("#{@source_ip}"), "#{@d
 :position => :center,
 :width => 500,
 :border_width => 1,
-:font_size => 12
+:font_size => 10
 
 pdf.move_down(25)
 
@@ -87,7 +87,7 @@ pdf.table [[@event.iphdr.ip_ver, @event.iphdr.ip_hlen, @event.iphdr.ip_tos, @eve
 :position => :center,
 :width => 500,
 :border_width => 1,
-:font_size => 12
+:font_size => 10
 
 unless @event.tcphdr.blank?
   pdf.move_down(25)
@@ -98,7 +98,7 @@ unless @event.tcphdr.blank?
   :position => :center,
   :width => 500,
   :border_width => 1,
-  :font_size => 12
+  :font_size => 10
   
   pdf.move_down(25)
 end
@@ -113,7 +113,7 @@ unless @event.udphdr.blank?
   :position => :center,
   :width => 500,
   :border_width => 1,
-  :font_size => 12
+  :font_size => 10
   
   pdf.move_down(25)
 end
@@ -128,7 +128,7 @@ unless @event.icmphdr.blank?
   :position => :center,
   :width => 500,
   :border_width => 1,
-  :font_size => 12
+  :font_size => 10
   
   pdf.move_down(25)
 end

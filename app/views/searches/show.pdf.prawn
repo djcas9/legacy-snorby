@@ -85,7 +85,7 @@ pdf.table [[pluralize(@l_c.size, "Event"), pluralize(@m_c.size, "Event"), plural
 :position => :center,
 :width => 500,
 :border_width => 1,
-:font_size => 12
+:font_size => 10
 begin
   unless @search.events.blank?
     pdf.move_down(30)

@@ -57,8 +57,16 @@ class ReportMailer < ActionMailer::Base
     from          "event_report@snorby.org"
     subject       "Snorby Event Report: #{event.sig.sig_name}"
     sent_on       Time.now
-    content_type  "text/plain"
-    body          :event => event, :user => user, :msg => msg
-  end
 
+    part "text/plain" do |p|
+      p.body = render_message("event_report.html.erb", :event => event, :user => user, :msg => msg)
+    end
+
+    attachment "application/pdf" do |a|
+      a.body = File.read("#{RAILS_ROOT}/tmp/tmp-event.pdf")
+      a.filename = "Snorby Event Report - #{event.sig.sig_name}.pdf"
+      a.transfer_encoding = "base64"
+    end
+  end
+  
 end
