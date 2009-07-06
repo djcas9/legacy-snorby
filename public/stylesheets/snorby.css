@@ -193,7 +193,6 @@ body {
 /* @group Tables */
 
 .grid td{
-	font: small "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 }
 
 .grid tr:hover{
