@@ -3,6 +3,8 @@ log/*.log
 tmp/**/*
 config/database.yml
 config/email.yml
+tmp/tmp*
+tmp/*.pdf
 config/environments/
 db/*.sqlite3
 public/assets/*
