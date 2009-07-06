@@ -113,7 +113,9 @@ unless @h_c.blank?
   h_header = ["Event Name", "Sensor", "Source Address", "Destination Address", "Session Count"]
   pdf.table @h_t_data,
   :headers => h_header,
+  :border_style => :grid,
   :position => :center,
+  :row_colors => ["FFFFFF", "ededed"],
   :width => 535,
   :border_width => 1,
   :font_size => 10
@@ -132,7 +134,9 @@ unless @m_c.blank?
   m_header = ["Event Name", "Sensor", "Source Address", "Destination Address", "Session Count"]
   pdf.table @m_t_data,
   :headers => m_header,
+  :border_style => :grid,
   :position => :center,
+  :row_colors => ["FFFFFF", "ededed"],
   :width => 535,
   :border_width => 1,
   :font_size => 10
@@ -151,7 +155,9 @@ unless @l_c.blank?
   l_header = ["Event Name", "Sensor", "Source Address", "Destination Address", "Session Count"]
   pdf.table @l_t_data,
   :headers => l_header,
+  :border_style => :grid,
   :position => :center,
+  :row_colors => ["FFFFFF", "ededed"],
   :width => 535,
   :border_width => 1,
   :font_size => 10

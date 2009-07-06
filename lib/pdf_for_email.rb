@@ -124,43 +124,65 @@ class Pdf_for_email
         move_down(20)
         text "High Severity", :size => 20, :style => :bold, :align => :left
         h = 0
+        @h_t_data = Array.new
         move_down(10)
         @h_c.each do |event|
           h += 1
-          text "#{h}. <b>#{event[1]}</b> (#{event[0]})"
-          text "    * Sensor: #{event[5]}"
-          text "    * Source: #{event[2]} - Destination: #{event[3]}"
-          move_down(7)
+          @h_t_data << ["#{event[1]}", "#{event[5]}", "#{event[2]}", "#{event[3]}", "#{event[0]}"]
         end
+        h_header = ["Event Name", "Sensor", "Source Address", "Destination Address", "Session Count"]
+        table @h_t_data,
+        :headers => h_header,
+        :border_style => :grid,
+        :position => :center,
+        :row_colors => ["FFFFFF", "ededed"],
+        :width => 535,
+        :border_width => 1,
+        :font_size => 10
       end
 
       unless @m_c.blank?
         move_down(20)
         text "Medium Severity", :size => 20, :style => :bold, :align => :left
         m = 0
+        @m_t_data = Array.new
         move_down(10)
         @m_c.each do |event|
           m += 1
-          text "#{m}. <b>#{event[1]}</b> (#{event[0]})"
-          text "    * Sensor: #{event[5]}"
-          text "    * Source: #{event[2]} - Destination: #{event[3]}"
-          move_down(7)
+          @m_t_data << ["#{event[1]}", "#{event[5]}", "#{event[2]}", "#{event[3]}", "#{event[0]}"]
         end
+        m_header = ["Event Name", "Sensor", "Source Address", "Destination Address", "Session Count"]
+        table @m_t_data,
+        :headers => m_header,
+        :border_style => :grid,
+        :position => :center,
+        :row_colors => ["FFFFFF", "ededed"],
+        :width => 535,
+        :border_width => 1,
+        :font_size => 10
       end
 
       unless @l_c.blank?
         move_down(20)
         text "Low Severity", :size => 20, :style => :bold, :align => :left
-        l = 0
+        h = 0
+        @l_t_data = Array.new
         move_down(10)
         @l_c.each do |event|
-          l += 1
-          text "#{l}. <b>#{event[1]}</b> (#{event[0]})"
-          text "    * Sensor: #{event[5]}"
-          text "    * Source: #{event[2]} - Destination: #{event[3]}"
-          move_down(7)
+          h += 1
+          @l_t_data << ["#{event[1]}", "#{event[5]}", "#{event[2]}", "#{event[3]}", "#{event[0]}"]
         end
+        l_header = ["Event Name", "Sensor", "Source Address", "Destination Address", "Session Count"]
+        table @l_t_data,
+        :headers => l_header,
+        :border_style => :grid,
+        :position => :center,
+        :row_colors => ["FFFFFF", "ededed"],
+        :width => 535,
+        :border_width => 1,
+        :font_size => 10
       end
+      
     end
   end
 end
