@@ -50,7 +50,6 @@ class EventsController < ApplicationController
   def livelook
     @time = Time.now
     @events ||= Event.find(:all, :limit => 20, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr, :udphdr, :icmphdr, :tcphdr])
-    #flash[:notice] = 'LiveLook is a nifty way to keep up-to-date with new events in realtime. Who wants to hit refresh every 5 seconds? LiveLook is currently in beta so it may get a bit bumpy.'
     respond_to do |format|
       format.html
       format.js { render :layout => false }

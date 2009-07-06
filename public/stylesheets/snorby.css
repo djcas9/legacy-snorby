@@ -536,6 +536,10 @@ color:#666666;
 	margin: auto;
 }
 
+.pagination{
+	font-size: small;
+}
+
 /* @end */
 
 /* @group Events */
