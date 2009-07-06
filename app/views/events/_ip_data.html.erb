@@ -51,16 +51,12 @@
 				<td><%= @event.iphdr.ip_hlen %></td>
 				<td><%= @event.iphdr.ip_tos %></td>
 				<td><%= @event.iphdr.ip_len %></td>
-				<td><%= @event.iphdr.id %></td>
+				<td><%= @event.iphdr.ip_id %></td>
 				<td><%= @event.iphdr.ip_flags %></td>
 				<td><%= @event.iphdr.ip_off %></td>
 				<td><%= @event.iphdr.ip_ttl %></td>
 				<td><%= @event.iphdr.ip_proto %></td>
-				<%- if @event.iphdr.ip_csum.nil? -%>
-					<td>0</td>
-				<%- else -%>
-					<td><%= @event.iphdr.ip_csum %></td>
-				<%- end -%>
+				<td><%= @event.iphdr.ip_csum %></td>
 			</tr>
 		</table>
 		
