@@ -1,5 +1,5 @@
 <div id="send_event_box">
-	<h3><%= @report.rtype.capitalize %> Report</h3><br />
+	<h3>Send <%= @report.rtype.capitalize %> Report</h3><br />
 	
 	<% form_tag :controller => 'reports', :action => "send_report_now", :report_id => params[:report_id] do %>
   	To: 
