@@ -3,5 +3,5 @@
 <% form_for @user, :url => account_path do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %><br />
-  <%= f.submit "Register" %>
+  <%= f.submit "Register" %> <%= link_to "Back To Settings", settings_path %>
 <% end %>
