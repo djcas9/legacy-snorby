@@ -68,13 +68,13 @@ class GraphController < ApplicationController
 
     data << PieValue.new(Event.find(:all, :include => :sig, :conditions => ['signature.sig_class_id = 0']).size, "Unclassified")
 
-    if @categories.size < 3
+    if @categories.size < 2
       for c in @categories
         data << PieValue.new(c.events_for_category, "#{c.sig_class_name}") unless c.events_for_category < 5
       end
     else
       for c in @categories
-        data << PieValue.new(c.events_for_category, "#{c.sig_class_name}") unless c.events_for_category < 20
+        data << PieValue.new(c.events_for_category, "#{c.sig_class_name}") unless c.events_for_category < 10
       end
     end
 
