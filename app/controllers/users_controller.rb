@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :require_user, :only => [:show, :edit, :update]
-  before_filter :require_admin, :only => [:index, :new, :create, :update] 
+  before_filter :require_admin, :only => [:index, :new, :create] 
   
   def index
     @users = User.all
