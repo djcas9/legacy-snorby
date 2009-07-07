@@ -1,0 +1,19 @@
+= Snorby
+
+Snorby is a new and modern Snort IDS front-end. The basic fundamental concepts behind snorby are simplicity and power. The project goal is to create a free, open source and highly competitive application for network monitoring for both private and enterprise use.
+
+== Snorby Setup
+
+== Helpful links
+
+* <b>Official Website:</b> http://www.snorby.org
+
+<b>Before contacting me directly, please read:</b>
+
+If you find a bug or a problem please post it on the snorby issues page. If you need help with something, please use google groups. I check both regularly and get emails when anything happens, so that is the best place to get help. This also benefits other people in the future with the same questions / problems. Thank you.
+
+== Install Snorby Via Gem
+
+Coming Soon!
+
+Copyright (c) 2009 Dustin Webber Snorby.org, released under the GPL license
