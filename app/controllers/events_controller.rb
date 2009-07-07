@@ -1,5 +1,4 @@
 class EventsController < ApplicationController
-
   def index
     @events ||= Event.paginate(:page => params[:page], :per_page => 20, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr, :udphdr, :icmphdr, :tcphdr])
     respond_to do |format|
