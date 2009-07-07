@@ -196,7 +196,7 @@ body {
 }
 
 .grid tr:hover{
-	background-color: #ededed;
+	background-color: rgba(237,237,237,0.64);
 }
 
 .grid a{

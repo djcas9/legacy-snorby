@@ -2,7 +2,7 @@ class ReportsController < ApplicationController
   before_filter :require_admin, :only => [:edit, :update, :destroy, :delete_multiple]
   
   def index
-    @reports = Report.paginate(:page => params[:page], :per_page => 10, :order => 'created_at DESC')
+    @reports = Report.paginate(:page => params[:page], :per_page => 20, :order => 'created_at DESC')
     respond_to do |format|
       format.html
       format.js
