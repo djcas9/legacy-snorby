@@ -140,7 +140,7 @@ unless @h_c.blank?
   pdf.move_down(10)
   @h_c.each do |event|
     h += 1
-    @h_t_data << ["#{event[1]}", "#{event[5]}", "#{event[2]}", "#{event[3]}", "#{pluralize(event[0], "Session")}"]
+    @h_t_data << ["#{event[1]}", "#{event[5]}", "#{event[2]}", "#{event[3]}", "#{event[0]}"]
   end
   h_header = ["Event Name", "Sensor ID", "Source Address", "Destination Address", "Session Count"]
   pdf.table @h_t_data,
@@ -164,7 +164,7 @@ unless @m_c.blank?
   pdf.move_down(10)
   @m_c.each do |event|
     m += 1
-    @m_t_data << ["#{event[1]}", "#{event[5]}", "#{event[2]}", "#{event[3]}", "#{pluralize(event[0], "Session")}"]
+    @m_t_data << ["#{event[1]}", "#{event[5]}", "#{event[2]}", "#{event[3]}", "#{event[0]}"]
   end
   m_header = ["Event Name", "Sensor ID", "Source Address", "Destination Address", "Session Count"]
   pdf.table @m_t_data,
@@ -188,7 +188,7 @@ unless @l_c.blank?
   pdf.move_down(10)
   @l_c.each do |event|
     h += 1
-    @l_t_data << ["#{event[1]}", "#{event[5]}", "#{event[2]}", "#{event[3]}", "#{pluralize(event[0], "Session")}"]
+    @l_t_data << ["#{event[1]}", "#{event[5]}", "#{event[2]}", "#{event[3]}", "#{event[0]}"]
   end
   l_header = ["Event Name", "Sensor ID", "Source Address", "Destination Address", "Session Count"]
   pdf.table @l_t_data,
