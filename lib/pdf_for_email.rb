@@ -4,7 +4,7 @@ require 'prawn/format'
 require File.dirname(__FILE__) + "/../config/environment"
 
 class Pdf_for_email
-
+  include ActionView::Helpers::TextHelper
 
   def self.count_events
     counts = Hash.new(0)
@@ -69,7 +69,6 @@ class Pdf_for_email
       ###
 
       ### Summary
-      move_down(2)
       text "#{report.rtype.capitalize} Report Summary", :size => 20, :style => :bold, :align => :center
       stroke_horizontal_rule
       move_down(25)
@@ -109,15 +108,17 @@ class Pdf_for_email
       end
 
       unless events.blank?
-        move_down(30)
+        move_down(15)
         text "Event Severity vs Sessions", :size => 15, :style => :bold, :align => :center
-        move_down(5)
+        text "This line graph describes events separated by their severity levels. Reoccurring events should be filtered out using the snorby front-end, and abnormal events or unexpected spikes in the number of events should be researched further.", :size => 9
+        move_down(10)
         image open(Gchart.line(:axis_with_labels => ['x','y','r'], :line_color => @_line_color, :data => @_line_data, :size => '500x230')), :position => :center
-        move_down(20)
+        move_down(5)
       end
       unless events.blank?
-        move_down(30)
-        text "Event Severity", :size => 15, :style => :bold, :align => :center
+        move_down(10)
+        text "Event Severity vs Event Count", :size => 15, :style => :bold, :align => :center
+        text "Outlined by this pie chart, it displays a comparison of the severity level in an executive format of events received. Typically, a large number of high-severity events is a cause for concern and warrants an investigation.", :size => 9
         move_down(5)
         image open(Gchart.pie(:line_color => ["00ff28", "ffac00", "ff3715"], :labels => ["Low (#{@l.size})", "Medium (#{@m.size})", "High (#{@h.size})"], :data => [@l.size, @m.size, @h.size], :size => '440x200')), :position => :center
       end
@@ -148,6 +149,9 @@ class Pdf_for_email
 
       if events.blank?
         text "NO DATA", :size => 30, :style => :bold, :align => :center, :color => :red
+      else
+        move_down 10
+        text "Events listed below are categorized by severity levels. Common events have been placed into sessions for easy review.", :size => 8, :align => :center, :style => :italic
       end
 
 
@@ -452,7 +456,6 @@ class Pdf_for_email
       ###
 
       ### Summary
-      move_down(2)
       text "Search Report Summary", :size => 20, :style => :bold, :align => :center
       stroke_horizontal_rule
       move_down(25)
@@ -492,15 +495,17 @@ class Pdf_for_email
       end
 
       unless search.events.blank?
-        move_down(30)
+        move_down(15)
         text "Event Severity vs Sessions", :size => 15, :style => :bold, :align => :center
-        move_down(5)
+        text "This line graph describes events separated by their severity levels. Reoccurring events should be filtered out using the snorby front-end, and abnormal events or unexpected spikes in the number of events should be researched further.", :size => 9
+        move_down(10)
         image open(Gchart.line(:axis_with_labels => ['x','y','r'], :line_color => @_line_color, :data => @_line_data, :size => '500x230')), :position => :center
-        move_down(20)
+        move_down(5)
       end
       unless search.events.blank?
-        move_down(30)
-        text "Event Severity", :size => 15, :style => :bold, :align => :center
+        move_down(10)
+        text "Event Severity vs Event Count", :size => 15, :style => :bold, :align => :center
+        text "Outlined by this pie chart, it displays a comparison of the severity level in an executive format of events received. Typically, a large number of high-severity events is a cause for concern and warrants an investigation.", :size => 9
         move_down(5)
         image open(Gchart.pie(:line_color => ["00ff28", "ffac00", "ff3715"], :labels => ["Low (#{@l.size})", "Medium (#{@m.size})", "High (#{@h.size})"], :data => [@l.size, @m.size, @h.size], :size => '440x200')), :position => :center
       end
@@ -527,8 +532,10 @@ class Pdf_for_email
       end
 
       if search.events.blank?
-        move_down(30)
-        text "NO DATA", :size => 30, :style => :bold, :align => :center
+        text "NO DATA", :size => 30, :style => :bold, :align => :center, :color => :red
+      else
+        move_down 10
+        text "Events listed below are categorized by severity levels. Common events have been placed into sessions for easy review.", :size => 8, :align => :center, :style => :italic
       end
 
       unless @h_c.blank?

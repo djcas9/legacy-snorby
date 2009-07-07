@@ -53,8 +53,7 @@ pdf.start_new_page
 ###
 
 ### Summary
-pdf.move_down(2)
-pdf.text "Snorby Report Summary", :size => 20, :style => :bold, :align => :center
+pdf.text "Search Report Summary", :size => 20, :style => :bold, :align => :center
 pdf.stroke_horizontal_rule
 pdf.move_down(25)
 
@@ -93,15 +92,17 @@ unless @h.blank?
 end
 
 unless @search.events.blank?
-  pdf.move_down(30)
+  pdf.move_down(15)
   pdf.text "Event Severity vs Sessions", :size => 15, :style => :bold, :align => :center
-  pdf.move_down(5)
+  pdf.text "This line graph describes events separated by their severity levels. Reoccurring events should be filtered out using the snorby front-end, and abnormal events or unexpected spikes in the number of events should be researched further.", :size => 9
+  pdf.move_down(10)
   pdf.image open(Gchart.line(:axis_with_labels => ['x','y','r'], :line_color => @_line_color, :data => @_line_data, :size => '500x230')), :position => :center
-  pdf.move_down(20)
+  pdf.move_down(5)
 end
 unless @search.events.blank?
-  pdf.move_down(30)
-  pdf.text "Event Severity", :size => 15, :style => :bold, :align => :center
+  pdf.move_down(10)
+  pdf.text "Event Severity vs Event Count", :size => 15, :style => :bold, :align => :center
+  pdf.text "Outlined by this pie chart, it displays a comparison of the severity level in an executive format of events received. Typically, a large number of high-severity events is a cause for concern and warrants an investigation.", :size => 9
   pdf.move_down(5)
   pdf.image open(Gchart.pie(:line_color => ["00ff28", "ffac00", "ff3715"], :labels => ["Low (#{@l.size})", "Medium (#{@m.size})", "High (#{@h.size})"], :data => [@l.size, @m.size, @h.size], :size => '440x200')), :position => :center
 end
@@ -128,8 +129,10 @@ pdf.footer [pdf.margin_box.left, pdf.margin_box.bottom + 5] do
 end
 
 if @search.events.blank?
-  pdf.move_down(30)
-  pdf.text "NO DATA", :size => 30, :style => :bold, :align => :center
+  pdf.text "NO DATA", :size => 30, :style => :bold, :align => :center, :color => :red
+else
+  pdf.move_down 10
+  pdf.text "Events listed below are categorized by severity levels. Common events have been placed into sessions for easy review.", :size => 8, :align => :center, :style => :italic
 end
 
 unless @h_c.blank?
