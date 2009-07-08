@@ -4,7 +4,7 @@ namespace :snorby do
     puts "Setting Up Snorby Database."
     Rake::Task['db:migrate'].invoke
     puts "Installing Snorby Cron Jobs."
-    system('whenever --update-crontab snorby --set environment=development')
+    system('whenever --update-crontab snorby --set environment=production')
   end
   
   desc "Remove Snorby"
@@ -12,6 +12,6 @@ namespace :snorby do
     puts "Removing Snorby. =["
     Rake::Task['db:migrate'].invoke
     puts "Installing Snorby Cron Jobs."
-    system('whenever --update-crontab snorby --set environment=development')
+    system('whenever --update-crontab snorby --set environment=production')
   end
 end
