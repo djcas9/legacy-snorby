@@ -11,7 +11,7 @@ Please use the google groups for support and remember to report bugs.
 
 <b>Get Snorby:</b>
 
-	git clone git://github.com/mephux/Snorby.git
+ git clone git://github.com/mephux/Snorby.git
 	
 <b>Snorby Database Configuration:</b>
 
@@ -19,12 +19,12 @@ You will need to edit and rename /config/database.yml.example to /config/databas
 	
 Example Database Config:
 	
-	production:
-	  adapter: mysql
-	  database: name_of_snort_database_here
-	  username: my_user
-	  password: my_password
-	  host: localhost
+ production:
+   adapter: mysql
+   database: name_of_snort_database_here
+   username: my_user
+   password: my_password
+   host: localhost
 	
 <b>Snorby Email Configuration:</b>
 
@@ -32,24 +32,24 @@ You will need to edit and rename /config/email.yml.example to /config/email.yml
 	
 Example Email Config:
 
-	production:
-	  :address: smtp.gmail.com
-	  :port: 25
-	  :authentication: plain
-	  :user_name: user
-	  :password: pass
+ production:
+   :address: smtp.gmail.com
+   :port: 25
+   :authentication: plain
+   :user_name: user
+   :password: pass
 	
 <b>Install Snorby Dependencies:</b>
 
-	sudo rake gems:install
+ sudo rake gems:install
 
 Then setup the snorby database and cron jobs:
 
-	rake snorby:setup
+ rake snorby:setup
 	
 <b>Start Snorby:</b>
 
-	ruby script/server -e production -b 127.0.0.1 -p 3000 -d <-- Run as a Daemon
+ ruby script/server -e production -b 127.0.0.1 -p 3000 -d <-- Run as a Daemon
 	
 MAKE SURE IT IS RAN IN PRODUCTION MODE ONLY! SPEED!!!
 	
