@@ -44,7 +44,11 @@ Then setup the snorby database and cron jobs:
 	
 <b>Start Snorby:</b>
 
-	ruby script/server -b [Bind to IP address. Default: loopback] -p [Port. Default: 3000] -d [Run as a Daemon]
+	ruby script/server -e production -b 127.0.0.1 -p 3000 -d <-- Run as a Daemon
+	
+MAKE SURE IT IS RAN IN PRODUCTION MODE ONLY! SPEED!!!
+	
+	-e production
 
 The default User Name and Password for Snorby:
 	

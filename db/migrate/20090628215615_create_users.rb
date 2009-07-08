@@ -18,7 +18,7 @@ class CreateUsers < ActiveRecord::Migration
       t.boolean :admin, :null => false
     end
         
-    user = User.create(:login => 'admin', 
+    user = User.create(:login => 'snorby', 
     :email => 'change_me@example.com', 
     :password => 'admin', 
     :password_confirmation => 'admin', 
