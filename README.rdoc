@@ -6,7 +6,6 @@ Snorby is a new and modern Snort IDS front-end. The basic fundamental concepts b
 
 Snorby is not very pretty yet and installing will be an advanced task for the time being. 
 Please use the google groups for support and remember to report bugs.
-
 == Snorby Setup
 
 <b>Get Snorby:</b>
