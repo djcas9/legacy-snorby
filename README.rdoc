@@ -1,4 +1,4 @@
-= Snorby
+= Snorby - All about simplicity.
 
 Snorby is a new and modern Snort IDS front-end. The basic fundamental concepts behind snorby are simplicity and power. The project goal is to create a free, open source and highly competitive application for network monitoring for both private and enterprise use.
 
@@ -6,6 +6,7 @@ Snorby is a new and modern Snort IDS front-end. The basic fundamental concepts b
 
 Snorby is not very pretty yet and installing will be an advanced task for the time being. 
 Please use the google groups for support and remember to report bugs.
+
 == Snorby Setup
 
 <b>Get Snorby:</b>
