@@ -6,7 +6,7 @@ Snorby is a new and modern Snort IDS front-end. The basic fundamental concepts b
 
 <b>Get Snorby:</b>
 
-	git clone git@github.com:mephux/Snorby.git
+	git clone git://github.com/mephux/Snorby.git
 	
 <b>Snorby Database Configuration:</b>
 
