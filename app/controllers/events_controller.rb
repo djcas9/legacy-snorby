@@ -9,8 +9,8 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id], :include => [:sig, :sensor, :iphdr, :udphdr, :icmphdr, :tcphdr])
-    @source_ip = IPAddr.new_ntoh([@event.iphdr.ip_src].pack('N'))
-    @destination_ip = IPAddr.new_ntoh([@event.iphdr.ip_dst].pack('N'))
+    @source_ip = @event.source_ip
+    @destination_ip = @event.destination_ip
     respond_to do |format|
       format.html
       format.pdf
@@ -41,7 +41,7 @@ class EventsController < ApplicationController
       @sig_data = File.open("#{RAILS_ROOT}/public/signatures/#{params[:snort_sig_id]}.txt")
       render :layout => false
     rescue Errno::ENOENT
-      @sig_data = "<font color='red'><b>Not signature information found.</b></font>"
+      @sig_data = "<font color='red'><b>No signature information found.</b></font>"
       render :layout => false
     end
   end
@@ -64,16 +64,13 @@ class EventsController < ApplicationController
     @event = Event.find(params[:event_id])
     @msg = params[:msg]
     @user = current_user
-    @emails = []
-    @myteam = params[:user_id] ||= []
-    @myteam.each do |m|
-      @emails << User.find(m).email
-    end
-    #call_rake :event_mailing, :user => @user, :event => @event, :emails => @emails, :msg => @msg
+    @emails = User.find(params[:user_id]).collect { |u| u.email }
+    
     spawn do
       Pdf_for_email.make_pdf_for_event(@event)
       ReportMailer.deliver_event_report(@user, @event, @emails, @msg)
     end
+    
     respond_to do |format|
       format.html { redirect_to :back }
       format.js

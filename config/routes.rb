@@ -13,7 +13,7 @@ ActionController::Routing::Routes.draw do |map|
   map.dashboard "/dashboard", :controller => 'pages', :action => 'dashboard'
   map.livelook "/livelook", :controller => 'events', :action => 'livelook'
   
-  map.send_search "seaches/:search_id/send_search", :controller => 'searches', :action => 'send_search'
+  map.send_search "searches/:search_id/send_search", :controller => 'searches', :action => 'send_search'
   map.send_report "reports/:report_id/send_report", :controller => 'reports', :action => 'send_report'
   map.send_event "events/:event_id/send_event", :controller => 'events', :action => 'send_event'
   map.resources :events

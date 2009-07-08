@@ -38,12 +38,7 @@ class SearchesController < ApplicationController
     @msg = params[:msg]
     @user = current_user
 
-    @emails = []
-    @myteam = params[:user_id] ||= []
-
-    @myteam.each do |m|
-      @emails << User.find(m).email
-    end
+    @emails = User.find(params[:user_id]).collect { |u| u.email }
     
     spawn do
       Pdf_for_email.make_pdf_for_search(@search)

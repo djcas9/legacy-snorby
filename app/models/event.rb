@@ -38,5 +38,13 @@ class Event < ActiveRecord::Base
       ReportMailer.deliver_monthly_report(report, @events)
     end
   end
+  
+  def source_ip
+    IPAddr.new_ntoh([self.iphdr.ip_src].pack('N'))
+  end 
+  
+  def destination_ip
+    IPAddr.new_ntoh([self.iphdr.ip_dst].pack('N'))
+  end
 
 end
