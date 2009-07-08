@@ -10,9 +10,9 @@ Snorby is a new and modern Snort IDS front-end. The basic fundamental concepts b
 	
 <b>Snorby Database:</b>
 
-	You will need to edit and rename /config/database.yml.example to /config/database.yml
+You will need to edit and rename /config/database.yml.example to /config/database.yml
 	
-	Example Database Config:
+Example Database Config:
 	
 	production:
 	  adapter: mysql
