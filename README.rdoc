@@ -53,12 +53,12 @@ Then setup the snorby database and cron jobs:
 	
 MAKE SURE IT IS RAN IN PRODUCTION MODE ONLY! SPEED!!!
 	
-	-e production
+ -e production
 
 The default User Name and Password for Snorby:
 	
-	User: snorby
-	Password: admin
+ User: snorby
+ Password: admin
 
 PLEASE MAKE SURE YOU CHANGE THIS!
 
