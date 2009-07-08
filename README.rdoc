@@ -3,9 +3,23 @@
 Snorby is a new and modern Snort IDS front-end. The basic fundamental concepts behind snorby are simplicity and power. The project goal is to create a free, open source and highly competitive application for network monitoring for both private and enterprise use.
 
 == Snorby Setup
-<b>Get The source:</b>
+
+<b>Get Snorby:</b>
 
 	git clone git@github.com:mephux/Snorby.git
+	
+<b>Snorby Database:</b>
+
+	You will need to edit and rename /config/database.yml.example to /config/database.yml
+	
+	Example Database Config:
+	
+	production:
+	  adapter: mysql
+	  database: snorby
+	  username: my_user
+	  password: my_password
+	  host: localhost
 
 == Helpful links
 
