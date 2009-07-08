@@ -36,7 +36,7 @@ Example Email Config:
 	
 <b>Install Snorby Dependencies:</b>
 
-	rake gems:install
+	sudo rake gems:install
 
 Then setup the snorby database and cron jobs:
 
