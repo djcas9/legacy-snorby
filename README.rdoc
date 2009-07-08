@@ -67,7 +67,7 @@ PLEASE MAKE SURE YOU CHANGE THIS!
 * <b>Official Website:</b> http://www.snorby.org
 * <b>Snort Official Website:</b> http://www.snort.org
 * <b>Snort User Group:</b> http://groups.google.com/group/snorby
-* <b>IRC:</b> #exploit-dev - irc.freenode.net
+* <b>IRC:</b> #snorby - irc.freenode.net
 
 <b>Before contacting me directly, please read:</b>
 
