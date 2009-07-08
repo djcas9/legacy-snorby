@@ -34,6 +34,14 @@ Example Email Config:
 	  :user_name: user
 	  :password: pass
 	
+<b>Install Snorby Dependencies:</b>
+
+	rake gems:install
+
+Then setup the snorby database and cron jobs:
+
+	rake snorby:setup
+	
 <b>Start Snorby:</b>
 
 	ruby script/server -b [Bind to this IP address. Default is loopback] -p [Port. Default: 3000] -d [Make server run as a Daemon]

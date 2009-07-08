@@ -1,6 +1,6 @@
 namespace :snorby do
-  desc "Install Snorby"
-  task :install => :environment do
+  desc "Snorby DB/Cron Setup"
+  task :setup => :environment do
     puts "Setting Up Snorby Database."
     Rake::Task['db:migrate'].invoke
     puts "Installing Snorby Cron Jobs."
