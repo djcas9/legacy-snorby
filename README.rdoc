@@ -8,7 +8,7 @@ Snorby is a new and modern Snort IDS front-end. The basic fundamental concepts b
 
 	git clone git@github.com:mephux/Snorby.git
 	
-<b>Snorby Database:</b>
+<b>Snorby Database Configuration:</b>
 
 You will need to edit and rename /config/database.yml.example to /config/database.yml
 	
@@ -16,10 +16,23 @@ Example Database Config:
 	
 	production:
 	  adapter: mysql
-	  database: snorby
+	  database: name_of_snort_database_here
 	  username: my_user
 	  password: my_password
 	  host: localhost
+	
+<b>Snorby Email Configuration:</b>
+
+You will need to edit and rename /config/email.yml.example to /config/email.yml
+	
+Example Email Config:
+
+	production:
+	  :address: smtp.gmail.com
+	  :port: 25
+	  :authentication: plain
+	  :user_name: user
+	  :password: pass
 
 == Helpful links
 
