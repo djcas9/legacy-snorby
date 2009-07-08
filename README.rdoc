@@ -7,6 +7,9 @@ Snorby is a new and modern Snort IDS front-end. The basic fundamental concepts b
 == Helpful links
 
 * <b>Official Website:</b> http://www.snorby.org
+* <b>Snort Official Website:</b> http://www.snort.org
+* <b>Snort User Group:</b> http://groups.google.com/group/snorby
+* <b>IRC:</b> #exploit-dev - irc.freenode.net
 
 <b>Before contacting me directly, please read:</b>
 
@@ -14,6 +17,7 @@ If you find a bug or a problem please post it on the snorby issues page. If you 
 
 == Install Snorby Via Gem
 
-Coming Soon!
+<b>Coming Soon!</b>
 
+==
 Copyright (c) 2009 Dustin Webber Snorby.org, released under the GPL license
