@@ -9,7 +9,7 @@ class Event < ActiveRecord::Base
   belongs_to :data_info, :class_name => 'Data_Info', :foreign_key => [:sid, :cid], :dependent => :destroy
   belongs_to :opt, :class_name => 'Opt', :foreign_key => [:sid, :cid], :dependent => :destroy
 
-  belongs_to :sig, :class_name => "Signature", :foreign_key => 'signature'
+  belongs_to :sig, :class_name => "Signature", :foreign_key => 'signature', :dependent => :destroy
   belongs_to :sig_reference, :class_name => "SigReference", :foreign_key => 'signature', :dependent => :destroy
 
   def self.run_daily_report
@@ -38,13 +38,21 @@ class Event < ActiveRecord::Base
       ReportMailer.deliver_monthly_report(report, @events)
     end
   end
-  
+
   def source_ip
     IPAddr.new_ntoh([self.iphdr.ip_src].pack('N'))
-  end 
-  
+  end
+
   def destination_ip
     IPAddr.new_ntoh([self.iphdr.ip_dst].pack('N'))
+  end
+
+  def self.find_event_count_for?(sig_class)
+    if self.find(:all, :include => :sig, :conditions => ["signature.sig_class_id = #{sig_class}"]).size
+      return self.find(:all, :include => :sig, :conditions => ["signature.sig_class_id = #{sig_class}"]).size
+    else
+      return 0
+    end
   end
 
 end
