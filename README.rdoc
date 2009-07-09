@@ -45,7 +45,7 @@ Example Email Config:
 
 Then setup the snorby database and cron jobs:
 
- rake snorby:setup ENV=production
+ rake snorby:setup RAILS_ENV=production
 	
 <b>Start Snorby:</b>
 

@@ -1,4 +1,4 @@
-#SNORBY EMAIL SETUP
+# SNORBY EMAIL SETUP
 
 production:
   :address: smtp.gmail.com
