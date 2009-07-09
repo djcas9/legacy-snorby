@@ -45,11 +45,16 @@ Example Email Config:
 
 Then setup the snorby database and cron jobs:
 
- rake snorby:setup
+ rake snorby:setup ENV=production
 	
 <b>Start Snorby:</b>
 
- ruby script/server -e production -b 127.0.0.1 -p 3000 -d <-- Run as a Daemon
+ ruby script/server -e production -b 127.0.0.1 -p 80 -d
+
+ -b = bind address [Default: loopback]
+ -p = port number [Default: 3000]
+ -e = environment
+ -d = Run server as daemon
 	
 MAKE SURE IT IS RAN IN PRODUCTION MODE ONLY! SPEED!!!
 	
