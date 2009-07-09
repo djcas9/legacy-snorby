@@ -130,7 +130,11 @@
 					<td></td>
 					<td></td>
 					<td></td>
+					<%- if @events.blank? -%>
+					<td><%= horizontal_bar_graph  [["Event Percentage", 0]] %></td>
+					<%- else -%>
 					<td><%= horizontal_bar_graph  [["Event Percentage", ((c.events_for_category/@events.size.to_f) * 100).round(2)]] %></td>
+					<%- end -%>
 				</tr>
 				<%- end -%>
 			</table>
