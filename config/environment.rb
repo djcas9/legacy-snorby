@@ -15,7 +15,6 @@ Rails::Initializer.run do |config|
   config.gem 'javan-whenever', :lib => false, :source => 'http://gems.github.com'
   config.gem "calendar_date_select"
   config.gem "prawn"
-  config.gem "gruff"
   config.gem "mattetti-googlecharts", :lib => "gchart", :source => "http://gems.github.com/"
   config.gem "ambethia-smtp-tls", :lib => "smtp-tls", :source => "http://gems.github.com/"
   config.gem "composite_primary_keys"
