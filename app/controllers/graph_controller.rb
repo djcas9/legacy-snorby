@@ -90,8 +90,8 @@ class GraphController < ApplicationController
     y = YAxis.new
     y.grid_colour= '#FFFFFF'
     @all ||= Event.all.size
-    if @all >= 1000
-      y.set_range(0, @all, 100)
+    if @all >= 10000
+      y.set_range(0, @all, 1000)
     else
       y.set_range(0, @all, 50)
     end
