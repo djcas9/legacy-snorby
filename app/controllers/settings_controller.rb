@@ -4,7 +4,6 @@ class SettingsController < ApplicationController
   def index
     @user = @current_user
     @settings = Setting.all
-    Event.run_monthly_report
   end
 
   def sensor_settings
