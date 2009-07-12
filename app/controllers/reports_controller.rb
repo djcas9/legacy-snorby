@@ -14,7 +14,6 @@ class ReportsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf
-      format.csv
       format.xml { render :xml => @report.events }
     end
   end

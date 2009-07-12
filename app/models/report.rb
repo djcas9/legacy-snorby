@@ -18,6 +18,7 @@ class Report < ActiveRecord::Base
   
   def find_events
     Event.find(:all, :conditions => ['timestamp >= ? AND timestamp <= ?', DateTime.parse(from_time), DateTime.parse(to_time)], :include => [:sensor, :sig, :iphdr, :icmphdr, :tcphdr, :udphdr], :order => 'timestamp DESC')
+    #Event.paginate(:page => page, :per_page => 20, :conditions => ['timestamp >= ? AND timestamp <= ?', DateTime.parse(from_time), DateTime.parse(to_time)], :include => [:sensor, :sig, :iphdr, :icmphdr, :tcphdr, :udphdr], :order => 'timestamp DESC')
   end
   
 end

@@ -11,7 +11,7 @@ class SearchesController < ApplicationController
       if @search.events.empty?
         flash[:error] = "Sorry! No results found."
       else
-        flash[:notice] = "Successfully submitted search and found #{@search.events.size} results. <%= link_to('Printable Invoice (PDF)', search_path(@search, :format => 'pdf')) %>"
+        flash[:notice] = "Successfully submitted search and found #{@search.events.size} results."
       end
       redirect_to @search
     else
@@ -50,8 +50,8 @@ class SearchesController < ApplicationController
 
   def auto_complete_for_search_keywords
     sig_name = params[:search][:keywords]
-    @events = Event.find(:all, :include => :sig, :order => 'timestamp DESC', :conditions => ['signature.sig_name LIKE ?', "%#{sig_name}%"])
+    @events = Event.find(:all, :include => :sig, :group => 'sig.sig_name', :conditions => ['signature.sig_name LIKE ?', "%#{sig_name}%"])
+    #@events = Event.find(:all, :include => :sig, :conditions => ['signature.sig_name LIKE ?', "%#{sig_name}%"], :select => 'DISTINCT sig_name')
     render :partial => 'keywords'
   end
-
 end

@@ -6,9 +6,10 @@
 <h1>Snorby <%= @report.rtype.capitalize %> Report</h1>
 <br />
 
-<%= render :partial => @report.events %>
-
-<%- if @report.events.empty? -%>
+<%- if @report.events.blank? -%>
 <font color='red'>No results found.</font>
+<%- else -%>
+<%= render :partial => @report.events %>
 <%- end -%>
+
 <br />
