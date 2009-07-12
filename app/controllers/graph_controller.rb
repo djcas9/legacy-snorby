@@ -91,9 +91,9 @@ class GraphController < ApplicationController
     y.grid_colour= '#FFFFFF'
     @all ||= Event.all.size
     if @all >= 10000
-      y.set_range(0, @all, 1000)
+      y.set_range(0, @all, 5000)
     else
-      y.set_range(0, @all, 50)
+      y.set_range(0, @all, 100)
     end
 
     bar = Bar3d.new
