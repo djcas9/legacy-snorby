@@ -1,4 +1,6 @@
 class SearchesController < ApplicationController
+  skip_before_filter :verify_authenticity_token, :only => [:auto_complete_for_search_keywords]
+
   def new
     @search = Search.new
   end
@@ -27,7 +29,7 @@ class SearchesController < ApplicationController
       format.xml { render :xml => @search.events }
     end
   end
-  
+
   def send_search
     @search = Search.find(params[:search_id])
     render :layout => false
@@ -39,11 +41,17 @@ class SearchesController < ApplicationController
     @user = current_user
 
     @emails = User.find(params[:user_id]).collect { |u| u.email }
-    
+
     spawn do
       Pdf_for_email.make_pdf_for_search(@search)
       ReportMailer.deliver_search_report(@user, @search, @emails, @msg)
     end
   end
-  
+
+  def auto_complete_for_search_keywords
+    sig_name = params[:search][:keywords]
+    @events = Event.find(:all, :include => :sig, :order => 'timestamp DESC', :conditions => ['signature.sig_name LIKE ?', "%#{sig_name}%"])
+    render :partial => 'keywords'
+  end
+
 end
