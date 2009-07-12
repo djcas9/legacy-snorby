@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
     unless current_user.admin
       store_location
       flash[:error] = "You must be an administrator to perform this task"
-      redirect_to root_path
+      redirect_to dashboard_path
       return false
     end
   end

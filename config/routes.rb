@@ -18,7 +18,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :account, :controller => "users"
   map.resources :users
   map.resources :events, :collection => { :send_event_now => :post }
-  map.root :dashboard
+  map.root :login
   map.resources :searches, :collection => { :send_search_now => :post }
   
   map.connect ':controller/:action/:id'
