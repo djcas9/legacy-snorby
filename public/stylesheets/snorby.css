@@ -6,12 +6,9 @@
 }
 
 .auto_complete {
-   position:absolute;
-   width:250px;
-   background-color:white;
-   border:1px solid #888;
-   margin:0px;
-   padding:0px;
+	font-size: x-small;
+	color: #2a2a2a;
+	background-color: #fefebe;
 }
 
 #filter_box input{
