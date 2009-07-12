@@ -5,6 +5,15 @@
 	font-size: small;
 }
 
+#filter_box input{
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 5px;
+	margin-top: -4px;
+	background-color: #fefcb9;
+	border: 1px solid #fef989;
+	color: #535353;
+}
+
 #back_button{
 	float: right;
 }
@@ -1061,8 +1070,8 @@ pre {
 /* @group OUTSIDE */
 
 #outside_content{
-	background-color: rgba(20,20,20,0.66);
-	border: 1px solid #5b5b59;
+	background-color: rgba(20,20,20,0.22);
+	border: 1px solid rgba(91,91,89,0.43);
 	padding: 10px;
 	margin: 10px 11px auto;
 	color: #fff;
@@ -1074,10 +1083,3 @@ pre {
 }
 
 /* @end */
-
-
-
-
-#color_test{
-	color: #f8f8f8;
-}
