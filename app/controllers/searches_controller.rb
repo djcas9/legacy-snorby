@@ -49,9 +49,7 @@ class SearchesController < ApplicationController
   end
 
   def auto_complete_for_search_keywords
-    sig_name = params[:search][:keywords]
-    @events = Event.find(:all, :include => :sig, :group => 'sig.sig_name', :conditions => ['signature.sig_name LIKE ?', "%#{sig_name}%"], :select => 'DISTINCT signature.sig_name')
-    #@events = Event.find(:all, :include => :sig, :conditions => ['signature.sig_name LIKE ?', "%#{sig_name}%"], :select => 'DISTINCT sig_name')
+    @events = Event.all_uniq_signatures_like(params[:search][:keywords])
     render :partial => 'keywords'
   end
 end

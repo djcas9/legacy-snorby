@@ -1,5 +1,5 @@
 <ul>
-<%- for name in @events do -%>
-	<li><%= image_tag('yes.png', :size=>'10x10') %><%= name.sig.sig_name %></li>
+<%- for name in @events.to_a.uniq do -%>
+	<li><%= image_tag('yes.png', :size=>'10x10') %><%= name %></li>
 <%- end -%>
 </ul>

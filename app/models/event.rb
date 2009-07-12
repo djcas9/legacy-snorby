@@ -13,6 +13,10 @@ class Event < ActiveRecord::Base
   belongs_to :sig_reference, :class_name => "SigReference", :foreign_key => 'signature', :dependent => :destroy
 
 
+  def self.all_uniq_signatures_like(sig_name)
+    find(:all, :include => [:sig], :conditions => ['signature.sig_name LIKE ?', "%#{sig_name}%"]).map{ |event| event.sig.sig_name }
+  end
+  
   def self.livelook(severity)
     if severity
       if severity == 'All'
