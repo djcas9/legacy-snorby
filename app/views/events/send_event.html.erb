@@ -15,7 +15,11 @@
 		Notes:
 		<%= text_area_tag :msg, nil, :size=>'40x10'%><br /><br />
 			<%= submit_to_remote 'email', 'Send Event', :url => send_event_now_events_url(:event_id => params[:event_id]),
-			    :update => { :success => "send_event_box" } %>
+			    :update => { :success => "send_event_box", :failure => "fail" } %>
 
 	<%- end -%>
+</div>
+
+<div id="fail">
+	
 </div>

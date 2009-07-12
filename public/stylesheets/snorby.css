@@ -1076,7 +1076,7 @@ pre {
 /* @group OUTSIDE */
 
 #outside_content{
-	background-color: rgba(20,20,20,0.22);
+	background-color: rgba(20,20,20,0.13);
 	border: 1px solid rgba(91,91,89,0.43);
 	padding: 10px;
 	margin: 10px 11px auto;

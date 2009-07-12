@@ -71,6 +71,8 @@ class EventsController < ApplicationController
       ReportMailer.deliver_event_report(@user, @event, @emails, @msg)
     end
     render :layout => false
+  rescue
+    render :inline => "<h1><%= image_tag('cross.png') %> Event Failed To Send!</h1>"
   end
   
 end
