@@ -68,11 +68,9 @@ class EventsController < ApplicationController
 
     spawn do
       Pdf_for_email.make_pdf_for_event(@event)
-      if ReportMailer.deliver_event_report(@user, @event, @emails, @msg)
-        flash[:notice] = "Event Send Successfully!"
-      end
+      ReportMailer.deliver_event_report(@user, @event, @emails, @msg)
     end
+    render :layout => false
   end
-
-
+  
 end

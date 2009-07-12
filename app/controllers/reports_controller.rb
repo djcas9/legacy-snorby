@@ -80,6 +80,7 @@ class ReportsController < ApplicationController
       Pdf_for_email.make_pdf(@report, @events)
       ReportMailer.deliver_report_report(@user, @report, @emails, @msg)
     end
+    render :layout => false
   end
   
 end

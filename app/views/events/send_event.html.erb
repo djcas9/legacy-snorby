@@ -1,8 +1,7 @@
 <div id="send_event_box">
 	<h3><%= @event.sig.sig_name %></h3><br />
 	
-	<% remote_form_for :email, :url => send_event_now_events_url(:event_id => params[:event_id]),
-	:before => visual_effect(:fade, "facebox") do %>
+	<% form_tag send_event_now_events_url(:event_id => params[:event_id]) do %>
   	To: 
 		<%- if User.find(:all).empty? -%>
 		<font color='red'>No Users Have Been Added To This Account!</font>
@@ -15,7 +14,8 @@
 		<br /><br />
 		Notes:
 		<%= text_area_tag :msg, nil, :size=>'40x10'%><br /><br />
-		<%= submit_tag "Send Event Report", :name => nil, :disable_with => 'Sending...' %>
+			<%= submit_to_remote 'email', 'Send Event', :url => send_event_now_events_url(:event_id => params[:event_id]),
+			    :update => { :success => "send_event_box" } %>
 
 	<%- end -%>
 </div>

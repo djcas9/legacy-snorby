@@ -93,7 +93,7 @@ class ReportMailer < ActionMailer::Base
     sent_on       Time.now
 
     part "text/plain" do |p|
-      p.body = render_message("report_report.html.erb", :report => report)
+      p.body = render_message("report_report.html.erb", :report => report, :msg => msg)
     end
 
     attachment "application/pdf" do |a|

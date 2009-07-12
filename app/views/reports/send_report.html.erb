@@ -1,8 +1,7 @@
 <div id="send_event_box">
 	<h3>Send <%= @report.rtype.capitalize %> Report</h3><br />
 	
-	<% remote_form_for :email, :url => send_report_now_reports_url(:report_id => params[:report_id]),
-	:before => visual_effect(:fade, "facebox") do %>
+	<% remote_form_for send_report_now_reports_url(:report_id => params[:report_id]) do %>
 	
   	To: 
 		<%- if User.find(:all).empty? -%>
@@ -16,7 +15,8 @@
 		<br /><br />
 		Notes:
 		<%= text_area_tag :msg, nil, :size=>'40x10'%><br /><br />
-		<%= submit_tag "Send Report", :name => nil, :disable_with => 'Sending...' %>
+		<%= submit_to_remote 'email', 'Send Event', :url => send_report_now_reports_url(:report_id => params[:report_id]),
+		    :update => { :success => "send_event_box" } %>
 
 	<%- end -%>
 </div>
