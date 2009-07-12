@@ -1,7 +1,8 @@
 <div id="send_event_box">
 	<h3>Send Search Report</h3><br />
 	
-	<% form_tag :controller => 'searches', :action => "send_search_now", :search_id => params[:search_id] do %>
+	<% remote_form_for :email, :url => send_search_now_searches_url(:search_id => params[:search_id]),
+	:before => visual_effect(:fade, "facebox") do %>
   	To: 
 		<%- if User.find(:all).empty? -%>
 		<font color='red'>No Users Have Been Added To This Account!</font>

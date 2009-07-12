@@ -44,12 +44,6 @@ class SearchesController < ApplicationController
       Pdf_for_email.make_pdf_for_search(@search)
       ReportMailer.deliver_search_report(@user, @search, @emails, @msg)
     end
-    
-    respond_to do |format|
-      format.html { redirect_to :back }
-      format.js
-    end
   end
-  
   
 end

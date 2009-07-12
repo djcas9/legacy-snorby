@@ -1,7 +1,8 @@
 <div id="send_event_box">
 	<h3><%= @event.sig.sig_name %></h3><br />
 	
-	<% form_tag :controller => 'events', :action => "send_event_now", :event_id => params[:event_id] do %>
+	<% remote_form_for :email, :url => send_event_now_events_url(:event_id => params[:event_id]),
+	:before => visual_effect(:fade, "facebox") do %>
   	To: 
 		<%- if User.find(:all).empty? -%>
 		<font color='red'>No Users Have Been Added To This Account!</font>

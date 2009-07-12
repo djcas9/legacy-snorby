@@ -1,7 +1,9 @@
 <div id="send_event_box">
 	<h3>Send <%= @report.rtype.capitalize %> Report</h3><br />
 	
-	<% form_tag :controller => 'reports', :action => "send_report_now", :report_id => params[:report_id] do %>
+	<% remote_form_for :email, :url => send_report_now_reports_url(:report_id => params[:report_id]),
+	:before => visual_effect(:fade, "facebox") do %>
+	
   	To: 
 		<%- if User.find(:all).empty? -%>
 		<font color='red'>No Users Have Been Added To This Account!</font>

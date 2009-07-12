@@ -48,7 +48,7 @@ class EventsController < ApplicationController
 
   def livelook
     @time = Time.now
-    @events ||= Event.find(:all, :limit => 20, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr, :udphdr, :icmphdr, :tcphdr])
+    @events ||= Event.livelook(params[:severity])
     respond_to do |format|
       format.html
       format.js { render :layout => false }
@@ -65,15 +65,12 @@ class EventsController < ApplicationController
     @msg = params[:msg]
     @user = current_user
     @emails = User.find(params[:user_id]).collect { |u| u.email }
-    
+
     spawn do
       Pdf_for_email.make_pdf_for_event(@event)
-      ReportMailer.deliver_event_report(@user, @event, @emails, @msg)
-    end
-    
-    respond_to do |format|
-      format.html { redirect_to :back }
-      format.js
+      if ReportMailer.deliver_event_report(@user, @event, @emails, @msg)
+        flash[:notice] = "Event Send Successfully!"
+      end
     end
   end
 
