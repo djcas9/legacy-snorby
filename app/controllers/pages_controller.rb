@@ -6,12 +6,11 @@ class PagesController < ApplicationController
     @events ||= Event.all :include => :sig
     @uniq_events ||= Event.all :group => 'signature'
     @uniq_adds ||= Iphdr.find(:all, :group => 'ip_src').uniq.size + Iphdr.find(:all, :group => 'ip_dst').uniq.size
-    @sigs ||= Signature.all :include => :sig_class
     @categories ||= SigClass.all
     @sensors ||= Sensor.all :include => :events, :order => 'sid ASC'
   end
-  
+
   def credits
   end
-  
+
 end
