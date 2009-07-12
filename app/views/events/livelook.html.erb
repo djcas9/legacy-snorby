@@ -1,6 +1,6 @@
 <%- content_for :outside_content do -%>
 	<% form_tag('/livelook', :multipart => true, :method => :get) do |f| %>
-	<%= select_tag "severity", "<option value=0>All</option><option value='1'>High Severity</option><option value='2'>Medium Severity</option><option value='3'>Low Severity</option>", :multiple => false, :include_blank => true %>
+	<%= select_tag "severity", "<option value=All>All</option><option value='1'>High Severity</option><option value='2'>Medium Severity</option><option value='3'>Low Severity</option>", :multiple => false, :include_blank => true %>
 	<div id="filter_box" class='move_right'>
 		<%= submit_tag "Filter" %>
 	</div>
