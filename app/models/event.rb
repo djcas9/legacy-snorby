@@ -14,7 +14,7 @@ class Event < ActiveRecord::Base
 
 
   def self.all_uniq_signatures_like(sig_name)
-    find(:all, :include => [:sig], :conditions => ['signature.sig_name LIKE ?', "%#{sig_name}%"]).map{ |event| event.sig.sig_name }
+    find(:all, :include => [:sig], :conditions => ['signature.sig_name LIKE ?', "%#{sig_name}%"]).map{ |event| event.sig.sig_name }.uniq.sort
   end
   
   def self.livelook(severity)

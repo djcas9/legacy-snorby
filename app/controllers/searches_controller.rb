@@ -49,7 +49,7 @@ class SearchesController < ApplicationController
   end
 
   def auto_complete_for_search_keywords
-    @events = Event.all_uniq_signatures_like(params[:search][:keywords])
+    @sigs = Event.all_uniq_signatures_like(params[:search][:keywords])
     render :partial => 'keywords'
   end
 end
