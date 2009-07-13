@@ -1,5 +1,5 @@
 <ul>
 <%- for sig in @sigs do -%>
-  <li><%= image_tag('yes.png', :size=>'10x10') %><%= sig %></li>
+  <li><%= image_tag('yes.png', :size=>'10x10') %><%= sig.sig_name %></li>
 <%- end -%>
 </ul>
