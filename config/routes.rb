@@ -16,6 +16,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :settings, :collection => { :sensor_delete_multiple => :post, :user_delete_multiple => :post }
   map.resource :user_session
   map.resource :account, :controller => "users"
+  map.resources :graph, :collection => { :pie_event_severity => :get, :bar_event_severity => :get }
   map.resources :users
   map.resources :events, :collection => { :send_event_now => :post }
   map.root :login
