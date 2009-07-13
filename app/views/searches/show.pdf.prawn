@@ -10,10 +10,7 @@ pdf.tags :h1 => { :font_size => "2em", :font_weight => :bold },
 :high => { :color => "red", :align => :left },
 :medium => { :color => 'yellow', :align => :left },
 :low => { :color => 'green', :align => :left }
-snorby_logo = "public/images/PDF/snorby_logo.png"
-high_i = "public/images/PDF/high.png"
-medium_i = "public/images/PDF/medium.png"
-low_i = "public/images/PDF/low.png"
+snorby_logo = "#{RAILS_ROOT}/public/images/PDF/snorby_logo.png"
 pdf.line_width(1)
 
 ### GET DATA
