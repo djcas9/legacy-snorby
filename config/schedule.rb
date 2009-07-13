@@ -21,7 +21,7 @@
 
 set :cron_log, "#{RAILS_ROOT}/log/snorby_reports.log"
 
-every 1.day, :at => '10:45 pm' do
+every 1.day, :at => '11:00 pm' do
   runner "Event.run_daily_report"
 end
 
