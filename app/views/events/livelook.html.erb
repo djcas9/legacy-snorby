@@ -12,14 +12,7 @@
 	<%= render :partial => @events %>
 </div>
 
-<% if params[:severity] %>
 <%= periodically_call_remote(:complete => visual_effect(:highlight, "last_pull_time", :duration => 2), 
 		:url => { :action => 'livelook', :severity => params[:severity] },
  		:frequency => 60,
 		:update => { :success => "events", :failure => "error" }) %>
-<%- else -%>
-<%= periodically_call_remote(:complete => visual_effect(:highlight, "last_pull_time", :duration => 2), 
-		:url => { :action => 'livelook' },
- 		:frequency => 60,
-		:update => { :success => "events", :failure => "error" }) %>
-<%- end -%>
