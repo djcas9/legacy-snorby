@@ -1,6 +1,23 @@
-<h1>OPT</h1>
-<%= @event.opt.optid %>
-<%= @event.opt.opt_proto %>
-<%= @event.opt.opt_code %>
-<%= @event.opt.opt_len %>
-<%= @event.opt.opt_data %>
+<h2>Options:</h2>
+<div id="more_information">
+	<div id="more_information_in">
+		<table border="0" cellspacing="5" cellpadding="5">
+			<tr>
+				<th>Opt Id</th>
+				<th>Protocol</th>
+				<th>Opt Code</th>
+				<th>length</th>
+				<th>Opt Data</th>
+			</tr>
+			<tr>
+				<td><%= @event.opt.optid %></td>
+				<td><%= @event.opt.opt_proto %></td>
+				<td><%= @event.opt.opt_code %></td>
+				<td><%= @event.opt.opt_len %></td>
+				<td><%= @event.opt.opt_data %></td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<br />
