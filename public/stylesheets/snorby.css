@@ -454,6 +454,38 @@ h4 {
 	position: relative;	
 }
 
+
+
+#outside_content{
+
+}
+
+#filter_text_content{
+	padding-left: 40px;
+	padding-right: 40px;
+	position: relative;	
+}
+
+
+#filter_top{
+	width: 900px;
+	height: 27px;
+	background-image: url(../images/filter_t.png);
+}
+
+#filter_content{
+	width: 900px;
+	height: 35px;
+	background-image: url(../images/filter_c.png);
+}
+
+#filter_bottom{
+	width: 900px;
+	height: 25px;
+	background-image: url(../images/filter_b.png);
+	margin-bottom: -12px;
+}
+
 /*#c_footer{
 	width: 987px;
 	height: 52px;
@@ -1095,23 +1127,6 @@ pre {
 #b_settings {
 	width: 500px;
 	margin: auto;
-}
-
-/* @end */
-
-/* @group OUTSIDE */
-
-#outside_content{
-	background-color: rgba(20,20,20,0.13);
-	border: 1px solid rgba(91,91,89,0.43);
-	padding: 10px;
-	margin: 10px 11px auto;
-	color: #fff;
-	font-size: small;
-	font-weight: normal;
-	font-style: normal;
-	text-decoration: none;
-	font-variant: normal;
 }
 
 /* @end */

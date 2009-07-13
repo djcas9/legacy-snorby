@@ -4,16 +4,19 @@
 <%= link_to_function "#{image_tag('other/beaker.png', :size => '16x16')} Show Ascii", toggle_div('ascii_payload') %> -
 <%= link_to_function "#{image_tag('other/beaker.png', :size => '16x16')} Show Ascii Hex", toggle_div('ascii_hex_payload') %> <br />
 
-<div id="ascii_payload" style='display:none;'>
-	<pre><%=h [@event.data_info.data_payload].pack("H*") %></pre>
+<%- unless @event.data_info.data_payload.blank? -%>
+	<div id="ascii_payload" style='display:none;'>
+		<pre><%=h [@event.data_info.data_payload].pack("H*") %></pre>
+	</div>
+<%- end -%>
 
-</div>
+<%- unless @event.data_info.data_payload -%>
+	<div id="ascii_hex_payload" style='display:none;'>
+		<pre><%= h(@event.data_info.data_payload) %></pre>
+	</div>
 
-<div id="ascii_hex_payload" style='display:none;'>
-	<pre><%= h(@event.data_info.data_payload) %></pre>
+	<div id="raw_payload">
+		<pre><%= h("#{Hexy.new([@event.data_info.data_payload].pack('H*'), :width => 20, :format => :twos, :annotate => :ascii)}") %></pre>
+	</div>
 
-</div>
-
-<div id="raw_payload">
-	<pre><%= h("#{Hexy.new([@event.data_info.data_payload].pack('H*'), :width => 20, :format => :twos, :annotate => :ascii)}") %></pre>
-</div>
+<%- end -%>
