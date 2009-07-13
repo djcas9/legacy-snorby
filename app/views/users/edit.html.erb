@@ -4,5 +4,6 @@
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %><br />
 <br />
-  <%= f.submit "Update" %> <%= link_to "Back To Settings", settings_path %>
+  <%= f.submit "Update" %>
+	<%= link_to "#{image_tag('other/back.png', :class => 'box')}", settings_path, :class => 'back' %>
 <% end %>

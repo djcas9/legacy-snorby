@@ -1,4 +1,4 @@
-<h1>Snorby Reports</h1>
+<h1><%= image_tag('other/report.png', :class=>'box') %> Snorby Reports</h1>
 <br />
 
 <% if @reports.blank? %>
@@ -37,7 +37,7 @@
 	</div>
 </div>
 <br />
-<div id="move_right" align='right'>
+<div id="select_all" class='back box'>
 	<input id="check_all" name="check_all" type="checkbox" onclick="Form.getInputs('form','checkbox').each(function(box){box.checked = $('check_all').checked})" /> Select All
 </div>
 <%= submit_tag "Remove Checked" %>

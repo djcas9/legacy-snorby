@@ -1,6 +1,6 @@
 <% form_tag sensor_delete_multiple_settings_path do %>
 <div id="settings_table">
-	<h1>Sensor Settings:</h1><br />
+	<h1><%= image_tag('other/flask.png', :class=>'box') %> Sensor Settings:</h1><br />
 	<div id="settings_table_in">
 		<table>
 			<tr>
@@ -27,5 +27,6 @@
 	</div>
 </div>
 <br />
-<%= submit_tag "Remove Sensor(s)" %> <%= link_to "Back To Settings", settings_path %>
+<%= submit_tag "Remove Sensor(s)" %>
+<%= link_to "#{image_tag('other/back.png', :class => 'box')}", settings_path, :class => 'back' %>
 <% end %>

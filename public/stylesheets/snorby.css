@@ -10,10 +10,20 @@
 }
 
 .box{
-	background-color: #ededed;
-	border: 1px solid #d4d4d4;
+	background: #edf2ef;
+	border: 1px solid #bdc0c0;
 	margin-bottom: -5px;
-	padding: 4px;
+	padding: 5px;
+	color: rgb(51, 51, 51);
+	font: normal normal normal 12px/normal 'Lucida Grande', Helvetica, Arial, Verdana, sans-serif;
+}
+
+.back{
+	font-size: small;
+	float: left;
+	margin-right: 5px;
+	color: rgb(51, 51, 51);
+	font: normal normal normal 12px/normal 'Lucida Grande', Helvetica, Arial, Verdana, sans-serif;
 }
 
 .auto_complete {
