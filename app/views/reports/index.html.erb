@@ -1,6 +1,5 @@
-<h1><%= image_tag('other/report.png', :class=>'box') %> Snorby Reports</h1>
+<h1>Reports</h1>
 <br />
-
 <% if @reports.blank? %>
 <div id="report_table">
 	<div id="report_table_in">
@@ -36,9 +35,8 @@
 		</table>
 	</div>
 </div>
-<br />
-<div id="select_all" class='back box'>
-	<input id="check_all" name="check_all" type="checkbox" onclick="Form.getInputs('form','checkbox').each(function(box){box.checked = $('check_all').checked})" />
+<div id="select_all" align='right' class='small'>
+	<input id="check_all" name="check_all" type="checkbox" onclick="Form.getInputs('form','checkbox').each(function(box){box.checked = $('check_all').checked})"> Select All</input>
 </div>
 <%= submit_tag "Remove Checked" %>
 <% end %>

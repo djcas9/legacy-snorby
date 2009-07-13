@@ -1,9 +1,9 @@
 <%- content_for :outside_content do -%>
 	<% form_tag livelook_path, :method => :get do %>
-		<%= select_tag("severity", options_for_select([['All', 'All'], ['High Severity', 1], ['Medium Severity', 2], ['Low Severity', 3]], params[:severity])) %>
 	<div id="filter_box" class='move_right'>
-		<%= submit_tag "Filter", :name => nil %>
+		<%= submit_tag "Apply Settings", :name => nil, :class => 'not_round' %>
 	</div>
+	<%= select_tag("severity", options_for_select([['All Severities', 'All'], ['High Severity', 1], ['Medium Severity', 2], ['Low Severity', 3]], params[:severity])) %>
 	<%- end -%>
 <%- end -%>
 
@@ -12,7 +12,6 @@
 	<%= render :partial => @events %>
 </div>
 
-<%= periodically_call_remote(:complete => visual_effect(:highlight, "last_pull_time", :duration => 2), 
-		:url => { :action => 'livelook', :severity => params[:severity] },
- 		:frequency => 60,
-		:update => { :success => "events", :failure => "error" }) %>
+<%= periodically_call_remote(:url => { :action => 'livelook', :severity => params[:severity] },
+ 		:frequency => 120,
+		:update => { :success => "events" }) %>

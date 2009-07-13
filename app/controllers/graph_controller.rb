@@ -7,7 +7,7 @@ class GraphController < ApplicationController
 
     pie = Pie.new
     pie.start_angle = 35
-    pie.animate = true
+    pie.animate = false
     pie.tooltip = '#val# Events of #total# Total.<br>#percent# of 100%<br>'
     pie.colours = ["#adffa2", "#f8f9a4", "#fb9c9c"]
 
