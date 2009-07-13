@@ -5,6 +5,17 @@
 	font-size: small;
 }
 
+.move_image_right img{
+	padding-right: 5px;
+}
+
+.box{
+	padding: 5px;
+	background-color: #ededed;
+	border: 1px solid #d4d4d4;
+	margin-bottom: -6px;
+}
+
 .auto_complete {
 	font-size: x-small;
 	color: #2a2a2a;
@@ -101,6 +112,7 @@ input[type=hidden]{
 	border-style: none;
 	background-color: #fff;
 	visibility: hidden;
+	display: none;
 }
 
 ol, ul {

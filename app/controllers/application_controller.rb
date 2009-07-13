@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_admin
-    unless current_user.admin
+    unless current_user and current_user.admin
       store_location
       flash[:error] = "You must be an administrator to perform this task"
       redirect_to dashboard_path

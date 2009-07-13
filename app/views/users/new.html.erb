@@ -1,7 +1,8 @@
-<h1>New User Setup</h1><br />
-
+<h1><%= image_tag('other/user.png', :class => 'box') %> New User Setup</h1>
+<br />
 <% form_for @user, :url => account_path do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %><br />
-  <%= f.submit "Register" %> <%= link_to "Back To Settings", settings_path %>
+  <br />
+	<%= f.submit "Register" %> <%= link_to "Back To Settings", settings_path %>
 <% end %>
