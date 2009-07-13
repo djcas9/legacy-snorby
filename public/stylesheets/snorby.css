@@ -10,10 +10,10 @@
 }
 
 .box{
-	padding: 5px;
 	background-color: #ededed;
 	border: 1px solid #d4d4d4;
-	margin-bottom: -6px;
+	margin-bottom: -5px;
+	padding: 4px;
 }
 
 .auto_complete {
