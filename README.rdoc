@@ -42,9 +42,10 @@ Then setup the snorby database and cron jobs:
 
  rake snorby:setup RAILS_ENV=production
 
-if you run into an issue while running the above command verify that the ruby mysql files are install and that prawn is installed.
+If you run into an issue while running the above command verify that the ruby mysql files are install and that prawn is installed.
+You may also having spacing problems in the YAML database and email configurations.
 
-	sudo gem install mysql && sudo gem install prawn
+ sudo gem install mysql && sudo gem install prawn
 	
 <b>Start Snorby:</b>
 
