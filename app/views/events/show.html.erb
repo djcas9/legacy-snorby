@@ -12,27 +12,27 @@
 
 		<%= render :partial => 'summary' %>
 
-		<%- unless @event.iphdr.nil? -%>
+		<%- unless @event.iphdr.blank? -%>
 			<%= render :partial => 'ip_data' %>
 		<%- end -%>
 
-		<%- unless @event.tcphdr.nil? -%>
+		<%- unless @event.tcphdr.blank? -%>
 			<%= render :partial => 'tcp_data' %>
 		<%- end -%>
 
-		<%- unless @event.udphdr.nil? -%>
+		<%- unless @event.udphdr.blank? -%>
 			<%= render :partial => 'udp_data' %>
 		<%- end -%>
 
-		<%- unless @event.icmphdr.nil? -%>
+		<%- unless @event.icmphdr.blank? -%>
 			<%= render :partial => 'icmp_data' %>
 		<%- end -%>
 
-		<%- unless @event.opt.nil? -%>
+		<%- unless @event.opt.blank? -%>
 			<%= render :partial => 'payload_data' %>
 		<%- end -%>
 
-		<%- unless @event.data_info.nil? -%>
+		<%- unless @event.data_info.blank? -%>
 			<%= render :partial => 'payload_data' %>
 		<%- end -%>
 	</div>

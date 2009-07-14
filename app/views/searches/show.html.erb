@@ -3,7 +3,7 @@
 	<%= link_to "#{image_tag('export/xml.png')}", { :format => 'xml' } %>
 	<%= link_to "#{image_tag('export/email.png')}", send_search_path(@search), :rel => 'facebox' %>
 </div>
-<h1><%= image_tag('other/find.png', :class => 'box') %> Search Results</h1>
+<h1>Search Results</h1>
 <br />
 <%= render :partial => @search.events %>
 
