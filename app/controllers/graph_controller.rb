@@ -54,12 +54,14 @@ class GraphController < ApplicationController
     y.grid_colour= '#FFFFFF'
 
 
-    if params[:all].to_i >= 10000
+    if params[:all].to_i >= 50000
+      y.set_range(0, params[:all].to_i, 10000)
+    elsif params[:all].to_i >= 10000
       y.set_range(0, params[:all].to_i, 5000)
     elsif params[:all].to_i >= 5000
-      y.set_range(0, params[:all].to_i, 500)
+      y.set_range(0, params[:all].to_i, 1000)
     elsif params[:all].to_i >= 1000
-      y.set_range(0, params[:all].to_i, 200)
+      y.set_range(0, params[:all].to_i, 500)
     else
       y.set_range(0, params[:all].to_i, 100)
     end
