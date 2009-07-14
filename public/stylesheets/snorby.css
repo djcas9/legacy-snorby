@@ -435,8 +435,7 @@ h4 {
 
 #wrapper{
   	width: 900px;
-	margin-bottom: auto;
-	margin-top: auto;
+	margin-bottom: 5px;
 	margin-left: auto;
 	margin: auto;
 	overflow: visible;
@@ -508,6 +507,7 @@ h4 {
 	height: 80px;
 	background-image: url(../images/filter_content.png);
 	margin-bottom: -15px;
+	margin-top: -5px;
 }
 
 /*#c_footer{

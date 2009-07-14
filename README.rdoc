@@ -12,7 +12,7 @@ Snorby is a new and modern Snort IDS front-end. The basic fundamental concepts b
 
 You will need to edit and rename /config/database.yml.example to /config/database.yml
 	
-Example Database Config:
+Example Database Config: (spacing is important to .yml files and it will error if changed)
 	
  production:
    adapter: mysql
@@ -25,7 +25,7 @@ Example Database Config:
 
 You will need to edit and rename /config/email.yml.example to /config/email.yml
 	
-Example Email Config:
+Example Email Config: (spacing is important in .yml files and it will error if changed)
 
  production:
    :address: smtp.gmail.com
@@ -41,6 +41,10 @@ Example Email Config:
 Then setup the snorby database and cron jobs:
 
  rake snorby:setup RAILS_ENV=production
+
+if you run into an issue while running the above command verify that the ruby mysql files are install and that prawn is installed.
+
+	sudo gem install mysql && sudo gem install prawn
 	
 <b>Start Snorby:</b>
 

@@ -1,4 +1,4 @@
-# SNORBY DB SETTINGS
+# SNORBY DB SETTINGS - DO NOT CHANGE THE SPACING
 
 production:
 	adapter: mysql

@@ -1,4 +1,4 @@
-# SNORBY EMAIL SETUP
+# SNORBY EMAIL SETUP - DO NOT CHANGE THE SPACING
 
 production:
   :address: smtp.gmail.com
