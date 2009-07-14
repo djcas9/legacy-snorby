@@ -12,13 +12,13 @@ Rails::Initializer.run do |config|
   
   config.gem 'mislav-will_paginate', :version => '~> 2.3.8', :lib => 'will_paginate', :source => 'http://gems.github.com'
   config.gem "authlogic"
+  config.gem "chronic"
   config.gem 'javan-whenever', :lib => false, :source => 'http://gems.github.com'
   config.gem "calendar_date_select"
   config.gem "prawn"
   config.gem "mattetti-googlecharts", :lib => "gchart", :source => "http://gems.github.com/"
   config.gem "ambethia-smtp-tls", :lib => "smtp-tls", :source => "http://gems.github.com/"
   config.gem "composite_primary_keys"
-  config.gem "chronic"
   
 end
 
