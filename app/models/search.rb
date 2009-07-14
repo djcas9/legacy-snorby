@@ -15,7 +15,7 @@ class Search < ActiveRecord::Base
   private
 
   def find_events
-    Event.find(:all, :include => [:sensor, :sig, :iphdr], :order => 'timestamp DESC', :conditions => conditions)
+    Event.find(:all, :include => [:sensor, :iphdr, {:sig => :sig_class }], :order => 'timestamp DESC', :conditions => conditions)
   end
 
   def keyword_conditions

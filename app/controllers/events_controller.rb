@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def index
-    @events ||= Event.paginate(:page => params[:page], :per_page => 20, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr])
+    @events ||= Event.paginate(:page => params[:page], :per_page => 20, :order => 'timestamp DESC', :include => [:sensor, :iphdr, {:sig => :sig_class }])
     respond_to do |format|
       format.html
       format.js
@@ -8,7 +8,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id], :include => [:sig, :sensor, :iphdr, :udphdr, :icmphdr, :tcphdr])
+    @event = Event.find(params[:id], :include => [:sensor, :iphdr, {:sig => :sig_class }, :udphdr, :icmphdr, :tcphdr])
     @source_ip = @event.source_ip
     @destination_ip = @event.destination_ip
     respond_to do |format|
