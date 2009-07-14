@@ -1,0 +1,5 @@
+<ul class='always_show_above'>
+<%- for ip in @dst_ips do -%>
+  <li class='move_image_right'><%= image_tag('other/tick-circle.png', :size=>'10x10') %><%= IPAddr.new_ntoh([ip.ip_dst].pack('N')) %></li>
+<%- end -%>
+</ul>

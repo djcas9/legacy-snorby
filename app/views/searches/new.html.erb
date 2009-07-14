@@ -45,10 +45,10 @@
 		</tr>
 		<tr>
 			<td>
-				<%= f.text_field :ip_src %>
+				<%= text_field_with_auto_complete :search, :ip_src %>
 			</td>
 			<td>
-				<%= f.text_field :ip_dst %>
+				<%= text_field_with_auto_complete :search, :ip_dst %>
 			</td>
 		</tr>
 	</table>

@@ -4,8 +4,8 @@ class CreateSearches < ActiveRecord::Migration
       t.string :keywords
       t.integer :sid
       t.integer :sid_class_id
-      t.integer :ip_src
-      t.integer :ip_dst
+      t.string :ip_src
+      t.string :ip_dst
       t.integer :sport
       t.integer :dport
       t.integer :sig_priority

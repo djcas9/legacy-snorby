@@ -1,5 +1,5 @@
 class SearchesController < ApplicationController
-  skip_before_filter :verify_authenticity_token, :only => [:auto_complete_for_search_keywords]
+  skip_before_filter :verify_authenticity_token, :only => [:auto_complete_for_search_keywords, :auto_complete_for_search_ip_src, :auto_complete_for_search_ip_dst]
 
   def new
     @search = Search.new
@@ -54,4 +54,17 @@ class SearchesController < ApplicationController
       :select => "DISTINCT sig_name", :order => "sig_name"  )
     render :partial => 'keywords'
   end
+  
+  def auto_complete_for_search_ip_src
+    @src_ips = Iphdr.find(:all, 
+      :conditions => ['inet_ntoa(ip_src) LIKE ?', "%#{params[:search][:ip_src]}%"], :select => "DISTINCT ip_src")
+    render :partial => 'ip_src'
+  end
+  
+  def auto_complete_for_search_ip_dst
+    @dst_ips = Iphdr.find(:all, 
+      :conditions => ['inet_ntoa(ip_dst) LIKE ?', "%#{params[:search][:ip_dst]}%"], :select => "DISTINCT ip_dst")
+    render :partial => 'ip_dst'
+  end
+  
 end

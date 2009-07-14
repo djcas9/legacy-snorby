@@ -52,7 +52,8 @@ class GraphController < ApplicationController
 
     y = YAxis.new
     y.grid_colour= '#FFFFFF'
-    
+
+
     if params[:all].to_i >= 10000
       y.set_range(0, params[:all].to_i, 5000)
     elsif params[:all].to_i >= 5000
