@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def index
-    @events ||= Event.paginate(:page => params[:page], :per_page => 20, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr, :udphdr, :icmphdr, :tcphdr])
+    @events ||= Event.paginate(:page => params[:page], :per_page => 20, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr])
     respond_to do |format|
       format.html
       format.js
@@ -47,7 +47,6 @@ class EventsController < ApplicationController
   end
 
   def livelook
-    @time = Time.now
     @events ||= Event.livelook(params[:severity])
     respond_to do |format|
       format.html
