@@ -1,9 +1,11 @@
 <%- content_for :outside_content do -%>
-	<% form_tag livelook_path, :method => :get do %>
-	<div id="filter_box" class='move_right'>
-		<%= submit_tag "Apply Settings", :name => nil, :class => 'not_round' %>
-	</div>
-	<%= select_tag("severity", options_for_select([['All Severities', 'All'], ['High Severity', 1], ['Medium Severity', 2], ['Low Severity', 3]], params[:severity])) %>
+	<%- cache "filter_box" do -%>
+		<% form_tag livelook_path, :method => :get do %>
+		<div id="filter_box" class='move_right'>
+			<%= submit_tag "Apply Settings", :name => nil, :class => 'not_round' %>
+		</div>
+		<%= select_tag("severity", options_for_select([['All Severities', 'All'], ['High Severity', 1], ['Medium Severity', 2], ['Low Severity', 3]], params[:severity])) %>
+		<%- end -%>
 	<%- end -%>
 <%- end -%>
 

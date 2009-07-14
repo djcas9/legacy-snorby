@@ -1,5 +1,7 @@
 class ReportsController < ApplicationController
+  #cache_sweeper :report_sweeper, :only => [:new, :create, :update, :destroy, :delete_multiple]
   before_filter :require_admin, :only => [:edit, :update, :destroy, :delete_multiple]
+  #caches_action :index, :cache_path => 'report_index'
   
   def index
     @reports = Report.paginate(:page => params[:page], :per_page => 20, :order => 'created_at DESC')
@@ -25,7 +27,6 @@ class ReportsController < ApplicationController
   def create
     @report = Report.new(params[:report])
     if @report.save
-      flash[:notice] = "Successfully created report."
       redirect_to @report
     else
       render :action => 'new'
@@ -39,7 +40,6 @@ class ReportsController < ApplicationController
   def update
     @report = Report.find(params[:id])
     if @report.update_attributes(params[:report])
-      flash[:notice] = "Successfully updated report."
       redirect_to @report
     else
       render :action => 'edit'
@@ -49,7 +49,6 @@ class ReportsController < ApplicationController
   def destroy
     @report = Report.find(params[:id])
     @report.destroy
-    flash[:notice] = "Successfully destroyed report."
     redirect_to reports_url
   end
   
@@ -58,7 +57,6 @@ class ReportsController < ApplicationController
     @reports.each do |report|
       report.destroy
     end
-    flash[:notice] = "Reports were successfully removed!"
     redirect_to reports_path
   end
   

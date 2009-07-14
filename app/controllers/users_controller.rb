@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :require_user, :only => [:show, :edit, :update]
   before_filter :require_admin, :only => [:index, :new, :create] 
+  #caches_action :index
   
   def index
     @users = User.all
