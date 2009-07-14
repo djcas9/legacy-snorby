@@ -1,11 +1,11 @@
 # SNORBY DB SETTINGS - DO NOT CHANGE THE SPACING
 
 production:
-	adapter: mysql
-	database: snorby
-	username: snorby  
-	password: snorby
-	host: localhost
+  adapter: mysql
+  database: snorby
+  username: snorby  
+  password: snorby
+  host: localhost
 
 ###
 ## DO NOT USE DEVELOPMENT MODE
