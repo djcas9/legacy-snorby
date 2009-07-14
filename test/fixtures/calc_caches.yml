@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  severity: 1
+  date: MyString
+  hour: 1
+  count: 1
+
+two:
+  name: MyString
+  severity: 1
+  date: MyString
+  hour: 1
+  count: 1
