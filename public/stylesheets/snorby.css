@@ -49,6 +49,7 @@
 	max-height: 300px;
 	border: 1px solid #a0a0a0;
 	display: block;
+	margin-bottom: 10px;
 }
 
 #filter_box input{
