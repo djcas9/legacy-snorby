@@ -16,7 +16,7 @@ class Event < ActiveRecord::Base
   def self.all_uniq_signatures_like(sig_name)
     find(:all, :include => [:sig], :conditions => ['signature.sig_name LIKE ?', "%#{sig_name}%"]).map{ |event| event.sig.sig_name }.uniq.sort
   end
-  
+
   def self.livelook(severity)
     if severity
       if severity == 'All'
@@ -57,11 +57,19 @@ class Event < ActiveRecord::Base
   end
 
   def source_ip
-    IPAddr.new_ntoh([self.iphdr.ip_src].pack('N'))
+    if self.iphdr.blank?
+      return "N/A"
+    else
+      IPAddr.new_ntoh([self.iphdr.ip_src].pack('N'))
+    end
   end
 
   def destination_ip
-    IPAddr.new_ntoh([self.iphdr.ip_dst].pack('N'))
+    if self.iphdr.blank?
+      return "N/A"
+    else
+      IPAddr.new_ntoh([self.iphdr.ip_dst].pack('N'))
+    end
   end
 
   def self.find_event_count_for?(sig_class)
