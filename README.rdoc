@@ -67,6 +67,14 @@ The default User Name and Password for Snorby:
 
 PLEASE MAKE SURE YOU CHANGE THIS!
 
+== TODO
+
+* Delete events
+* Event Comments
+* Link for dashboard graphs
+* Session view for events
+* Tune/Make Important for all events
+
 == Helpful links
 
 * <b>Official Website:</b> http://www.snorby.org
