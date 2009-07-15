@@ -57,19 +57,17 @@ class Event < ActiveRecord::Base
   end
 
   def source_ip
-    if self.iphdr.blank?
-      return "N/A"
-    else
+    unless self.iphdr.blank?
       IPAddr.new_ntoh([self.iphdr.ip_src].pack('N'))
     end
+    false
   end
 
   def destination_ip
     if self.iphdr.blank?
-      return "N/A"
-    else
       IPAddr.new_ntoh([self.iphdr.ip_dst].pack('N'))
     end
+    false
   end
 
   def self.find_event_count_for?(sig_class)

@@ -11,14 +11,14 @@
 				<tr>
 					<td>
 					<%= @source_ip %> 
-					<%- unless @source_ip == 'N/A' -%>
+					<%- unless @source_ip -%>
 						<%= link_to "#{image_tag('show_event/magnifier.png', :size=>'12x12')}", { :action => 'whois', 
 						:whois_host => @source_ip, :id => @event }, :rel => 'facebox' %><%= clippy(@source_ip) %><br />
 					<%- end -%>
 					</td>
 					<td>
 						<%= @destination_ip %>
-						<%- unless @destination_ip == 'N/A' -%>
+						<%- unless @destination_ip -%>
 							<%= link_to "#{image_tag('show_event/magnifier.png', :size=>'12x12')}", { :action => 'whois', 
 							:whois_host => @destination_ip, :id => @event }, :rel => 'facebox' %><%= clippy(@destination_ip) %><br />
 						<%- end -%>
