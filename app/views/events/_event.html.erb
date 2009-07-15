@@ -11,8 +11,14 @@
 		</div>
 
 		<div id='event_holder_body'>
-			Source: <%= IPAddr.new_ntoh([event.iphdr.ip_src].pack('N')) %> -
-			Destination: <%= IPAddr.new_ntoh([event.iphdr.ip_dst].pack('N')) %><br />
+			
+			<%- if event.iphdr.blank? -%>
+				Source: N/A -
+				Destination: N/A<br />
+			<%- else -%>
+				Source: <%= IPAddr.new_ntoh([event.iphdr.ip_src].pack('N')) %> -
+				Destination: <%= IPAddr.new_ntoh([event.iphdr.ip_dst].pack('N')) %><br />
+			<%- end -%>
 			
 			Sensor: <%= event.sensor.id %> -
 			
