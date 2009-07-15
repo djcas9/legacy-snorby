@@ -7,7 +7,7 @@
 				<th>Sensor</th>
 				<th>Interface</th>
 				<th>Hostname</th>
-				<th>Event Info</th>
+				<th>ID:GID:SID</th>
 				<th>Severity</th>
 				<th>Event Percentage</th>
 				<th>Event Total</th>
@@ -17,9 +17,9 @@
 				<td><%= @event.sensor.interface %></td>
 				<td><%= @event.sensor.hostname %></td>
 				<%- if @event.sig.sig_gid == 1 -%>
-				<td><%= link_to "#{@event.id[1]}:#{@event.sig.sig_sid}:#{@event.sig.sig_gid}", "http://rootedyour.com/snortsid?sid=#{@event.sig.sig_sid}", :target => '_blank' %></td>
+				<td><%= link_to "#{@event.id[1]}:#{@event.sig.sig_gid}:#{@event.sig.sig_sid}", "http://rootedyour.com/snortsid?sid=#{@event.sig.sig_sid}", :target => '_blank' %></td>
 				<%- else -%>
-				<td><%= link_to "#{@event.id[1]}:#{@event.sig.sig_sid}:#{@event.sig.sig_gid}", "http://rootedyour.com/snortsid?sid=#{@event.sig.sig_gid}-#{@event.sig.sig_sid}", :target => '_blank' %></td>
+				<td><%= link_to "#{@event.id[1]}:#{@event.sig.sig_gid}:#{@event.sig.sig_sid}", "http://rootedyour.com/snortsid?sid=#{@event.sig.sig_gid}-#{@event.sig.sig_sid}", :target => '_blank' %></td>
 				<%- end -%>
 				<td><%= severity_image(@event.sig.sig_priority) %></td>
 				<td>
