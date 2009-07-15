@@ -57,16 +57,14 @@ class Event < ActiveRecord::Base
   end
 
   def source_ip
-    unless self.iphdr.blank?
-      IPAddr.new_ntoh([self.iphdr.ip_src].pack('N'))
-    end
+    IPAddr.new_ntoh([self.iphdr.ip_src].pack('N'))
+  rescue => e
     false
   end
 
   def destination_ip
-    if self.iphdr.blank?
-      IPAddr.new_ntoh([self.iphdr.ip_dst].pack('N'))
-    end
+    IPAddr.new_ntoh([self.iphdr.ip_dst].pack('N'))
+  rescue => e
     false
   end
 

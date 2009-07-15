@@ -9,8 +9,6 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id], :include => [:sensor, :iphdr, {:sig => :sig_class }, :udphdr, :icmphdr, :tcphdr])
-    @source_ip = @event.source_ip
-    @destination_ip = @event.destination_ip
     respond_to do |format|
       format.html
       format.pdf

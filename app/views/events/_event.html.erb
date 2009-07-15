@@ -16,8 +16,8 @@
 				Source: N/A -
 				Destination: N/A<br />
 			<%- else -%>
-				Source: <%= IPAddr.new_ntoh([event.iphdr.ip_src].pack('N')) %> -
-				Destination: <%= IPAddr.new_ntoh([event.iphdr.ip_dst].pack('N')) %><br />
+				Source: <%= event.source_ip %> -
+				Destination: <%= event.destination_ip %><br />
 			<%- end -%>
 			
 			Sensor: <%= event.sensor.id %> -
