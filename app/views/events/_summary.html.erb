@@ -7,7 +7,7 @@
 				<th>Sensor</th>
 				<th>Interface</th>
 				<th>Hostname</th>
-				<th>ID:GID:SID</th>
+				<th>Event Info</th>
 				<th>Severity</th>
 				<th>Event Percentage</th>
 				<th>Event Total</th>
@@ -16,7 +16,11 @@
 				<td><%= @event.sensor.id %></td>
 				<td><%= @event.sensor.interface %></td>
 				<td><%= @event.sensor.hostname %></td>
-				<td><%= @event.id[1] %>:<%= @event.sig.sig_gid %>:<%= @event.sig.sig_sid %></td>
+				<%- if @event.sig.sig_gid == 1 -%>
+				<td><%= link_to "#{@event.id[1]}:#{@event.sig.sig_sid}:#{@event.sig.sig_gid}", "http://rootedyour.com/snortsid?sid=#{@event.sig.sig_sid}", :target => '_blank' %></td>
+				<%- else -%>
+				<td><%= link_to "#{@event.id[1]}:#{@event.sig.sig_sid}:#{@event.sig.sig_gid}", "http://rootedyour.com/snortsid?sid=#{@event.sig.sig_sid}-#{@event.sig.sig_gid}", :target => '_blank' %></td>
+				<%- end -%>
 				<td><%= severity_image(@event.sig.sig_priority) %></td>
 				<td>
 					<%= horizontal_bar_graph  [["Event Percentage", ((total_event_count_for?(@event)/Event.all.size.to_f) * 100).round(2)]] %>

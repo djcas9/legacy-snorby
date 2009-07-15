@@ -716,6 +716,12 @@ strong.event_title{
 	text-align: left;
 }
 
+#summary_info a {
+	border-bottom: 1px solid #f2f2f2;
+	text-align: left;
+	color: #3e63be;
+}
+
 #summary_info th {
 	padding: 2px 30px 2px 15px;
 	color: #464546;
