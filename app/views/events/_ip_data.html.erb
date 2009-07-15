@@ -1,66 +1,68 @@
-<h2>IP Address Information:</h2>
-<br />
-<div id="ip_info">
-	<div id="ip_info_in">
-		<table>
-			<tr>
-				<th>Source</th>
-				<th>Destination</th>
-			</tr>
-			<tr>
-				<td>
-				<%= @source_ip %> 
-				<%= link_to "#{image_tag('show_event/magnifier.png', :size=>'12x12')}", { :action => 'whois', :id => @event.id, 
-				:whois_host => @source_ip }, :rel => 'facebox' %><%= clippy(@source_ip) %><br />
-				</td>
-				<td>
-					<%= @destination_ip %>
+<%- unless @event.iphdr.blank? -%>
+	<h2>IP Address Information:</h2>
+	<br />
+	<div id="ip_info">
+		<div id="ip_info_in">
+			<table>
+				<tr>
+					<th>Source</th>
+					<th>Destination</th>
+				</tr>
+				<tr>
+					<td>
+					<%= @source_ip %> 
 					<%= link_to "#{image_tag('show_event/magnifier.png', :size=>'12x12')}", { :action => 'whois', :id => @event.id, 
-					:whois_host => @destination_ip }, :rel => 'facebox' %><%= clippy(@destination_ip) %><br />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<%= get_address_for?("#{@source_ip}") %>
-				</td>
-				<td>
-					<%= get_address_for?("#{@destination_ip}") %>
-				</td>
-			</tr>
-		</table>
+					:whois_host => @source_ip }, :rel => 'facebox' %><%= clippy(@source_ip) %><br />
+					</td>
+					<td>
+						<%= @destination_ip %>
+						<%= link_to "#{image_tag('show_event/magnifier.png', :size=>'12x12')}", { :action => 'whois', :id => @event.id, 
+						:whois_host => @destination_ip }, :rel => 'facebox' %><%= clippy(@destination_ip) %><br />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<%= get_address_for?("#{@source_ip}") %>
+					</td>
+					<td>
+						<%= get_address_for?("#{@destination_ip}") %>
+					</td>
+				</tr>
+			</table>
+		</div>
 	</div>
-</div>
 
-<div id="more_information">
-	<div id="more_information_in" class='round'>
-		<table>
-			<tr>
-				<th>Version</th>
-				<th>Header Length</th>
-				<th>Type-of-Service</th>
-				<th>Length</th>
-				<th>ID</th>
-				<th>Flags</th>
-				<th>Offset</th>
-				<th>TTL</th>
-				<th>Protocol</th>
-				<th>CheckSum</th>
-			</tr>
-			<tr>
-				<td><%= @event.iphdr.ip_ver %></td>
-				<td><%= @event.iphdr.ip_hlen %></td>
-				<td><%= @event.iphdr.ip_tos %></td>
-				<td><%= @event.iphdr.ip_len %></td>
-				<td><%= @event.iphdr.ip_id %></td>
-				<td><%= @event.iphdr.ip_flags %></td>
-				<td><%= @event.iphdr.ip_off %></td>
-				<td><%= @event.iphdr.ip_ttl %></td>
-				<td><%= @event.iphdr.ip_proto %></td>
-				<td><%= @event.iphdr.ip_csum %></td>
-			</tr>
-		</table>
+	<div id="more_information">
+		<div id="more_information_in" class='round'>
+			<table>
+				<tr>
+					<th>Version</th>
+					<th>Header Length</th>
+					<th>Type-of-Service</th>
+					<th>Length</th>
+					<th>ID</th>
+					<th>Flags</th>
+					<th>Offset</th>
+					<th>TTL</th>
+					<th>Protocol</th>
+					<th>CheckSum</th>
+				</tr>
+				<tr>
+					<td><%= @event.iphdr.ip_ver %></td>
+					<td><%= @event.iphdr.ip_hlen %></td>
+					<td><%= @event.iphdr.ip_tos %></td>
+					<td><%= @event.iphdr.ip_len %></td>
+					<td><%= @event.iphdr.ip_id %></td>
+					<td><%= @event.iphdr.ip_flags %></td>
+					<td><%= @event.iphdr.ip_off %></td>
+					<td><%= @event.iphdr.ip_ttl %></td>
+					<td><%= @event.iphdr.ip_proto %></td>
+					<td><%= @event.iphdr.ip_csum %></td>
+				</tr>
+			</table>
 		
+		</div>
 	</div>
-</div>
 
-<br />
+	<br />
+<%- end -%>
