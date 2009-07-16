@@ -262,10 +262,7 @@ body {
 
 .grid a{
 	color: #1f00ff;
-	font-weight: normal;
-	font-style: normal;
-	text-decoration: none;
-	font-variant: normal;
+	font-size: x-small;
 }
 
 tr.odd {
@@ -362,7 +359,7 @@ h4 {
 
 #flash_notice, #flash_error {
   	padding: 5px 8px;
-  	min-height: 30px;
+  	min-height: 20px;
 	font-size: small;
 	margin-left: 11px;
 	margin-right: 11px;
@@ -475,6 +472,10 @@ h4 {
 	overflow: visible;
 }
 
+#c_content_holder a{
+	font-size: small;
+}
+
 #filter_text_content{
 	width: 850px;
 	height: 50px;
@@ -525,6 +526,7 @@ h4 {
 	height: 34px;
 	background-image: url(../images/c_footer.png);
 	left: -100px;
+	margin-bottom: 20px;
 }
 
 #footer_text{
@@ -1168,15 +1170,15 @@ pre {
 }
 
 .event_options{
-	border: 1px solid #fef99e;
+	border: 1px solid #fdf758;
 	color: #373737;
 	position: relative;
 	float: right;
-	background: #fdffc7 0 bottom;
 	margin-top: -5px;
 	padding-right: 5px;
 	padding-top: 2px;
 	padding-left: 5px;
+	background: #fefaaf 0 bottom;
 }
 
 .event_options img{

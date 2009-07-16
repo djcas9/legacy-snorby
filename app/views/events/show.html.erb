@@ -1,10 +1,19 @@
 <div id="event_show_page">
 	<div id="search_options" class='round'>
-		<%= link_to "#{image_tag('export/pdf.png')}", { :format => 'pdf' } %>
-		<%= link_to "#{image_tag('export/xml.png')}", { :format => 'xml' } %>
-		<%= link_to "#{image_tag('export/email.png')}", send_event_path(@event), :rel => 'facebox' %>
+		<%- if @event.importance.present? -%>
+
+		<%= link_to_remote image_tag('other/is_important.png', :size => '14x14', :id => "important_#{@event.id}"), :url => { :controller => 'events', :action => "important", :id => @event }, :html => { :title => "Make This Event Important" } %>
+
+		<%- else -%>
+
+		<%= link_to_remote image_tag('other/is_not_important.png', :size => '14x14', :id => "important_#{@event.id}"), :url => { :controller => 'events', :action => "important", :id => @event }, :html => { :title => "Make This Event Important" } %>
+
+		<%- end -%>
+		<%= link_to "#{image_tag('export/pdf.png', :size => '14x14')}", { :format => 'pdf' } %>
+		<%= link_to "#{image_tag('export/xml.png', :size => '14x14')}", { :format => 'xml' } %>
+		<%= link_to "#{image_tag('export/email.png', :size => '14x14')}", send_event_path(@event), :rel => 'facebox' %>
 		<%- if current_user.admin -%>
-		<%= link_to "#{image_tag('other/slash.png')}", { :action => 'remove_event', :id => @event }, :title => "Destroy Event: #{@event.sig.sig_name}" %>
+		<%= link_to "#{image_tag('other/slash.png', :size => '14x14')}", { :action => 'remove_event', :id => @event }, :title => "Destroy Event: #{@event.sig.sig_name}" %>
 		<%- end -%>
 	</div>
 	<strong class='event_title'><%= @event.sig.sig_name %></strong>

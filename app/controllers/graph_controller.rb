@@ -62,8 +62,10 @@ class GraphController < ApplicationController
       y.set_range(0, params[:all].to_i, 1000)
     elsif params[:all].to_i >= 1000
       y.set_range(0, params[:all].to_i, 500)
-    else
+    elsif params[:all].to_i >= 100
       y.set_range(0, params[:all].to_i, 100)
+    else
+      y.set_range(0, params[:all].to_i, 10)
     end
 
     bar = Bar3d.new

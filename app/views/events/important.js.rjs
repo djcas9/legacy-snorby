@@ -1,5 +1,5 @@
 if @event.importance.present?
-  page.replace "important_#{@event.id}", "#{image_tag('other/is_not_important.png', :id => "important_#{@event.id}", :size => '12x12')}", :locals => {:event=>@event}
+  page.replace "important_#{@event.id}", "#{image_tag('other/is_not_important.png', :size=>'14x14', :id => "important_#{@event.id}")}", :locals => {:event=>@event}
 else
-  page.replace "important_#{@event.id}", "#{image_tag('other/is_important.png', :id => "important_#{@event.id}", :size => '12x12')}", :locals => {:event=>@event}
+  page.replace "important_#{@event.id}", "#{image_tag('other/is_important.png', :size=>'14x14', :id => "important_#{@event.id}")}", :locals => {:event=>@event}
 end

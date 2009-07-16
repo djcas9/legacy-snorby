@@ -30,24 +30,25 @@
 			<%- end -%>
 			
 			<div id='event_options_<%= event.id %>' class='event_options round'>
-				<%= link_to_remote "#{image_tag('other/comments.png', :size => '12x12')}" %>
+				<%= link_to_remote "#{image_tag('other/comment.png', :size=>'14x14')}" %>
 
 				<%- if event.importance.present? -%>
 
-				<%= link_to_remote image_tag('other/is_important.png', :id => "important_#{event.id}", :size => '12x12'), :url => { :controller => 'events', :action => "important", :id => event }, :html => { :title => "Make This Event Important" } %>
+				<%= link_to_remote image_tag('other/is_important.png', :size=>'14x14', :id => "important_#{event.id}"), :url => { :controller => 'events', :action => "important", :id => event }, :html => { :title => "Make This Event Important" } %>
 
 				<%- else -%>
 
-				<%= link_to_remote image_tag('other/is_not_important.png', :id => "important_#{event.id}", :size => '12x12'), :url => { :controller => 'events', :action => "important", :id => event }, :html => { :title => "Make This Event Important" } %>
+				<%= link_to_remote image_tag('other/is_not_important.png', :size=>'14x14', :id => "important_#{event.id}"), :url => { :controller => 'events', :action => "important", :id => event }, :html => { :title => "Make This Event Important" } %>
 
 				<%- end -%>
 
 				<%- if current_user.admin -%>
-				<%= link_to_remote "#{image_tag('other/slash.png', :size => '12x12')}", :url => { :controller => 'events', :action => "remove_event", :id => event }, :html => { :title => "Destroy Event: #{event.sig.sig_name}" } %>
+				<%= link_to_remote "#{image_tag('other/slash.png', :size=>'14x14')}", :url => { :controller => 'events', :action => "remove_event", :id => event }, :html => { :title => "Destroy Event: #{event.sig.sig_name}" } %>
 				<%- end -%>
 			</div>
 
 		</div>
 
 	</div>
+	
 <%- end -%>

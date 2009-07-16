@@ -16,10 +16,7 @@
 			
 			<%- flash.each do |name, msg| -%>
 				<div id="flash_<%= name %>" class='round'>
-					<div id="close_box">
-						<%= link_to_function "#{image_tag('close.png', :size => '14x14')}", fade_div("flash_#{name}") %>
-					</div>
-						<%= msg %>
+						<center><%= msg %></center>
 				</div>
       <%- end -%>
 
@@ -46,4 +43,6 @@
 		</div>
 		
   </body>
+	<script type="text/javascript">setTimeout("new Effect.Fade('flash_notice', { duration: 2.0 });", 3050)</script>
+	<script type="text/javascript">setTimeout("new Effect.Fade('flash_error', { duration: 2.0 });", 3050)</script>
 </html>

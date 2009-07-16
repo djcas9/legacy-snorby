@@ -1,2 +1,5 @@
-
+<%- if @events.blank? -%>
+	You currently have no events marked as important.
+<%- else -%>
 <%= render :partial => @events %>
+<%- end -%>
