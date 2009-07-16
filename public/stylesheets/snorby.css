@@ -263,6 +263,10 @@ body {
 .grid a{
 	color: #1f00ff;
 	font-size: x-small;
+	font-variant: normal;
+	text-decoration: none;
+	font-weight: normal;
+	font-style: normal;
 }
 
 tr.odd {
@@ -555,7 +559,7 @@ color: #f3f4ff;
 font-weight:bold;
 padding:4px;
 height:30px;
-	margin-right: 30px;
+	margin-right: 14px;
 }
 #menubar .menu li {
 height:30px;
@@ -1178,7 +1182,7 @@ pre {
 	padding-right: 5px;
 	padding-top: 2px;
 	padding-left: 5px;
-	background: #fefaaf 0 bottom;
+	background: #fefbc8 0 bottom;
 }
 
 .event_options img{
