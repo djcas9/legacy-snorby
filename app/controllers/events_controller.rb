@@ -33,15 +33,19 @@ class EventsController < ApplicationController
       render :layout => false
     end
   end
-
-  def get_sig_information
-    begin
-      @sig_data = File.open("#{RAILS_ROOT}/public/signatures/#{params[:snort_sig_id]}.txt")
-      render :layout => false
-    rescue Errno::ENOENT
-      @sig_data = "<font color='red'><b>No signature information found.</b></font>"
-      render :layout => false
+  
+  def tune_event
+    @event = Event.find(params[:id], :include => [:sensor, {:sig => :sig_class }])
+    tune = Tune.create(:sensor => @event.sensor.id,:event_name => @event.sig.sig_name, :sid => @event.sid, :cid => @event.cid, :tuned_at => "#{Time.now}")
+    tune.save
+    @event.destroy
+    respond_to do |format|
+      format.html
+      format.js
     end
+  end
+  
+  def watch_event
   end
 
   def livelook

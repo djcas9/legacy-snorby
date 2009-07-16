@@ -1,0 +1,2 @@
+page.visual_effect :fade, "event_#{@event.id}", :duration => 0.8
+#page.replace "severity_counter", :partial => 'severity_counter', :locals => { :event => @event }

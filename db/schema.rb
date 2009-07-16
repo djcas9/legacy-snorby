@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090714183801) do
+ActiveRecord::Schema.define(:version => 20090716000309) do
 
   create_table "calc_caches", :force => true do |t|
     t.string   "name"
@@ -193,6 +193,16 @@ ActiveRecord::Schema.define(:version => 20090714183801) do
   add_index "tcphdr", ["tcp_dport"], :name => "tcp_dport"
   add_index "tcphdr", ["tcp_flags"], :name => "tcp_flags"
   add_index "tcphdr", ["tcp_sport"], :name => "tcp_sport"
+
+  create_table "tunes", :force => true do |t|
+    t.string   "sensor"
+    t.string   "event_name"
+    t.integer  "sid"
+    t.integer  "cid"
+    t.string   "tuned_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "udphdr", :id => false, :force => true do |t|
     t.integer "sid",                    :null => false

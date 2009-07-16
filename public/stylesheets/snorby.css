@@ -1160,3 +1160,26 @@ pre {
 }
 
 /* @end */
+
+/* @group Tune/Important */
+
+
+
+#event_options{
+	border: 1px solid #fef99e;
+	color: #373737;
+	position: relative;
+	float: right;
+	background: #fdffc7 0 bottom;
+	margin-top: -5px;
+	padding-right: 5px;
+	padding-top: 2px;
+	padding-left: 5px;
+}
+
+#event_options img{
+	padding-right: 2px;
+	padding-left: 2px;
+}
+
+/* @end */
