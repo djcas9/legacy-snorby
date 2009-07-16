@@ -3,6 +3,7 @@
 		<%= link_to "#{image_tag('export/pdf.png')}", { :format => 'pdf' } %>
 		<%= link_to "#{image_tag('export/xml.png')}", { :format => 'xml' } %>
 		<%= link_to "#{image_tag('export/email.png')}", send_event_path(@event), :rel => 'facebox' %>
+		<%= link_to "#{image_tag('other/tune_event.png')}", :controller => 'events', :action => "tune_event", :id => @event %>
 	</div>
 	<strong class='event_title'><%= @event.sig.sig_name %></strong>
 

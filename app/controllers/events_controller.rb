@@ -33,18 +33,18 @@ class EventsController < ApplicationController
       render :layout => false
     end
   end
-  
+
   def tune_event
     @event = Event.find(params[:id], :include => [:sensor, {:sig => :sig_class }])
     tune = Tune.create(:sensor => @event.sensor.id,:event_name => @event.sig.sig_name, :sid => @event.sid, :cid => @event.cid, :tuned_at => "#{Time.now}")
     tune.save
     @event.destroy
     respond_to do |format|
-      format.html
+      format.html { flash[:notice] = "Event Tuned Successfully!"; redirect_to events_path }
       format.js
     end
   end
-  
+
   def watch_event
   end
 
@@ -75,5 +75,5 @@ class EventsController < ApplicationController
   rescue
     render :inline => "<h1><%= image_tag('cross.png') %> Event Failed To Send!</h1>"
   end
-  
+
 end
