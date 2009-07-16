@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_filter :require_admin, :only => [:destroy]
+  before_filter :require_admin, :only => [:remove_event]
   
   def index
     @events ||= Event.paginate(:page => params[:page], :per_page => 20, :order => 'timestamp DESC', :include => [:sensor, :iphdr, {:sig => :sig_class }])
