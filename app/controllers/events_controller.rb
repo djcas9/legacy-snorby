@@ -38,8 +38,6 @@ class EventsController < ApplicationController
 
   def remove_event
     @event = Event.find(params[:id], :include => [:sensor, {:sig => :sig_class }])
-    tune = Tune.create(:sensor => @event.sensor.id,:event_name => @event.sig.sig_name, :sid => @event.sid, :cid => @event.cid, :tuned_at => "#{Time.now}")
-    tune.save
     @event.destroy
     respond_to do |format|
       format.html { flash[:notice] = "Event Successfully Removed!"; redirect_to events_path }
