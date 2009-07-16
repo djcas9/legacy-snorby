@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   acts_as_authentic
   has_many :settings
-
+  has_many :event_options
 
 
   def self.who_accepts_email

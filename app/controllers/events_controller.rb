@@ -45,7 +45,19 @@ class EventsController < ApplicationController
     end
   end
 
-  def watch_event
+  def important
+    @event = Event.find(params[:id], :include => [:sensor, {:sig => :sig_class }])
+    if @event.importance.present?
+      imp = Importance.find(@event.id)
+      imp.destroy
+    else
+      event = Importance.new(:sid => @event.sid, :cid => @event.cid, :important => true, :user_id => current_user.id)
+      event.save!
+    end
+    respond_to do |format|
+      format.html { redirect_to event_path(@event) }
+      format.js
+    end
   end
 
   def livelook

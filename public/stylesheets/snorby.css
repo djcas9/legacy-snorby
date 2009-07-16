@@ -1163,9 +1163,11 @@ pre {
 
 /* @group Tune/Important */
 
+#event_options_holder{
+	
+}
 
-
-#event_options{
+.event_options{
 	border: 1px solid #fef99e;
 	color: #373737;
 	position: relative;
@@ -1177,7 +1179,7 @@ pre {
 	padding-left: 5px;
 }
 
-#event_options img{
+.event_options img{
 	padding-right: 2px;
 	padding-left: 2px;
 }

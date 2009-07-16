@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  sid: 1
+  cid: 1
+  important: false
+
+two:
+  sid: 1
+  cid: 1
+  important: false

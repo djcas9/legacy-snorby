@@ -65,6 +65,14 @@ module ApplicationHelper
       flash.discard
     end
   end
+  
+  def link_for_event_importance(event)
+    if event.importance
+    	"#{link_to_remote "#{image_tag('other/is_important.png', :size => '12x12')}", :update => "event_options_#{event.id}", :url => { :controller => 'events', :action => "important", :id => event }, :html => { :title => "Make This Event NOT Important" }}"
+    else
+    	"#{link_to_remote "#{image_tag('other/is_not_important.png', :size => '12x12')}", :update => "event_options_#{event.id}", :url => { :controller => 'events', :action => "important", :id => event }, :html => { :title => "Make This Event Important" }}"
+    end
+  end
 
   def total_event_count_for?(event)
     Event.find_all_by_signature(event.signature).length

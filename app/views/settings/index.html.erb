@@ -1,6 +1,11 @@
 <div id="settings">
 	<div id="login_header"></div>
 	<div id="settings_menu">
+		<br />
+		<div id="b_settings">
+		<%= link_to "My Events", my_events_path, :class => 'round more blah', :id => 'more' %>
+		</div>
+		<br />
 		<div id="b_settings">
 		<%= link_to "My Settings", {:controller => 'users', :action => 'edit', :id => @user.id}, :class => 'round more blah', :id => 'more' %>
 		</div>

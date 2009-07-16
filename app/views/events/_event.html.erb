@@ -23,17 +23,27 @@
 			Sensor: <%= event.sensor.id %> -
 			
 			Event Category: 
-			<%- if event.sig.sig_class_id == 0-%>
+			<%- if event.sig.sig_class_id == 0 -%>
 				Unclassified
 			<%- else -%>
 				<%= event.sig.sig_class.sig_class_name.titleize %>
 			<%- end -%>
 			
-			<div id='event_options' class='round'>
+			<div id='event_options_<%= event.id %>' class='event_options round'>
 				<%= link_to_remote "#{image_tag('other/comments.png', :size => '12x12')}" %>
-				<%= link_to_remote "#{image_tag('other/is_important.png', :size => '12x12')}" %>
+
+				<%- if event.importance.present? -%>
+
+				<%= link_to_remote image_tag('other/is_important.png', :id => "important_#{event.id}", :size => '12x12'), :url => { :controller => 'events', :action => "important", :id => event }, :html => { :title => "Make This Event Important" } %>
+
+				<%- else -%>
+
+				<%= link_to_remote image_tag('other/is_not_important.png', :id => "important_#{event.id}", :size => '12x12'), :url => { :controller => 'events', :action => "important", :id => event }, :html => { :title => "Make This Event Important" } %>
+
+				<%- end -%>
+
 				<%- if current_user.admin -%>
-				<%= link_to_remote "#{image_tag('other/destroy.png', :size => '12x12')}", :url => { :controller => 'events', :action => "remove_event", :id => event }, :html => { :title => "Destroy Event: #{event.sig.sig_name}" } %>
+				<%= link_to_remote "#{image_tag('other/slash.png', :size => '12x12')}", :url => { :controller => 'events', :action => "remove_event", :id => event }, :html => { :title => "Destroy Event: #{event.sig.sig_name}" } %>
 				<%- end -%>
 			</div>
 

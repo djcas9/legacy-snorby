@@ -18,6 +18,10 @@ class SettingsController < ApplicationController
   def new
     @setting = Setting.new
   end
+  
+  def my_events
+    @events = Importance.all_event_for_user(current_user)
+  end
 
   def create
     @setting = Setting.new(params[:setting])

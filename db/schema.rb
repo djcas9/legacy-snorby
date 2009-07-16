@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090716000309) do
+ActiveRecord::Schema.define(:version => 20090716015313) do
 
   create_table "calc_caches", :force => true do |t|
     t.string   "name"
@@ -45,6 +45,15 @@ ActiveRecord::Schema.define(:version => 20090716000309) do
   add_index "event", ["signature"], :name => "sig"
   add_index "event", ["timestamp"], :name => "time"
 
+  create_table "event_options", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.boolean  "important"
+    t.boolean  "tune"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "icmphdr", :id => false, :force => true do |t|
     t.integer "sid",                    :null => false
     t.integer "cid",                    :null => false
@@ -56,6 +65,15 @@ ActiveRecord::Schema.define(:version => 20090716000309) do
   end
 
   add_index "icmphdr", ["icmp_type"], :name => "icmp_type"
+
+  create_table "importances", :force => true do |t|
+    t.integer  "sid"
+    t.integer  "cid"
+    t.integer  "user_id"
+    t.boolean  "important",  :default => false, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "iphdr", :id => false, :force => true do |t|
     t.integer "sid",                   :null => false
