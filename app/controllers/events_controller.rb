@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_filter :require_admin, :only => [:destroy]
+  
   def index
     @events ||= Event.paginate(:page => params[:page], :per_page => 20, :order => 'timestamp DESC', :include => [:sensor, :iphdr, {:sig => :sig_class }])
     respond_to do |format|
@@ -34,13 +36,13 @@ class EventsController < ApplicationController
     end
   end
 
-  def tune_event
+  def remove_event
     @event = Event.find(params[:id], :include => [:sensor, {:sig => :sig_class }])
     tune = Tune.create(:sensor => @event.sensor.id,:event_name => @event.sig.sig_name, :sid => @event.sid, :cid => @event.cid, :tuned_at => "#{Time.now}")
     tune.save
     @event.destroy
     respond_to do |format|
-      format.html { flash[:notice] = "Event Tuned Successfully!"; redirect_to events_path }
+      format.html { flash[:notice] = "Event Successfully Removed!"; redirect_to events_path }
       format.js
     end
   end
