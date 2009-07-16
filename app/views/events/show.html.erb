@@ -3,7 +3,9 @@
 		<%= link_to "#{image_tag('export/pdf.png')}", { :format => 'pdf' } %>
 		<%= link_to "#{image_tag('export/xml.png')}", { :format => 'xml' } %>
 		<%= link_to "#{image_tag('export/email.png')}", send_event_path(@event), :rel => 'facebox' %>
+		<%- if current_user.admin -%>
 		<%= link_to "#{image_tag('other/destroy.png')}", { :action => 'remove_event', :id => @event }, :title => "Destroy Event: #{@event.sig.sig_name}" %>
+		<%- end -%>
 	</div>
 	<strong class='event_title'><%= @event.sig.sig_name %></strong>
 

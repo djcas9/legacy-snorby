@@ -32,7 +32,9 @@
 			<div id='event_options' class='round'>
 				<%= link_to_remote "#{image_tag('other/comments.png', :size => '12x12')}" %>
 				<%= link_to_remote "#{image_tag('other/is_important.png', :size => '12x12')}" %>
+				<%- if current_user.admin -%>
 				<%= link_to_remote "#{image_tag('other/destroy.png', :size => '12x12')}", :url => { :controller => 'events', :action => "remove_event", :id => event }, :html => { :title => "Destroy Event: #{event.sig.sig_name}" } %>
+				<%- end -%>
 			</div>
 
 		</div>

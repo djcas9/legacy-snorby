@@ -58,6 +58,13 @@ module ApplicationHelper
       flash.discard
     end
   end
+  
+  def appear_div(div)
+    update_page do |page|
+      page[div].visual_effect :fade, :duration => 0.6
+      flash.discard
+    end
+  end
 
   def total_event_count_for?(event)
     Event.find_all_by_signature(event.signature).length
