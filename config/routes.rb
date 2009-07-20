@@ -7,6 +7,8 @@ ActionController::Routing::Routes.draw do |map|
   map.dashboard "/dashboard", :controller => 'pages', :action => 'dashboard'
   map.livelook "/livelook", :controller => 'events', :action => 'livelook'
   map.category "/category", :controller => 'pages', :action => 'category'
+  map.events_for_sensor "/events_for_sensor", :controller => 'pages', :action => 'events_for_sensor'
+  map.severity "/severity", :controller => 'pages', :action => 'severity'
   
   map.send_search "searches/:search_id/send_search", :controller => 'searches', :action => 'send_search'
   map.send_report "reports/:report_id/send_report", :controller => 'reports', :action => 'send_report'

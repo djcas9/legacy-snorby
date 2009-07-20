@@ -31,5 +31,13 @@ class PagesController < ApplicationController
     end
     @events = Event.all_for_category(:c_id => params[:category_id].to_i).paginate(:page => params[:page], :per_page => 10)
   end
+  
+  def events_for_sensor
+    @events = Event.events_for_sensor(params[:sensor]).paginate(:page => params[:page], :per_page => 10)
+  end
+  
+  def severity
+    @events = Event.events_for_severity(params[:severity]).paginate(:page => params[:page], :per_page => 20)
+  end
 
 end

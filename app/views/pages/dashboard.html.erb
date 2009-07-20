@@ -13,17 +13,17 @@
 					</tr>
 					<tr>
 						<td><%= image_tag('severity/high.png', :size=>'10x10') %> High Severity</td>
-						<td><%= pluralize(@high, "Event") %></td>
+						<td><%= link_to "#{pluralize(@high, "Event")}", severity_path(:severity => 1) %></td>
 					</tr>
 				
 					<tr>
 						<td><%= image_tag('severity/warn.png', :size=>'10x10') %> Medium Severity</td>
-						<td><%= pluralize(@medium, "Event") %></td>
+						<td><%= link_to "#{pluralize(@medium, "Event")}", severity_path(:severity => 2) %></td>
 					</tr>
 				
 					<tr>
 						<td><%= image_tag('severity/low.png', :size=>'10x10') %> Low Severity</td>
-						<td><%= pluralize(@low, "Event") %></td>
+						<td><%= link_to "#{pluralize(@low, "Event")}", severity_path(:severity => 3) %></td>
 					</tr>
 
 				</table>
@@ -81,7 +81,7 @@
 				<%- for s in @sensors -%>
 				<tr class="<%= cycle('odd', 'even') %>">
 					<td><%= image_tag('dashboard/pill.png', :size=>'12x12') %> <%= s.id %></td>
-					<td><%= s.hostname %></td>
+					<td><%= link_to "#{s.hostname}", events_for_sensor_path(:sensor => s.id) %></td>
 					<td><%= s.interface %></td>
 					<td><%= s.encoding_type %></td>
 					<td><%= s.last_cid %></td>

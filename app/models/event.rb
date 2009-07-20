@@ -26,6 +26,10 @@ class Event < ActiveRecord::Base
     find(:all, :include => [:sensor, :iphdr, {:sig => :sig_class }, :comments], :conditions => ["signature.sig_class_id = ?", options[:c_id]], :order => 'timestamp DESC')
   end
 
+  def self.events_for_sensor(s)
+    find(:all, :conditions => ['sid = ?', s.id])
+  end
+
   def self.livelook(severity)
     if severity
       if severity == 'All'
@@ -36,6 +40,10 @@ class Event < ActiveRecord::Base
     else
       self.find(:all, :limit => 20, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr])
     end
+  end
+
+  def self.events_for_severity(severity)
+    self.find(:all, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr], :conditions => ['signature.sig_priority = ?', severity])
   end
 
   def self.run_daily_report
