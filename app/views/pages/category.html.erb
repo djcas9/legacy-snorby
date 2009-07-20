@@ -1,7 +1,7 @@
 <%- if @category.blank? -%>
-	<h1>All Events in: Unclassified</h1>
+	<h1>Category: Unclassified</h1>
 <%- else -%>
-	<h1>All Events in: <%= @category.sig_class_name.titleize %></h1>
+	<h1>Category: <%= @category.sig_class_name.titleize %></h1>
 <%- end -%>
 <br />
 <div id="events" class='events'>

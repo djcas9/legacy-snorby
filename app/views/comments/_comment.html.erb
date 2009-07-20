@@ -1,12 +1,12 @@
 <%- div_for comment do -%>
 	<div id="comment_text">
 		<div id="user_id_header">
-			<%- if User.is_admin_or_owner(current_user, comment) and !current_page?(:action => "index") -%>
 			<div id="comment_options" class='round'>
-								<%= link_to "#{image_tag('other/edit.png', :size=>'8x8')} Edit", edit_comment_path(comment) %> |
-				<%= link_to_remote "#{image_tag('other/slash.png', :size=>'8x8', :class => 'destroy_image')} Remove", :url => comment_path(comment), :method => :delete %>
-			</div>
+				<%- if User.is_admin_or_owner(current_user, comment) && !current_page?(:action => "index") && !current_page?(:controller => "searches", :action => 'show') && !current_page?(:controller => "reports", :action => 'show') && !current_page?(:action => 'livelook') && !current_page?(:action => 'severity') && !current_page?(:action => 'category') && !current_page?(:action => 'my_events') -%>
+					<%= link_to "#{image_tag('other/edit.png', :size=>'8x8')} Edit", edit_comment_path(comment) %> |
+					<%= link_to_remote "#{image_tag('other/slash.png', :size=>'8x8', :class => 'destroy_image')} Remove", :url => comment_path(comment), :method => :delete %>
 			<%- end -%>
+			</div>
 			<span id='comment_user_name'><%= comment.user.login %></span>
 			<span id='comment_timestamp'><%= time_ago_in_words(Time.parse(comment.comment_time).getutc.in_time_zone('UTC')) %> ago</span>
 		</div>
