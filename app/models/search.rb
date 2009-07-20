@@ -11,7 +11,7 @@ class Search < ActiveRecord::Base
     end
     counts
   end
-
+  
   private
 
   def find_events
