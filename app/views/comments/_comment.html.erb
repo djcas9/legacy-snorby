@@ -1,7 +1,7 @@
 <%- div_for comment do -%>
 	<div id="comment_text">
 		<div id="comment_options">
-			<%= link_to_remote "#{image_tag('other/slash.png', :size=>'13x13', :class => 'destroy_image')}", :url => { :controller => 'comments', :action => "destroy", :id => comment }, :html => { :title => "Destroy Comment" } %>
+			<%= link_to_remote "#{image_tag('other/slash.png', :size=>'13x13', :class => 'destroy_image')}", :url => comment_path(comment), :method => :delete %>
 		</div>
 		<span id='comment_user_name'><%= comment.user.login %></span>
 		<span id='comment_timestamp'><%= time_ago_in_words(Time.parse(comment.comment_time).getutc.in_time_zone('UTC')) %> ago</span><br />
