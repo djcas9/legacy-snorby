@@ -24,9 +24,9 @@
 			
 			Event Category: 
 			<%- if event.sig.sig_class_id == 0 -%>
-				Unclassified
+				<%= link_to "Unclassified", category_path(:category_id => 0) %>
 			<%- else -%>
-				<%= event.sig.sig_class.sig_class_name.titleize %>
+				<%= link_to "#{event.sig.sig_class.sig_class_name.titleize}", category_path(:category_id => event.sig.sig_class_id) %>
 			<%- end -%>
 			
 			<div id='event_options_<%= event.id %>' class='event_options round'>

@@ -6,6 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   map.welcome "/welcome", :controller => 'pages', :action => 'welcome'
   map.dashboard "/dashboard", :controller => 'pages', :action => 'dashboard'
   map.livelook "/livelook", :controller => 'events', :action => 'livelook'
+  map.category "/category", :controller => 'pages', :action => 'category'
   
   map.send_search "searches/:search_id/send_search", :controller => 'searches', :action => 'send_search'
   map.send_report "reports/:report_id/send_report", :controller => 'reports', :action => 'send_report'

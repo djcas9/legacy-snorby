@@ -111,7 +111,7 @@
 					<th>Event Percentage</th>
 				</tr>
 				<tr>
-				<td><%= image_tag('other/category.png', :size=>'10x10') %> Unclassified</td>
+				<td><%= image_tag('other/category.png', :size=>'10x10') %> <%= link_to "Unclassified", category_path(:category_id => 0) %></td>
 				<td><%= pluralize(Event.find(:all, :include => :sig, :conditions => ['signature.sig_class_id = 0']).size + 0, "Event") %></td>
 				<td></td>
 				<td></td>
@@ -124,7 +124,7 @@
 				</tr>
 				<%- for c in @categories -%>
 				<tr class="<%= cycle('even', 'odd') %>">
-					<td><%= image_tag('other/category.png', :size=>'10x10') %> <%= c.sig_class_name.titleize %></td>
+					<td><%= image_tag('other/category.png', :size=>'10x10') %> <%= link_to "#{c.sig_class_name.titleize}", category_path(:category_id => c) %></td>
 					<td><%= pluralize(c.events_for_category, "Event") %></td>
 					<td></td>
 					<td></td>

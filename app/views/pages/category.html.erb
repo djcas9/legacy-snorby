@@ -1,0 +1,13 @@
+<%- if @category.blank? -%>
+	<h1>All Events in: Unclassified</h1>
+<%- else -%>
+	<h1>All Events in: <%= @category.sig_class_name.titleize %></h1>
+<%- end -%>
+<br />
+<div id="events" class='events'>
+	<%= render :partial => @events %>
+</div>
+<%- unless @events.blank? -%>
+<script type="text/javascript">current_page = 2;</script>
+<div id="pagination"><a class="round more blah" href="#load_more_events" id="more" onmouseout='swap_out()' onclick="new Ajax.Request('/category?category_id=<%= params[:category_id] %>?page=' + current_page, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('<%= form_authenticity_token %>')}); swap_in(); current_page = current_page + 1; return false;">more</a></div>
+<%- end -%>

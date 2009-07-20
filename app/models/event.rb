@@ -17,9 +17,13 @@ class Event < ActiveRecord::Base
   def self.all_uniq_signatures_like(sig_name)
     find(:all, :include => [:sig], :conditions => ['signature.sig_name LIKE ?', "%#{sig_name}%"]).map{ |event| event.sig.sig_name }.uniq.sort
   end
-  
+
   def self.event_count_for(severity)
     count(:include => :sig, :conditions => ['signature.sig_priority = ?', severity])
+  end
+
+  def self.all_for_category(options = {})
+    find(:all, :include => [:sensor, :iphdr, {:sig => :sig_class }, :comments], :conditions => ["signature.sig_class_id = ?", options[:c_id]], :order => 'timestamp DESC')
   end
 
   def self.livelook(severity)

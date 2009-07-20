@@ -902,6 +902,11 @@ pre {
 	overflow: hidden;
 }
 
+#dashboard a{
+	font-size: x-small;
+	color: #1f00ff;
+}
+
 #graph_holder{
 	margin-bottom: 30px;
 	text-align: center;
