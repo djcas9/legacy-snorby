@@ -1,8 +1,10 @@
 <%- div_for comment do -%>
 	<div id="comment_text">
+		<%- if current_page?(:action=>'show') && current_user == comment.user -%>
 		<div id="comment_options">
 			<%= link_to_remote "#{image_tag('other/slash.png', :size=>'13x13', :class => 'destroy_image')}", :url => comment_path(comment), :method => :delete %>
 		</div>
+		<%- end -%>
 		<span id='comment_user_name'><%= comment.user.login %></span>
 		<span id='comment_timestamp'><%= time_ago_in_words(Time.parse(comment.comment_time).getutc.in_time_zone('UTC')) %> ago</span><br />
 		<div id='comment_body'><%= simple_format(comment.body) %></div><br />
