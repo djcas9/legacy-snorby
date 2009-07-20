@@ -22,6 +22,7 @@ class SearchesController < ApplicationController
 
   def show
     @search = Search.find(params[:id])
+    @search.events.paginate(:page => params[:page], :per_page => 20)
     respond_to do |format|
       format.html
       format.pdf

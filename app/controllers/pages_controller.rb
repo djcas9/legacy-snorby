@@ -29,7 +29,7 @@ class PagesController < ApplicationController
     unless params[:category_id].to_i == 0
       @category = SigClass.find(params[:category_id].to_i)
     end
-    @events = Event.all_for_category(:c_id => params[:category_id].to_i).paginate(:page => params[:page], :per_page => 20)
+    @events = Event.all_for_category(:c_id => params[:category_id].to_i).paginate(:page => params[:page], :per_page => 10)
   end
 
 end

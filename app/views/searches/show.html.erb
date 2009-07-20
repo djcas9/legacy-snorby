@@ -5,9 +5,16 @@
 </div>
 <h1>Search Results</h1>
 <br />
-<%= render :partial => @search.events %>
+<div id="events">
+	<%= render :partial => @search.events %>
+</div>
 
 <%- if @search.events.empty? -%>
 <font color='red'>No results found.</font>
+<%- else -%>
+<%- unless @search.events.blank? -%>
+<script type="text/javascript">current_page = 2;</script>
+<div id="pagination"><a class="round more blah" href="#load_more_events" id="more" onmouseout='swap_out()' onclick="new Ajax.Request('/searches/<%= params[:search_id] %>?page=' + current_page, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('<%= form_authenticity_token %>')}); swap_in(); current_page = current_page + 1; return false;">more</a></div>
+<%- end -%>
 <%- end -%>
 <br />
