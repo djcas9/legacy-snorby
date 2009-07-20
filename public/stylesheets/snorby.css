@@ -1250,7 +1250,7 @@ span#comment_user_name{
 
 #user_id_header{
 	margin-bottom: 5px;
-	background-color: rgba(255,249,199,0.91);
+	background-color: rgba(255,249,199,0.51);
 	width: 100%;
 }
 
@@ -1274,6 +1274,9 @@ div#comment_body{
 
 #comment_options{
 	float: right;
+	font-size: x-small;
+	margin-right: 5px;
+	margin-top: 2px;
 }
 
 .comment{
