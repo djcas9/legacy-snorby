@@ -1,1 +1,1 @@
-page.insert_html :bottom, :events, :partial => @search.events
+page.insert_html :bottom, :events, :partial => @events
