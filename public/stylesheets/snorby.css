@@ -13,6 +13,9 @@
 	clear: both;
 }
 
+.destroy_image{
+}
+
 .small{
 	font-size: x-small;
 	margin-top: 5px;
@@ -64,8 +67,13 @@
 	float: right;
 }
 
+.kindof_round{
+	-moz-border-radius-bottomleft: 5px;
+	-webkit-border-top-right-radius: 5px;
+}
+
 .round{
-	-webkit-border-radius: 4px;
+	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 }
 
@@ -363,7 +371,7 @@ h4 {
 
 #flash_notice, #flash_error {
   	padding: 5px 8px;
-  	min-height: 20px;
+  	min-height: 25px;
 	font-size: small;
 	margin-left: 11px;
 	margin-right: 11px;
@@ -647,6 +655,15 @@ color:#666666;
 /* @group Events */
 
 /* Events */
+
+span#ip_address{
+	font-size: small;
+	line-height: 1px;
+}
+
+span#ip_address img{
+	margin-bottom: -2px;
+}
 
 strong.title{
 	font-weight: normal;
@@ -1188,6 +1205,86 @@ pre {
 .event_options img{
 	padding-right: 2px;
 	padding-left: 2px;
+}
+
+/* @end */
+
+/* @group Comments */
+
+.comment_box{
+	-moz-border-radius-bottomleft: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	border-right: 1px solid rgba(0,0,0,0.12);
+	border-left: 1px solid rgba(0,0,0,0.12);
+	border-bottom: 1px solid rgba(0,0,0,0.12);
+	border-top: 1px solid #f6f6f6;
+	margin: auto;
+	width: 750px;
+	background-color: #f8f8f8;
+	padding: 10px 20px;
+	font-size: small;
+}
+
+#comments_for{
+	color: #363636;
+	font-size: small;
+	text-align: center;
+	margin-bottom: 10px;
+	background-color: #fff8ba;
+	border: 1px solid #f9ff7a;
+}
+
+#comments{
+	margin-bottom: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+span#comment_user_name{
+	font-size: small;
+	color: #373737;
+	text-transform: capitalize;
+}
+
+span#comment_timestamp{
+	font-size: x-small;
+	color: #a2a2a2;
+	text-transform: capitalize;
+	font-style: italic;
+}
+
+div#add_comment{
+	text-align: right;
+}
+
+div#comment_body{
+	color: #707070;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 5px;
+}
+
+#comment_options{
+	float: right;
+}
+
+.comment{
+	border-bottom: 1px solid #eee;
+	margin-bottom: 5px;
+}
+
+#comment_text{
+	font-size: x-small;
+	color: #2a2a2a;
+	margin-bottom: -10px;
+}
+
+#comment_text{
+	font-size: small;
+	color: #2a2a2a;
+	margin-bottom: -10px;
 }
 
 /* @end */

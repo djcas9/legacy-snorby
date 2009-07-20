@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   acts_as_authentic
-  has_many :settings
-  has_many :event_options
+  has_many :settings, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
+  has_many :importance, :dependent => :destroy
 
 
   def self.who_accepts_email

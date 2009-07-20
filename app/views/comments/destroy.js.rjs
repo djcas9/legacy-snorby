@@ -1,0 +1,2 @@
+page[@comment].remove
+page[:comment_count].replace_html "<h2>#{image_tag('other/comment.png', :size=>'16x16')} #{pluralize(@comment.event.comments.size, 'Comment')}</h2>"

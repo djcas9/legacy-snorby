@@ -51,6 +51,19 @@ module ApplicationHelper
       page[div].visual_effect :highlight
     end
   end
+  
+  def show_comment_form(div)
+    update_page do |page|
+      page[div].toggle
+    end
+  end
+  
+  def show_comments(div)
+    update_page do |page|
+      page[div].toggle
+      #page[div].visual_effect :highlight
+    end
+  end
 
   def fade_div(div)
     update_page do |page|

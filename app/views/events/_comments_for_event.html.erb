@@ -1,0 +1,21 @@
+<div id="comment_count">
+	<h2><%= image_tag('other/comment.png', :size=>'16x16') %> <%= pluralize(@event.comments.size, 'Comment') %></h2>
+</div>
+<br />
+<div id="comments">
+		<%= render :partial => @event.comments %>
+</div>
+
+<div id='add_comment'>
+	<%= link_to_function "#{image_tag('other/tick-circle.png')} Add Comment", show_comment_form("comment_form") %>
+</div>
+
+<div id="comment_form" style='display: none;'>
+	<%- remote_form_for [@event, Comment.new] do |f| -%>
+		<%= f.label :body, "New Comment" %><br />
+		<%= f.text_area :body, :rows => 10, :cols => 80 %><br />
+		<br />
+		<%= f.submit "Add Comment", :disable_with => 'Submitting Comment...' %>
+	<%- end -%>
+	<br />
+</div>

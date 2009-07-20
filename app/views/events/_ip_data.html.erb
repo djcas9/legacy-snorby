@@ -10,18 +10,21 @@
 				</tr>
 				<tr>
 					<td>
-					<%= @event.source_ip %> 
+					<span id='ip_address'>
+					<%= @event.source_ip %>
 					<%- unless !@event.source_ip -%>
-						<%= link_to "#{image_tag('show_event/magnifier.png', :size=>'12x12')}", { :action => 'whois', 
-						:whois_host => @event.source_ip, :id => @event }, :rel => 'facebox' %><%= clippy(@event.source_ip) %><br />
+						<%= link_to "#{image_tag('other/whois.png', :size=>'12x12')}", { :action => 'whois', 
+						:whois_host => @event.source_ip, :id => @event }, :rel => 'facebox' %><br />
 					<%- end -%>
+					</span>
 					</td>
 					<td>
-						<%= @event.destination_ip %>
+						<span id='ip_address'><%= @event.destination_ip %>
 						<%- unless !@event.destination_ip -%>
-							<%= link_to "#{image_tag('show_event/magnifier.png', :size=>'12x12')}", { :action => 'whois', 
-							:whois_host => @event.destination_ip, :id => @event }, :rel => 'facebox' %><%= clippy(@event.destination_ip) %><br />
+							<%= link_to "#{image_tag('other/whois.png', :size=>'12x12')}", { :action => 'whois', 
+							:whois_host => @event.destination_ip, :id => @event }, :rel => 'facebox' %><br />
 						<%- end -%>
+						</span>
 					</td>
 				</tr>
 				<tr>

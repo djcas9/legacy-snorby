@@ -6,3 +6,4 @@ production:
   :authentication: plain
   :user_name: user
   :password: pass
+  :domain: localhost # user for relay!

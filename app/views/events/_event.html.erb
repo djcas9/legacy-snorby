@@ -30,7 +30,11 @@
 			<%- end -%>
 			
 			<div id='event_options_<%= event.id %>' class='event_options round'>
-				<%= link_to_remote "#{image_tag('other/comment.png', :size=>'14x14')}" %>
+				<%- if event.comments.blank? -%>
+					<%= image_tag('other/no_comment.png', :size=>'14x14') %>
+				<%- else -%>
+					<%= link_to_function "#{image_tag('other/comment.png', :size=>'14x14')}", show_comments("comments_for_#{event.id}") %>
+				<%- end -%>
 
 				<%- if event.importance.present? -%>
 
@@ -43,12 +47,19 @@
 				<%- end -%>
 
 				<%- if current_user.admin -%>
-				<%= link_to_remote "#{image_tag('other/slash.png', :size=>'14x14')}", :url => { :controller => 'events', :action => "remove_event", :id => event }, :html => { :title => "Destroy Event: #{event.sig.sig_name}" } %>
+				<%= link_to_remote "#{image_tag('other/slash.png', :size=>'13x13', :class => 'destroy_image')}", :url => { :controller => 'events', :action => "remove_event", :id => event }, :html => { :title => "Destroy Event: #{event.sig.sig_name}" } %>
 				<%- end -%>
 			</div>
 
 		</div>
-
+	</div>
+	<div id="comments_for_<%= event.id %>" class='comment_box' style='display: none;'>
+		<div id="comments_for" class='round'>
+			<%= image_tag('other/comment.png', :size=>'10x10') %> <%= pluralize(event.comments.size, 'Comment') %> Posted for Event: <%= event.sig.sig_name %>
+		</div>
+		<div id="comments">
+			<%= render :partial => event.comments %>
+		</div>
 	</div>
 	
 <%- end -%>

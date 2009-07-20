@@ -47,5 +47,9 @@
 		<%- unless @event.data_info.blank? -%>
 			<%= render :partial => 'payload_data' %>
 		<%- end -%>
+		
+		<br />
+		<%= render :partial => 'comments_for_event' %>
+		
 	</div>
 </div>

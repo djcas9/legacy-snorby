@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090716015313) do
+ActiveRecord::Schema.define(:version => 20090719222259) do
 
   create_table "calc_caches", :force => true do |t|
     t.string   "name"
@@ -17,6 +17,16 @@ ActiveRecord::Schema.define(:version => 20090716015313) do
     t.string   "date"
     t.integer  "hour"
     t.integer  "count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "sid"
+    t.integer  "cid"
+    t.string   "comment_time"
+    t.text     "body"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

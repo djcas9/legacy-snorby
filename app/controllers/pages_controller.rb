@@ -2,9 +2,9 @@ class PagesController < ApplicationController
   before_filter :get_event_counts
 
   def get_event_counts
-    @high ||= Event.find(:all, :include => :sig, :conditions => ['signature.sig_priority = 1']).size
-    @medium ||= Event.find(:all, :include => :sig, :conditions => ['signature.sig_priority = 2']).size
-    @low ||= Event.find(:all, :include => :sig, :conditions => ['signature.sig_priority = 3']).size
+    @high ||= Event.event_count_for(1)
+    @medium ||= Event.event_count_for(2)
+    @low ||= Event.event_count_for(3)
     @all ||= Event.all(:include => :sig)
   end
 

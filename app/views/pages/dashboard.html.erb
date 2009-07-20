@@ -88,7 +88,7 @@
 					<%- if @events.blank? -%>
 					<td><%= horizontal_bar_graph  [["Event Percentage", 0]] %></td>
 					<%- else -%>
-					<td><%= horizontal_bar_graph  [["Event Percentage", ((events_for_sensor_only(s)/@events.size.to_f) * 100).round(2)]] %></td>
+					<td><%= horizontal_bar_graph  [["Event Percentage", ((events_for_sensor_only(s)/@all.size.to_f) * 100).round(2)]] %></td>
 					<%- end -%>
 				</tr>
 				<%- end -%>
@@ -119,7 +119,7 @@
 				<%- if @events.blank? -%>
 				<td><%= horizontal_bar_graph  [["Event Percentage", 0]] %></td>
 				<%- else -%>
-				<td><%= horizontal_bar_graph  [["Event Percentage", ((Event.find_event_count_for?(0)/@events.size.to_f) * 100).round(2)]] %></td>
+				<td><%= horizontal_bar_graph  [["Event Percentage", ((Event.find_event_count_for?(0)/@all.size.to_f) * 100).round(2)]] %></td>
 				<%- end -%>
 				</tr>
 				<%- for c in @categories -%>
@@ -132,7 +132,7 @@
 					<%- if @events.blank? -%>
 					<td><%= horizontal_bar_graph  [["Event Percentage", 0]] %></td>
 					<%- else -%>
-					<td><%= horizontal_bar_graph  [["Event Percentage", ((c.events_for_category/@events.size.to_f) * 100).round(2)]] %></td>
+					<td><%= horizontal_bar_graph  [["Event Percentage", ((c.events_for_category/@all.size.to_f) * 100).round(2)]] %></td>
 					<%- end -%>
 				</tr>
 				<%- end -%>

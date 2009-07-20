@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_filter :require_admin, :only => [:remove_event]
   
   def index
-    @events ||= Event.paginate(:page => params[:page], :per_page => 20, :order => 'timestamp DESC', :include => [:sensor, :iphdr, {:sig => :sig_class }])
+    @events ||= Event.paginate(:page => params[:page], :per_page => 20, :order => 'timestamp DESC', :include => [:sensor, :iphdr, {:sig => :sig_class }, :comments])
     respond_to do |format|
       format.html
       format.js
@@ -10,7 +10,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id], :include => [:sensor, :iphdr, {:sig => :sig_class }, :udphdr, :icmphdr, :tcphdr])
+    @event = Event.find(params[:id], :include => [:sensor, :iphdr, {:sig => :sig_class }, :comments, :udphdr, :icmphdr, :tcphdr])
     respond_to do |format|
       format.html
       format.pdf
