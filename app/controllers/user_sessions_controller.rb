@@ -10,7 +10,7 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
       flash[:notice] = "Login successful - Welcome back #{@user_session.login.capitalize}!"
-      redirect_to dashboard_path
+      redirect_back_or_default dashboard_path
     else
       render :action => :new
     end
