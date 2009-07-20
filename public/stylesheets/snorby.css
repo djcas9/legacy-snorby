@@ -1231,9 +1231,9 @@ pre {
 	color: #363636;
 	font-size: small;
 	text-align: center;
-	margin-bottom: 10px;
 	background-color: #f2f4f0;
 	border: 1px solid rgba(208,213,210,0.63);
+	margin-bottom: 15px;
 }
 
 #comments{
@@ -1275,19 +1275,20 @@ div#comment_body{
 #comment_options{
 	float: right;
 	font-size: x-small;
-	margin-right: 5px;
 	margin-top: 2px;
+}
+
+#comment_options a{
+	font-size: x-small;
+	text-decoration: none;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
 }
 
 .comment{
 	border-bottom: 1px solid #eee;
 	margin-bottom: 5px;
-}
-
-#comment_text{
-	font-size: x-small;
-	color: #2a2a2a;
-	margin-bottom: -10px;
 }
 
 #comment_text{

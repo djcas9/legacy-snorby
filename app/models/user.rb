@@ -13,4 +13,15 @@ class User < ActiveRecord::Base
     return emails
   end
   
+  
+  def self.is_admin_or_owner(user, object=nil)
+    if user.admin?
+      return true
+    elsif user == object.user
+      return true
+    else
+      false
+    end
+  end
+  
 end
