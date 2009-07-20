@@ -1222,7 +1222,7 @@ pre {
 	border-top: 1px solid #f6f6f6;
 	margin: auto;
 	width: 750px;
-	background-color: #f8f8f8;
+	background-color: #fdfdfd;
 	padding: 10px 20px;
 	font-size: small;
 }
@@ -1232,8 +1232,8 @@ pre {
 	font-size: small;
 	text-align: center;
 	margin-bottom: 10px;
-	background-color: #fff8ba;
-	border: 1px solid #f9ff7a;
+	background-color: #f2f4f0;
+	border: 1px solid rgba(208,213,210,0.63);
 }
 
 #comments{
@@ -1248,9 +1248,15 @@ span#comment_user_name{
 	font-size: 1.0em;
 }
 
+#user_id_header{
+	margin-bottom: 5px;
+	background-color: rgba(255,249,199,0.91);
+	width: 100%;
+}
+
 span#comment_timestamp{
 	font-size: x-small;
-	color: #a2a2a2;
+	color: #919191;
 	text-transform: capitalize;
 	font-style: italic;
 }
