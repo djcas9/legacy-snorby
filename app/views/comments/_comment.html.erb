@@ -1,7 +1,7 @@
 <%- div_for comment do -%>
 	<div id="comment_text">
-		<%- if current_page?(:action=>'show') && current_user == comment.user -%>
-		<div id="comment_options">
+		<%- unless current_user != comment.user || current_page?(:action => "index") -%>
+		<div id="comment_options" class='round'>
 			<%= link_to_remote "#{image_tag('other/slash.png', :size=>'13x13', :class => 'destroy_image')}", :url => comment_path(comment), :method => :delete %>
 		</div>
 		<%- end -%>

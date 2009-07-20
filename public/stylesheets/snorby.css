@@ -1243,9 +1243,9 @@ pre {
 }
 
 span#comment_user_name{
-	font-size: small;
 	color: #373737;
 	text-transform: capitalize;
+	font-size: 1.0em;
 }
 
 span#comment_timestamp{
