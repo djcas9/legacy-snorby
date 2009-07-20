@@ -3,7 +3,7 @@
 		<div id="user_id_header">
 			<%- if User.is_admin_or_owner(current_user, comment) and !current_page?(:action => "index") -%>
 			<div id="comment_options" class='round'>
-								<%= link_to_remote "#{image_tag('other/edit.png', :size=>'8x8', :class => 'destroy_image')} Edit", :url => comment_path(comment), :method => :delete %> |
+								<%= link_to "#{image_tag('other/edit.png', :size=>'8x8')} Edit", edit_comment_path(comment) %> |
 				<%= link_to_remote "#{image_tag('other/slash.png', :size=>'8x8', :class => 'destroy_image')} Remove", :url => comment_path(comment), :method => :delete %>
 			</div>
 			<%- end -%>

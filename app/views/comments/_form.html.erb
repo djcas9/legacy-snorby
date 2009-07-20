@@ -1,20 +1,9 @@
 <% form_for @comment do |f| %>
   <%= f.error_messages %>
   <p>
-    <%= f.label :sid %><br />
-    <%= f.text_field :sid %>
-  </p>
-  <p>
-    <%= f.label :cid %><br />
-    <%= f.text_field :cid %>
-  </p>
-  <p>
     <%= f.label :body %><br />
-    <%= f.text_area :body %>
+    <%= f.text_area :body, :rows => 10, :cols => 70 %>
   </p>
-  <p>
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
-  </p>
-  <p><%= f.submit "Submit" %></p>
+<br />
+  <p><%= f.submit "Submit" %> - <%= link_to "Back", :back %></p>
 <% end %>

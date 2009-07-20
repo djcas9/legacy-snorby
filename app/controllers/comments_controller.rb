@@ -1,4 +1,14 @@
 class CommentsController < ApplicationController
+  before_filter :require_admin_or_owner, :only => [:edit, :update, :destroy]
+
+  def require_admin_or_owner
+    unless User.is_admin_or_owner(current_user, params[:id])
+      store_location
+      flash[:error] = "You must be an administrator to perform this task"
+      redirect_to dashboard_path
+      return false
+    end
+  end
 
   def create
     @event = Event.find(params[:event_id])
@@ -22,9 +32,10 @@ class CommentsController < ApplicationController
 
   def update
     @comment = Comment.find(params[:id])
+    @event = @comment.event
     if @comment.update_attributes(params[:comment])
       flash[:notice] = "Successfully updated comment."
-      redirect_to @comment
+      redirect_to @event
     else
       render :action => 'edit'
     end

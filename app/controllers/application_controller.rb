@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   before_filter :require_user
 
   private
-  
+
   def call_rake(task, options = {})
     options[:rails_env] ||= Rails.env
     args = options.map { |n, v| "#{n.to_s.upcase}='#{v}'" }

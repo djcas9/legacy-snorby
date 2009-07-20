@@ -14,10 +14,11 @@ class User < ActiveRecord::Base
   end
   
   
-  def self.is_admin_or_owner(user, object=nil)
+  def self.is_admin_or_owner(user, comment_id=nil)
+    comment = Comment.find(comment_id)
     if user.admin?
       return true
-    elsif user == object.user
+    elsif user == comment.user
       return true
     else
       false
