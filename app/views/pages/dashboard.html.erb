@@ -39,7 +39,7 @@
 					</tr>
 					<tr>
 						<td><%= image_tag('dashboard/box.png', :size=>'10x10') %> Total Event Count:</td>
-						<td><%= pluralize(@all.size, "Event") %></td>
+						<td><%= link_to "#{pluralize(@all.size, "Event")}", events_path %></td>
 					</tr>
 				
 					<tr>

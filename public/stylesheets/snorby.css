@@ -904,7 +904,7 @@ pre {
 
 #dashboard a{
 	font-size: x-small;
-	color: #1f00ff;
+	color: #5d5b5c;
 }
 
 #graph_holder{
@@ -1230,6 +1230,8 @@ pre {
 	background-color: #fdfdfd;
 	padding: 10px 20px;
 	font-size: small;
+	max-height: 300px;
+	overflow: auto;
 }
 
 #comments_for{
