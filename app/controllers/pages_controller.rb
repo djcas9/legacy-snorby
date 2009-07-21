@@ -1,4 +1,15 @@
 class PagesController < ApplicationController
+  before_filter :update_cache
+
+
+  def update_cache
+    if session[:refresh_time].nil? || session[:refresh_time] < Time.now
+      spawn do
+        CalcCache.update_cache
+      end
+      session[:refresh_time] = 15.minutes.since
+    end
+  end
 
   def dashboard
 
