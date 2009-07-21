@@ -12,6 +12,7 @@ class PagesController < ApplicationController
     @low ||= @calc.low_severity
 
     @events = @calc.total_event_count
+    @all = @calc.total_event_count.to_i
     @uniq_events = @calc.unique_event_count
     @uniq_adds = @calc.unique_address_count
     @categories ||= SigClass.all
