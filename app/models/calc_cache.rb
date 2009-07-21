@@ -1,9 +1,9 @@
 class CalcCache < ActiveRecord::Base
   
   def self.update_cache
-    @cache = CalcCache.find(1)
+    get_cache = CalcCache.find(1)
     data = CalcCache.calculate_data
-    cache = @cache.update_attributes(:last_cache => Time.now,
+    cache = get_cache.update_attributes(:last_cache => Time.now,
     :high_severity => 0,
     :medium_severity => data[:medium],
     :low_severity => data[:low],
@@ -34,9 +34,6 @@ class CalcCache < ActiveRecord::Base
     data[:uniq_events] = Event.all(:group => 'signature').size
     data[:uniq_adds] = Iphdr.find(:all, :group => 'ip_src').uniq.size + Iphdr.find(:all, :group => 'ip_dst').uniq.size
     return data
-  end
-  
-  def self.destroy_cache
   end
   
 end
