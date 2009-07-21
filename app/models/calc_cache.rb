@@ -9,9 +9,7 @@ class CalcCache < ActiveRecord::Base
     :low_severity => data[:low],
     :total_event_count => data[:all],
     :unique_event_count => data[:uniq_events],
-    :unique_address_count => data[:uniq_adds],
-    :sensor_cache => 0,
-    :category_cache => 0)
+    :unique_address_count => data[:uniq_adds])
   end
   
   def self.build_cache
@@ -23,9 +21,7 @@ class CalcCache < ActiveRecord::Base
     :low_severity => data[:low],
     :total_event_count => data[:all],
     :unique_event_count => data[:uniq_events],
-    :unique_address_count => data[:uniq_adds],
-    :sensor_cache => 0,
-    :category_cache => 0)
+    :unique_address_count => data[:uniq_adds])
     cache.save!
   end
   
