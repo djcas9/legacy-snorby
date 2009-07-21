@@ -16,7 +16,7 @@ class CalcCache < ActiveRecord::Base
   
   def self.build_cache
     data = CalcCache.calculate_data
-    cache = CalcCache.create_or_update(:id => 1,
+    cache = CalcCache.new(:id => 1,
     :last_cache => Time.now,
     :high_severity => data[:high],
     :medium_severity => data[:medium],
