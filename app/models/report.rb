@@ -9,7 +9,6 @@ class Report < ActiveRecord::Base
   def count_events
     counts = Hash.new(0)
     self.events.each do |ev|
-      next if ev.sensor.sid.blank?
       counts["#{ev.sig.sig_name}|#{ev.iphdr.ip_src}|#{ev.iphdr.ip_dst}|#{ev.sig.sig_priority}|#{ev.sensor.sid}"] += 1
     end
     counts
