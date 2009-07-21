@@ -88,7 +88,7 @@
 					<%- if @events.blank? -%>
 					<td><%= horizontal_bar_graph  [["Event Percentage", 0]] %></td>
 					<%- else -%>
-					<td><%= horizontal_bar_graph  [["Event Percentage", ((events_for_sensor_only(s)/@events.to_f) * 100).round(2)]] %></td>
+					<td><%= horizontal_bar_graph  [["Event Percentage", ((events_for_sensor_only(s)/@all.to_f) * 100).round(2)]] %></td>
 					<%- end -%>
 				</tr>
 				<%- end -%>
