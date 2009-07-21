@@ -59,7 +59,7 @@ class SettingsController < ApplicationController
     @sensors.each do |sensor|
       sensor.destroy
     end
-    flash[:notice] = "Sensor were successfully removed! - Please Restart Snort!"
+    flash[:notice] = "Sensor(s) successfully removed! - Please Restart Snort!"
     redirect_to settings_path
   end
 

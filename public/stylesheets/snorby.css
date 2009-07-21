@@ -700,6 +700,7 @@ strong.title{
 	float: right;
 	font-size: small;
 	color: #ababab;
+	margin-left: 2px;
 }
 
 #event_show_information{
@@ -1283,6 +1284,7 @@ div#comment_body{
 	float: right;
 	font-size: x-small;
 	margin-top: 2px;
+	margin-right: 5px;
 }
 
 #comment_options a{

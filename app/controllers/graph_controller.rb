@@ -84,6 +84,4 @@ class GraphController < ApplicationController
     render :text => chart.render
   end
 
-
-
 end
