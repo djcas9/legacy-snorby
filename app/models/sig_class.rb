@@ -28,7 +28,7 @@ class SigClass < ActiveRecord::Base
   
   def self.events_for_this_category(c)
     @cat = SigClass.find(c) unless c == 0
-    return @cat.signatures.collect { |sig| sig.events }.size
+    return @cat.signatures.collect { |sig| sig.events }.flatten.size
   end
   
 end
