@@ -19,6 +19,15 @@ class SearchesController < ApplicationController
       render :action => 'new'
     end
   end
+  
+  def remove_all_results
+    @search = Search.find(params[:id])
+    @search.events.each do |event|
+      event.destroy
+    end
+    flash[:notice] = "Successfully removed matching results."
+    redirect_to new_search_path
+  end
 
   def show
     @search ||= Search.find(params[:id])
@@ -49,22 +58,22 @@ class SearchesController < ApplicationController
   end
 
   def auto_complete_for_search_keywords
-    @sigs = Signature.find(:all, 
-      :conditions => ['signature.sig_name LIKE ?', "%#{params[:search][:keywords]}%"],
-      :select => "DISTINCT sig_name", :order => "sig_name"  )
+    @sigs = Signature.find(:all,
+    :conditions => ['signature.sig_name LIKE ?', "%#{params[:search][:keywords]}%"],
+    :select => "DISTINCT sig_name", :order => "sig_name"  )
     render :partial => 'keywords'
   end
-  
+
   def auto_complete_for_search_ip_src
-    @src_ips = Iphdr.find(:all, 
-      :conditions => ['inet_ntoa(ip_src) LIKE ?', "%#{params[:search][:ip_src]}%"], :select => "DISTINCT ip_src")
+    @src_ips = Iphdr.find(:all,
+    :conditions => ['inet_ntoa(ip_src) LIKE ?', "%#{params[:search][:ip_src]}%"], :select => "DISTINCT ip_src")
     render :partial => 'ip_src'
   end
-  
+
   def auto_complete_for_search_ip_dst
-    @dst_ips = Iphdr.find(:all, 
-      :conditions => ['inet_ntoa(ip_dst) LIKE ?', "%#{params[:search][:ip_dst]}%"], :select => "DISTINCT ip_dst")
+    @dst_ips = Iphdr.find(:all,
+    :conditions => ['inet_ntoa(ip_dst) LIKE ?', "%#{params[:search][:ip_dst]}%"], :select => "DISTINCT ip_dst")
     render :partial => 'ip_dst'
   end
-  
+
 end

@@ -52,15 +52,27 @@ module ApplicationHelper
     end
   end
   
-  def show_comment_form(div)
+  def show_comment_form(div, div2)
     update_page do |page|
-      page[div].toggle
+      page[div].visual_effect :appear
+      page[div2].hide
     end
   end
   
-  def show_comments(div)
+  def show_comments(div, div2, div3)
     update_page do |page|
-      page[div].toggle
+      page[div].show
+      page[div2].hide
+      page[div3].show
+      #page[div].visual_effect :highlight
+    end
+  end
+  
+  def hide_comments(div, div2, div3)
+    update_page do |page|
+      page[div].hide
+      page[div2].show
+      page[div3].hide
       #page[div].visual_effect :highlight
     end
   end

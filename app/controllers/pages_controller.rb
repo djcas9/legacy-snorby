@@ -11,6 +11,17 @@ class PagesController < ApplicationController
     end
   end
 
+  def force_update_cache
+    session[:loading_cache] = Time.now
+    spawn do
+      CalcCache.update_cache
+    end
+    respond_to do |format|
+      format.html { flash[:notice] = "Updating Snorby Cache."; redirect_to dashboard_path }
+      format.js
+    end
+  end
+
   def dashboard
 
     @calc = CalcCache.find(1)
@@ -23,7 +34,6 @@ class PagesController < ApplicationController
     @low ||= @calc.low_severity
 
     @events = @calc.total_event_count
-    @all = Event.count.to_i
     @uniq_events = @calc.unique_event_count
     @uniq_adds = @calc.unique_address_count
     @categories = @calc.category_cache

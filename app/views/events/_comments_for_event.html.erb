@@ -6,10 +6,6 @@
 		<%= render :partial => @event.comments %>
 </div>
 
-<div id='add_comment'>
-	<%= link_to_function "#{image_tag('other/tick-circle.png', :size=>'12x12')} Add Comment", show_comment_form("comment_form") %>
-</div>
-
 <div id="comment_form" style='display: none;'>
 	<%- remote_form_for [@event, Comment.new] do |f| -%>
 		<%= f.label :body, "New Comment" %><br />
@@ -17,5 +13,8 @@
 		<br />
 		<%= f.submit "Add Comment", :disable_with => 'Submitting Comment...' %>
 	<%- end -%>
-	<br />
+</div>
+
+<div id='add_comment' style='display: visible;'>
+	<%= link_to_function "#{image_tag('other/tick-circle.png', :size=>'12x12')} Add Comment", show_comment_form("comment_form", "add_comment") %>
 </div>

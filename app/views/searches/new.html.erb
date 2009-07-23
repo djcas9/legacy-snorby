@@ -28,6 +28,7 @@
 				<th><%= f.label :sid, "Sensor" %>:</th>
 				<th><%= f.label :sid_class_id, "Event Category" %>:</th>
 				<th><%= f.label :sig_priority, "Event Severity" %>:</th>
+				<th></th>
 			</tr>
 			<tr>
 				<td><%= f.collection_select :sid, Sensor.all(:order => 'sid DESC'), :id, :hostname, :include_blank => true %></td>

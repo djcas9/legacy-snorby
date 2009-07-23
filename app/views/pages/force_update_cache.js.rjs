@@ -1,0 +1,1 @@
+page.replace "update_image_refresh", "#{image_tag('other/update-load.gif')}"

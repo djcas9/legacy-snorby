@@ -898,6 +898,9 @@ pre {
 
 /* @group DashBoard */
 
+#update_cache{
+	float: right;
+}
 
 #dashboard{
 	overflow: hidden;

@@ -7,6 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   map.dashboard "/dashboard", :controller => 'pages', :action => 'dashboard'
   map.livelook "/livelook", :controller => 'events', :action => 'livelook'
   map.category "/category", :controller => 'pages', :action => 'category'
+  map.update_cache "/force_update_cache", :controller => 'pages', :action => 'force_update_cache'
   map.events_for_sensor "/events_for_sensor", :controller => 'pages', :action => 'events_for_sensor'
   map.severity "/severity", :controller => 'pages', :action => 'severity'
   
