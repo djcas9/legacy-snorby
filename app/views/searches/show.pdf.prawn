@@ -93,7 +93,7 @@ unless @search.events.blank?
   pdf.text "Event Severity vs Sessions", :size => 15, :style => :bold, :align => :center
   pdf.text "This line graph describes events separated by their severity levels. Reoccurring events should be filtered out using the snorby front-end, and abnormal events or unexpected spikes in the number of events should be researched further.", :size => 9
   pdf.move_down(10)
-  pdf.image open(Gchart.line(:axis_with_labels => ['x','y','r'], :line_color => @_line_color, :data => @_line_data, :size => '500x230')), :position => :center
+  pdf.image open(Gchart.line(:axis_with_labels => ['x', 'y'], :line_color => @_line_color, :data => @_line_data.sort, :size => '500x230')), :position => :center
   pdf.move_down(5)
 end
 unless @search.events.blank?
