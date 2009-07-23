@@ -258,7 +258,8 @@ module CssGraphs
       .graph { 
         position: relative; /* IE is dumb */
         width: 200px; 
-        border: 1px solid #B1D632; 
+        border: 1px solid #B1D632;
+        background: #FFFFFF; 
         padding: 0px; 
         margin-top: .1em;
         /* margin-bottom: .5em; */					

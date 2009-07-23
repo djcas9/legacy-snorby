@@ -1,5 +1,5 @@
 <div id="update_cache">
-	<% if (Time.parse(session[:loading_cache].to_s) <= 20.seconds.ago) %>
+	<% if (Time.parse(session[:loading_cache].to_s) <= 5.seconds.ago) %>
 		<%= link_to_remote image_tag('other/update.png', :id => 'update_image_refresh'), :url => update_cache_path %>
 	<%- else -%>
 		<%= image_tag('other/update-load.gif') %>
@@ -67,7 +67,7 @@
 	
 	<div id="graph_holder">		
 
-		<%- unless @events == 0 -%>
+		<%- unless @events -%>
 			<%= @g_event_severity %>
 
 			<%= @g_category_information %>
@@ -94,10 +94,10 @@
 					<td><%= @sensors[s][:interface] %></td>
 					<td><%= @sensors[s][:encoding] %></td>
 					<td><%= @sensors[s][:last_cid] %></td>
-					<%- if @sensors[s][:event_total] == 0 && @events == 0 -%>
-					<td><%= horizontal_bar_graph  [["Event Percentage", 0]] %></td>
-					<%- else -%>
+					<%- unless @sensors[s][:event_total] && @events -%>
 					<td><%= horizontal_bar_graph  [["Event Percentage", ((@sensors[s][:event_total]/@events.to_f) * 100).round(2)]] %></td>
+					<%- else -%>
+					<td><%= horizontal_bar_graph  [["Event Percentage", 0]] %></td>
 					<%- end -%>
 				</tr>
 				<%- end -%>
@@ -126,10 +126,10 @@
 					<td></td>
 					<td></td>
 					<td></td>
-					<%- if @categories[c][:event_total] == 0 && @events == 0 -%>
-					<td><%= horizontal_bar_graph  [["Event Percentage", 0]] %></td>
-					<%- else -%>
+					<%- unless @categories[c][:event_total] && @events -%>
 					<td><%= horizontal_bar_graph  [["Event Percentage", ((@categories[c][:event_total]/@events.to_f) * 100).round(2)]] %></td>
+					<%- else -%>
+					<td><%= horizontal_bar_graph  [["Event Percentage", 0]] %></td>
 					<%- end -%>
 				</tr>
 				<%- end -%>
