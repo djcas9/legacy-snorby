@@ -8,9 +8,9 @@ class CreateCalcCaches < ActiveRecord::Migration
       t.integer :total_event_count, :null => 0
       t.integer :unique_event_count, :null => 0
       t.integer :unique_address_count, :null => 0
-      t.string :sensor_cache
-      t.string :category_cache
-
+      t.text :sensor_cache
+      t.text :category_cache
+      
       t.timestamps
     end
   end
