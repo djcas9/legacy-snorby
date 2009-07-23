@@ -7,7 +7,9 @@ class SettingsController < ApplicationController
   end
 
   def sensor_settings
-    @sensors = Sensor.all(:order => 'sid ASC')
+    @calc = CalcCache.find(1)
+    @all = @calc.total_event_count
+    @sensors = @calc.sensor_cache
   end
 
   def show

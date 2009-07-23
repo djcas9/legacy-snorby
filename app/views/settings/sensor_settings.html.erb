@@ -12,15 +12,19 @@
 				<th>Last Event</th>
 				<th>Event Percentage</th>
 			</tr>
-			<%- for s in @sensors -%>
+			<%- @sensors.each do |s, hash_values| -%>
 			<tr class="<%= cycle('odd', 'even') %>">
 				<td><%= check_box_tag "sensor_ids[]", s.id %></td>
-				<td><%= image_tag('dashboard/pill.png', :size=>'12x12') %> <%= s.id %></td>
-				<td><%= s.hostname %></td>
-				<td><%= s.interface %></td>
-				<td><%= s.encoding_type %></td>
-				<td><%= s.last_cid %></td>
-				<td><%= horizontal_bar_graph  [["Event Percentage", ((events_for_sensor_only(s)/Event.all.size.to_f) * 100).round(2)]] unless Event.last.blank? %></td>
+				<td><%= image_tag('dashboard/pill.png', :size=>'12x12') %> <%= @sensors[s][:id].to_i %></td>
+				<td><%= link_to "#{@sensors[s][:hostname]}", events_for_sensor_path(:sensor => @sensors[s][:id].to_i) %></td>
+				<td><%= @sensors[s][:interface] %></td>
+				<td><%= @sensors[s][:encoding] %></td>
+				<td><%= @sensors[s][:last_cid] %></td>
+				<%- if @sensors[s][:event_total].nil? -%>
+				<td><%= horizontal_bar_graph  [["Event Percentage", 0]] %></td>
+				<%- else -%>
+				<td><%= horizontal_bar_graph  [["Event Percentage", ((@sensors[s][:event_total]/@all.to_f) * 100).round(2)]] %></td>
+				<%- end -%>
 			</tr>
 			<%- end -%>
 		</table>
