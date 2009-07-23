@@ -50,7 +50,7 @@ class CalcCache < ActiveRecord::Base
     @categories.each do |name, id|
       category_hash["#{id}"] = { :id => id,
         :name => name, 
-        :event_total => SigClass.events_for_this_category(name, id) }
+        :event_total => SigClass.events_for_this_category(id) }
     end
     return category_hash
   end

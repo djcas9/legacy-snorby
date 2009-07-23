@@ -26,9 +26,9 @@ class SigClass < ActiveRecord::Base
     return data
   end
 
-  def self.events_for_this_category(name, c)
-    if name == "Unclassified"
-      return Event.find(:all, :include => :sig, :conditions => ['signature.sig_class_id = 0']).size
+  def self.events_for_this_category(c)
+    if c == 0
+      return Event.count(:all, :include => :sig, :conditions => ['signature.sig_class_id = 0'])
     else
       @cat = SigClass.find(c)
     end
