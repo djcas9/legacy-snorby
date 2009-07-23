@@ -19,11 +19,13 @@ class SearchesController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def remove_all_results
     @search = Search.find(params[:id])
-    @search.events.each do |event|
-      event.destroy
+    spawn do
+      @search.events.each do |event|
+        event.destroy
+      end
     end
     flash[:notice] = "Successfully removed matching results."
     redirect_to new_search_path
