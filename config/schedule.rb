@@ -25,7 +25,7 @@ every 1.day, :at => '11:00 pm' do
   runner "Event.run_daily_report"
 end
 
-every 30.minutes do
+every :hour do
   runner "CalcCache.update_cache"
 end
 

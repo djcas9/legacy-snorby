@@ -14,4 +14,10 @@ namespace :snorby do
     puts "Installing Snorby Cron Jobs."
     system('whenever --update-crontab snorby --set environment=production')
   end
+  
+  desc "Add/Update Snorby Cronjobs"
+  task :cronjob => :environment do
+    puts "Installing Snorby Cron Jobs."
+    system('whenever --update-crontab snorby --set environment=production')
+  end
 end
