@@ -365,7 +365,6 @@ h6{
 	font-size: x-small;
 	line-height: 1px;
 	padding-top: 8px;
-	float: left;
 }
 
 /* @end */
@@ -377,7 +376,7 @@ h6{
 }
 
 #flash_notice, #flash_error {
-  	padding: 5px 8px;
+  	padding: 10px 8px 5px;
   	min-height: 25px;
 	font-size: small;
 	margin-left: 11px;
@@ -907,6 +906,8 @@ pre {
 
 #update_cache{
 	float: right;
+	width: 300px;
+	text-align: right;
 }
 
 #dashboard{

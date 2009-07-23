@@ -50,7 +50,7 @@ class CalcCache < ActiveRecord::Base
     @categories.each do |name, id|
       category_hash["#{id}"] = { :id => id,
         :name => name, 
-        :event_total => SigClass.events_for_this_category(id) }
+        :event_total => SigClass.events_for_this_category(name, id) }
     end
     return category_hash
   end
@@ -70,7 +70,7 @@ class CalcCache < ActiveRecord::Base
   end
   
   def self.destroy
-    get_cache = CalcCache.find(2)
+    get_cache = CalcCache.find(1)
     data = CalcCache.calculate_data
     cache = get_cache.update_attributes(:id => 1,
     :last_cache => Time.now,
