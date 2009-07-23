@@ -17,4 +17,18 @@ class SigClass < ActiveRecord::Base
     return data
   end
   
+  def self.get_category_information
+    data = []
+    for s in self.all(:order => 'sig_class_name')
+      data << [s.sig_class_name, s.sig_class_id]
+    end
+    data << ["Unclassified", 0]
+    return data
+  end
+  
+  def self.events_for_this_category(c)
+    @cat = SigClass.find(c) unless c == 0
+    return @cat.signatures.collect { |sig| sig.events }.flatten.uniq.size
+  end
+  
 end

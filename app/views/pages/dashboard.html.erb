@@ -78,17 +78,17 @@
 					<th>Last Event</th>
 					<th>Event Percentage</th>
 				</tr>
-				<%- for s in @sensors -%>
+				<%- @sensors.each do |s, hash_values| -%>
 				<tr class="<%= cycle('odd', 'even') %>">
-					<td><%= image_tag('dashboard/pill.png', :size=>'12x12') %> <%= s.id %></td>
-					<td><%= link_to "#{s.hostname}", events_for_sensor_path(:sensor => s.id) %></td>
-					<td><%= s.interface %></td>
-					<td><%= s.encoding_type %></td>
-					<td><%= s.last_cid %></td>
-					<%- if @events.blank? -%>
+					<td><%= image_tag('dashboard/pill.png', :size=>'12x12') %> <%= @sensors[s][:id] %></td>
+					<td><%= link_to "#{@sensors[s][:hostname]}", events_for_sensor_path(:sensor => @sensors[s][:id]) %></td>
+					<td><%= @sensors[s][:interface] %></td>
+					<td><%= @sensors[s][:encoding] %></td>
+					<td><%= @sensors[s][:last_cid] %></td>
+					<%- if @sensors[s][:event_total].nil? -%>
 					<td><%= horizontal_bar_graph  [["Event Percentage", 0]] %></td>
 					<%- else -%>
-					<td><%= horizontal_bar_graph  [["Event Percentage", ((events_for_sensor_only(s)/@all.to_f) * 100).round(2)]] %></td>
+					<td><%= horizontal_bar_graph  [["Event Percentage", ((@sensors[s][:event_total]/@all.to_f) * 100).round(2)]] %></td>
 					<%- end -%>
 				</tr>
 				<%- end -%>
@@ -110,29 +110,17 @@
 					<th></th>
 					<th>Event Percentage</th>
 				</tr>
-				<tr>
-				<td><%= image_tag('other/category.png', :size=>'10x10') %> <%= link_to "Unclassified", category_path(:category_id => 0) %></td>
-				<td><%= pluralize(Event.find(:all, :include => :sig, :conditions => ['signature.sig_class_id = 0']).size + 0, "Event") %></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<%- if @events.blank? -%>
-				<td><%= horizontal_bar_graph  [["Event Percentage", 0]] %></td>
-				<%- else -%>
-				<td><%= horizontal_bar_graph  [["Event Percentage", ((Event.find_event_count_for?(0)/@all.to_f) * 100).round(2)]] %></td>
-				<%- end -%>
-				</tr>
-				<%- for c in @categories -%>
+				<%- @categories.each do |c, hash_values| -%>
 				<tr class="<%= cycle('even', 'odd') %>">
-					<td><%= image_tag('other/category.png', :size=>'10x10') %> <%= link_to "#{c.sig_class_name.titleize}", category_path(:category_id => c) %></td>
-					<td><%= pluralize(c.events_for_category, "Event") %></td>
+					<td><%= image_tag('other/category.png', :size=>'10x10') %> <%= link_to "#{@categories[c][:name]}", category_path(:category_id => @categories[c][:id]) %></td>
+					<td><%= pluralize(@categories[c][:event_total], "Event") %></td>
 					<td></td>
 					<td></td>
 					<td></td>
-					<%- if @events.blank? -%>
+					<%- if @categories[c][:event_total].nil? -%>
 					<td><%= horizontal_bar_graph  [["Event Percentage", 0]] %></td>
 					<%- else -%>
-					<td><%= horizontal_bar_graph  [["Event Percentage", ((c.events_for_category/@all.to_f) * 100).round(2)]] %></td>
+					<td><%= horizontal_bar_graph  [["Event Percentage", ((@categories[c][:event_total]/@all.to_f) * 100).round(2)]] %></td>
 					<%- end -%>
 				</tr>
 				<%- end -%>

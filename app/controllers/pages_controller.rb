@@ -26,8 +26,8 @@ class PagesController < ApplicationController
     @all = Event.count.to_i
     @uniq_events = @calc.unique_event_count
     @uniq_adds = @calc.unique_address_count
-    @categories ||= SigClass.all
-    @sensors ||= Sensor.all :include => :events, :order => 'sid ASC'
+    @categories = @calc.category_cache
+    @sensors = @calc.sensor_cache
   end
 
   def credits
