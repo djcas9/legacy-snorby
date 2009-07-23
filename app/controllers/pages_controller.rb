@@ -12,7 +12,6 @@ class PagesController < ApplicationController
   end
 
   def force_update_cache
-    session[:loading_cache] = Time.now
     spawn do
       CalcCache.update_cache
     end

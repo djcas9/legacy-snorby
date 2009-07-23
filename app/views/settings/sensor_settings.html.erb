@@ -14,16 +14,16 @@
 			</tr>
 			<%- @sensors.each do |s, hash_values| -%>
 			<tr class="<%= cycle('odd', 'even') %>">
-				<td><%= check_box_tag "sensor_ids[]", s.id %></td>
+				<td><%= check_box_tag "sensor_ids[]", @sensors[s][:sensor_id] %></td>
 				<td><%= image_tag('dashboard/pill.png', :size=>'12x12') %> <%= @sensors[s][:sensor_id] %></td>
 				<td><%= link_to "#{@sensors[s][:hostname]}", events_for_sensor_path(:sensor => @sensors[s][:sensor_id]) %></td>
 				<td><%= @sensors[s][:interface] %></td>
 				<td><%= @sensors[s][:encoding] %></td>
 				<td><%= @sensors[s][:last_cid] %></td>
-				<%- if @sensors[s][:event_total].nil? -%>
-				<td><%= horizontal_bar_graph  [["Event Percentage", 0]] %></td>
+				<%- unless @sensors[s][:event_total] == 0 && @all == 0 -%>
+					<td><%= horizontal_bar_graph  [["Event Percentage", ((@sensors[s][:event_total]/@all.to_f) * 100).round(2)]] %></td>
 				<%- else -%>
-				<td><%= horizontal_bar_graph  [["Event Percentage", ((@sensors[s][:event_total]/@all.to_f) * 100).round(2)]] %></td>
+					<td><%= horizontal_bar_graph  [["Event Percentage", 0]] %></td>
 				<%- end -%>
 			</tr>
 			<%- end -%>

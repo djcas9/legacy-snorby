@@ -14,7 +14,7 @@
 					<%= text_field_with_auto_complete :search, :keywords %>
 				</td>
 				<td>
-					<%= f.calendar_date_select :start_time, :popup => :force, :time => :true, :value => (Time.now-1.day).strftime('%B %d, %Y %I:%M %p') %>
+					<%= f.calendar_date_select :start_time, :popup => :force, :time => :true %>
 				</td>
 				<td>
 					<%= f.calendar_date_select :end_time, :popup => :force, :time => :true, :value => Time.now.strftime('%B %d, %Y %I:%M %p') %>
