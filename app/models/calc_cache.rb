@@ -48,6 +48,7 @@ class CalcCache < ActiveRecord::Base
     category_hash = Hash.new
     @categories = SigClass.get_category_information
     @categories.each do |name, id|
+      next if name.nil? && id.nil?
       category_hash["#{id}"] = { :id => id,
         :name => name, 
         :event_total => SigClass.events_for_this_category(id) }
