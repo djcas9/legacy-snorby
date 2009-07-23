@@ -27,6 +27,9 @@ class EventsController < ApplicationController
         @output = "An error has occurred while resolving address <b>#{params[:whois_host]}</b>"
       end
       render :layout => false
+    rescue Errno::ENETUNREACH
+      @output = "Network is unreachable <b>#{params[:whois_host]}</b>"
+      render :layout => false
     rescue Whois::WhoisException
       @output = "No server found for this IPv4 <b>#{params[:whois_host]}</b>"
       render :layout => false
