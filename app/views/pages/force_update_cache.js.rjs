@@ -1,1 +1,1 @@
-page.replace "update_image_refresh", "#{image_tag('other/update-load.gif')}"
+page.replace "update_link_refresh", "<h6>The snorby cache is being updated.</h6> #{image_tag('other/tick-circle.png')}"

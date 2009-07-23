@@ -361,6 +361,13 @@ h4 {
 	font-style: normal;
 }
 
+h6{
+	font-size: x-small;
+	line-height: 1px;
+	padding-top: 8px;
+	float: left;
+}
+
 /* @end */
 
 /* @group Flash Notice */

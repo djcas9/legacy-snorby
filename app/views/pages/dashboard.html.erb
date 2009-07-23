@@ -1,8 +1,8 @@
 <div id="update_cache">
 	<% if (Time.parse(session[:loading_cache].to_s) <= 5.seconds.ago) %>
-		<%= link_to_remote image_tag('other/update.png', :id => 'update_image_refresh'), :url => update_cache_path %>
+		<%= link_to_remote image_tag('other/update.png', :id => 'update_image_refresh'), :url => update_cache_path, :html => { :id => 'update_link_refresh' } %>
 	<%- else -%>
-		<%= image_tag('other/update-load.gif') %>
+		<h6>The snorby cache is being updated.</h6> <%= image_tag('other/tick-circle.png') %>
 	<%- end -%>
 </div>
 <h1>Snorby Dashboard</h1>
