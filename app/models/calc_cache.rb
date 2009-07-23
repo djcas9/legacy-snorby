@@ -59,7 +59,7 @@ class CalcCache < ActiveRecord::Base
     sensor_hash = Hash.new
     @sensors = Sensor.all :include => :events, :order => 'sid ASC'
     @sensors.each do |sensor|
-      sensor_hash["#{sensor.id}"] = { :sensor_id => sensor.id,
+      sensor_hash["#{sensor.id}"] = { :sensor_id => sensor.sid,
         :hostname => sensor.hostname, 
         :interface => sensor.interface, 
         :encoding => sensor.encoding_type, 
