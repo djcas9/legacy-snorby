@@ -69,4 +69,20 @@ class CalcCache < ActiveRecord::Base
     return sensor_hash
   end
   
+  def self.destroy
+    get_cache = CalcCache.find(2)
+    data = CalcCache.calculate_data
+    cache = get_cache.update_attributes(
+    :id => 1
+    :last_cache => Time.now,
+    :high_severity => 0,
+    :medium_severity => 0,
+    :low_severity => 0,
+    :total_event_count => 0,
+    :unique_event_count => 0,
+    :unique_address_count => 0,
+    :sensor_cache => 0,
+    :category_cache => 0)
+  end
+  
 end
