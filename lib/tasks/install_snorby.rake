@@ -23,7 +23,7 @@ namespace :snorby do
 
   desc "Build Cache"
   task :cache => :environment do
-    if CalcCache.find(1).present?
+    unless CalcCache.all.empty?
       puts "Cache Updated Successfully."
       CalcCache.update_cache
     else

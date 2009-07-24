@@ -1,1 +1,1 @@
-page.replace "update_link_refresh", "<h6>#{image_tag('other/tick-circle.png', :size=>'12x12')} Please Refresh.</h6>"
+page.replace "update_link_refresh", "<span id='please_refresh'><h6>#{image_tag('other/tick-circle.png', :size=>'12x12')} Please Refresh.</h6></span>"

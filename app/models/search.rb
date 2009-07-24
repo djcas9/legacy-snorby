@@ -1,7 +1,11 @@
 class Search < ActiveRecord::Base
 
   def events
-    @events ||= find_events
+    @all_events ||= find_events
+  end
+  
+  def page_events(page)
+    find_page_events(page)
   end
 
   def count_events
@@ -11,11 +15,20 @@ class Search < ActiveRecord::Base
     end
     counts
   end
-  
+
   private
 
   def find_events
     Event.find(:all, :include => [:sensor, :comments, :iphdr, {:sig => :sig_class }], :order => 'timestamp DESC', :conditions => conditions)
+  end
+  
+  def find_page_events(page)
+    Event.paginate(:per_page => 20, 
+    :page => page, 
+    :joins => [:sensor, :comments, :iphdr, {:sig => :sig_class }],
+    :include => [:sensor, :comments, :iphdr, {:sig => :sig_class }], 
+    :conditions => conditions, 
+    :order => 'timestamp DESC')
   end
 
   def keyword_conditions
@@ -31,11 +44,11 @@ class Search < ActiveRecord::Base
   end
 
   def source_ip_conditions
-    ["inet_ntoa(iphdr.ip_src) = ?", ip_src] unless ip_src.blank?
+    ["inet_ntoa(iphdr.ip_src) = ?", "#{ip_src}"] unless ip_src.blank?
   end
 
   def destination_ip_conditions
-    ["inet_ntoa(iphdr.ip_dst) = ?", ip_dst] unless ip_dst.blank?
+    ["inet_ntoa(iphdr.ip_dst) = ?", "#{ip_dst}"] unless ip_dst.blank?
   end
 
   def source_port_conditions

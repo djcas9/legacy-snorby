@@ -1,1 +1,4 @@
 page.insert_html :bottom, :events, :partial => @events
+if @events.next_page.nil?
+  page.hide 'pagination'
+end

@@ -8,14 +8,8 @@ class SearchesController < ApplicationController
   def create
     @search = Search.new(params[:search])
     if @search.save
-      if @search.events.empty?
-        flash[:error] = "Sorry! No results found."
-      else
-        flash[:notice] = "Successfully submitted search and found #{@search.events.size} results."
-      end
       redirect_to @search
     else
-      flash[:notice] = "Something is not right here!"
       render :action => 'new'
     end
   end
@@ -32,7 +26,8 @@ class SearchesController < ApplicationController
   end
 
   def show
-    @search ||= Search.find(params[:id])
+    @search = Search.find(params[:id])
+    @events = @search.page_events(params[:page])
     respond_to do |format|
       format.html
       format.pdf

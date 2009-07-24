@@ -14,6 +14,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :last_login_ip
       t.string :current_login_ip
       t.string :setting_id
+      t.boolean :resolve_ips, :null => true
       t.boolean :accept_email, :null => false
       t.boolean :admin, :null => false
     end

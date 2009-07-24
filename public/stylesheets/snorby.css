@@ -902,9 +902,12 @@ pre {
 
 /* @group DashBoard */
 
+#please_refresh{
+	margin-top: -20px;
+}
+
 #update_cache{
 	float: right;
-	width: 300px;
 	text-align: right;
 }
 

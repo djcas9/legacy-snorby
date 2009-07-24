@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090719222259) do
+ActiveRecord::Schema.define(:version => 20090630040338) do
 
   create_table "calc_caches", :force => true do |t|
     t.string   "last_cache"

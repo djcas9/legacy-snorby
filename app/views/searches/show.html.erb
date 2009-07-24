@@ -2,15 +2,18 @@
 	<%= link_to "#{image_tag('export/pdf.png')}", { :format => 'pdf' } %>
 	<%= link_to "#{image_tag('export/xml.png')}", { :format => 'xml' } %>
 	<%= link_to "#{image_tag('export/email.png')}", send_search_path(@search), :rel => 'facebox' %>
-	<%= link_to "#{image_tag('other/slash.png', :size => '14x14')}", { :action => 'remove_all_results', :id => @search }, :title => "Destroy All #{@search.events.size} Search Results" %>
+	<%= link_to "#{image_tag('other/slash.png', :size => '14x14')}", { :action => 'remove_all_results', :id => @search }, :title => "Destroy All Search Results" %>
 </div>
 <h1>Search Results</h1>
 <br />
 <div id="events" class='events'>
-	<%= render :partial => @search.events %>
+	<%= render :partial => @events %>
+	<%- if @search.page_events(params[:page]).empty? -%>
+	<font color='red'>No results found.</font>
+	<%- end -%>
 </div>
 
-<%- if @search.events.empty? -%>
-<font color='red'>No results found.</font>
+<% unless @events.next_page.nil? %>
+<script type="text/javascript">current_page = 2;</script>
+<div id="pagination" style='display: visible;'><a class="round more blah" href="#load_more_events" id="more" onmouseout='swap_out()' onclick="new Ajax.Request('/searches/show/<%= params[:id] %>?page=' + current_page, {asynchronous:true, evalScripts:true, parameters:'authenticity_token=' + encodeURIComponent('<%= form_authenticity_token %>')}); swap_in(); current_page = current_page + 1; return false;">more</a></div>
 <%- end -%>
-<br />

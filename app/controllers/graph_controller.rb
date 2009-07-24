@@ -4,16 +4,28 @@ class GraphController < ApplicationController
     title = Title.new("Event Severity")
 
     data = []
+    color = []
 
     pie = Pie.new
     pie.start_angle = 35
     pie.animate = false
     pie.tooltip = '#val# Events of #total# Total.<br>#percent# of 100%<br>'
-    pie.colours = ["#adffa2", "#f8f9a4", "#fb9c9c"]
 
-    data << PieValue.new(params[:low].to_i, "Low Severity") unless params[:low].to_i == 0
-    data << PieValue.new(params[:medium].to_i, "Medium Severity") unless params[:medium].to_i == 0
-    data << PieValue.new(params[:high].to_i, "High Severity") unless params[:high].to_i == 0
+    unless params[:low].to_i == 0
+      data << PieValue.new(params[:low].to_i, "Low Severity")
+      color << ["#adffa2"]
+    end
+    unless params[:medium].to_i == 0
+      data << PieValue.new(params[:medium].to_i, "Medium Severity")
+      color << ["#f8f9a4"]
+    end
+    unless params[:high].to_i == 0
+      data << PieValue.new(params[:high].to_i, "High Severity")
+      color << ["#fb9c9c"]
+    end
+
+
+    pie.colours = color
 
     pie.values  = data
 
