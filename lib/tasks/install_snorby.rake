@@ -22,11 +22,13 @@ namespace :snorby do
   end
 
   desc "Build Cache"
-  task :build_cache => :environment do
-    if CalcCache.build_cache
-      puts "Cache Built Successfully."
-    else
+  task :cache => :environment do
+    if CalcCache.find(1).present?
+      puts "Cache Updated Successfully."
       CalcCache.update_cache
+    else
+      puts "Cache Built Successfully."
+      CalcCache.build_cache
     end
   end
 end
