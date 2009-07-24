@@ -14,6 +14,8 @@ class CreateCalcCaches < ActiveRecord::Migration
       t.timestamps
     end
   end
+  
+  #CalcCache.build_cache
 
   def self.down
     drop_table :calc_caches

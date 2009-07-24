@@ -6,7 +6,7 @@ namespace :snorby do
     puts "Installing Snorby Cron Jobs."
     system('whenever --update-crontab snorby --set environment=production')
   end
-  
+
   desc "Remove Snorby"
   task :remove => :environment do
     puts "Removing Snorby. =["
@@ -14,10 +14,19 @@ namespace :snorby do
     puts "Installing Snorby Cron Jobs."
     system('whenever --update-crontab snorby --set environment=production')
   end
-  
+
   desc "Add/Update Snorby Cronjobs"
   task :cronjob => :environment do
     puts "Installing Snorby Cron Jobs."
     system('whenever --update-crontab snorby --set environment=production')
+  end
+
+  desc "Build Cache"
+  task :build_cache => :environment do
+    if CalcCache.build_cache
+      puts "Cache Built Successfully."
+    else
+      CalcCache.update_cache
+    end
   end
 end
