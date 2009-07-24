@@ -1,5 +1,12 @@
 /* @group Format */
 
+#loading{
+	float: left;
+	margin-top: -25px;
+	display: inline;
+	margin-left: 62px;
+}
+
 .move_right{
 	float: right;
 	font-size: small;
