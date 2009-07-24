@@ -7,6 +7,13 @@
 	margin-left: 62px;
 }
 
+#loading_dash{
+	float: left;
+	display: inline;
+	margin-right: 5px;
+	margin-top: -4px;
+}
+
 .move_right{
 	float: right;
 	font-size: small;
