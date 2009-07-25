@@ -46,7 +46,8 @@ class PagesController < ApplicationController
   end
 
   def events_for_sensor
-    @events = Event.events_for_sensor(params[:sensor]).paginate(:page => params[:page], :per_page => 20)
+    @sensor = Sensor.find(params[:sensor])
+    @events = @sensor.events.paginate(:page => params[:page], :per_page => 20)
   end
 
   def severity

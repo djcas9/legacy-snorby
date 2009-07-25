@@ -1,0 +1,9 @@
+<h1>Events For Sensor: <%= @sensor.hostname %></h1>
+<br />
+<div id="events" class='events'>
+	<%= render :partial => @events %>
+</div>
+<% unless @events.next_page.nil? %>
+<script type="text/javascript">current_page = 2;</script>
+<div id="pagination"><a class="round more blah" href="#load_more_events" id="more" onclick="new Ajax.Request('/events/index?page=' + current_page, {asynchronous:true, evalScripts:true, onComplete:function(request){$('more').removeClassName('loading');}, onLoading:function(request){$('more').addClassName('loading');}, parameters:'authenticity_token=' + encodeURIComponent('<%= form_authenticity_token %>')}); current_page = current_page + 1; return false;">more</a></div>
+<%- end -%>
