@@ -9,11 +9,13 @@
 	<%- end -%>
 <%- end -%>
 
-
-<div id="events">	
+<div id="events">
+	<div id='loading_livelook' style='display:none;'><%= image_tag('other/small_loading.gif') %></div>	
 	<%= render :partial => @events %>
 </div>
 
 <%= periodically_call_remote(:url => { :action => 'livelook', :severity => params[:severity] },
  		:frequency => 120,
+		:loading => "$('loading_livelook').show()", 
+		:complete => "$('loading_livelook').hide()",
 		:update => { :success => "events" }) %>

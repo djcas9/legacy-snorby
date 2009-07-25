@@ -7,6 +7,15 @@ div.dialog {
 	margin: 10px auto;
 }
 
+#loading_livelook{
+	display: inline;
+	position: absolute;
+	margin-left: -22px;
+	margin-top: -14px;
+	float: none;
+	right: 15px;
+	top: -3px;
+}
 
 #loading{
 	float: left;
