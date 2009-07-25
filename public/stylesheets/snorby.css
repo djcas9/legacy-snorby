@@ -342,7 +342,7 @@ table.form td{
 
 .more_error{
 	float: left;
-	margin-right: 10px;
+	margin-right: 5px;
 }
 
 #more_information_in {
@@ -704,7 +704,7 @@ color:#666666;
 	text-align: center;
 	text-shadow: rgb(255, 255, 255) 1px 1px 1px;
 	width: 200px;
-	margin-top: 10px;
+	margin-top: 20px;
 	line-height: 11px;
 }
 
