@@ -1134,6 +1134,10 @@ pre {
 	margin-bottom: 20px;
 }
 
+#user_session_submit{
+	margin-right: 5px;
+}
+
 #login{
 	width: 600px;
 	margin-bottom: auto;

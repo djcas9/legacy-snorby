@@ -1,3 +1,9 @@
+<% content_for("page_scripts") do %>
+  Event.observe(window, 'load',
+    function() { $('loading_sensor').hide() }
+  );
+<% end %>
+
 <% form_tag sensor_delete_multiple_settings_path do %>
 <div id="settings_table">
 	<h1>Sensor Settings:</h1><br />
@@ -32,5 +38,5 @@
 	</div>
 </div>
 <br />
-<p><%= submit_tag "Remove Sensor(s)", :onclick => "$('loading_sensor').show();" %> <div id='loading_sensor' style='display:none;'><%= image_tag('other/loading.gif', :size => '22x22') %></div></p>
+<p><%= submit_tag "Remove Sensor(s) »", :onclick => "$('loading_sensor').show();" %> <div id='loading_sensor' style='display:none;'><%= image_tag('other/loading.gif', :size => '22x22') %></div></p>
 <% end %>

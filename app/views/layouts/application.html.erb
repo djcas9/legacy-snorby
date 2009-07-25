@@ -6,8 +6,10 @@
     <%= javascript_include_tag :defaults, 'snorby', 'facebox', 'swfobject', :cache => true %>
 		<%= stylesheet_link_tag 'snorby', 'facebox' %>
 		<%= calendar_date_select_includes nil %>
+		<script type="text/javascript">
+			<%= @content_for_page_scripts %>
+		</script>
     <%= yield(:head) %>
-
   </head>
   <body>
 		<div id="wrapper">
