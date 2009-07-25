@@ -654,6 +654,7 @@ color:#666666;
 	background-position: 50% 50%;
 	border: 1px solid #eee;
 	background-image: url('../images/ajax.gif');
+	text-indent: -9999px;
 }
 
 .more::-moz-focus-inner {
