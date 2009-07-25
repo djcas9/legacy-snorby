@@ -2,7 +2,7 @@ class ReportsController < ApplicationController
   #cache_sweeper :report_sweeper, :only => [:new, :create, :update, :destroy, :delete_multiple]
   before_filter :require_admin, :only => [:edit, :update, :destroy, :delete_multiple]
   #caches_action :index, :cache_path => 'report_index'
-  
+
   def index
     @reports = Report.paginate(:page => params[:page], :per_page => 20, :order => 'created_at DESC')
     respond_to do |format|
@@ -10,7 +10,7 @@ class ReportsController < ApplicationController
       format.js
     end
   end
-  
+
   def show
     @report = Report.find(params[:id])
     respond_to do |format|
@@ -19,11 +19,11 @@ class ReportsController < ApplicationController
       format.xml { render :xml => @report.events }
     end
   end
-  
+
   def new
     @report = Report.new
   end
-  
+
   def create
     @report = Report.new(params[:report])
     if @report.save
@@ -32,11 +32,11 @@ class ReportsController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
     @report = Report.find(params[:id])
   end
-  
+
   def update
     @report = Report.find(params[:id])
     if @report.update_attributes(params[:report])
@@ -45,21 +45,26 @@ class ReportsController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   def destroy
     @report = Report.find(params[:id])
     @report.destroy
     redirect_to reports_url
   end
-  
+
   def delete_multiple
-    @reports = Report.find(params[:report_ids])
-    @reports.each do |report|
-      report.destroy
+    unless params[:report_ids].nil?
+      @reports = Report.find(params[:report_ids])
+      @reports.each do |report|
+        report.destroy
+      end
+      redirect_to reports_path
+    else
+      flash[:error] = "No Report was selected."
+      redirect_to reports_path
     end
-    redirect_to reports_path
   end
-  
+
   def send_report
     @report = Report.find(params[:report_id])
     render :layout => false
@@ -72,12 +77,12 @@ class ReportsController < ApplicationController
     @user = current_user
 
     @emails = User.find(params[:user_id]).collect { |u| u.email }
-    
+
     spawn do
       Pdf_for_email.make_pdf(@report, @events)
       ReportMailer.deliver_report_report(@user, @report, @emails, @msg)
     end
     render :layout => false
   end
-  
+
 end

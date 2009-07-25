@@ -69,15 +69,20 @@ class SettingsController < ApplicationController
   end
 
   def sensor_delete_multiple
-    @sensors = Sensor.find(params[:sensor_ids])
-    spawn do
-      @sensors.each do |sensor|
-        sensor.destroy
+    unless params[:sensor_ids].nil?
+      @sensors = Sensor.find(params[:sensor_ids])
+      spawn do
+        @sensors.each do |sensor|
+          sensor.destroy
+        end
+        CalcCache.update_cache
       end
-      CalcCache.update_cache
+      flash[:notice] = "Sensor(s) successfully removed! - Please Restart Snort!"
+      redirect_to settings_path
+    else
+      flash[:error] = "No Sensor was selected."
+      redirect_to settings_path
     end
-    flash[:notice] = "Sensor(s) successfully removed! - Please Restart Snort!"
-    redirect_to settings_path
   end
 
   def user_delete_multiple

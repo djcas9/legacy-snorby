@@ -62,4 +62,13 @@ class ApplicationController < ActionController::Base
     session[:return_to] = nil
   end
 
+  def local_request?
+    false
+  end
+
+  def render_optional_error_file(status_code)
+    status = interpret_status(status_code)
+    render :template => "/errors/#{status[0,3]}.html.erb", :status => status
+  end
+
 end
