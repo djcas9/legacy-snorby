@@ -10,7 +10,8 @@
 				<th>Interface</th>
 				<th>Encoding</th>
 				<th>Last Event</th>
-				<th>Event Percentage</th>
+				<th>Event Count</th>
+				<th>Remove Events</th>
 			</tr>
 			<%- @sensors.each do |s, hash_values| -%>
 			<tr class="<%= cycle('odd', 'even') %>">
@@ -20,17 +21,16 @@
 				<td><%= @sensors[s][:interface] %></td>
 				<td><%= @sensors[s][:encoding] %></td>
 				<td><%= @sensors[s][:last_cid] %></td>
-				<%- unless @sensors[s][:event_total] == 0 && @all == 0 -%>
-					<td><%= horizontal_bar_graph  [["Event Percentage", ((@sensors[s][:event_total]/@all.to_f) * 100).round(2)]] %></td>
-				<%- else -%>
-					<td><%= horizontal_bar_graph  [["Event Percentage", 0]] %></td>
-				<%- end -%>
+				<td><%= pluralize(@sensors[s][:event_total], 'Event') %></td>
+				<td>
+					<span id='load_link'><%= link_to_remote "#{image_tag('other/slash.png', :size=>'12x12')}", :url => { :action => 'delete_events_for_sensor', :sensor => @sensors[s][:sensor_id] }, :loading => "$('loading').show()", :complete => "$('loading').hide()" %>
+						</span>
+				</td>
 			</tr>
 			<%- end -%>
 		</table>
 	</div>
 </div>
 <br />
-<%= submit_tag "Remove Sensor(s)" %>
-<%= link_to "#{image_tag('other/back.png', :class => 'box')}", settings_path, :class => 'back', :title => 'Back' %>
+<%= submit_tag "Remove Sensor(s)" %> <div id='loading' style="display:none;"><%= image_tag('other/loading.gif', :size => '22x22') %></div>
 <% end %>

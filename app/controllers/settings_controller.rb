@@ -20,7 +20,7 @@ class SettingsController < ApplicationController
   def new
     @setting = Setting.new
   end
-  
+
   def my_events
     @events = Importance.all_event_for_user(current_user)
   end
@@ -56,10 +56,25 @@ class SettingsController < ApplicationController
     redirect_to settings_url
   end
 
+  def delete_events_for_sensor
+    @sensor = Sensor.find(params[:sensor])
+    spawn do
+      @sensor.events.each do |event|
+        event.destroy
+      end
+      CalcCache.update_cache
+    end
+    flash[:notice] = "Sensor events successfully removed!"
+    redirect_to settings_path
+  end
+
   def sensor_delete_multiple
     @sensors = Sensor.find(params[:sensor_ids])
-    @sensors.each do |sensor|
-      sensor.destroy
+    spawn do
+      @sensors.each do |sensor|
+        sensor.destroy
+      end
+      CalcCache.update_cache
     end
     flash[:notice] = "Sensor(s) successfully removed! - Please Restart Snort!"
     redirect_to settings_path
