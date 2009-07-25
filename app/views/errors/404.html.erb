@@ -1,5 +1,12 @@
+<%- title "Snorby - The page you were looking for doesn't exist.", false -%>
 <center><%= image_tag('logo_big.png') %></center>
 <div class="dialog">
   <h1>The page you were looking for doesn't exist.</h1>
   <p>You may have mistyped the address or the page may have moved.</p>
+</div>
+
+<div id="more_menu_holder">
+	<%= link_to "Snorby News", 'https://github.com/mephux/Snorby', :target => '_blank', :class => 'round more_error_page more_error', :id => 'more' %>
+	<%= link_to "Report Bugs", 'https://github.com/mephux/Snorby/issues', :target => '_blank', :class => 'round more_error_page more_error', :id => 'more' %>
+	<%= link_to "Snorby Wiki", 'https://github.com/mephux/Snorby/wikis', :target => '_blank', :class => 'round more_error_page more_error', :id => 'more' %>
 </div>

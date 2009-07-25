@@ -326,6 +326,25 @@ table.form td{
 	padding: 5px;
 }
 
+#more_menu_holder{
+	width: 700px;
+	display: inline-block;
+	text-align: center;
+	margin: -10px auto 10px 100px;
+}
+
+#more_menu_holder a{
+	font-variant: normal;
+	text-decoration: none;
+	font-weight: normal;
+	font-style: normal;
+}
+
+.more_error{
+	float: left;
+	margin-right: 10px;
+}
+
 #more_information_in {
 	border: 5px solid #faffbb;
 	overflow: hidden;
@@ -666,6 +685,27 @@ color:#666666;
 	text-align: center;
 	text-shadow: rgb(255, 255, 255) 1px 1px 1px;
 	width: 100%;
+}
+
+.more_error_page{
+	background-color: white;
+	background-image: url(../images/more.gif);
+	background-position-x: 0%;
+	background-position-y: 0%;
+	background-repeat: repeat-x;
+	border-bottom: 1px solid rgb(170, 170, 170);
+	border: 1px solid #d6d6d6;
+	border-right: 1px solid rgb(170, 170, 170);
+	display: block;
+	font-size: 10px;
+	height: 15px;
+	outline: none;
+	padding: 6px 0px;
+	text-align: center;
+	text-shadow: rgb(255, 255, 255) 1px 1px 1px;
+	width: 200px;
+	margin-top: 10px;
+	line-height: 11px;
 }
 
 .more.loading {
