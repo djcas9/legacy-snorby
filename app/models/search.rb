@@ -25,8 +25,8 @@ class Search < ActiveRecord::Base
   def find_page_events(page)
     Event.paginate(:per_page => 20, 
     :page => page, 
-    :joins => [:sensor, :comments, :iphdr, {:sig => :sig_class }],
-    :include => [:sensor, :comments, :iphdr, {:sig => :sig_class }], 
+    :joins => [:sensor, :comments, :iphdr, :tcphdr, :udphdr, {:sig => :sig_class }],
+    :include => [:sensor, :comments, :iphdr, :tcphdr, :udphdr, {:sig => :sig_class }], 
     :conditions => conditions, 
     :order => 'timestamp DESC')
   end
