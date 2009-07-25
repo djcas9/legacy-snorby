@@ -1,6 +1,6 @@
 class SearchesController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:auto_complete_for_search_keywords, :auto_complete_for_search_ip_src, :auto_complete_for_search_ip_dst]
-
+    
   def new
     @search = Search.new
   end

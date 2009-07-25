@@ -1,7 +1,5 @@
 class ReportsController < ApplicationController
-  #cache_sweeper :report_sweeper, :only => [:new, :create, :update, :destroy, :delete_multiple]
   before_filter :require_admin, :only => [:edit, :update, :destroy, :delete_multiple]
-  #caches_action :index, :cache_path => 'report_index'
 
   def index
     @reports = Report.paginate(:page => params[:page], :per_page => 20, :order => 'created_at DESC')

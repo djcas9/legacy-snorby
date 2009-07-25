@@ -15,7 +15,7 @@
 </div>
 
 <%= periodically_call_remote(:url => { :action => 'livelook', :severity => params[:severity] },
- 		:frequency => 120,
+ 		:frequency => 200,
 		:loading => "$('loading_livelook').show()", 
 		:complete => "$('loading_livelook').hide()",
 		:update => { :success => "events" }) %>
