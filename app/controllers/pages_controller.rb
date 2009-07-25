@@ -42,7 +42,7 @@ class PagesController < ApplicationController
     unless params[:category_id].to_i == 0
       @category = SigClass.find(params[:category_id].to_i)
     end
-    @events = Event.paginate(:page => params[:page], :per_page => 10, :include => :sig, :conditions => ['signature.sig_class_id = ?', params[:category_id].to_i])
+    @events = Event.paginate(:page => params[:page], :per_page => 20, :include => :sig, :conditions => ['signature.sig_class_id = ?', params[:category_id].to_i])
   end
 
   def events_for_sensor
