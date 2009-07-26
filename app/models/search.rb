@@ -24,15 +24,14 @@ class Search < ActiveRecord::Base
   
   def find_page_events(page)
     Event.paginate(:per_page => 20, 
-    :page => page, 
-    :joins => [:sensor, :comments, :iphdr, :tcphdr, :udphdr, {:sig => :sig_class }],
-    :include => [:sensor, :comments, :iphdr, :tcphdr, :udphdr, {:sig => :sig_class }], 
+    :page => page,
+    :joins => [:sensor, :comments, :iphdr, :tcphdr, :udphdr, :sig],
     :conditions => conditions, 
     :order => 'timestamp DESC')
   end
 
   def keyword_conditions
-    ["signature.sig_name LIKE ?", "%#{keywords}%"] unless keywords.blank?
+    ['signature.sig_name LIKE ?', "%#{keywords}%"] unless keywords.blank?
   end
 
   def sensor_conditions
