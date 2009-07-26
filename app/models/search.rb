@@ -51,11 +51,11 @@ class Search < ActiveRecord::Base
   end
 
   def source_port_conditions
-    ["udphdr.udp_sport = ? OR tcphdr.tcp_sport = ?", "#{sport}", "#{sport}"] unless sport.blank?
+    ["udphdr.udp_sport = ? AND tcphdr.tcp_sport = ?", "#{sport}", "#{sport}"] unless sport.blank?
   end
 
   def destination_port_conditions
-    ["udphdr.udp_dport = ? OR tcphdr.tcp_dport = ?", "#{dport}", "#{dport}"] unless dport.blank?
+    ["udphdr.udp_dport = ? AND tcphdr.tcp_dport = ?", "#{dport}", "#{dport}"] unless dport.blank?
   end
   
   def sig_priority_conditions
