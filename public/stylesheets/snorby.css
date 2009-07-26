@@ -1,5 +1,15 @@
 /* @group Format */
 
+#version{
+	float: none;
+	display: inline;
+	position: absolute;
+	top: -18px;
+	right: 18px;
+	font-size: .6em;
+	color: #777;
+}
+
 div.dialog {
 	width: 500px;
 	padding: 0 4em;
