@@ -38,7 +38,7 @@ for a relay setup simply:
 
  production:
    :address: smtp.gmail.com
-	 :domain: localhost
+   :domain: localhost
 
 If this is your first time installing Snorby, setup the snorby database and cron jobs with:
 
