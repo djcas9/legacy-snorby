@@ -9,8 +9,10 @@
 		<font color='red'>No Users Have Been Added To This Account!</font>
 		<%- else -%>
 			<%- for user in User.find(:all) -%>
-				<%= check_box_tag "[user_id][]", user.id, user.id %>
-			  <%= user.login.capitalize %>
+				<%- if user.accept_email -%>
+					<%= check_box_tag "[user_id][]", user.id, user.id %>
+			  	<%= user.login.capitalize %>
+				<%- end -%>
 			<%- end -%>
 		<%- end -%>
 		<br /><br />

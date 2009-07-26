@@ -4,6 +4,8 @@
 <%- end -%>
 <%= form.check_box :accept_email %> <%= form.label :accept_email, "Accept email notifications and reports" %><br />
 <br />
+<%= form.check_box :resolve_ips %> <%= form.label :resolve_ips, "Attempt To Resolve Addresses. (faster loading when disabled)" %><br />
+<br />
 <%= form.label :login %><br />
 <%= form.text_field :login %><br />
 <br />

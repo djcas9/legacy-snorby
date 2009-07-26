@@ -29,10 +29,10 @@
 				</tr>
 				<tr>
 					<td>
-						<%= get_address_for?("#{@event.source_ip}") %>
+						<%= get_address_for?(current_user, "#{@event.source_ip}") %>
 					</td>
 					<td>
-						<%= get_address_for?("#{@event.destination_ip}") %>
+						<%= get_address_for?(current_user, "#{@event.destination_ip}") %>
 					</td>
 				</tr>
 			</table>

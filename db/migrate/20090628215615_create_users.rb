@@ -23,7 +23,8 @@ class CreateUsers < ActiveRecord::Migration
     :email => 'change_me@example.com', 
     :password => 'admin', 
     :password_confirmation => 'admin', 
-    :admin => true, 
+    :admin => true,
+    :resolve_ips => true, 
     :accept_email => true)    
     user.save!
     

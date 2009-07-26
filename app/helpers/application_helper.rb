@@ -6,7 +6,7 @@ module ApplicationHelper
     c = Event.find(:all, :conditions => ['sid = ?', s.id]).size + 0
     return "#{pluralize(c, 'event')}"
   end
-  
+
   def events_for_sensor_only(s)
     Event.find(:all, :conditions => ['sid = ?', s.id]).size
   end
@@ -51,14 +51,14 @@ module ApplicationHelper
       page[div].visual_effect :highlight
     end
   end
-  
+
   def show_comment_form(div, div2)
     update_page do |page|
       page[div].visual_effect :appear
       page[div2].hide
     end
   end
-  
+
   def show_comments(div, div2, div3)
     update_page do |page|
       page[div].show
@@ -67,7 +67,7 @@ module ApplicationHelper
       #page[div].visual_effect :highlight
     end
   end
-  
+
   def hide_comments(div, div2, div3)
     update_page do |page|
       page[div].hide
@@ -83,19 +83,19 @@ module ApplicationHelper
       flash.discard
     end
   end
-  
+
   def appear_div(div)
     update_page do |page|
       page[div].visual_effect :fade, :duration => 0.6
       flash.discard
     end
   end
-  
+
   def link_for_event_importance(event)
     if event.importance
-    	"#{link_to_remote "#{image_tag('other/is_important.png', :size => '12x12')}", :update => "event_options_#{event.id}", :url => { :controller => 'events', :action => "important", :id => event }, :html => { :title => "Make This Event NOT Important" }}"
+      "#{link_to_remote "#{image_tag('other/is_important.png', :size => '12x12')}", :update => "event_options_#{event.id}", :url => { :controller => 'events', :action => "important", :id => event }, :html => { :title => "Make This Event NOT Important" }}"
     else
-    	"#{link_to_remote "#{image_tag('other/is_not_important.png', :size => '12x12')}", :update => "event_options_#{event.id}", :url => { :controller => 'events', :action => "important", :id => event }, :html => { :title => "Make This Event Important" }}"
+      "#{link_to_remote "#{image_tag('other/is_not_important.png', :size => '12x12')}", :update => "event_options_#{event.id}", :url => { :controller => 'events', :action => "important", :id => event }, :html => { :title => "Make This Event Important" }}"
     end
   end
 
@@ -103,23 +103,41 @@ module ApplicationHelper
     Event.find_all_by_signature(event.signature).length
   end
 
-  def get_address_for?(a)
+  def get_address_for?(user, a)
     begin
-      "#{image_tag('other/tick-circle.png', :size => '10x10')} #{Resolv.getname(a)}"
+      if user.resolve_ips
+        "#{image_tag('other/tick-circle.png', :size => '10x10')} #{Resolv.getname(a)}"
+      else
+        return ''
+      end
     rescue Resolv::ResolvError
       "#{image_tag('other/slash.png', :size => '10x10')} Unable To Resolve Address."
     rescue => e
-      "#{image_tag('other/slash.png', :size => '10x10')} Snorbby Needs To be Restarted."
+      "#{image_tag('other/slash.png', :size => '10x10')} Snorby Needs To be Restarted. #{e}"
     end
   end
-  
+
   def get_address_for_pdf?(a)
     begin
       "#{Resolv.getname(a)}"
     rescue Resolv::ResolvError
       "Unable To Resolve Address."
     rescue => e
-      "Snorbby Needs To be Restarted."
+      "Snorby Needs To be Restarted."
+    end
+  end
+
+  def get_address_for_dash?(a)
+    begin
+      if user.resolve_ips
+      "#{Resolv.getname(a)}"
+    else
+      return a
+    end
+    rescue Resolv::ResolvError
+      "#{a}"
+    rescue => e
+      "#{a}"
     end
   end
 
