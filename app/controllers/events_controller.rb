@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_filter :require_admin, :only => [:remove_event]
-  
+
   def index
     @events ||= Event.paginate(:page => params[:page], :per_page => 20, :include => [:sensor, :iphdr, {:sig => :sig_class }, :comments], :order => 'timestamp DESC')
     respond_to do |format|
@@ -20,7 +20,11 @@ class EventsController < ApplicationController
 
   def whois
     begin
-      whois = Whois::Whois.new("#{params[:whois_host].to_s}").search_whois
+      unless params[:whois_host].to_s.match(/b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/)
+        whois = Whois::Whois.new("#{params[:whois_host].to_s}").search_whois
+      else
+        whois = '?'
+      end
       if whois
         @output = whois
       else
