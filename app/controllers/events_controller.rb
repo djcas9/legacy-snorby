@@ -20,25 +20,21 @@ class EventsController < ApplicationController
 
   def whois
     begin
-      unless params[:whois_host].to_s.match(/b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/)
-        whois = Whois::Whois.new("#{params[:whois_host].to_s}").search_whois
-      else
-        whois = '?'
-      end
+      whois = Whois::Whois.new("#{params[:whois_host].to_s}").search_whois
       if whois
         @output = whois
       else
-        @output = "An error has occurred while resolving address <b>#{params[:whois_host].to_s}</b>"
+        @output = "An error has occurred while resolving address"
       end
       render :layout => false
     rescue Errno::ENETUNREACH
-      @output = "Network is unreachable <b>#{params[:whois_host].to_s}</b>"
+      @output = "Network is unreachable"
       render :layout => false
     rescue Whois::WhoisException
-      @output = "No server found for this IPv4 <b>#{params[:whois_host].to_s}</b>"
+      @output = "No server found for this IPv4"
       render :layout => false
     rescue Resolv::ResolvError
-      @output = "Unable to resolve address <b>#{params[:whois_host].to_s}</b>"
+      @output = "Unable to resolve address</b>"
       render :layout => false
     end
   end
