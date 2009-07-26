@@ -10,6 +10,6 @@
 			<span id='comment_user_name'><%= comment.user.login %></span>
 			<span id='comment_timestamp'><%= time_ago_in_words(Time.parse(comment.comment_time).getutc.in_time_zone('UTC')) %> ago</span>
 		</div>
-		<div id='comment_body'><%= simple_format(comment.body) %></div><br />
+		<div id='comment_body'><%=h comment.body %></div><br />
 	</div>
 <%- end -%>
