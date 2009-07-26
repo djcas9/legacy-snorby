@@ -1,4 +1,4 @@
-= Snorby - All about simplicity.
+= Snorby Version: 1.0.0 - All about simplicity.
 
 Snorby is a new and modern Snort IDS front-end. The basic fundamental concepts behind snorby are simplicity and power. The project goal is to create a free, open source and highly competitive application for network monitoring for both private and enterprise use.
 
@@ -33,20 +33,25 @@ Example Email Config: (spacing is important in .yml files and it will error if c
    :authentication: plain
    :user_name: user
    :password: pass
-	
-<b>Install Snorby Dependencies:</b>
 
- sudo rake gems:install
+for a relay setup simply:
 
-Then setup the snorby database and cron jobs:
+ production:
+   :address: smtp.gmail.com
+	 :domain: localhost
+
+If this is your first time installing Snorby, setup the snorby database and cron jobs with:
 
  rake snorby:setup RAILS_ENV=production
 
-If you run into an issue while running the above command verify that the ruby mysql files are install and that prawn is installed.
-You may also having spacing problems in the YAML database and email configurations.
+Else:
 
- sudo gem install mysql && sudo gem install prawn
-	
+ rake snorby:reset RAILS_ENV=production   # ALL DATA WILL BE LOST
+
+<b>Setup Snorby With Apache:</b>	
+
+http://wiki.github.com/mephux/Snorby/snorby-recipe-with-barnyard2-unified2-and-apache-jjc
+
 <b>Start Snorby:</b>
 
  ruby script/server -e production -b 127.0.0.1 -p 80 -d
@@ -69,11 +74,9 @@ PLEASE MAKE SURE YOU CHANGE THIS!
 
 == TODO
 
-* Delete events
-* Event Comments
 * Link for dashboard graphs
 * Session view for events
-* Tune/Make Important for all events
+* Tune events
 
 == Helpful links
 

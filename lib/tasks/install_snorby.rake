@@ -1,18 +1,24 @@
 namespace :snorby do
+  
   desc "Snorby DB/Cron Setup"
   task :setup => :environment do
-    puts "Setting Up Snorby Database."
+    puts "[~] Setting Up Snorby Database."
+    Rake::Task['db:create'].invoke
     Rake::Task['db:migrate'].invoke
-    puts "Installing Snorby Cron Jobs."
+    puts "[~] Installing Snorby Cron Jobs."
     system('whenever --update-crontab snorby --set environment=production')
+    puts '[!] Now import the snort schema: "mysql -u root -p database_name_here < db/create_mysql"'
+    puts '[!] Now build the Snorby cache: "rake snorby:cache"'
   end
-
-  desc "Remove Snorby"
-  task :remove => :environment do
-    puts "Removing Snorby. =["
-    Rake::Task['db:migrate'].invoke
-    puts "Installing Snorby Cron Jobs."
+  
+  desc "Snorby Reset - All Data Will Be Lost!"
+  task :reset => :environment do
+    puts "[~] Updating The Snorby Database."
+    Rake::Task['db:migrate:reset'].invoke
+    puts "[~] Installing Snorby Cron Jobs."
     system('whenever --update-crontab snorby --set environment=production')
+    puts '[!] Now import the snort schema: "mysql -u root -p database_name_here < db/create_mysql"'
+    puts '[!] Now build the Snorby cache: "rake snorby:cache"'
   end
 
   desc "Add/Update Snorby Cronjobs"
@@ -31,4 +37,5 @@ namespace :snorby do
       CalcCache.build_cache
     end
   end
+  
 end
