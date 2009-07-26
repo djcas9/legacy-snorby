@@ -3,6 +3,7 @@ class PagesController < ApplicationController
 
   def update_cache
     if session[:refresh_time].nil? || session[:refresh_time] < Time.now
+      Rails.cache.delete('SnorbyCalcCache')
       spawn do
         CalcCache.update_cache
       end
@@ -11,6 +12,7 @@ class PagesController < ApplicationController
   end
 
   def force_update_cache
+    Rails.cache.delete('SnorbyCalcCache')
     spawn do
       CalcCache.update_cache
     end
@@ -21,7 +23,7 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @calc ||= CalcCache.find(1)
+    @calc = Rails.cache.fetch('SnorbyCalcCache') { CalcCache.find(1) }
     @g_event_severity ||= open_flash_chart_object(400,200, pie_event_severity_graph_url(:high => @calc.high_severity, :medium => @calc.medium_severity, :low => @calc.low_severity))
     @g_category_information ||= open_flash_chart_object(400,200, bar_event_severity_graph_url(:high => @calc.high_severity, :medium => @calc.medium_severity, :low => @calc.low_severity, :all => @calc.total_event_count))
     @high ||= @calc.high_severity
