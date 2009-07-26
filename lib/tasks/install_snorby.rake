@@ -8,7 +8,7 @@ namespace :snorby do
     puts "[~] Installing Snorby Cron Jobs."
     system('whenever --update-crontab snorby --set environment=production')
     puts '[!] Now import the snort schema: "mysql -u root -p database_name_here < db/create_mysql"'
-    puts '[!] Now build the Snorby cache: "rake snorby:cache"'
+    puts '[!] Now build the Snorby cache: "rake snorby:cache RAILS_ENV=production"'
   end
   
   desc "Snorby Reset - All Data Will Be Lost!"
@@ -18,7 +18,7 @@ namespace :snorby do
     puts "[~] Installing Snorby Cron Jobs."
     system('whenever --update-crontab snorby --set environment=production')
     puts '[!] Now import the snort schema: "mysql -u root -p database_name_here < db/create_mysql"'
-    puts '[!] Now build the Snorby cache: "rake snorby:cache"'
+    puts '[!] Now build the Snorby cache: "rake snorby:cache RAILS_ENV=production"'
   end
 
   desc "Add/Update Snorby Cronjobs"
