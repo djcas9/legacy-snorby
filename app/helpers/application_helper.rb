@@ -54,7 +54,7 @@ module ApplicationHelper
 
   def show_comment_form(div, div2)
     update_page do |page|
-      page[div].visual_effect :appear
+      page[div].show
       page[div2].hide
     end
   end

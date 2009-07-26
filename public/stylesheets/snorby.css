@@ -17,6 +17,13 @@ div.dialog {
 	margin: 10px auto;
 }
 
+#loading_comment{
+	float: left;
+	margin-top: -25px;
+	display: inline;
+	margin-left: 115px;	
+}
+
 #loading_livelook{
 	display: inline;
 	position: absolute;
