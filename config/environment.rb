@@ -20,7 +20,6 @@ Rails::Initializer.run do |config|
   config.gem "mattetti-googlecharts", :lib => "gchart", :source => "http://gems.github.com/"
   config.gem "ambethia-smtp-tls", :lib => "smtp-tls", :source => "http://gems.github.com/"
   config.gem "composite_primary_keys"
-  config.gem "sanitize" ,:source => 'http://gems.github.com'
   
 end
 

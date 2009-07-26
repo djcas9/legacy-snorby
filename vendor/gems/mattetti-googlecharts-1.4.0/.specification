@@ -1,0 +1,78 @@
+--- !ruby/object:Gem::Specification 
+name: mattetti-googlecharts
+version: !ruby/object:Gem::Version 
+  version: 1.4.0
+platform: ruby
+authors: 
+- Matt Aimonetti
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2008-05-07 00:00:00 -05:00
+default_executable: 
+dependencies: []
+
+description: Sexy Charts using Google API & Ruby
+email: mattaimonetti@gmail.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- History.txt
+- License.txt
+- Manifest.txt
+- README.txt
+- website/index.txt
+files: 
+- History.txt
+- License.txt
+- Manifest.txt
+- README.txt
+- Rakefile
+- config/hoe.rb
+- config/requirements.rb
+- lib/gchart.rb
+- lib/gchart/aliases.rb
+- lib/gchart/theme.rb
+- lib/themes.yml
+- lib/gchart/version.rb
+- setup.rb
+- spec/gchart_spec.rb
+- spec/spec.opts
+- spec/spec_helper.rb
+- tasks/environment.rake
+- tasks/rspec.rake
+- website/index.txt
+has_rdoc: true
+homepage: http://googlecharts.rubyforge.org
+licenses: []
+
+post_install_message: 
+rdoc_options: 
+- --main
+- README.txt
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: []
+
+rubyforge_project: googlecharts
+rubygems_version: 1.3.4
+signing_key: 
+specification_version: 2
+summary: Sexy Charts using Google API & Ruby
+test_files: []
+
