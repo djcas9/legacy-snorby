@@ -20,21 +20,21 @@ class EventsController < ApplicationController
 
   def whois
     begin
-      whois = Whois::Whois.new("#{params[:whois_host]}").search_whois
+      whois = Whois::Whois.new("#{params[:whois_host].to_s}").search_whois
       if whois
         @output = whois
       else
-        @output = "An error has occurred while resolving address <b>#{params[:whois_host]}</b>"
+        @output = "An error has occurred while resolving address <b>#{params[:whois_host].to_s}</b>"
       end
       render :layout => false
     rescue Errno::ENETUNREACH
-      @output = "Network is unreachable <b>#{params[:whois_host]}</b>"
+      @output = "Network is unreachable <b>#{params[:whois_host].to_s}</b>"
       render :layout => false
     rescue Whois::WhoisException
-      @output = "No server found for this IPv4 <b>#{params[:whois_host]}</b>"
+      @output = "No server found for this IPv4 <b>#{params[:whois_host].to_s}</b>"
       render :layout => false
     rescue Resolv::ResolvError
-      @output = "Unable to resolve address <b>#{params[:whois_host]}</b>"
+      @output = "Unable to resolve address <b>#{params[:whois_host].to_s}</b>"
       render :layout => false
     end
   end
