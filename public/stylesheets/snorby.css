@@ -1026,8 +1026,19 @@ pre {
 	margin-bottom: 30px;
 	text-align: center;
 	overflow: hidden;
-	width: 100%;
-	margin-left: -10px;
+	width: 850px;
+	margin-left: -13px;
+}
+
+.graph_1{
+	float: left;
+	margin-right: 12px;
+	margin-left: -3px;
+}
+.graph_2{
+	float: right;
+	margin-right: 22px;
+	margin-left: 15px;
 }
 
 #data_count_holder{
@@ -1108,15 +1119,17 @@ pre {
 	margin-bottom: 25px;
 	padding-right: 20px;
 	padding-left: 20px;
+	width: 820px;
+	margin-left: -20px;
 }
 
 .grid_1{
-	width: 380px;
+	width: 400px;
 	float: left;
 }
 
 .grid_2{
-	width: 380px;
+	width: 400px;
 	float: right;
 }
 

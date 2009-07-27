@@ -1,6 +1,6 @@
 class SearchesController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:auto_complete_for_search_keywords, :auto_complete_for_search_ip_src, :auto_complete_for_search_ip_dst]
-    
+
   def new
     @search = Search.new
   end
@@ -17,11 +17,10 @@ class SearchesController < ApplicationController
   def remove_all_results
     @search = Search.find(params[:id])
     spawn do
-      @search.events.each do |event|
-        event.destroy
-      end
+      @search.events.delete_all
+      CalcCache.update_cache
     end
-    flash[:notice] = "Successfully removed matching results."
+    flash[:notice] = "Removing all matching results. This could take time depending on the result count."
     redirect_to new_search_path
   end
 

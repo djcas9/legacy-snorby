@@ -29,7 +29,7 @@
 				<td><%= @sensors[s][:last_cid] %></td>
 				<td><%= pluralize(@sensors[s][:event_total], 'Event') %></td>
 				<td>
-					<span id='load_link'><%= link_to_remote "#{image_tag('other/slash.png', :size=>'12x12')}", :url => { :action => 'delete_events_for_sensor', :sensor => @sensors[s][:sensor_id] }, :loading => "$('loading_sensor').show()", :complete => "$('loading_sensor').hide()" %>
+					<span id='load_link'><%= link_to "#{image_tag('other/slash.png', :size=>'12x12')}", :action => 'delete_events_for_sensor', :sensor => @sensors[s][:sensor_id], :id => 1 %>
 						</span>
 				</td>
 			</tr>

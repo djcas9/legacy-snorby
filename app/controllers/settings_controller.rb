@@ -59,12 +59,10 @@ class SettingsController < ApplicationController
   def delete_events_for_sensor
     @sensor = Sensor.find(params[:sensor])
     spawn do
-      @sensor.events.each do |event|
-        event.destroy
-      end
+      @sensor.events.delete_all
       CalcCache.update_cache
     end
-    flash[:notice] = "Sensor events successfully removed!"
+    flash[:notice] = "All events for sensor are being removed. This could take time depending on the event count."
     redirect_to settings_path
   end
 
@@ -72,12 +70,10 @@ class SettingsController < ApplicationController
     unless params[:sensor_ids].nil?
       @sensors = Sensor.find(params[:sensor_ids])
       spawn do
-        @sensors.each do |sensor|
-          sensor.destroy
-        end
+        Sensor.destroy(@sensors)
         CalcCache.update_cache
       end
-      flash[:notice] = "Sensor(s) successfully removed! - Please Restart Snort!"
+      flash[:notice] = "Sensor(s) successfully removed! -  This could take time depending on the event count. - Please Restart Snort!"
       redirect_to settings_path
     else
       flash[:error] = "No Sensor was selected."
