@@ -1,4 +1,4 @@
-= Snorby Version: 1.0.0 - All about simplicity.
+= Snorby - All about simplicity.
 
 Snorby is a new and modern Snort IDS front-end. The basic fundamental concepts behind snorby are simplicity and power. The project goal is to create a free, open source and highly competitive application for network monitoring for both private and enterprise use. Snorby is currently stable and ready for production environments.
 
