@@ -17,7 +17,9 @@ class SearchesController < ApplicationController
   def remove_all_results
     @search = Search.find(params[:id])
     spawn do
-      @search.events.delete_all
+      @search.events.each do |event|
+        event.destroy
+      end
       CalcCache.update_cache
     end
     flash[:notice] = "Removing all matching results. This could take time depending on the result count."
