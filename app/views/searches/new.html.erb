@@ -17,7 +17,7 @@
 			</tr>
 			<tr>
 				<td>
-					<%= text_field_with_auto_complete :search, :keywords %>
+					<%= text_field_with_auto_complete :search, :keywords, :class => 'search' %>
 				</td>
 				<td>
 					<%= f.calendar_date_select :start_time, :popup => :force, :time => :true %>
