@@ -56,6 +56,7 @@ class ReportsController < ApplicationController
       @reports.each do |report|
         report.destroy
       end
+      flash[:notice] = "Report(s) Successfully Removed."
       redirect_to reports_path
     else
       flash[:error] = "No Report was selected."
