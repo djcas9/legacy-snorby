@@ -29,7 +29,7 @@ class SearchesController < ApplicationController
   def show
     @search = Search.find(params[:id])
     @events = @search.page_events(params[:page])
-    flash[:notice] = "Found #{@events.total_pages.to_i * 20} matching results."
+    flash[:notice] = "Found about #{@events.total_pages.to_i * 20} matching results."
     respond_to do |format|
       format.html
       format.pdf
