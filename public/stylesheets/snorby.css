@@ -472,7 +472,7 @@ h7{
 	text-decoration: none;
 	color: #313131;
 	font: normal normal normal 1.1em 'Trebuchet MS',"Lucida Grande",Helvetica,sans-serif;
-	text-indent: -10px;
+	text-indent: -5px;
 }
 
 .flash_icon{
@@ -480,12 +480,12 @@ h7{
 }
 
 #flash_notice {
-	border: 1px solid rgba(124,250,124,0.7);
+	border: 1px solid #a4f8a3;
 	background-color: rgba(161,253,170,0.6);
 }
 
 #flash_error {
-	border: 1px solid rgba(204,102,102,0.7);
+	border: 1px solid #ff9ba4;
 	background-color: rgba(250,181,189,0.6);
 }
 
