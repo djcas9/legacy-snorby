@@ -466,23 +466,26 @@ h7{
 #flash_notice, #flash_error {
 	padding: 10px 8px 5px;
 	min-height: 25px;
-	font-size: small;
 	margin-left: 11px;
 	margin-right: 11px;
 	margin-top: 10px;
-	font-weight: normal;
-	font-style: normal;
 	text-decoration: none;
-	font-variant: normal;
-	color: #454545;
-	font-family: 'Trebuchet MS',"Lucida Grande",Helvetica,sans-serif;
+	color: #313131;
+	font: normal normal normal 1.1em 'Trebuchet MS',"Lucida Grande",Helvetica,sans-serif;
+	text-indent: -10px;
+}
+
+.flash_icon{
+	margin-bottom: -1px;
 }
 
 #flash_notice {
+	border: 1px solid rgba(124,250,124,0.7);
 	background-color: rgba(161,253,170,0.6);
 }
 
 #flash_error {
+	border: 1px solid rgba(204,102,102,0.7);
 	background-color: rgba(250,181,189,0.6);
 }
 
