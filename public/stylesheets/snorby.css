@@ -1246,6 +1246,12 @@ pre {
 
 /* @group Search */
 
+.search_event_count{
+	font-size: small;
+	color: #bbb;
+	font-style: italic;
+}
+
 input.search{
 	background: #edf2ef url(../images/other/leaf.png) no-repeat 4px 4px;
 	padding-left: 25px;
