@@ -464,16 +464,17 @@ h7{
 }
 
 #flash_notice, #flash_error {
-	text-align: center;
-	color: #3a3a3a;
-	position: fixed;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	text-indent: -10px;
-	z-index: 999;
-	width: 100%;
-	bottom: 0;
-	font-size: 1.3em;
+	padding: 10px 8px 5px;
+	min-height: 25px;
+	font-size: small;
+	margin-left: 11px;
+	margin-right: 11px;
+	margin-top: 10px;
+	font-weight: normal;
+	font-style: normal;
+	text-decoration: none;
+	font-variant: normal;
+	color: #454545;
 	font-family: 'Trebuchet MS',"Lucida Grande",Helvetica,sans-serif;
 }
 

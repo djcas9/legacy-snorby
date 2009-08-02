@@ -12,20 +12,20 @@
     <%= yield(:head) %>
   </head>
 
-	<%- flash.each do |name, msg| -%>
-		<div id="flash_<%= name %>">
-			<%- if name.to_s =~ /error/ -%>
-				<center><%= image_tag('other/slash.png') %> <%= msg %></center>
-			<%- else -%>
-				<center><%= image_tag('other/tick-circle.png') %> <%= msg %></center>
-			<%- end -%>
-		</div>
-  <%- end -%>
-
   <body>
 		<div id="wrapper">
 			
 			<%= render :partial => 'layouts/header' %>
+
+			<%- flash.each do |name, msg| -%>
+				<div id="flash_<%= name %>">
+					<%- if name.to_s =~ /error/ -%>
+						<center><%= image_tag('other/slash.png') %> <%= msg %></center>
+					<%- else -%>
+						<center><%= image_tag('other/tick-circle.png') %> <%= msg %></center>
+					<%- end -%>
+				</div>
+		  <%- end -%>
 
 			<%- if yield(:outside_content) -%>
 				<div id="filter_content">
