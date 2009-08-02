@@ -9,6 +9,7 @@ class CreateSearches < ActiveRecord::Migration
       t.integer :sport
       t.integer :dport
       t.integer :sig_priority
+      t.integer :result_count
       t.datetime :start_time
       t.datetime :end_time
       t.timestamps

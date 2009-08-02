@@ -1,6 +1,6 @@
 <% content_for("page_scripts") do %>
   Event.observe(window, 'load',
-    function() { $('loading').hide(); $('search_keywords').focus(); $('search_keywords').select() }
+    function() { $('loading').hide(); $('flash_notice').remove(); $('search_keywords').focus(); $('search_keywords').select() }
   );
 <% end %>
 

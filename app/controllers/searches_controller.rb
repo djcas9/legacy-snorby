@@ -7,6 +7,7 @@ class SearchesController < ApplicationController
 
   def create
     @search = Search.new(params[:search])
+    @search.result_count = @search.events.size
     if @search.save
       redirect_to @search
     else
@@ -29,6 +30,7 @@ class SearchesController < ApplicationController
   def show
     @search = Search.find(params[:id])
     @events = @search.page_events(params[:page])
+    flash[:notice] = "Found #{@search.result_count} matching results."
     respond_to do |format|
       format.html
       format.pdf
