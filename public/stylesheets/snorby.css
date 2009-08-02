@@ -499,21 +499,63 @@ h7{
 
 #errorExplanation {
   width: 400px;
-  border: 2px solid #CF0000;
+  border: 1px solid #d8d4d7;
   padding: 0px;
   padding-bottom: 12px;
   margin-bottom: 20px;
   background-color: #f0f0f0;
 }
 
+.error_message{
+	color: #f8777e;
+	margin-left: 5px;
+	text-transform: capitalize;
+	font-size: small;
+	margin-top: -2px;
+}
+
+.new_user_error_message{
+}
+
+.pass_message{
+	color: #8eec8b;
+	margin-left: 10px;
+	text-transform: capitalize;
+	font-size: small;
+}
+
+.formError{
+	color: #f8777e;
+	text-transform: capitalize;
+	font-size: medium;
+	margin-bottom: 10px;
+}
+
+.on_error_icon{
+	margin-bottom: -3px;
+}
+
+.request_form_errors{
+	position: relative;
+}
+
+.login_error{
+	float: right;
+	margin-right: 30px;
+}
+
 #errorExplanation h2 {
   text-align: left;
-  font-weight: bold;
   padding: 5px 5px 5px 15px;
   font-size: 12px;
   margin: 0;
-  background-color: #c00;
-  color: #fff;
+  background-color: #ddd;
+  color: #3e5760;
+	border-style: none;
+	font-weight: normal;
+	font-style: normal;
+	text-decoration: none;
+	font-variant: normal;
 }
 
 #errorExplanation p {
@@ -529,6 +571,7 @@ h7{
 #errorExplanation ul li {
   font-size: 12px;
   list-style: disc;
+	color: #ff4e59;
 }
 
 /* @end */
@@ -1187,9 +1230,7 @@ pre {
 
 #login{
 	width: 600px;
-	margin-bottom: auto;
-	margin-left: auto;
-	margin-right: auto;
+	margin: auto;
 }
 
 #login_header{
@@ -1211,6 +1252,7 @@ pre {
 #login_data{
 	margin-top: -100px;
 	margin-left: 60px;
+	width: 700px;
 }
 
 /* @end */

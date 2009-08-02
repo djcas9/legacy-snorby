@@ -4,20 +4,25 @@
   );
 <% end %>
 
+<% error_message_on :user_session, :base %>
+
 <div id="login">
 	
 	<div id="login_header"></div>
 	<div id="login_data">
-		<% form_for @user_session, :url => user_session_path do |f| %>
-		  <%= f.error_messages %>
+		<% form_for @user_session, :url => user_session_path, :html => { :id => 'login_form' } do |f| %>
 		  <%= f.label :login %><br />
 		  <%= f.text_field :login %><br />
 		  <br />
 		  <%= f.label :password %><br />
 		  <%= f.password_field :password %><br />
 		  <br />
-		  <%= f.submit "Login »" %> <%= f.check_box :remember_me %> <%= f.label :remember_me %>
+			<%= f.label :remember_me %> <%= f.check_box :remember_me %><br />
+			<br />
+		  <%= f.submit "Login »" %> <span id='user_session_base'></span>
 		<% end %>
 	</div>
 	<div id="login_footer"></div>
 </div>
+
+<%= observe_form "login_form", :url => user_session_url %>
