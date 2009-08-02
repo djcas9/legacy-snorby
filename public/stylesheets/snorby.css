@@ -317,6 +317,7 @@ body {
   background-color: #ededed;
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
+	width: 100%;
 }
 
 /* @end */
@@ -463,30 +464,26 @@ h7{
 }
 
 #flash_notice, #flash_error {
-  	padding: 10px 8px 5px;
-  	min-height: 25px;
-	font-size: small;
-	margin-left: 11px;
-	margin-right: 11px;
-	margin-top: 10px;
-	font-weight: normal;
-	font-style: normal;
-	text-decoration: none;
-	font-variant: normal;
-	color: #454545;
+	text-align: center;
+	color: #3a3a3a;
+	position: fixed;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-indent: -10px;
+	z-index: 999;
+	width: 100%;
+	bottom: 0;
+	font-size: 1.3em;
+	font-family: 'Trebuchet MS',"Lucida Grande",Helvetica,sans-serif;
 }
 
 #flash_notice {
-  background-color: #CFC;
-  border: 1px solid #7cfa7c;
+	background-color: rgba(161,253,170,0.6);
 }
 
 #flash_error {
-  background-color: #FCC;
-  border: solid 1px #C66;
+	background-color: rgba(250,181,189,0.6);
 }
-
-
 
 /* @end */
 
@@ -1344,7 +1341,7 @@ input.search{
 }
 
 .event_options{
-	border: 1px solid #fdf758;
+	border: 1px solid rgba(253,247,88,0.49);
 	color: #373737;
 	position: relative;
 	float: right;

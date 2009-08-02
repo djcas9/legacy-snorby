@@ -1,7 +1,6 @@
 class Report < ActiveRecord::Base
   has_many :events, :select => 'DISTINCT signature.sig_name'
   
-  
   def events
     @events ||= find_events
   end

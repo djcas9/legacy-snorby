@@ -105,32 +105,23 @@ class Pdf_for_email
       end
 
       unless events.blank?
-        look_for_nil_sessions = @_line_data
-        if look_for_nil_sessions.flatten!.uniq == [1]
-          move_down(15)
-          text "This bar graph describes events separated by their severity levels.", :align => :center, :size => 9
-          move_down(10)
-          image open(Gchart.bar(:axis_labels => [["Low (#{@l.size})", "Medium (#{@m.size})", "High (#{@h.size})"], [1, ((@l.size+@m.size+@h.size)/2), (@l.size+@m.size+@h.size)]], :axis_with_labels => ['x', 'y'], :labels => ["Low (#{@l.size})", "Medium (#{@m.size})", "High (#{@h.size})"], :data => [@l.size, @m.size, @h.size], :bar_colors => '00ff28,ffac00,ff3715', :bar_width_and_spacing => {:spacing => 50, :group_spacing => 20})), :position => :center
-          move_down(25)
+        move_down(15)
+        text "Event Severity vs Sessions", :size => 15, :style => :bold, :align => :center
+        text "This line graph describes events separated by their severity levels. Reoccurring events should be filtered out using the snorby front-end, and abnormal events or unexpected spikes in the number of events should be researched further.", :size => 9
+        move_down(15)
+        if report.from_time.blank? || report.to_time.blank?
+          image open(Gchart.line(:axis_labels => ["#{events.first.timestamp.strftime('%D - %I:%M %p')}|#{Time.now.strftime('%D - %I:%M %p')}"], :axis_with_labels => ['x','y'], :line_color => @_line_color, :data => @_line_data, :size => '500x230')), :position => :center
         else
-          move_down(15)
-          text "Event Severity vs Sessions", :size => 15, :style => :bold, :align => :center
-          text "This line graph describes events separated by their severity levels. Reoccurring events should be filtered out using the snorby front-end, and abnormal events or unexpected spikes in the number of events should be researched further.", :size => 9
-          move_down(10)
-          image open(Gchart.line(:axis_with_labels => ['x','y','r'], :line_color => @_line_color, :data => @_line_data, :size => '500x230')), :position => :center
-          move_down(5)
+          image open(Gchart.line(:axis_labels => ["#{Time.parse(report.from_time).strftime('%D - %I:%M %p')}|#{Time.parse(report.to_time).strftime('%D - %I:%M %p')}"], :axis_with_labels => ['x','y'], :line_color => @_line_color, :data => @_line_data, :size => '500x230')), :position => :center
         end
+        move_down(5)
       end
       unless events.blank?
         move_down(10)
         text "Event Severity vs Event Count", :size => 15, :style => :bold, :align => :center
         text "Outlined by this pie chart, it displays a comparison of the severity level in an executive format of events received. Typically, a large number of high-severity events is a cause for concern and warrants an investigation.", :size => 9
-        move_down(10)
-        if @l.empty? && @m.empty? && @h.empty?
-          image open(Gchart.pie(:line_color => ["00ff28", "ffac00", "ff3715"], :labels => ["Low (#{@l.size})", "Medium (#{@m.size})", "High (#{@h.size})"], :data => [@l.size, @m.size, @h.size], :size => '440x200')), :position => :center    
-        else
-          image open(Gchart.venn(:line_color => ["00ff28", "ffac00", "ff3715"], :labels => ["Low (#{@l.size})", "Medium (#{@m.size})", "High (#{@h.size})"], :data => [@l.size, @m.size, @h.size], :size => '440x200')), :position => :center
-        end
+        move_down(20)
+        image open(Gchart.pie(:line_color => ["00ff28", "ffac00", "ff3715"], :labels => ["Low (#{@l.size})", "Medium (#{@m.size})", "High (#{@h.size})"], :data => [@l.size, @m.size, @h.size], :size => '440x200')), :position => :center
       end
       move_down(30)
 
@@ -505,32 +496,23 @@ class Pdf_for_email
       end
 
       unless search.events.blank?
-        look_for_nil_sessions = @_line_data
-        if look_for_nil_sessions.flatten!.uniq == [1]
-          move_down(15)
-          text "This bar graph describes events separated by their severity levels.", :align => :center, :size => 9
-          move_down(10)
-          image open(Gchart.bar(:axis_labels => [["Low (#{@l.size})", "Medium (#{@m.size})", "High (#{@h.size})"], [1, ((@l.size+@m.size+@h.size)/2), (@l.size+@m.size+@h.size)]], :axis_with_labels => ['x', 'y'], :labels => ["Low (#{@l.size})", "Medium (#{@m.size})", "High (#{@h.size})"], :data => [@l.size, @m.size, @h.size], :bar_colors => '00ff28,ffac00,ff3715', :bar_width_and_spacing => {:spacing => 50, :group_spacing => 20})), :position => :center
-          move_down(25)
+        move_down(15)
+        text "Event Severity vs Sessions", :size => 15, :style => :bold, :align => :center
+        text "This line graph describes events separated by their severity levels. Reoccurring events should be filtered out using the snorby front-end, and abnormal events or unexpected spikes in the number of events should be researched further.", :size => 9
+        move_down(15)
+        if search.start_time.blank? || search.end_time.blank?
+          image open(Gchart.line(:axis_labels => ["#{Event.first.timestamp.strftime('%D - %I:%M %p')}|#{Time.now.strftime('%D - %I:%M %p')}"], :axis_with_labels => ['x','y'], :line_color => @_line_color, :data => @_line_data, :size => '500x230')), :position => :center
         else
-          move_down(15)
-          text "Event Severity vs Sessions", :size => 15, :style => :bold, :align => :center
-          text "This line graph describes events separated by their severity levels. Reoccurring events should be filtered out using the snorby front-end, and abnormal events or unexpected spikes in the number of events should be researched further.", :size => 9
-          move_down(10)
-          image open(Gchart.line(:axis_with_labels => ['x','y','r'], :line_color => @_line_color, :data => @_line_data, :size => '500x230')), :position => :center
-          move_down(5)
+          image open(Gchart.line(:axis_labels => ["#{Time.parse(search.start_time).strftime('%D - %I:%M %p')}|#{Time.parse(search.end_time).strftime('%D - %I:%M %p')}"], :axis_with_labels => ['x','y'], :line_color => @_line_color, :data => @_line_data, :size => '500x230')), :position => :center
         end
+        move_down(5)
       end
       unless search.events.blank?
         move_down(10)
         text "Event Severity vs Event Count", :size => 15, :style => :bold, :align => :center
         text "Outlined by this pie chart, it displays a comparison of the severity level in an executive format of events received. Typically, a large number of high-severity events is a cause for concern and warrants an investigation.", :size => 9
-        move_down(10)
-        if @l.empty? && @m.empty? && @h.empty?
-          image open(Gchart.pie(:line_color => ["00ff28", "ffac00", "ff3715"], :labels => ["Low (#{@l.size})", "Medium (#{@m.size})", "High (#{@h.size})"], :data => [@l.size, @m.size, @h.size], :size => '440x200')), :position => :center    
-        else
-          image open(Gchart.venn(:line_color => ["00ff28", "ffac00", "ff3715"], :labels => ["Low (#{@l.size})", "Medium (#{@m.size})", "High (#{@h.size})"], :data => [@l.size, @m.size, @h.size], :size => '440x200')), :position => :center
-        end
+        move_down(20)
+        image open(Gchart.pie(:line_color => ["00ff28", "ffac00", "ff3715"], :labels => ["Low (#{@l.size})", "Medium (#{@m.size})", "High (#{@h.size})"], :data => [@l.size, @m.size, @h.size], :size => '440x200')), :position => :center
       end
       move_down(30)
 
