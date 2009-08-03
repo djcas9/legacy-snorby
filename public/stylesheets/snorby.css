@@ -10,7 +10,9 @@
 	color: #777;
 }
 
-
+.login_field{
+	width: 65%;
+}
 
 div.dialog {
 	width: 500px;
@@ -472,7 +474,6 @@ h7{
 	text-decoration: none;
 	color: #313131;
 	font: normal normal normal 1.1em 'Trebuchet MS',"Lucida Grande",Helvetica,sans-serif;
-	text-indent: -5px;
 }
 
 .flash_icon{
@@ -480,13 +481,13 @@ h7{
 }
 
 #flash_notice {
-	border: 1px solid #a4f8a3;
-	background-color: rgba(161,253,170,0.6);
+	border: 1px solid #58fa7e;
+	background-color: #b8fcbd;
 }
 
 #flash_error {
-	border: 1px solid #ff9ba4;
-	background-color: rgba(250,181,189,0.6);
+	border: 1px solid #ff6a82;
+	background-color: #fab5bd;
 }
 
 /* @end */

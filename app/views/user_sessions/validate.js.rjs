@@ -6,5 +6,5 @@ end
 
 page.select('.error_message').each(&:remove)
 @user_session.errors.each do |name, msg|
-  page.insert_html :after, "user_session_#{name}", "<span class='error_message'>#{image_tag('other/slash.png', :class => 'on_error_icon')} #{msg}</span>"
+  page.insert_html :after, "user_session_#{name}", "<span class='error_message'>#{image_tag('other/slash.png', :class => 'on_error_icon')}</span>"
 end
