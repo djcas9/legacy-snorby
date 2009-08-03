@@ -833,6 +833,8 @@ strong.title{
 
 .event{
 	margin-bottom: 10px;
+	position: relative;
+	hasLayout: true;
 }
 
 #events{
@@ -1403,6 +1405,7 @@ input.search{
 	padding-top: 2px;
 	padding-left: 5px;
 	background: #fefbc8 0 bottom;
+	hasLayout: true;
 }
 
 .event_options img{
