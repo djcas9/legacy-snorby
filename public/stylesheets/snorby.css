@@ -482,12 +482,12 @@ h7{
 
 #flash_notice {
 	border: 1px solid #58fa7e;
-	background-color: #b8fcbd;
+	background-color: #d0fad7;
 }
 
 #flash_error {
 	border: 1px solid #ff6a82;
-	background-color: #fab5bd;
+	background-color: #f7c7ce;
 }
 
 /* @end */
