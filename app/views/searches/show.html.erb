@@ -4,7 +4,11 @@
 	<%= link_to "#{image_tag('export/email.png')}", send_search_path(@search), :rel => 'facebox' %>
 	<%= link_to "#{image_tag('other/slash.png', :size => '14x14')}", { :action => 'remove_all_results', :id => @search }, :title => "Destroy All Search Results" %>
 </div>
+<%- if @events.total_pages <= 2 -%>
+<h1>Search Results <span class='search_event_count'>(<%= pluralize(@search.events.size, 'matching event') %> found)</span></h1>
+<%- else -%>
 <h1>Search Results <span class='search_event_count'>(<%= pluralize((@events.total_pages.to_i * 20).to_i, 'matching event') %> found)</span></h1>
+<%- end -%>
 <br />
 <div id="events" class='events'>
 	<%= render :partial => @events %>
