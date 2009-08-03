@@ -849,6 +849,8 @@ strong.title{
 	background-color: #efefef;
 	border: 1px solid #dcdcdc;
 	padding: 5px;
+	position: relative;
+	overflow: hidden;
 }
 
 #event_holder_body{
