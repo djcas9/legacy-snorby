@@ -44,7 +44,11 @@ If this is your first time installing Snorby, setup the snorby database and cron
 
  rake snorby:setup RAILS_ENV=production
 
-Else:
+Update:
+
+ rake snorby:update RAILS_ENV=production
+
+Reset:
 
  rake snorby:reset RAILS_ENV=production   # ALL DATA WILL BE LOST
 
