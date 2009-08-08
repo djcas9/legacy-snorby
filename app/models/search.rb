@@ -19,7 +19,7 @@ class Search < ActiveRecord::Base
   private
 
   def find_events
-    Event.find(:all, :include => [:sensor, :comments, :iphdr, {:sig => :sig_class }], :order => 'timestamp DESC', :conditions => conditions)
+    Event.find(:all, :include => [:sensor, :comments, :iphdr, {:sig => :sig_class }], :joins => [:sensor, :iphdr, :tcphdr, :udphdr, :sig], :order => 'timestamp DESC', :conditions => conditions)
   end
   
   def find_page_events(page)

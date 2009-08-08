@@ -54,7 +54,7 @@ class ReportMailer < ActionMailer::Base
 
   def event_report(user, event, emails, msg)
     recipients    emails
-    from          "event_report@snorby.org"
+    from          "reports@snorby.org"
     subject       "#{Setting.device_name} - Event Report: #{event.sig.sig_name}"
     sent_on       Time.now
 
@@ -71,7 +71,7 @@ class ReportMailer < ActionMailer::Base
 
   def search_report(user, search, emails, msg)
     recipients    emails
-    from          "security_report@snorby.org"
+    from          "reports@snorby.org"
     subject       "#{Setting.device_name} - Security Report"
     sent_on       Time.now
 

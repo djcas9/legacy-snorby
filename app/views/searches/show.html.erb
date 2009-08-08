@@ -1,7 +1,8 @@
 <div id="search_options" class='round'>
-	<%= link_to "#{image_tag('export/pdf.png')}", { :format => 'pdf' } %>
-	<%= link_to "#{image_tag('export/xml.png')}", { :format => 'xml' } %>
-	<%= link_to "#{image_tag('export/email.png')}", send_search_path(@search), :rel => 'facebox' %>
+	<%= link_to "#{image_tag('other/save.png')}", edit_search_path(@search), :title => 'Save Search' %>
+	<%= link_to "#{image_tag('export/pdf.png')}", { :format => 'pdf' }, :title => 'Export PDF' %>
+	<%= link_to "#{image_tag('export/xml.png')}", { :format => 'xml' }, :title => 'Export XML' %>
+	<%= link_to "#{image_tag('export/email.png')}", send_search_path(@search), :rel => 'facebox', :title => 'Send Email' %>
 	<%= link_to "#{image_tag('other/slash.png', :size => '14x14')}", { :action => 'remove_all_results', :id => @search }, :title => "Destroy All Search Results" %>
 </div>
 <%- if @events.total_pages.to_i <= 2 -%>

@@ -3,7 +3,7 @@ class CalcCache < ActiveRecord::Base
   serialize :category_cache
   
   def self.update_cache
-    get_cache = CalcCache.find(1)
+    get_cache = CalcCache.find(:first)
     data = CalcCache.calculate_data
     cache = get_cache.update_attributes(:last_cache => Time.now,
     :high_severity => data[:high],
@@ -71,7 +71,7 @@ class CalcCache < ActiveRecord::Base
   end
   
   def self.destroy
-    get_cache = CalcCache.find(1)
+    get_cache = CalcCache.find(:first)
     data = CalcCache.calculate_data
     cache = get_cache.update_attributes(:id => 1,
     :last_cache => Time.now,

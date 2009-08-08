@@ -1,6 +1,7 @@
 class CreateSearches < ActiveRecord::Migration
   def self.up
     create_table :searches do |t|
+      t.string :title
       t.string :keywords
       t.integer :sid
       t.integer :sid_class_id
@@ -11,6 +12,7 @@ class CreateSearches < ActiveRecord::Migration
       t.integer :sig_priority
       t.datetime :start_time
       t.datetime :end_time
+      t.boolean :show_search, :null => false
       t.timestamps
     end
   end

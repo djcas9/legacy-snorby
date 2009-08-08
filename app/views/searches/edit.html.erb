@@ -3,12 +3,11 @@
     function() { $('loading').hide() }
   );
 <% end %>
-
-<h1>Search (<%= link_to "View Saved Searches", searches_path %>)</h1>
-<br />
 <% form_for @search do |f| %>
   <%= f.error_messages %>
-
+		<%= f.text_field :title, :class => 'full_form' %>
+		<br /><br />
+		<h2>Search Settings:</h2><br />
 		<table class='form'>
 			<tr>
 				<th><%= f.label :keywords, "Event Keywords" %></th>
@@ -42,9 +41,9 @@
 				<td><%= f.select :sig_priority, [["High Severity", 1], ["Medium Severity", 2], ["Low Severity", 3]], :multiple => false, :include_blank => true %></td>
 			</tr>
 		</table>
-		
+	
 	<br />
-  
+ 
 	<table class='form'>
 		<tr>
 			<th><%= f.label :ip_src, "Source IP Address" %>:</th>
@@ -74,6 +73,5 @@
 	</table>
 
 	<br />
-  <p><%= f.submit "Search »", :onclick => "$('loading').show();" %> <div id='loading' style="display:none;"><%= image_tag('other/loading.gif', :size => '22x22') %></div></p>
+  <p><%= f.submit "Save Search »", :onclick => "$('loading').show();" %> <div id='loading' style="display:none;"><%= image_tag('other/loading.gif', :size => '22x22') %></div></p>
 <% end %>
-

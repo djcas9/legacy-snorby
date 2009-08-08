@@ -1,0 +1,50 @@
+<h1>Saved Searches</h1>
+<br />
+<% if @searches.blank? %>
+<div id="report_table">
+	<div id="report_table_in">
+		<table>
+		  <tr>
+		    <th></th>
+		  </tr>
+				<tr>
+					<td><h4><%= image_tag('cross.png', :size=>'10x10') %> You currently have no saved searches.</h4></td>
+				</tr>
+		</table>
+	</div>
+</div>
+<br />
+<%- else -%>
+<% form_tag delete_multiple_searches_path, {:id => 'form'} do %>
+<div id="report_table">
+	<div id="paginate" align='right'>
+		<%= will_paginate @searches %>
+	</div>
+	<div id="report_table_in">
+		<table class='grid'>
+		  <tr>
+		    <th></th>
+				<th>Search Title</th>
+				<th>PDF</th>
+				<th>XML</th>
+				<th>Email</th>
+		  </tr>
+		<%- for search in @searches -%>
+			<tr class="<%= cycle('odd', 'even') %>" id="reports">
+			  <td><%= check_box_tag "search_ids[]", search.id %></td>
+				<td><%= link_to "#{search.title.capitalize}", search %></td>
+				<td><%= link_to "#{image_tag('export/pdf.png')}", search_path(search, :format => 'pdf') %></td>
+				<td><%= link_to "#{image_tag('export/xml.png')}", search_path(search, :format => 'xml') %></td>
+				<td><%= link_to "#{image_tag('export/email.png')}", search_path(search), :rel => 'facebox' %></td>
+			</tr>
+			<%- end -%>
+		</table>
+	</div>
+</div>
+<div id="select_all" align='right' class='small'>
+	<input id="check_all" name="check_all" type="checkbox" onclick="Form.getInputs('form','checkbox').each(function(box){box.checked = $('check_all').checked})"> Select All</input>
+</div>
+<%= submit_tag "Remove Checked »" %>
+<% end %>
+
+<% end %>

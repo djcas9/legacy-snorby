@@ -25,7 +25,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resources :events, :has_many => :comments, :collection => { :send_event_now => :post }
   map.root :login
-  map.resources :searches, :collection => { :send_search_now => :post }
+  map.resources :searches, :collection => { :send_search_now => :post, :delete_multiple => :post }
   
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'

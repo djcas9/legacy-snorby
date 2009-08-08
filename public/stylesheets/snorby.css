@@ -187,10 +187,14 @@ input#user_website, #email, #user_company {
 	font-size: large;
 }
 
-input#user_login, #user_email, #user_session_login, #user_session_password, #user_password, #user_password_confirmation, #settings_device_name{
+input#user_login, #user_email, #user_session_login, #user_session_password, #user_password, #user_password_confirmation, #settings_device_name, #search_title{
 	border:1px solid #ccc;
     padding:5px;
 	font-size: x-large;
+}
+
+.full_form{
+	width: 800px;
 }
 
 input, select, textarea{
@@ -1327,6 +1331,10 @@ input.search{
 	float: right;
 	margin-top: -10px;
 	margin-right: -20px;
+}
+
+#edit_search_path{
+	width: 800px;
 }
 
 #search_options img{

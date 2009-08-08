@@ -1,16 +1,36 @@
 class SearchesController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:auto_complete_for_search_keywords, :auto_complete_for_search_ip_src, :auto_complete_for_search_ip_dst]
 
+  def index
+    @searches = Search.paginate(:page => params[:page], :per_page => 20, :order => 'created_at DESC', :conditions => 'show_search = true')
+  end
+
   def new
     @search = Search.new
   end
 
   def create
     @search = Search.new(params[:search])
+    @search.title = "Search Query Performed on #{Time.now.strftime('%B %d %Y - %I:%M:%S %p')}"
+    @search.show_search = false
     if @search.save
       redirect_to @search
     else
       render :action => 'new'
+    end
+  end
+  
+  def edit
+    @search = Search.find(params[:id])
+  end
+  
+  def update
+    @search = Search.find(params[:id])
+    @search.show_search = true
+    if @search.update_attributes(params[:search])
+      redirect_to @search
+    else
+      render :action => 'edit'
     end
   end
 
@@ -34,6 +54,26 @@ class SearchesController < ApplicationController
       format.pdf
       format.js
       format.xml { render :xml => @search.events }
+    end
+  end
+  
+  def destroy
+    @search = Search.find(params[:id])
+    @search.destroy
+    redirect_to searches_path
+  end
+
+  def delete_multiple
+    unless params[:search_ids].nil?
+      @search = Search.find(params[:search_ids])
+      @search.each do |search|
+        search.destroy
+      end
+      flash[:notice] = "Searches Successfully Removed."
+      redirect_to searches_path
+    else
+      flash[:error] = "No Search was selected."
+      redirect_to searches_path
     end
   end
 
