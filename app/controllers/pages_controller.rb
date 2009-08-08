@@ -23,7 +23,7 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @calc = Rails.cache.fetch('SnorbyCalcCache') { CalcCache.find(1) }
+    @calc = CalcCache.first
     @g_event_severity ||= open_flash_chart_object(400,200, pie_event_severity_graph_url(:high => @calc.high_severity, :medium => @calc.medium_severity, :low => @calc.low_severity))
     @g_category_information ||= open_flash_chart_object(400,200, bar_event_severity_graph_url(:high => @calc.high_severity, :medium => @calc.medium_severity, :low => @calc.low_severity, :all => @calc.total_event_count))
     @high ||= @calc.high_severity
@@ -43,16 +43,16 @@ class PagesController < ApplicationController
     unless params[:category_id].to_i == 0
       @category = SigClass.find(params[:category_id].to_i)
     end
-    @events = Event.paginate(:page => params[:page], :per_page => 20, :include => :sig, :conditions => ['signature.sig_class_id = ?', params[:category_id].to_i])
+    @events = Event.paginate(:page => params[:page], :per_page => Setting.events_per_page, :include => :sig, :conditions => ['signature.sig_class_id = ?', params[:category_id].to_i])
   end
 
   def events_for_sensor
     @sensor = Sensor.find(params[:sensor])
-    @events = @sensor.events.paginate(:page => params[:page], :per_page => 20)
+    @events = @sensor.events.paginate(:page => params[:page], :per_page => Setting.events_per_page)
   end
 
   def severity
-    @events = Event.events_for_severity(params[:severity]).paginate(:page => params[:page], :per_page => 20)
+    @events = Event.events_for_severity(params[:severity]).paginate(:page => params[:page], :per_page => Setting.events_per_page)
   end
 
 end

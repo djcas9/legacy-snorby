@@ -10,13 +10,9 @@ class CreateCalcCaches < ActiveRecord::Migration
       t.integer :unique_address_count, :null => 0
       t.text :sensor_cache
       t.text :category_cache
-      
-      t.timestamps
     end
   end
   
-  #CalcCache.build_cache
-
   def self.down
     drop_table :calc_caches
   end

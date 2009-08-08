@@ -187,7 +187,7 @@ input#user_website, #email, #user_company {
 	font-size: large;
 }
 
-input#user_login, #user_email, #user_session_login, #user_session_password, #user_password, #user_password_confirmation{
+input#user_login, #user_email, #user_session_login, #user_session_password, #user_password, #user_password_confirmation, #settings_device_name{
 	border:1px solid #ccc;
     padding:5px;
 	font-size: x-large;
@@ -455,6 +455,12 @@ h7{
 	font-size: large;
 	padding-top: 8px;
 	color: #f00;
+}
+
+h8{
+	font-size: small;
+	padding-top: 8px;
+	color: #00a81e;
 }
 
 /* @end */

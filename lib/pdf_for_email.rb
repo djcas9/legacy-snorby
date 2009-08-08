@@ -57,8 +57,9 @@ class Pdf_for_email
 
       move_down(100)
       image snorby_logo, :scale=>0.7, :position => :center
-      text "#{report.rtype.capitalize} Security Report", :size => 25, :style => :bold, :align => :center
-      text "This report was generated: #{Time.now.strftime('%A, %B %d, %Y')}", :size => 12, :style => :bold, :align => :center
+      text "#{report.rtype.capitalize} Security Report", :size => 15, :style => :bold, :align => :center
+      text "This report was generated: #{Time.now.strftime('%A, %B %d, %Y')}", :size => 12, :align => :center
+      text "Device: #{Setting.device_name}", :size => 12, :align => :center
 
       move_down(30)
       start_new_page
@@ -257,7 +258,8 @@ class Pdf_for_email
       move_down(100)
       image snorby_logo, :scale=>0.7, :position => :center
       text "#{event.sig.sig_name}", :size => 15, :style => :bold, :align => :center
-      text "This report was generated: #{Time.now.strftime('%A, %B %d, %Y')}", :size => 12, :style => :bold, :align => :center
+      text "This report was generated: #{Time.now.strftime('%A, %B %d, %Y')}", :size => 12, :align => :center
+      text "Device: #{Setting.device_name}", :size => 12, :align => :center
 
       move_down(30)
       start_new_page
@@ -448,8 +450,9 @@ class Pdf_for_email
 
       move_down(100)
       image snorby_logo, :scale=>0.7, :position => :center
-      text "Snorby Search Report", :size => 25, :style => :bold, :align => :center
-      text "This report was generated: #{Time.now.strftime('%A, %B %d, %Y')}", :size => 12, :style => :bold, :align => :center
+      text "Security Search Report", :size => 15, :style => :bold, :align => :center
+      text "This report was generated: #{Time.now.strftime('%A, %B %d, %Y')}", :size => 12, :align => :center
+      text "Device: #{Setting.device_name}", :size => 12, :align => :center
 
       move_down(30)
       start_new_page
@@ -457,7 +460,7 @@ class Pdf_for_email
       ###
 
       ### Summary
-      text "Search Report Summary", :size => 20, :style => :bold, :align => :center
+      text "Security Search Report Summary", :size => 20, :style => :bold, :align => :center
       stroke_horizontal_rule
       move_down(25)
 

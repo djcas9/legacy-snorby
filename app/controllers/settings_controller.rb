@@ -1,9 +1,23 @@
 class SettingsController < ApplicationController
-  before_filter :require_admin, :only => [:sensor_delete_multiple, :user_delete_multiple]
+  before_filter :require_admin, :only => [:sensor_delete_multiple, :user_delete_multiple, :set_ids_name, :administration]
 
   def index
     @user = @current_user
-    @settings = Setting.all
+  end
+  
+  def administration
+    @settings = Setting
+  end
+
+  def save_settings
+    @settings = Setting
+    if @settings.update_attributes(params[:settings])
+      flash[:notice] = 'Global Settings Successfully Saved.'
+      redirect_to settings_path
+    else
+      flash[:error] = 'Error - Global Settings NOT Saved'
+      redirect_to settings_path
+    end
   end
 
   def sensor_settings

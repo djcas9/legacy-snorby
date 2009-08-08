@@ -28,7 +28,17 @@ namespace :snorby do
   end
   
   desc "Snorby Update"
-  task :reset => :environment do
+  task :update => :environment do
+    
+    ### VERSION SPECIFIC MIGRATIONS
+    puts '[~] Removing Old Snorby DB tables...'
+    system('rake db:migrate:down RAILS_ENV=production VERSION=20090626044640')
+    system('rake db:migrate:down RAILS_ENV=production VERSION=20090628064454')
+    puts '[~] Adding New Snorby DB tables...'
+    system('rake db:migrate:up RAILS_ENV=production VERSION=20090626044640')
+    system('rake db:migrate:up RAILS_ENV=production VERSION=20090628064454')
+    ### END
+    
     puts "[~] Updating The Snorby Database."
     Rake::Task['db:create'].invoke
     Rake::Task['db:migrate'].invoke

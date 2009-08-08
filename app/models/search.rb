@@ -23,7 +23,7 @@ class Search < ActiveRecord::Base
   end
   
   def find_page_events(page)
-    Event.paginate(:per_page => 20, 
+    Event.paginate(:per_page => Setting.events_per_page, 
     :page => page,
     :joins => [:sensor, :iphdr, :tcphdr, :udphdr, :sig],
     :include => [:sensor, :comments, :iphdr, :tcphdr, :udphdr, :sig],

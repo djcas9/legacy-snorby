@@ -16,11 +16,11 @@
 		<%- if @user.admin -%>
 		<br />
 		<div id="b_settings">
-		<%= link_to "Add Users", new_user_path, :class => 'round more blah', :id => 'more' %>
+		<%= link_to "Global Settings", administration_settings_path, :class => 'round more blah', :id => 'more' %>
 		</div>
 		<br />
 		<div id="b_settings">
-		<%= link_to "Admin Settings", users_path, :class => 'round more blah', :id => 'more' %>
+		<%= link_to "Add/Remove Users", users_path, :class => 'round more blah', :id => 'more' %>
 		</div>
 		<%- end -%>
 	</div>

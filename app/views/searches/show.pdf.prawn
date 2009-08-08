@@ -41,8 +41,9 @@ end
 
 pdf.move_down(100)
 pdf.image snorby_logo, :scale=>0.7, :position => :center
-pdf.text "Security Report", :size => 25, :style => :bold, :align => :center
-pdf.text "This report was generated: #{Time.now.strftime('%A, %B %d, %Y')}", :size => 12, :style => :bold, :align => :center
+pdf.text "Security Search Report", :size => 15, :style => :bold, :align => :center
+pdf.text "This report was generated: #{Time.now.strftime('%A, %B %d, %Y')}", :size => 12, :align => :center
+pdf.text "Device: #{Setting.device_name}", :size => 12, :align => :center
 
 pdf.move_down(30)
 pdf.start_new_page
@@ -50,7 +51,7 @@ pdf.start_new_page
 ###
 
 ### Summary
-pdf.text "Search Report Summary", :size => 20, :style => :bold, :align => :center
+pdf.text "Security Report Summary", :size => 20, :style => :bold, :align => :center
 pdf.stroke_horizontal_rule
 pdf.move_down(25)
 

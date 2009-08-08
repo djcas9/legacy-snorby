@@ -22,7 +22,8 @@ pdf.line_width(1)
 pdf.move_down(100)
 pdf.image snorby_logo, :scale=>0.7, :position => :center
 pdf.text "#{@event.sig.sig_name}", :size => 15, :style => :bold, :align => :center
-pdf.text "This report was generated: #{Time.now.strftime('%A, %B %d, %Y')}", :size => 12, :style => :bold, :align => :center
+pdf.text "This report was generated: #{Time.now.strftime('%A, %B %d, %Y')}", :size => 12, :align => :center
+pdf.text "Device: #{Setting.device_name}", :size => 12, :align => :center
 
 pdf.move_down(30)
 pdf.start_new_page
@@ -56,7 +57,7 @@ if @event.blank?
 end
 
 pdf.move_down(30)
-pdf.text "#{@event.sig.sig_name}", :size => 25, :style => :bold, :align => :left
+pdf.text "#{@event.sig.sig_name}", :size => 20, :style => :bold, :align => :left
 pdf.move_down(10)
 pdf.text "Sensor Information:", :size => 15, :style => :bold, :align => :left
 a_header = ["Sensor", "Interface", "Hostname", "Event ID"]

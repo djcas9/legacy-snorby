@@ -1,0 +1,11 @@
+<h1>Global Snorby Settings</h1>
+<br />
+<%- form_tag :controller => 'Settings', :action => 'save_settings' do -%>
+	Device Name:<br />
+	<%= text_field_tag 'settings[device_name]', @settings.device_name %><br />
+	<br />
+	Events Per Page: <%= select_tag('settings[events_per_page]', options_for_select([['10 Events', 10], ['20 Events', 20], ['50 Events', 50], ['100 Events', 100]], @settings.events_per_page)) %><br />
+	<br />
+	<%= submit_tag "Update" %>
+<%- end -%>
+<br />

@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   before_filter :require_user, :only => [:show, :edit, :update]
   before_filter :require_admin, :only => [:index, :new, :create]
-  #caches_action :index
 
   def index
     @users = User.all
+    @settings = Setting
   end
 
   def new
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id]) # makes our views "cleaner" and more consistent
+    @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       flash[:notice] = "User account updated successfully!"
       redirect_to settings_path

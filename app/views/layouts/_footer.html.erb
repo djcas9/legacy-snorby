@@ -1,5 +1,5 @@
 <div id='c_footer'>
 	<div id="footer_text">
-		&copy; 2009 <%= link_to "Snorby 1.0.2", "http://www.snorby.org", :target => '_blank' %> - <%= pluralize User.logged_in.count, "user" %> currently logged in
+		&copy; 2009 <%= link_to "#{Setting.app_name} #{Setting.app_version}", "#{Setting.website}", :target => '_blank' %> - <%= pluralize User.logged_in.count, "user" %> currently logged in
 	</div>
 </div>
