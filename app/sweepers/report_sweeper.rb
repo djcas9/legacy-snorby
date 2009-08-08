@@ -14,7 +14,7 @@ class ReportSweeper < ActionController::Caching::Sweeper
   end
   
   def expire_cache(report)
-    expire_action 'report_index'
+    expire_action :controller => 'Reports', :action => 'index'
   end
   
 end

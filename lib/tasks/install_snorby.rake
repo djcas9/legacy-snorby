@@ -34,9 +34,11 @@ namespace :snorby do
     puts '[~] Removing Old Snorby DB tables...'
     system('rake db:migrate:down RAILS_ENV=production VERSION=20090626044640')
     system('rake db:migrate:down RAILS_ENV=production VERSION=20090628064454')
+    system('rake db:migrate:down RAILS_ENV=production VERSION=20090628215615') 
     puts '[~] Adding New Snorby DB tables...'
     system('rake db:migrate:up RAILS_ENV=production VERSION=20090626044640')
     system('rake db:migrate:up RAILS_ENV=production VERSION=20090628064454')
+    system('rake db:migrate:up RAILS_ENV=production VERSION=20090628215615')
     ### END
     
     puts "[~] Updating The Snorby Database."

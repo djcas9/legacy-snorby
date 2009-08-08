@@ -1,6 +1,6 @@
 class SettingsController < ApplicationController
   before_filter :require_admin, :only => [:sensor_delete_multiple, :user_delete_multiple, :set_ids_name, :administration]
-
+  
   def index
     @user = @current_user
   end
