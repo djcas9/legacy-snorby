@@ -32,7 +32,7 @@
 		<%- for search in @searches -%>
 			<tr class="<%= cycle('odd', 'even') %>" id="reports">
 			  <td><%= check_box_tag "search_ids[]", search.id %></td>
-				<td><%= link_to "#{search.title.capitalize}", search %></td>
+				<td><%= link_to "#{search.title}", search %></td>
 				<td><%= link_to "#{image_tag('export/pdf.png')}", search_path(search, :format => 'pdf') %></td>
 				<td><%= link_to "#{image_tag('export/xml.png')}", search_path(search, :format => 'xml') %></td>
 				<td><%= link_to "#{image_tag('export/email.png')}", search_path(search), :rel => 'facebox' %></td>
