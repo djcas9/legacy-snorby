@@ -2,13 +2,13 @@
 
 production:
   adapter: mysql
-  database: snorby
-  username: snorby  
-  password: snorby
+  database: name_of_snort_database_here
+  username: my_user
+  password: my_password
   host: localhost
-
+  
 ###
-## DO NOT USE DEVELOPMENT MODE
+## DO NOT USE DEVELOPMENT MODE - DO NO REMOVE
 
 development:
   adapter: mysql

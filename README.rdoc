@@ -52,6 +52,14 @@ Reset:
 
  rake snorby:reset RAILS_ENV=production   # ALL DATA WILL BE LOST
 
+
+<b>Gems</b>
+
+Snorby is packaged with the needed gems however you may need to install the following in some cases:
+
+ sudo gem install mysql
+ sudo gem install prawn
+
 <b>Setup Snorby With Apache:</b>	
 
 http://wiki.github.com/mephux/Snorby/snorby-recipe-with-barnyard2-unified2-and-apache-jjc
