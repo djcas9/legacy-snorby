@@ -1416,12 +1416,12 @@ input.search{
 	color: #373737;
 	position: relative;
 	float: right;
-	margin-top: -5px;
 	padding-right: 5px;
 	padding-top: 2px;
 	padding-left: 5px;
 	background: #fefbc8 0 bottom;
 	hasLayout: true;
+	margin-top: 10px;
 }
 
 .event_options img{
