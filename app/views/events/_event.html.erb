@@ -30,7 +30,7 @@
 			<%- else -%>
 
 			<span id='important_load_<%= event.id %>' style='display:none;'><%= image_tag('ajax.gif', :size=>'14x14') %></span>
-			<%= link_to_remote image_tag('other/is_not_important.png', :size=>'14x14', :id => "important_#{event.id}"), :url => { :controller => 'events', :action => "important", :id => event }, :loading => "$('important_#{event.id}').hide();$('important_load_#{event.id}').show()", :complete => "$('important_load_#{event.id}').hide()", :html => { :title => "Make This Event Important" } %>
+			<%= link_to_remote image_tag('other/is_not_important.png', :size=>'14x14', :id => "important_#{event.id}"), :url => { :controller => 'events', :action => "important", :id => event }, :loading => "$('important_#{event.id}').hide();$('important_load_#{event.id}').show()", :complete => "$('important_load_#{event.id}').hide();", :html => { :title => "Make This Event Important" } %>
 
 			<%- end -%>
 
