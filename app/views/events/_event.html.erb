@@ -14,28 +14,30 @@
 			<%- if event.comments.blank? -%>
 				<%= image_tag('other/no_comment.png', :size=>'14x14') %>
 			<%- else -%>
-				<span id='show_comments_icon_<%= event.id %>' style='display: visible;'>
+				<span id='show_comments_icon_<%= event.id %>' style='display:visible;'>
 				<%= link_to_function "#{image_tag('other/comment.png', :size=>'14x14')}", show_comments("comments_for_#{event.id}", "show_comments_icon_#{event.id}", "hide_comments_icon_#{event.id}") %>
 				</span>
-				<span id='hide_comments_icon_<%= event.id %>' style='display: none;'>
+				<span id='hide_comments_icon_<%= event.id %>' style='display:none;'>
 				<%= link_to_function "#{image_tag('other/hide_comments.png', :size=>'14x14')}", hide_comments("comments_for_#{event.id}", "show_comments_icon_#{event.id}", "hide_comments_icon_#{event.id}") %>
 				</span>
 			<%- end -%>
 
 			<%- if event.importance.present? -%>
-
-			<%= link_to_remote image_tag('other/is_important.png', :size=>'14x14', :id => "important_#{event.id}"), :url => { :controller => 'events', :action => "important", :id => event }, :html => { :title => "Make This Event Important" } %>
-
+			
+			<span id='important_load_<%= event.id %>' style='display:none;'><%= image_tag('ajax.gif', :size=>'14x14') %></span>
+			<%= link_to_remote image_tag('other/is_important.png', :size=>'14x14', :id => "important_#{event.id}"), :url => { :controller => 'events', :action => "important", :id => event }, :loading => "$('important_#{event.id}').hide();$('important_load_#{event.id}').show()", :complete => "$('important_load_#{event.id}').hide()", :html => { :title => "Make This Event Important" } %>
+			
 			<%- else -%>
 
-			<%= link_to_remote image_tag('other/is_not_important.png', :size=>'14x14', :id => "important_#{event.id}"), :url => { :controller => 'events', :action => "important", :id => event }, :html => { :title => "Make This Event Important" } %>
+			<span id='important_load_<%= event.id %>' style='display:none;'><%= image_tag('ajax.gif', :size=>'14x14') %></span>
+			<%= link_to_remote image_tag('other/is_not_important.png', :size=>'14x14', :id => "important_#{event.id}"), :url => { :controller => 'events', :action => "important", :id => event }, :loading => "$('important_#{event.id}').hide();$('important_load_#{event.id}').show()", :complete => "$('important_load_#{event.id}').hide()", :html => { :title => "Make This Event Important" } %>
 
 			<%- end -%>
 
 			<%- if current_user.admin -%>
 			<%= link_to_remote "#{image_tag('other/slash.png', :size=>'13x13', :class => 'destroy_image')}", :url => { :controller => 'events', :action => "remove_event", :id => event }, :html => { :title => "Destroy Event: #{event.sig.sig_name}" } %>
 			<%- end -%>
-		</div>
+		</div> 
 
 		<div id='event_holder_body'>
 			
