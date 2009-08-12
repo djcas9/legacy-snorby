@@ -13,7 +13,6 @@ class ReportsController < ApplicationController
     @report = Report.find(params[:id])
     respond_to do |format|
       format.html
-      format.pdf
       format.xml { render :xml => @report.events }
     end
   end

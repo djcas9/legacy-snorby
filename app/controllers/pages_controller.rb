@@ -31,23 +31,12 @@ class PagesController < ApplicationController
     @uniq_events ||= @calc.unique_event_count
     @uniq_adds ||= @calc.unique_address_count
     @categories ||= @calc.category_cache
-    @sensors ||= @calc.sensor_cache
+    @sensors ||= @calc.sensor_cache    
     
-    @n = []
-    @co = []
-    @categories.each do |c, hash_values|
-      @n << @categories[c][:name]
-      @co << @categories[c][:event_total]
+    respond_to do |format|
+      format.html
+      format.js
     end
-    
-    @scatter_chart = GoogleCharts::AreaChart.new(
-      :width => 400, :height => 200,
-      :legend => 'true', :pointSize => 5
-    )
-    @scatter_chart.add_column("Category Name",String)
-    @scatter_chart.add_column("Event Count",Float)
-    @scatter_chart.add_values("Category Name", @n)
-    @scatter_chart.add_values("Event Count", @co)
     
   end
 

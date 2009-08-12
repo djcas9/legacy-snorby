@@ -55,6 +55,12 @@ class GraphController < ApplicationController
       data_labels << "Low Severity"
     end
 
+    bars = []
+    bar = Bar3d.new
+    bar.values= data
+    bar.colour= '#28d2fc'
+    bar.tooltip = '#val# Events'
+    
     x = XAxis.new
     x.grid_colour= '#FFFFFF'
     x.set_3d 5
@@ -64,8 +70,7 @@ class GraphController < ApplicationController
 
     y = YAxis.new
     y.grid_colour= '#FFFFFF'
-
-
+    
     if params[:all].to_i >= 50000
       y.set_range(0, params[:all].to_i, 10000)
     elsif params[:all].to_i >= 10000
@@ -79,13 +84,6 @@ class GraphController < ApplicationController
     else
       y.set_range(0, params[:all].to_i, 10)
     end
-
-    bar = Bar3d.new
-    #bar.set_values(@data)
-
-    bar.values= data
-    bar.colour= '#28d2fc'
-    bar.tooltip = '#val# Events'
 
     chart = OpenFlashChart.new
     chart.title= Title.new('Event Severity')
