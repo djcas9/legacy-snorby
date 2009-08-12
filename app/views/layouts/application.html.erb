@@ -5,6 +5,7 @@
     <title><%= h(yield(:title) || "Snorby - #{Setting.device_name}") %></title>
     <%= javascript_include_tag :defaults, 'facebox', 'swfobject', :cache => true %>
 		<%= stylesheet_link_tag 'snorby', 'facebox' %>
+		<%= google_vizualisation_include_tag %>
 		<script type="text/javascript">
 			<%= @content_for_page_scripts %>
 		</script>

@@ -1,0 +1,97 @@
+GoogleVizualisation
+===================
+
+The original blog post: http://blog.redstorm.be/2008/12/03/google-vizualisation-plugin-for-rails
+
+GoogleVizualisation allows you to use Google Vizualisations in your rails application easily.
+More information about the different available vizualisations can be found here: http://code.google.com/apis/visualization/documentation/gallery.html
+More information about the API: http://code.google.com/apis/visualization/
+
+Available charts
+================
+
+Currently the following charts are supported:
+- AnnotatedTimeline (as in google finance)
+- AreaChart
+- ImageAreaChart
+- BarChart
+- ImageBarChart
+- ColumnChart
+- Gauge
+- IntensityMap
+- LineChart
+- ImageLineChart
+- MotionChart
+- PieChart
+- ImagePieChart
+- ScatterChart
+
+More support for other available charts/vizualisations to come.  Feel free to help ;-)
+
+
+Installation
+============
+
+in your application's vendor/plugins: git clone git://github.com/philippelegrain/google_vizualisation.git
+
+Usage
+======
+
+1. Start by including <%= google_vizualisation_include_tag %> into the <head> of your application (in application.html.erb or any other layout.)
+2. Create any kind of chart (all available charts can be found in google_vizualisation/lib/google_charts directory) in your controller/action i.e.:
+
+@scatter_chart = GoogleCharts::ScatterChart.new(
+  :width => 400, :height => 240,
+  :titleX => 'Age', :titleY => 'Weight',
+  :legend => 'none', :pointSize => 5
+)
+
+Note: width and height params are mandatory; they will be passed to the javascript object as well as the <div> where the chart is embeded.
+
+3. Add columns to your chart (each column needs a name and a type.  Available types are: Float(a number), String, Date).
+
+@scatter_chart.add_column("Age",Float)
+@scatter_chart.add_column("Weight",Float)
+
+NOTE: order MATTERS when adding columns to a chart.
+
+4. Add values to the columns:
+
+@scatter_chart.add_values("Age",[8,4,11,4,3,6.5])
+@scatter_chart.add_values("Weight",[12,5.5,14,5,3.5,7])
+
+As you can see, each column is identified by its name, so name MUST be unique.
+
+5. Add your newly created chart to the corresponding view by including:
+
+<%= google_vizualisation_tag(@scatter_chart) %>
+
+6. You're all set.  The previous lines of code will generate the following Javascript into your view:
+
+<script type="text/javascript"> 
+	google.load("visualization", "1", {packages:["scatterchart"]});
+	google.setOnLoadCallback(drawChart);
+	function drawChart() {
+		var data = new google.visualization.DataTable();
+		data.addColumn('number','Age');
+		data.addColumn('number','Weight');
+		data.addRows(6);
+		data.setValue(0,1,12);
+		data.setValue(1,1,5.5);
+		data.setValue(2,1,14);
+		data.setValue(3,1,5);
+		data.setValue(4,1,3.5);
+		data.setValue(5,1,7);
+		data.setValue(0,0,8);
+		data.setValue(1,0,4);
+		data.setValue(2,0,11);
+		data.setValue(3,0,4);
+		data.setValue(4,0,3);
+		data.setValue(5,0,6.5);
+        var chart = new google.visualization.ScatterChart(document.getElementById('e0b216caf7eb624e34869ad603d47e8297f585ee'));
+        chart.draw(data, {legend: "none",titleX: "Age",height: 240,titleY: "Weight",width: 400,pointSize: 5});
+	}
+</script>
+<div id="e0b216caf7eb624e34869ad603d47e8297f585ee" style="width: 400px; height: 240px;"></div>
+
+Copyright (c) 2008 Philippe Legrain, released under the MIT license

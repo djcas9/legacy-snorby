@@ -3,7 +3,6 @@ class PagesController < ApplicationController
 
   def update_cache
     if session[:refresh_time].nil? || session[:refresh_time] < Time.now
-      Rails.cache.delete('SnorbyCalcCache')
       spawn do
         CalcCache.update_cache
       end
@@ -12,7 +11,6 @@ class PagesController < ApplicationController
   end
 
   def force_update_cache
-    Rails.cache.delete('SnorbyCalcCache')
     spawn do
       CalcCache.update_cache
     end
@@ -34,6 +32,23 @@ class PagesController < ApplicationController
     @uniq_adds ||= @calc.unique_address_count
     @categories ||= @calc.category_cache
     @sensors ||= @calc.sensor_cache
+    
+    @n = []
+    @co = []
+    @categories.each do |c, hash_values|
+      @n << @categories[c][:name]
+      @co << @categories[c][:event_total]
+    end
+    
+    @scatter_chart = GoogleCharts::AreaChart.new(
+      :width => 400, :height => 200,
+      :legend => 'true', :pointSize => 5
+    )
+    @scatter_chart.add_column("Category Name",String)
+    @scatter_chart.add_column("Event Count",Float)
+    @scatter_chart.add_values("Category Name", @n)
+    @scatter_chart.add_values("Event Count", @co)
+    
   end
 
   def credits
