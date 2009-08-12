@@ -1,8 +1,11 @@
 class Report < ActiveRecord::Base
-  has_many :events, :select => 'DISTINCT signature.sig_name'
-  
+
   def events
-    @events ||= find_events
+    @all_events ||= find_events
+  end
+  
+  def page_events(page)
+    find_page_events(page)
   end
 
   def count_events
@@ -16,8 +19,16 @@ class Report < ActiveRecord::Base
   private
   
   def find_events
-    Event.find(:all, :include => [:sensor, :comments, :iphdr, {:sig => :sig_class }], :conditions => ['timestamp >= ? AND timestamp <= ?', DateTime.parse(from_time), DateTime.parse(to_time)], :order => 'timestamp DESC', :group => 'signature')
-    #Event.paginate(:page => page, :per_page => 20, :conditions => ['timestamp >= ? AND timestamp <= ?', DateTime.parse(from_time), DateTime.parse(to_time)], :include => [:sensor, :sig, :iphdr, :icmphdr, :tcphdr, :udphdr], :order => 'timestamp DESC')
+    Event.find(:all, :include => [:sensor, :comments, :iphdr, {:sig => :sig_class }], :conditions => ['timestamp >= ? AND timestamp <= ?', DateTime.parse(from_time), DateTime.parse(to_time)], :order => 'timestamp DESC')
+  end
+  
+  def find_page_events(page)
+    Event.paginate(:per_page => Setting.events_per_page, 
+    :page => page,
+    :joins => [:sensor, :iphdr, :tcphdr, :udphdr, :sig],
+    :include => [:sensor, :comments, :iphdr, :tcphdr, :udphdr, :sig],
+    :conditions => ['timestamp >= ? AND timestamp <= ?', DateTime.parse(from_time), DateTime.parse(to_time)], 
+    :order => 'timestamp DESC')
   end
   
 end
