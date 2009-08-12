@@ -51,7 +51,6 @@ class SearchesController < ApplicationController
     @events = @search.page_events(params[:page])
     respond_to do |format|
       format.html
-      format.pdf
       format.js
       format.xml { render :xml => @search.events }
     end

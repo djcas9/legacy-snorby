@@ -9,11 +9,11 @@
 		<div id="b_settings">
 		<%= link_to "My Settings", {:controller => 'users', :action => 'edit', :id => @user.id}, :class => 'round more blah', :id => 'more' %>
 		</div>
+		<%- if @user.admin -%>
 		<br />
 		<div id="b_settings">
 		<%= link_to "Sensor Settings", {:action => 'sensor_settings', :id => 'all'}, :class => 'round more blah', :id => 'more' %>
 		</div>
-		<%- if @user.admin -%>
 		<br />
 		<div id="b_settings">
 		<%= link_to "Global Settings", administration_settings_path, :class => 'round more blah', :id => 'more' %>
