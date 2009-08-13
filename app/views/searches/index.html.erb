@@ -25,7 +25,7 @@
 		  <tr>
 		    <th></th>
 				<th>Search Title</th>
-				<th>PDF</th>
+				<th>Edit</th>
 				<th>XML</th>
 				<th>Email</th>
 		  </tr>
@@ -33,9 +33,9 @@
 			<tr class="<%= cycle('odd', 'even') %>" id="reports">
 			  <td><%= check_box_tag "search_ids[]", search.id %></td>
 				<td><%= link_to "#{search.title}", search %></td>
-				<td><%= link_to "#{image_tag('export/pdf.png')}", search_path(search, :format => 'pdf') %></td>
+				<td><%= link_to "#{image_tag('other/edit.png')}", edit_search_path(search), :title => 'Edit Search' %></td>
 				<td><%= link_to "#{image_tag('export/xml.png')}", search_path(search, :format => 'xml') %></td>
-				<td><%= link_to "#{image_tag('export/email.png')}", search_path(search), :rel => 'facebox' %></td>
+				<td><%= link_to "#{image_tag('export/email.png')}", send_search_path(search), :rel => 'facebox', :title => 'Send Email' %></td>
 			</tr>
 			<%- end -%>
 		</table>
