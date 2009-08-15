@@ -1,5 +1,3 @@
-<ul>
 <%- for sig in @sigs do -%>
-  <li class='move_image_right'><%= image_tag('other/tick-circle.png', :size=>'10x10') %><%= sig.sig_name %></li>
+	<%= sig.sig_name %>
 <%- end -%>
-</ul>

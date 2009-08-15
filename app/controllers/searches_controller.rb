@@ -96,20 +96,20 @@ class SearchesController < ApplicationController
 
   def auto_complete_for_search_keywords
     @sigs = Signature.find(:all,
-    :conditions => ['signature.sig_name LIKE ?', "%#{params[:search][:keywords]}%"],
+    :conditions => ['signature.sig_name LIKE ?', "%#{params[:q]}%"],
     :select => "DISTINCT sig_name", :order => "sig_name"  )
     render :partial => 'keywords'
   end
 
   def auto_complete_for_search_ip_src
     @src_ips = Iphdr.find(:all,
-    :conditions => ['inet_ntoa(ip_src) LIKE ?', "%#{params[:search][:ip_src]}%"], :select => "DISTINCT ip_src")
+    :conditions => ['inet_ntoa(ip_src) LIKE ?', "%#{params[:q]}%"], :select => "DISTINCT ip_src")
     render :partial => 'ip_src'
   end
 
   def auto_complete_for_search_ip_dst
     @dst_ips = Iphdr.find(:all,
-    :conditions => ['inet_ntoa(ip_dst) LIKE ?', "%#{params[:search][:ip_dst]}%"], :select => "DISTINCT ip_dst")
+    :conditions => ['inet_ntoa(ip_dst) LIKE ?', "%#{params[:q]}%"], :select => "DISTINCT ip_dst")
     render :partial => 'ip_dst'
   end
 

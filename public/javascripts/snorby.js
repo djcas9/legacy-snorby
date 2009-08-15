@@ -18,6 +18,11 @@ jQuery(document).ready(function($) {
 		});
 		
 		};
+		
+  //autocomplete
+	$("input#search_keywords").autocomplete("auto_complete_for_search_keywords");
+	$("input#search_ip_src").autocomplete("auto_complete_for_search_ip_src");
+	$('input#search_ip_dst').autocomplete("auto_complete_for_search_ip_dst");
 
 	// Flash Notice/Error
 	$('#flash_notice').animate({opacity: '0.9'});$('#flash_error').animate({opacity: '0.9'});

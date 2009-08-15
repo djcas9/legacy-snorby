@@ -19,7 +19,7 @@
 			</tr>
 			<tr>
 				<td>
-					<%= text_field_with_auto_complete :search, :keywords, :class => 'search' %>
+					<%= f.text_field :keywords, :class => 'search', :autocomplete =>"off" %>
 				</td>
 				<td>
 					<%= f.calendar_date_select :start_time, :popup => :force, :time => :true %>
@@ -54,10 +54,10 @@
 		</tr>
 		<tr>
 			<td>
-				<%= text_field_with_auto_complete :search, :ip_src %>
+				<%= f.text_field :ip_src, :autocomplete =>"off" %>
 			</td>
 			<td>
-				<%= text_field_with_auto_complete :search, :ip_dst %>
+				<%= f.text_field :ip_dst, :autocomplete =>"off" %>
 			</td>
 		</tr>
 	</table>
