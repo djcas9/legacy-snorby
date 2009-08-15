@@ -2,19 +2,19 @@
 	<div id="search_options" class='round'>
 		<%- if @event.importance.present? -%>
 		
-		<span id='important_load_<%= @event.id %>' style='display:none;'><%= image_tag('ajax.gif', :size=>'14x14') %></span>
-		<%= link_to_remote image_tag('other/is_important.png', :size => '14x14', :id => "important_#{@event.id}"), :url => { :controller => 'events', :action => "important", :id => @event }, :loading => "$('important_#{@event.id}').hide();$('important_load_#{@event.id}').show()", :complete => "$('important_load_#{@event.id}').hide()", :html => { :title => "Make This Event Important" } %>
+		<span id='important_load_<%= @event.sid + @event.cid %>' style='display:none;'><%= image_tag('ajax.gif', :size=>'14x14') %></span>
+		<%= link_to_remote image_tag('other/is_important.png', :size => '14x14', :id => "important_#{@event.sid + @event.cid}"), :url => { :controller => 'events', :action => "important", :id => @event }, :loading => "$('#important_#{@event.sid + @event.cid}').hide();$('#important_load_#{@event.sid + @event.cid}').show()", :complete => "$('#important_load_#{@event.sid + @event.cid}').hide()", :html => { :title => "Make This Event Important" } %>
 
 		<%- else -%>
-		<span id='important_load_<%= @event.id %>' style='display:none;'><%= image_tag('ajax.gif', :size=>'14x14') %></span>
-		<%= link_to_remote image_tag('other/is_not_important.png', :size => '14x14', :id => "important_#{@event.id}"), :url => { :controller => 'events', :action => "important", :id => @event }, :loading => "$('important_#{@event.id}').hide();$('important_load_#{@event.id}').show()", :complete => "$('important_load_#{@event.id}').hide()", :html => { :title => "Make This Event Important" } %>
+		<span id='important_load_<%= @event.sid + @event.cid %>' style='display:none;'><%= image_tag('ajax.gif', :size=>'14x14') %></span>
+		<%= link_to_remote image_tag('other/is_not_important.png', :size => '14x14', :id => "important_#{@event.sid + @event.cid}"), :url => { :controller => 'events', :action => "important", :id => @event }, :loading => "$('#important_#{@event.sid + @event.cid}').hide();$('#important_load_#{@event.sid + @event.cid}').show()", :complete => "$('#important_load_#{@event.sid + @event.cid}').hide()", :html => { :title => "Make This Event Important" } %>
 
 		<%- end -%>
 		<%= link_to "#{image_tag('export/pdf.png', :size => '14x14')}", { :format => 'pdf' } %>
 		<%= link_to "#{image_tag('export/xml.png', :size => '14x14')}", { :format => 'xml' } %>
 		<%= link_to "#{image_tag('export/email.png', :size => '14x14')}", send_event_path(@event), :rel => 'facebox' %>
 		<%- if current_user.admin -%>
-		<%= link_to "#{image_tag('other/slash.png', :size => '14x14')}", { :action => 'remove_event', :id => @event }, :title => "Destroy Event: #{@event.sig.sig_name}" %>
+		<%= link_to "#{image_tag('other/slash.png', :size => '14x14')}", { :action => 'remove_event', :id => @event }, :id => 'remove_fade_in', :title => "Destroy Event: #{@event.sig.sig_name}" %>
 		<%- end -%>
 	</div>
 	<strong class='event_title'><%= @event.sig.sig_name %></strong>

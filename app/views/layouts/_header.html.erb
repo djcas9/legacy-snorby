@@ -16,11 +16,11 @@
 		</ul>
 	</div>
 	
-	<div id="logo"><%= link_to image_tag('snorby_logo.png'), dashboard_path %></div>
+	<div id="logo"><%= link_to image_tag('snorby_logo.png', :id => 'snorby_logo'), dashboard_path %></div>
 	
 	<%- else -%>
 
-	<div id="logo"><%= link_to image_tag('snorby_logo.png'), login_path %></div>
+	<div id="logo"><%= link_to image_tag('snorby_logo.png', :id => 'snorby_logo'), login_path %></div>
 	
 	<%- end -%>
 

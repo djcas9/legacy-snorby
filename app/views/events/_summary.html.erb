@@ -22,7 +22,7 @@
 				<%- end -%>
 				<td><%= severity_image(@event.sig.sig_priority) %></td>
 				<td>
-					<%= horizontal_bar_graph  [["Event Percentage", ((total_event_count_for?(@event)/Event.all.size.to_f) * 100).round(2)]] %>
+					<%= horizontal_bar_graph  [["Event Percentage", ((total_event_count_for?(@event)/@calc.total_event_count.to_f) * 100).round(2)]] %>
 				</td>
 			</tr>
 		</table>

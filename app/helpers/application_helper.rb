@@ -61,19 +61,13 @@ module ApplicationHelper
 
   def show_comments(div, div2, div3)
     update_page do |page|
-      page[div].show
-      page[div2].hide
-      page[div3].show
-      #page[div].visual_effect :highlight
+      page << "$('#{div}').slideToggle('fast');$('#{div2}').hide();$('#{div3}').show();"
     end
   end
 
   def hide_comments(div, div2, div3)
     update_page do |page|
-      page[div].hide
-      page[div2].show
-      page[div3].hide
-      #page[div].visual_effect :highlight
+      page << "$('#{div}').slideToggle('fast');$('#{div2}').show();$('#{div3}').hide();"
     end
   end
 

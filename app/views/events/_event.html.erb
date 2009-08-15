@@ -1,4 +1,4 @@
-<% div_for event do %>
+<div id="event_<%= event.sid + event.cid %>" class='event'>
 	<div id="event_holder" class='round'>
 		
 		<div id="event_timestamp">
@@ -10,27 +10,27 @@
 			<strong class='title'><%= link_to "#{event.sig.sig_name}", event_path(event) %></strong><br />
 		</div>
 		
-		<div id='event_options_<%= event.id %>' class='event_options round'>
+		<div id='event_options_<%= event.sid + event.cid %>' class='event_options round'>
 			<%- if event.comments.blank? -%>
 				<%= image_tag('other/no_comment.png', :size=>'14x14') %>
 			<%- else -%>
-				<span id='show_comments_icon_<%= event.id %>' style='display:visible;'>
-				<%= link_to_function "#{image_tag('other/comment.png', :size=>'14x14')}", show_comments("comments_for_#{event.id}", "show_comments_icon_#{event.id}", "hide_comments_icon_#{event.id}") %>
+				<span id='show_comments_icon_<%= event.sid + event.cid %>' style='display:visible;'>
+				<%= link_to_function "#{image_tag('other/comment.png', :size=>'14x14')}", show_comments("#comments_for_#{event.sid + event.cid}", "#show_comments_icon_#{event.sid + event.cid}", "#hide_comments_icon_#{event.sid + event.cid}") %>
 				</span>
-				<span id='hide_comments_icon_<%= event.id %>' style='display:none;'>
-				<%= link_to_function "#{image_tag('other/hide_comments.png', :size=>'14x14')}", hide_comments("comments_for_#{event.id}", "show_comments_icon_#{event.id}", "hide_comments_icon_#{event.id}") %>
+				<span id='hide_comments_icon_<%= event.sid + event.cid %>' style='display:none;'>
+				<%= link_to_function "#{image_tag('other/hide_comments.png', :size=>'14x14')}", hide_comments("#comments_for_#{event.sid + event.cid}", "#show_comments_icon_#{event.sid + event.cid}", "#hide_comments_icon_#{event.sid + event.cid}") %>
 				</span>
 			<%- end -%>
 
 			<%- if event.importance.present? -%>
 			
-			<span id='important_load_<%= event.id %>' style='display:none;'><%= image_tag('ajax.gif', :size=>'14x14') %></span>
-			<%= link_to_remote image_tag('other/is_important.png', :size=>'14x14', :id => "important_#{event.id}"), :url => { :controller => 'events', :action => "important", :id => event }, :loading => "$('important_#{event.id}').hide();$('important_load_#{event.id}').show()", :complete => "$('important_load_#{event.id}').hide()", :html => { :title => "Make This Event Important" } %>
+			<span id='important_load_<%= event.sid + event.cid %>' style='display:none;'><%= image_tag('ajax.gif', :size=>'14x14') %></span>
+			<%= link_to_remote image_tag('other/is_important.png', :size=>'14x14', :id => "important_#{event.sid + event.cid}"), :url => { :controller => 'events', :action => "important", :id => event }, :loading => "$('#important_#{event.sid + event.cid}').hide();$('#important_load_#{event.sid + event.cid}').show();", :complete => "$('#important_load_#{event.sid + event.cid}').hide();", :html => { :title => "Make This Event Important" } %>
 			
 			<%- else -%>
 
-			<span id='important_load_<%= event.id %>' style='display:none;'><%= image_tag('ajax.gif', :size=>'14x14') %></span>
-			<%= link_to_remote image_tag('other/is_not_important.png', :size=>'14x14', :id => "important_#{event.id}"), :url => { :controller => 'events', :action => "important", :id => event }, :loading => "$('important_#{event.id}').hide();$('important_load_#{event.id}').show()", :complete => "$('important_load_#{event.id}').hide();", :html => { :title => "Make This Event Important" } %>
+			<span id='important_load_<%= event.sid + event.cid %>' style='display:none;'><%= image_tag('ajax.gif', :size=>'14x14') %></span>
+			<%= link_to_remote image_tag('other/is_not_important.png', :size=>'14x14', :id => "important_#{event.sid + event.cid}"), :url => { :controller => 'events', :action => "important", :id => event }, :loading => "$('#important_#{event.sid + event.cid}').hide();$('#important_load_#{event.sid + event.cid}').show()", :complete => "$('#important_load_#{event.sid + event.cid}').hide();", :html => { :title => "Make This Event Important" } %>
 
 			<%- end -%>
 
@@ -60,7 +60,7 @@
 			
 		</div>
 	</div>
-	<div id="comments_for_<%= event.id %>" class='comment_box' style='display: none;'>
+	<div id="comments_for_<%= event.sid + event.cid %>" class='comment_box' style='display: none;'>
 		<div id="comments_for" class='round'>
 			<%= image_tag('other/comment.png', :size=>'10x10') %> <%= pluralize(event.comments.size, 'Comment') %> Posted for Event: <%= event.sig.sig_name %>
 		</div>
@@ -69,4 +69,4 @@
 		</div>
 	</div>
 	
-<%- end -%>
+</div>

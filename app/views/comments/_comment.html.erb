@@ -4,7 +4,7 @@
 			<div id="comment_options" class='round'>
 				<%- if User.is_admin_or_owner(current_user, comment) && !current_page?(:action => "index") && !current_page?(:controller => "searches", :action => 'show') && !current_page?(:controller => "reports", :action => 'show') && !current_page?(:action => 'livelook') && !current_page?(:action => 'severity') && !current_page?(:action => 'category') && !current_page?(:action => 'my_events') -%>
 					<%= link_to "#{image_tag('other/edit.png', :size=>'8x8')} Edit", edit_comment_path(comment) %> |
-					<%= link_to_remote "#{image_tag('other/slash.png', :size=>'8x8', :class => 'destroy_image')} Remove", :url => comment_path(comment), :loading => "$('remove_comment_#{comment.id}').show();", :complete => "$('remove_comment_#{comment.id}').hide();", :method => :delete %>
+					<%= link_to_remote "#{image_tag('other/slash.png', :size=>'8x8', :class => 'destroy_image')} Remove", :url => comment_path(comment), :loading => "$('#remove_comment_#{comment.id}').show();", :complete => "$('#remove_comment_#{comment.id}').hide();", :method => :delete %>
 			<%- end -%>
 			</div>
 			<span id='comment_user_name'><%= comment.user.login %></span>

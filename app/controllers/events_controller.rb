@@ -11,6 +11,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @calc = CalcCache.first
     @event = Event.find(params[:id], :include => [:sensor, :iphdr, {:sig => :sig_class }, :comments, :udphdr, :icmphdr, :tcphdr])
     respond_to do |format|
       format.html
