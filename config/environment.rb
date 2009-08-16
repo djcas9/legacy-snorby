@@ -17,7 +17,6 @@ Rails::Initializer.run do |config|
   config.gem "authlogic"
   config.gem "chronic"
   config.gem 'javan-whenever', :lib => false, :source => 'http://gems.github.com'
-  config.gem "calendar_date_select"
   config.gem "prawn"
   config.gem "mattetti-googlecharts", :lib => "gchart", :source => "http://gems.github.com/"
   config.gem "ambethia-smtp-tls", :lib => "smtp-tls", :source => "http://gems.github.com/"
