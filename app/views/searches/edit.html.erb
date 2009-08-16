@@ -1,72 +1,72 @@
 <% form_for @search do |f| %>
-  <%= f.error_messages %>
-		<%= f.text_field :title, :class => 'full_form' %>
-		<br /><br />
-				<table class='form'>
-					<tr>
-						<th><%= f.label :keywords, "Event Keywords" %></th>
-						<th>Start Time</th>
-						<th>End Time</th>
-					</tr>
-					<tr>
-						<td>
-							<%= f.text_field :keywords, :class => 'search', :autocomplete =>"off" %>
-						</td>
-						<td>
-							<%= f.text_field :start_time, :id => 'start_datepicker' %>
-						</td>
-						<td>
-							<%= f.text_field :end_time, :id => 'end_datepicker', :value => Time.now.strftime('%B %d, %Y %I:%M %p').sub(/(AM)/, "am").sub(/(PM)/, "PM") %>
-						</td>
-					</tr>
-				</table>
+<%= f.error_messages %>
+<%= f.text_field :title, :class => 'full_form' %>
+<br /><br />
+		<table class='form'>
+			<tr>
+				<th><%= f.label :keywords, "Event Keywords" %></th>
+				<th>Start Time</th>
+				<th>End Time</th>
+			</tr>
+			<tr>
+				<td>
+					<%= f.text_field :keywords, :class => 'search', :autocomplete =>"off" %>
+				</td>
+				<td>
+					<%= f.text_field :start_time, :id => 'start_datepicker' %>
+				</td>
+				<td>
+					<%= f.text_field :end_time, :id => 'end_datepicker', :value => Time.now.strftime('%B %d, %Y %I:%M %p').sub(/(AM)/, "am").sub(/(PM)/, "PM") %>
+				</td>
+			</tr>
+		</table>
 
-			<br />
-				<table class='form'>
-					<tr>
-						<th><%= f.label :sid, "Sensor" %>:</th>
-						<th><%= f.label :sid_class_id, "Event Category" %>:</th>
-						<th><%= f.label :sig_priority, "Event Severity" %>:</th>
-						<th></th>
-					</tr>
-					<tr>
-						<td><%= f.collection_select :sid, Sensor.all(:order => 'sid DESC'), :id, :hostname, :include_blank => true %></td>
-						<td><%= f.select :sid_class_id, SigClass.new.all_even_nil, :multiple => false, :include_blank => true %></td>
-						<td><%= f.select :sig_priority, [["High Severity", 1], ["Medium Severity", 2], ["Low Severity", 3]], :multiple => false, :include_blank => true %></td>
-					</tr>
-				</table>
+	<br />
+		<table class='form'>
+			<tr>
+				<th><%= f.label :sid, "Sensor" %>:</th>
+				<th><%= f.label :sid_class_id, "Event Category" %>:</th>
+				<th><%= f.label :sig_priority, "Event Severity" %>:</th>
+				<th></th>
+			</tr>
+			<tr>
+				<td><%= f.collection_select :sid, Sensor.all(:order => 'sid DESC'), :id, :hostname, :include_blank => true %></td>
+				<td><%= f.select :sid_class_id, SigClass.new.all_even_nil, :multiple => false, :include_blank => true %></td>
+				<td><%= f.select :sig_priority, [["High Severity", 1], ["Medium Severity", 2], ["Low Severity", 3]], :multiple => false, :include_blank => true %></td>
+			</tr>
+		</table>
 
-			<br />
+	<br />
 
-			<table class='form'>
-				<tr>
-					<th><%= f.label :ip_src, "Source IP Address" %>:</th>
-					<th><%= f.label :ip_dst, "Destination IP Address" %>:</th>
-				</tr>
-				<tr>
-					<td>
-						<%= f.text_field :ip_src, :autocomplete =>"off" %>
-					</td>
-					<td>
-						<%= f.text_field :ip_dst, :autocomplete =>"off" %>
-					</td>
-				</tr>
-			</table>
+	<table class='form'>
+		<tr>
+			<th><%= f.label :ip_src, "Source IP Address" %>:</th>
+			<th><%= f.label :ip_dst, "Destination IP Address" %>:</th>
+		</tr>
+		<tr>
+			<td>
+				<%= f.text_field :ip_src, :autocomplete =>"off" %>
+			</td>
+			<td>
+				<%= f.text_field :ip_dst, :autocomplete =>"off" %>
+			</td>
+		</tr>
+	</table>
 
-			<br />
+	<br />
 
-			<table class='form'>
-				<tr>
-					<th><%= f.label :sport, "Source Port" %>:</th>
-					<th><%= f.label :dport, "Destination Port" %>:</th>
-				</tr>
-				<tr>
-					<td><%= f.text_field :sport %></td>
-					<td><%= f.text_field :dport %></td>
-				</tr>
-			</table>
+	<table class='form'>
+		<tr>
+			<th><%= f.label :sport, "Source Port" %>:</th>
+			<th><%= f.label :dport, "Destination Port" %>:</th>
+		</tr>
+		<tr>
+			<td><%= f.text_field :sport %></td>
+			<td><%= f.text_field :dport %></td>
+		</tr>
+	</table>
 
-			<br />
-		  <p><%= f.submit "Save »"%></div></p>
-		<% end %>
+	<br />
+  <p><%= f.submit "Save »"%></p>
+<% end %>
 
