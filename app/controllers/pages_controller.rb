@@ -23,6 +23,7 @@ class PagesController < ApplicationController
   end
 
   def dashboard
+    asdf //
     @calc = CalcCache.first
     @g_event_severity ||= open_flash_chart_object(400,200, pie_event_severity_graph_url(:high => @calc.high_severity, :medium => @calc.medium_severity, :low => @calc.low_severity))
     @g_category_information ||= open_flash_chart_object(400,200, bar_event_severity_graph_url(:high => @calc.high_severity, :medium => @calc.medium_severity, :low => @calc.low_severity, :all => @calc.total_event_count))

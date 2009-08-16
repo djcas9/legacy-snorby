@@ -67,6 +67,11 @@ jQuery(document).ready(function($) {
         }
     });
 
+		// Errors
+		$('#snorby_news').qtip({content: {title: 'Snorby News', text: 'All snorby updates and news. Come see the exciting features we have in the works!',button: 'close'},show: 'mouseover',hide: 'mouseout',style: {name: 'dark',tip: true,border: {width: 3,radius: 3}}, show: {effect: {type: 'fade', length: 300}}, hide: {effect: {type: 'fade',length: 300}}, position: {corner: {target: 'topMiddle', tooltip: 'bottomMiddle'}}});
+		$('#snorby_bugs').qtip({content: {title: 'Report Bugs',text: 'Please report this issue. Every log post is one step to a better snorby!',button: 'close'},show: 'mouseover',hide: 'mouseout',style: {name: 'dark',tip: true,border: {width: 3,radius: 3}}, show: {effect: {type: 'fade', length: 300}}, hide: {effect: {type: 'fade',length: 300}}, position: {corner: {target: 'topMiddle', tooltip: 'bottomMiddle'}}});
+		$('#snorby_wiki').qtip({content: {title: 'Snorby Wiki',text: 'The snorby wiki is growing and we need your help. Post your snorby setup and ideas!',button: 'close'},show: 'mouseover',hide: 'mouseout',style: {name: 'dark',tip: true,border: {width: 3,radius: 3}}, show: {effect: {type: 'fade', length: 300}}, hide: {effect: {type: 'fade',length: 300}}, position: {corner: {target: 'topMiddle', tooltip: 'bottomMiddle'}}});
+		
 
     // DatePicker
     $("#start_datepicker,#end_datepicker").datepicker({
