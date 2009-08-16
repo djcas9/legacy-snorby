@@ -35,7 +35,7 @@
 			<%- end -%>
 
 			<%- if current_user.admin -%>
-			<%= link_to_remote "#{image_tag('other/slash.png', :size=>'13x13', :class => 'destroy_image')}", :url => { :controller => 'events', :action => "remove_event", :id => event }, :html => { :title => "Destroy Event: #{event.sig.sig_name}" } %>
+			<%= link_to_remote "#{image_tag('other/slash.png', :size=>'13x13', :class => 'destroy_image')}", :url => { :controller => 'events', :action => "remove_event", :id => event }, :html => { :id => 'remove_event', :title => "Destroy Event: #{event.sig.sig_name}" } %>
 			<%- end -%>
 		</div> 
 

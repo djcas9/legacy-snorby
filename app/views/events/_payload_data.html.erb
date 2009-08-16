@@ -2,8 +2,8 @@
 	<h2>Payload:</h2>
 	<br />
 
-	<%= link_to_function "#{image_tag('other/beaker.png', :size => '16x16')} Show Ascii", toggle_div('ascii_payload') %> -
-	<%= link_to_function "#{image_tag('other/beaker.png', :size => '16x16')} Show Ascii Hex", toggle_div('ascii_hex_payload') %> <br />
+	<%= link_to_function "#{image_tag('other/beaker.png', :size => '16x16')} Show Ascii", toggle_div('#ascii_payload') %> -
+	<%= link_to_function "#{image_tag('other/beaker.png', :size => '16x16')} Show Ascii Hex", toggle_div('#ascii_hex_payload') %> <br />
 
 	<div id="ascii_payload" style='display:none;'>
 		<pre><%=h [@event.data_info.data_payload].pack("H*") %></pre>

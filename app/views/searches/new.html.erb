@@ -1,11 +1,3 @@
-<%= calendar_date_select_includes nil %>
-
-<% content_for("page_scripts") do %>
-  Event.observe(window, 'load',
-    function() { $('loading').hide() }
-  );
-<% end %>
-
 <h1>Search (<%= link_to "View Saved Searches", searches_path %>)</h1>
 <br />
 <% form_for @search do |f| %>
@@ -22,10 +14,10 @@
 					<%= f.text_field :keywords, :class => 'search', :autocomplete =>"off" %>
 				</td>
 				<td>
-					<%= f.calendar_date_select :start_time, :popup => :force, :time => :true %>
+					<%= f.text_field :start_time, :id => 'start_datepicker' %>
 				</td>
 				<td>
-					<%= f.calendar_date_select :end_time, :popup => :force, :time => :true, :value => Time.now.strftime('%B %d, %Y %I:%M %p') %>
+					<%= f.text_field :end_time, :id => 'end_datepicker', :value => Time.now.strftime('%B %d, %Y %I:%M %p') %>
 				</td>
 			</tr>
 		</table>
@@ -76,6 +68,6 @@
 	</table>
 
 	<br />
-  <p><%= f.submit "Search »", :onclick => "$('loading').show();" %> <div id='loading' style="display:none;"><%= image_tag('other/loading.gif', :size => '22x22') %></div></p>
+  <p><%= f.submit "Search »", :onclick => "$('#loading').show();" %> <div id='loading' style="display:none;"><%= image_tag('other/loading.gif', :size => '22x22') %></div></p>
 <% end %>
 

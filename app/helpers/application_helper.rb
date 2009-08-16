@@ -47,15 +47,14 @@ module ApplicationHelper
 
   def toggle_div(div)
     update_page do |page|
-      page[div].toggle
-      page[div].visual_effect :highlight
+      page << "$('#{div}').toggle();"
+      #page << "$('#{div}').highlight('slow');"
     end
   end
 
   def show_comment_form(div, div2)
     update_page do |page|
-      page[div].show
-      page[div2].hide
+      page << "$('#{div}').slideToggle('fast');$('#{div2}').hide();$.scrollTo('#c_footer', 1000);"
     end
   end
 

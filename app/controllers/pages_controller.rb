@@ -47,12 +47,12 @@ class PagesController < ApplicationController
   end
 
   def events_for_sensor
-    @sensor = Sensor.find(params[:sensor])
-    @events = @sensor.events.paginate(:page => params[:page], :per_page => Setting.events_per_page)
+    @sensor ||= Sensor.find(params[:sensor])
+    @events ||= @sensor.events.paginate(:page => params[:page], :per_page => Setting.events_per_page)
   end
 
   def severity
-    @events = Event.events_for_severity(params[:severity]).paginate(:page => params[:page], :per_page => Setting.events_per_page)
+    @events ||= Event.paginate(:page => params[:page], :per_page => Setting.events_per_page, :order => 'timestamp DESC', :joins => [:comments, :importance], :include => [:sig, :sensor, :iphdr], :conditions => ['signature.sig_priority = ?', "#{params[:severity]}"] )
   end
 
 end

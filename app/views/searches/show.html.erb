@@ -18,6 +18,5 @@
 </div>
 
 <% unless @events.next_page.nil? %>
-<script type="text/javascript">current_page = 2;</script>
-<div id="pagination"><a class="round more blah" href="#load_more_events" id="more" onclick="new Ajax.Request('/searches/show/<%= params[:id] %>?page=' + current_page, {asynchronous:true, evalScripts:true, onComplete:function(request){$('more').removeClassName('loading');}, onLoading:function(request){$('more').addClassName('loading');}, parameters:'authenticity_token=' + encodeURIComponent('<%= form_authenticity_token %>')}); current_page = current_page + 1; return false;">more</a></div>
+<div id="pagination"><a class="round more blah" href="/searches/<%= params[:id] %>" id="more" rel='next'>more</a></div>
 <%- end -%>

@@ -1,10 +1,3 @@
-<%= calendar_date_select_includes nil %>
-
-<% content_for("page_scripts") do %>
-  Event.observe(window, 'load',
-    function() { $('loading').hide() }
-  );
-<% end %>
 <% form_for @search do |f| %>
   <%= f.error_messages %>
 		<%= f.text_field :title, :class => 'full_form' %>
@@ -18,7 +11,7 @@
 			</tr>
 			<tr>
 				<td>
-					<%= text_field_with_auto_complete :search, :keywords, :class => 'search' %>
+					<%= f.text_field :keywords, :class => 'search', :autocomplete =>"off" %>
 				</td>
 				<td>
 					<%= f.calendar_date_select :start_time, :popup => :force, :time => :true %>
@@ -43,9 +36,9 @@
 				<td><%= f.select :sig_priority, [["High Severity", 1], ["Medium Severity", 2], ["Low Severity", 3]], :multiple => false, :include_blank => true %></td>
 			</tr>
 		</table>
-	
+		
 	<br />
- 
+  
 	<table class='form'>
 		<tr>
 			<th><%= f.label :ip_src, "Source IP Address" %>:</th>
@@ -53,10 +46,10 @@
 		</tr>
 		<tr>
 			<td>
-				<%= text_field_with_auto_complete :search, :ip_src %>
+				<%= f.text_field :ip_src, :autocomplete =>"off" %>
 			</td>
 			<td>
-				<%= text_field_with_auto_complete :search, :ip_dst %>
+				<%= f.text_field :ip_dst, :autocomplete =>"off" %>
 			</td>
 		</tr>
 	</table>
@@ -75,5 +68,6 @@
 	</table>
 
 	<br />
-  <p><%= f.submit "Save Search »", :onclick => "$('loading').show();" %> <div id='loading' style="display:none;"><%= image_tag('other/loading.gif', :size => '22x22') %></div></p>
+  <p><%= f.submit "Save »" %></p>
 <% end %>
+

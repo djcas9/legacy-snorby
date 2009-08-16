@@ -6,7 +6,7 @@
 		<%= render :partial => @event.comments %>
 </div>
 
-<div id="comment_form" style='display:none;'>
+<div id="comment_form">
 	<%- remote_form_for [@event, Comment.new], { :loading => "$('#loading_comment').show();", :complete => "$('#loading_comment').hide();" } do |f| -%>
 		<%= f.label :body, "New Comment" %><br />
 		<%= f.text_area :body, :rows => 10, :cols => 80 %><br />
@@ -16,8 +16,4 @@
 		<div id='loading_comment' style='display:none;'><%= image_tag('other/loading.gif', :size => '22x22') %></div>
 		</p>
 	<%- end -%>
-</div>
-
-<div id='add_comment' style='display: visible;'>
-	<%= link_to_function "#{image_tag('other/tick-circle.png', :size=>'12x12')} Add Comment", show_comment_form("comment_form", "add_comment") %>
 </div>

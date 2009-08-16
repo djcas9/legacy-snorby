@@ -1,5 +1,6 @@
 <div id="event_show_page">
 	<div id="search_options" class='round'>
+		<a href='#scroll_to_comment' id='scroll_to_comment'><%= image_tag('other/comment.png', :size=>'14x14') %></a>
 		<%- if @event.importance.present? -%>
 		
 		<span id='important_load_<%= @event.sid + @event.cid %>' style='display:none;'><%= image_tag('ajax.gif', :size=>'14x14') %></span>

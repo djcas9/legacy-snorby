@@ -1,2 +1,2 @@
-page << "$('#event_#{@event.sid + @event.cid}').fadeTo('fast', 0.5).slideToggle('slow');"
+page << "$('#event_#{@event.sid + @event.cid}').fadeOut('slow', 0);"
 # .visual_effect :fade, "event_#{@event.sid + @event.cid}"
