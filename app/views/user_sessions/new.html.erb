@@ -1,9 +1,3 @@
-<% content_for("page_scripts") do %>
-  Event.observe(window, 'load',
-    function() { $('user_session_login').focus(); $('user_session_login').select() }
-  );
-<% end %>
-
 <% error_message_on :user_session, :base %>
 
 <div id="login">
