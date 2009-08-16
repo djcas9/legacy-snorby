@@ -17,7 +17,7 @@
 					<%= f.text_field :start_time, :id => 'start_datepicker' %>
 				</td>
 				<td>
-					<%= f.text_field :end_time, :id => 'end_datepicker', :value => Time.now.strftime('%B %d, %Y %I:%M %p') %>
+					<%= f.text_field :end_time, :id => 'end_datepicker', :value => Time.now.strftime('%B %d, %Y %I:%M %p').sub(/(AM)/, "am").sub(/(PM)/, "PM") %>
 				</td>
 			</tr>
 		</table>

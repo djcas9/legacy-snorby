@@ -4,7 +4,7 @@ else
   #page[:user_session_submit].disable
 end
 
-page.select('.error_message').each(&:remove)
-@user.errors.each do |name, msg|
-  page.insert_html :after, "user_#{name}", "<span class='new_user_error_message'>#{image_tag('other/slash.png', :class => 'on_error_icon')} #{msg}</span>"
+page << "$('.error_message').remove(0)"
+@user_session.errors.each do |name, msg|
+  page.insert_html :after, "user_#{name}", "<span class='error_message'>#{image_tag('other/error_on_val.png', :class => 'on_error_icon')}</span>"
 end

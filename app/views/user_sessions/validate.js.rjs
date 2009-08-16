@@ -1,10 +1,10 @@
 if @user_session.valid?
-  #page[:user_session_submit].enable
+  page[:user_session_submit].enable
 else
-  #page[:user_session_submit].disable
+  page[:user_session_submit].disable
 end
 
-page.select('.error_message').each(&:remove)
+page << "$('.error_message').remove(0)"
 @user_session.errors.each do |name, msg|
-  page.insert_html :after, "user_session_#{name}", "<span class='error_message'>#{image_tag('other/slash.png', :class => 'on_error_icon')}</span>"
+  page.insert_html :after, "user_session_#{name}", "<span class='error_message'>#{image_tag('other/error_on_val.png', :class => 'on_error_icon')}</span>"
 end

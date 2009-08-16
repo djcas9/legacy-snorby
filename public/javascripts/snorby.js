@@ -29,12 +29,12 @@ jQuery(document).ready(function($) {
 
 	$('#update_image_refresh').qtip({
 	   	content: {
-				text: 'Update	 Cache!',
+				text: 'Update',
 				button: 'close'
 			},
 	   	show: 'mouseover',
 	   	hide: 'mouseout',
-			style: { name: 'dark', tip: true, border: { width: 3, radius: 3 } },
+			style: { name: 'blue', tip: true, border: { width: 3, radius: 3 } },
 			show: {
 				effect: { type: 'fade', length: 300 }
 			},
@@ -43,8 +43,8 @@ jQuery(document).ready(function($) {
 			},
 			position: {
 			      corner: {
-			         target: 'topMiddle',
-			         tooltip: 'bottomMiddle'
+			         target: 'rightMiddle',
+			         tooltip: 'leftMiddle'
 			      }
 			   }
 	});
@@ -99,10 +99,20 @@ jQuery(document).ready(function($) {
 		  dataType: 'script',
 			beforeSend: function() {$("#more").addClass("loading").html("")},
 			complete: function() {$("#more").removeClass("loading").html("more")},
-	  	//success: function() {$("#events");},
 	  	error: function() {alert("Whoops! Something went wrong. Please try refreshing the page.");}
 		});
 		return false;
 	});
+	
+	
+	// Check ALL
+	$("#checkboxall").click(function() 
+   { 
+       var checked_status = this.checked; 
+       $("input[type=checkbox]").each(function() 
+       { 
+           this.checked = checked_status; 
+       }); 
+   });
 	
 });

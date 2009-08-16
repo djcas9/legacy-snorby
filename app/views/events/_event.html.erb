@@ -35,7 +35,8 @@
 			<%- end -%>
 
 			<%- if current_user.admin -%>
-			<%= link_to_remote "#{image_tag('other/slash.png', :size=>'13x13', :class => 'destroy_image')}", :url => { :controller => 'events', :action => "remove_event", :id => event }, :html => { :id => 'remove_event', :title => "Destroy Event: #{event.sig.sig_name}" } %>
+			<span id='remove_event_<%= event.sid + event.cid %>' style='display:none;'><%= image_tag('ajax.gif', :size=>'14x14') %></span>
+			<%= link_to_remote "#{image_tag('other/slash.png', :size=>'13x13', :id => "destroy_event_#{event.sid + event.cid}", :class => 'destroy_image')}", :url => { :controller => 'events', :action => "remove_event", :id => event }, :html => { :id => 'remove_event', :title => "Destroy Event: #{event.sig.sig_name}" }, :loading => "$('#destroy_event_#{event.sid + event.cid}').remove();$('#remove_event_#{event.sid + event.cid}').show();" %>
 			<%- end -%>
 		</div> 
 
