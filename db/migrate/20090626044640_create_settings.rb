@@ -12,7 +12,7 @@ class CreateSettings < ActiveRecord::Migration
       t.datetime :updated_at
     end
     
-    execute "Insert into settings (app_name, app_dev, app_website, app_version, device_name, events_per_page) Values ('Snorby', 'Dustin Willis Webber', 'http://www.snorby.org', '1.1.0', 'Snorby', '20')"
+    execute "Insert into settings (app_name, app_dev, app_website, app_version, device_name, events_per_page) Values ('Snorby', 'Dustin Willis Webber', 'http://www.snorby.org', '1.1.1', 'Snorby', '20')"
     
   end
 

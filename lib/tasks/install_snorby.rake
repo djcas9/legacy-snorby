@@ -12,7 +12,7 @@ namespace :snorby do
     puts '[~] Importing snort DB schema...'
     system("mysql -u #{@dbconfig['production']['username']} --password=#{@dbconfig['production']['password']} #{@dbconfig['production']['database']} < #{RAILS_ROOT}/db/create_mysql")
     Rake::Task['snorby:cache'].invoke
-    Rake::Task['snorby:cronjob_add'].invoke
+    Rake::Task['snorby:cronjob'].invoke
   end
 
   desc "Snorby Reset - All Data Will Be Lost!"
@@ -24,24 +24,21 @@ namespace :snorby do
     puts '[~] Importing snort DB schema...'
     system("mysql -u #{@dbconfig['production']['username']} --password=#{@dbconfig['production']['password']} #{@dbconfig['production']['database']} < #{RAILS_ROOT}/db/create_mysql")
     Rake::Task['snorby:cache'].invoke
-    Rake::Task['snorby:cronjob_add'].invoke
+    Rake::Task['snorby:cronjob'].invoke
   end
   
   desc "Snorby Update"
   task :update => :environment do
     
     ### VERSION SPECIFIC MIGRATIONS
-    puts '[~] Removing Old Snorby DB tables...'
+    puts '[~] Updating Snorby...'
     system('rake db:migrate:down RAILS_ENV=production VERSION=20090626044640')
-    system('rake db:migrate:down RAILS_ENV=production VERSION=20090628064454')
-    puts '[~] Adding New Snorby DB tables...'
     system('rake db:migrate:up RAILS_ENV=production VERSION=20090626044640')
-    system('rake db:migrate:up RAILS_ENV=production VERSION=20090628064454')
     ### END
-    
-    puts "[~] Updating The Snorby Database."
     Rake::Task['db:create'].invoke
     Rake::Task['db:migrate'].invoke
+    Rake::Task['snorby:cache'].invoke
+    Rake::Task['snorby:cronjob'].invoke
   end
 
   desc "Add/Update Snorby Cronjobs"
