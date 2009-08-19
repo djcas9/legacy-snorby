@@ -25,12 +25,12 @@
 			<%- if event.importance.present? -%>
 			
 			<span id='important_load_<%= event.sid + event.cid %>' style='display:none;'><%= image_tag('ajax.gif', :size=>'14x14') %></span>
-			<%= link_to_remote image_tag('other/is_important.png', :size=>'14x14', :id => "important_#{event.sid + event.cid}"), :url => { :controller => 'events', :action => "important", :id => event }, :loading => "$('#important_#{event.sid + event.cid}').hide();$('#important_load_#{event.sid + event.cid}').show();", :complete => "$('#important_load_#{event.sid + event.cid}').hide();", :html => { :title => "Make This Event Important" } %>
+			<%= link_to_remote image_tag('other/is_important.png', :size=>'14x14', :id => "important_#{event.sid + event.cid}"), :url => { :controller => 'events', :action => "important", :id => event }, :loading => "$('#important_#{event.sid + event.cid}').hide();$('#important_load_#{event.sid + event.cid}').show();", :complete => "$('#important_load_#{event.sid + event.cid}').hide();" %>
 			
 			<%- else -%>
 
 			<span id='important_load_<%= event.sid + event.cid %>' style='display:none;'><%= image_tag('ajax.gif', :size=>'14x14') %></span>
-			<%= link_to_remote image_tag('other/is_not_important.png', :size=>'14x14', :id => "important_#{event.sid + event.cid}"), :url => { :controller => 'events', :action => "important", :id => event }, :loading => "$('#important_#{event.sid + event.cid}').hide();$('#important_load_#{event.sid + event.cid}').show()", :complete => "$('#important_load_#{event.sid + event.cid}').hide();", :html => { :title => "Make This Event Important" } %>
+			<%= link_to_remote image_tag('other/is_not_important.png', :size=>'14x14', :id => "important_#{event.sid + event.cid}"), :url => { :controller => 'events', :action => "important", :id => event }, :loading => "$('#important_#{event.sid + event.cid}').hide();$('#important_load_#{event.sid + event.cid}').show()", :complete => "$('#important_load_#{event.sid + event.cid}').hide();" %>
 
 			<%- end -%>
 
