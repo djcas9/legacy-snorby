@@ -14,7 +14,7 @@
 					<%= @event.source_ip %>
 					<%- unless !@event.source_ip -%>
 						<%= link_to "#{image_tag('other/whois.png', :size=>'12x12')}", { :action => 'whois', 
-						:whois_host => @event.source_ip, :id => @event }, :rel => 'facebox' %><br />
+						:whois_host => @event.source_ip, :id => @event }, :rel => 'facebox', :title => "Whois: #{@event.source_ip}", :class => 'add_tipsy' %><br />
 					<%- end -%>
 					</span>
 					</td>
@@ -22,7 +22,7 @@
 						<span id='ip_address'><%= @event.destination_ip %>
 						<%- unless !@event.destination_ip -%>
 							<%= link_to "#{image_tag('other/whois.png', :size=>'12x12')}", { :action => 'whois', 
-							:whois_host => @event.destination_ip, :id => @event }, :rel => 'facebox' %><br />
+							:whois_host => @event.destination_ip, :id => @event }, :rel => 'facebox', :title => "Whois: #{@event.destination_ip}", :class => 'add_tipsy' %><br />
 						<%- end -%>
 						</span>
 					</td>

@@ -16,7 +16,7 @@
 				<td><%= @event.sensor.interface %></td>
 				<td><%= @event.sensor.hostname %></td>
 				<%- if @event.sig.sig_gid == 1 -%>
-				<td><%= link_to "#{@event.sig.sig_gid}:#{@event.sig.sig_sid}", "http://rootedyour.com/snortsid?sid=#{@event.sig.sig_sid}", :target => '_blank' %></td>
+				<td><%= link_to "#{@event.sig.sig_gid}:#{@event.sig.sig_sid}", "http://rootedyour.com/snortsid?sid=#{@event.sig.sig_sid}", :target => '_blank', :title => 'More Information', :class => 'add_tipsy' %></td>
 				<%- else -%>
 				<td><%= link_to "#{@event.sig.sig_gid}:#{@event.sig.sig_sid}", "http://rootedyour.com/snortsid?sid=#{@event.sig.sig_gid}-#{@event.sig.sig_sid}", :target => '_blank' %></td>
 				<%- end -%>
