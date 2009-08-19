@@ -1,5 +1,6 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
+
 jQuery(document).ready(function($) {
     var currentPage = 2
     // Hide Loading
@@ -32,18 +33,29 @@ jQuery(document).ready(function($) {
     });
 
     // Remove Event
-		$("#update_image_refresh").tipsy({
-        gravity: "w"
-    });
+		$("#update_image_refresh").livequery(function () {
+			$(this).tipsy({
+	      gravity: "w",
+	      offsetBottom: 7
+	  });
+		return false;
+	});
 		
-		$('#snorby_news, #snorby_bugs, #snorby_wiki, #snorby_footer_info, .add_tipsy').tipsy({
-        gravity: "s",
-        offsetBottom: 7
-    });
+		$('#snorby_news, #snorby_bugs, #snorby_wiki, #snorby_footer_info, .add_tipsy').livequery(function () {
+			$(this).tipsy({
+	      gravity: "s",
+	      offsetBottom: 7
+	  });
+		return false;
+	});
 
-		$('#filter_box_link').tipsy({
-        gravity: "e"
-    });
+		$('#filter_box_link').livequery(function () {
+			$(this).tipsy({
+	      gravity: "e",
+	      offsetBottom: 7
+	  });
+		return false;
+	});
 
     // DatePicker
     $("#start_datepicker,#end_datepicker").datepicker({
@@ -92,13 +104,16 @@ jQuery(document).ready(function($) {
         });
 
     // FaceBox
-    $('a[rel*=facebox]').facebox({
-        loading_image: 'loading.gif',
-        close_image: 'closelabel.gif'
+    $('a[rel*=facebox]').livequery(function (event) {
+    	$(this).facebox({
+	        loading_image: 'loading.gif',
+	        close_image: 'closelabel.gif'
+	    });
+	return false;
     });
 
     // More
-    $('#more').live("click", function() {
+    $('#more').livequery("click", function() {
         var B = $(this);
         B.blur();
         var A = B.attr("href");

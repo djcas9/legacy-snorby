@@ -277,9 +277,9 @@ div#comment_body{color:#707070;margin-top:5px;margin-bottom:5px;margin-left:5px;
 /* @end */
 .tipsy{opacity:.8;filter:alpha(opacity=80);background-repeat:no-repeat;padding:5px;z-index:999;}
 .tipsy-inner{padding:8px 8px;max-width:200px;font:11px 'Lucida Grande',sans-serif;font-weight:bold;-moz-border-radius:4px;-khtml-border-radius:4px;-webkit-border-radius:4px;border-radius:4px;background-color:#000;color:white;text-align:left;}
-.tipsy-north{background-image:url(http://s.twimg.com/a/1250203207/images/tipsy/tipsy-north.gif);background-position:top center;}
-.tipsy-south{background-image:url(http://s.twimg.com/a/1250203207/images/tipsy/tipsy-south.gif);background-position:bottom center;}
-.tipsy-east{background-image:url(http://s.twimg.com/a/1250203207/images/tipsy/tipsy-east.gif);background-position:right center;}
-.tipsy-west{background-image:url(http://s.twimg.com/a/1250203207/images/tipsy/tipsy-west.gif);background-position:left center;}
+.tipsy-north{background-image:url(../images/tipsy/tipsy-north.gif);background-position:top center;}
+.tipsy-south{background-image:url(../images/tipsy/tipsy-south.gif);background-position:bottom center;}
+.tipsy-east{background-image:url(../images/tipsy/tipsy-east.gif);background-position:right center;}
+.tipsy-west{background-image:url(../images/tipsy/tipsy-west.gif);background-position:left center;}
 .tipsy-inner{padding:10px 15px;line-height:1.5em;font-weight:bold;}
 .ie6 .tipsy{width:250px;}
