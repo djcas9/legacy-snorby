@@ -1,7 +1,7 @@
 if @user_session.valid?
-  page[:user_session_submit].enable
+  #page[:user_session_submit].enable
 else
-  page[:user_session_submit].disable
+  #page[:user_session_submit].disable
 end
 
 page << "$('.error_message').remove(0)"

@@ -2,7 +2,7 @@
 	<%- cache "filter_box" do -%>
 		<% form_tag livelook_path, :method => :get do %>
 		<div id="filter_box" class='move_right'>
-			<%= submit_tag "Apply Settings", :name => nil, :class => 'not_round' %>
+			<%= submit_tag "Apply Settings", :name => nil, :class => 'not_round', :title => 'Select a severity filter and apply for real-time updates.', :id => 'filter_box_link' %>
 		</div>
 		<%= select_tag("severity", options_for_select([['All Severities', 'All'], ['High Severity', 1], ['Medium Severity', 2], ['Low Severity', 3]], params[:severity])) %>
 		<%- end -%>
@@ -15,7 +15,7 @@
 </div>
 
 <%= periodically_call_remote(:url => { :action => 'livelook', :severity => params[:severity] },
- 		:frequency => 20,
+ 		:frequency => 60,
 		:loading => "$('#loading_livelook').show()", 
 		:complete => "$('#loading_livelook').hide()",
 		:update => { :success => "#events" }) %>

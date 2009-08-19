@@ -3,19 +3,19 @@
 		<%- if @event.importance.present? -%>
 		
 		<span id='important_load_<%= @event.sid + @event.cid %>' style='display:none;'><%= image_tag('ajax.gif', :size=>'14x14') %></span>
-		<%= link_to_remote image_tag('other/is_important.png', :size => '14x14', :id => "important_#{@event.sid + @event.cid}"), :url => { :controller => 'events', :action => "important", :id => @event }, :loading => "$('#important_#{@event.sid + @event.cid}').hide();$('#important_load_#{@event.sid + @event.cid}').show()", :complete => "$('#important_load_#{@event.sid + @event.cid}').hide()", :html => { :title => "Make This Event Important" } %>
+		<%= link_to_remote image_tag('other/is_important.png', :size => '14x14', :id => "important_#{@event.sid + @event.cid}", :title => 'Make This Event Unimportant.', :class => 'add_tipsy'), :url => { :controller => 'events', :action => "important", :id => @event }, :loading => "$('#important_#{@event.sid + @event.cid}').hide();$('#important_load_#{@event.sid + @event.cid}').show()", :complete => "$('#important_load_#{@event.sid + @event.cid}').hide()" %>
 
 		<%- else -%>
 		<span id='important_load_<%= @event.sid + @event.cid %>' style='display:none;'><%= image_tag('ajax.gif', :size=>'14x14') %></span>
-		<%= link_to_remote image_tag('other/is_not_important.png', :size => '14x14', :id => "important_#{@event.sid + @event.cid}"), :url => { :controller => 'events', :action => "important", :id => @event }, :loading => "$('#important_#{@event.sid + @event.cid}').hide();$('#important_load_#{@event.sid + @event.cid}').show()", :complete => "$('#important_load_#{@event.sid + @event.cid}').hide()", :html => { :title => "Make This Event Important" } %>
+		<%= link_to_remote image_tag('other/is_not_important.png', :size => '14x14', :id => "important_#{@event.sid + @event.cid}", :title => 'Make This Event Important.', :class => 'add_tipsy'), :url => { :controller => 'events', :action => "important", :id => @event }, :loading => "$('#important_#{@event.sid + @event.cid}').hide();$('#important_load_#{@event.sid + @event.cid}').show()", :complete => "$('#important_load_#{@event.sid + @event.cid}').hide()", :html => { :title => "Make This Event Important" } %>
 
 		<%- end -%>
-		<a href='#scroll_to_comment' id='scroll_to_comment'><%= image_tag('other/show_comments.png', :size=>'14x14') %></a>
-		<%= link_to "#{image_tag('export/pdf.png', :size => '14x14')}", { :format => 'pdf' } %>
-		<%= link_to "#{image_tag('export/xml.png', :size => '14x14')}", { :format => 'xml' } %>
-		<%= link_to "#{image_tag('export/email.png', :size => '14x14')}", send_event_path(@event), :rel => 'facebox' %>
+		<a href='#scroll_to_comment' id='scroll_to_comment'><%= image_tag('other/show_comments.png', :size=>'14x14', :title => 'Scroll To Event Comments.', :class => 'add_tipsy') %></a>
+		<%= link_to "#{image_tag('export/pdf.png', :size => '14x14', :title => 'Export To PDF.', :class => 'add_tipsy')}", { :format => 'pdf' } %>
+		<%= link_to "#{image_tag('export/xml.png', :size => '14x14', :title => 'Export To XML.', :class => 'add_tipsy')}", { :format => 'xml' } %>
+		<%= link_to "#{image_tag('export/email.png', :size => '14x14', :title => 'Email This Event.', :class => 'add_tipsy')}", send_event_path(@event), :rel => 'facebox' %>
 		<%- if current_user.admin -%>
-		<%= link_to "#{image_tag('other/slash.png', :size => '14x14', :id => "destroy_event_#{@event.sid + @event.cid}")}", { :action => 'remove_event', :id => @event }, :id => 'remove_fade_in', :title => "Destroy Event: #{@event.sig.sig_name}" %>
+		<%= link_to "#{image_tag('other/slash.png', :size => '14x14', :id => "destroy_event_#{@event.sid + @event.cid}", :title => 'Delete This Event.', :class => 'add_tipsy')}", { :action => 'remove_event', :id => @event }, :id => 'remove_fade_in', :title => "Destroy Event: #{@event.sig.sig_name}" %>
 		<%- end -%>
 	</div>
 	<strong class='event_title'><%= @event.sig.sig_name %></strong>

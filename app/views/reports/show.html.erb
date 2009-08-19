@@ -1,6 +1,6 @@
 <div id="search_options" class='round'>
-	<%= link_to "#{image_tag('export/xml.png')}", { :format => 'xml' } %>
-	<%= link_to "#{image_tag('export/email.png')}", send_report_path(@report), :rel => 'facebox' %>
+	<%= link_to "#{image_tag('export/xml.png', :title => 'Export To XML.', :class => 'add_tipsy')}", { :format => 'xml' } %>
+	<%= link_to "#{image_tag('export/email.png', :title => 'Email This Report.', :class => 'add_tipsy')}", send_report_path(@report), :rel => 'facebox' %>
 </div>
 <h1>Snorby <%= @report.rtype.capitalize %> Report</h1>
 <br />

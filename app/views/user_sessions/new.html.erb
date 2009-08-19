@@ -1,5 +1,3 @@
-<% error_message_on :user_session, :base %>
-
 <div id="login">
 	
 	<div id="login_header"></div>
@@ -13,10 +11,8 @@
 		  <br />
 			<%= f.label :remember_me %> <%= f.check_box :remember_me %><br />
 			<br />
-		  <%= f.submit "Login »" %> <span id='user_session_base'></span>
+		  <%= f.submit "Login »" %>
 		<% end %>
 	</div>
 	<div id="login_footer"></div>
 </div>
-
-<%= observe_form "login_form", :url => user_session_url %>
