@@ -58,16 +58,31 @@ jQuery(document).ready(function($) {
 	});
 
     // DatePicker
-    $("#start_datepicker,#end_datepicker").datepicker({
-        duration: '',
-        showTime: true,
-        constrainInput: true,
-        stepMinutes: 1,
-        stepHours: 1,
-        altTimeField: '',
-        time24h: false,
-        dateFormat: 'MM d, yy',
-        showButtonPanel: false
+
+    $("#start_datepicker").livequery(function () {
+    	$(this).datepicker({
+	        duration: '',
+	        showTime: true,
+	        stepMinutes: 1,
+	        stepHours: 1,
+	        time24h: false,
+	        dateFormat: 'MM d, yy',
+					constrainInput: false
+	    });
+			return false;
+    });
+
+    $("#end_datepicker").livequery(function () {
+    	$(this).datepicker({
+	        duration: '',
+	        showTime: true,
+	        stepMinutes: 1,
+	        stepHours: 1,
+	        time24h: false,
+	        dateFormat: 'MM d, yy',
+					constrainInput: false
+	    });
+			return false;
     });
 
     //autocomplete
