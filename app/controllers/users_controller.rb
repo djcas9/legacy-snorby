@@ -4,7 +4,6 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @settings = Setting
   end
 
   def new

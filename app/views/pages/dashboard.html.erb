@@ -17,17 +17,17 @@
 					</tr>
 					<tr>
 						<td><%= image_tag('severity/high.png', :size=>'10x10') %> High Severity</td>
-						<td><%= link_to "#{pluralize(@high, "Event")}", severity_path(:severity => 1) %></td>
+						<td><%= link_to "#{pluralize(@high, "Event")}", severity_path(:severity_id => 1) %></td>
 					</tr>
 				
 					<tr>
 						<td><%= image_tag('severity/warn.png', :size=>'10x10') %> Medium Severity</td>
-						<td><%= link_to "#{pluralize(@medium, "Event")}", severity_path(:severity => 2) %></td>
+						<td><%= link_to "#{pluralize(@medium, "Event")}", severity_path(:severity_id => 2) %></td>
 					</tr>
 				
 					<tr>
 						<td><%= image_tag('severity/low.png', :size=>'10x10') %> Low Severity</td>
-						<td><%= link_to "#{pluralize(@low, "Event")}", severity_path(:severity => 3) %></td>
+						<td><%= link_to "#{pluralize(@low, "Event")}", severity_path(:severity_id => 3) %></td>
 					</tr>
 
 				</table>

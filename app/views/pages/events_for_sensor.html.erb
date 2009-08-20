@@ -5,5 +5,5 @@
 </div>
 
 <% unless @events.next_page.nil? %>
-<div id="pagination"><a class="round more blah" href="/events_for_sensor?sensor=<%= params[:sensor] %>" id="more" rel='next'>more</a></div>
+<div id="pagination"><a class="round more blah" href="/events_for_sensor?sensor=<%= params[:sensor] %>&" id="more" rel='next'>more</a></div>
 <%- end -%>

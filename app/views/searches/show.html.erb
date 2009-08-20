@@ -18,5 +18,5 @@
 </div>
 
 <% unless @events.next_page.nil? %>
-<div id="pagination"><a class="round more blah" href="/searches/<%= params[:id] %>" id="more" rel='next'>more</a></div>
+<div id="pagination"><a class="round more blah" href="/searches/<%= params[:id] %>?" id="more" rel='next'>more</a></div>
 <%- end -%>

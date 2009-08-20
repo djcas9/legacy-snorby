@@ -96,9 +96,9 @@ class SettingsController < ApplicationController
   end
 
   def user_delete_multiple
-    @users = User.find(params[:user_ids])
-    @users.each do |user|
-      user.destroy
+    @remove_users = User.find(params[:user_ids])
+    @remove_users.each do |rm_user|
+      rm_user.destroy
     end
     flash[:notice] = "User(s) successfully removed!"
     redirect_to settings_path

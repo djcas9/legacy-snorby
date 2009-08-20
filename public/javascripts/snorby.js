@@ -118,7 +118,7 @@ jQuery(document).ready(function($) {
         B.blur();
         var A = B.attr("href");
         $.ajax({
-            url: A + '?page=' + currentPage++,
+            url: A + 'page=' + currentPage++,
             type: 'GET',
             dataType: 'script',
             beforeSend: function() {

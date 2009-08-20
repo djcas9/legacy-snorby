@@ -43,16 +43,16 @@ class PagesController < ApplicationController
     unless params[:category_id].to_i == 0
       @category = SigClass.find(params[:category_id].to_i)
     end
-    @events = Event.paginate(:page => params[:page], :per_page => Setting.events_per_page, :include => :sig, :conditions => ['signature.sig_class_id = ?', params[:category_id].to_i])
+    @events = Event.paginate(:page => params[:page], :per_page => Setting.events_per_page, :include => :sig, :conditions => ['signature.sig_class_id = ?', params[:category_id].to_i], :order => 'timestamp DESC')
   end
 
   def events_for_sensor
     @sensor ||= Sensor.find(params[:sensor])
-    @events ||= @sensor.events.paginate(:page => params[:page], :per_page => Setting.events_per_page)
+    @events ||= @sensor.events.paginate(:page => params[:page], :per_page => Setting.events_per_page, :order => 'timestamp DESC')
   end
 
   def severity
-    @events ||= Event.paginate(:page => params[:page], :per_page => Setting.events_per_page, :order => 'timestamp DESC', :joins => [:comments, :importance], :include => [:sig, :sensor, :iphdr], :conditions => ['signature.sig_priority = ?', "#{params[:severity]}"] )
+    @events ||= Event.paginate(:page => params[:page], :per_page => Setting.events_per_page, :joins => [:comments, :importance], :include => [:sig, :sensor, :iphdr], :conditions => ['signature.sig_priority = ?', "#{params[:severity_id]}"], :order => 'timestamp DESC')
   end
 
 end
