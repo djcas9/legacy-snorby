@@ -283,3 +283,5 @@ div#comment_body{color:#707070;margin-top:5px;margin-bottom:5px;margin-left:5px;
 .tipsy-west{background-image:url(../images/tipsy/tipsy-west.gif);background-position:left center;}
 .tipsy-inner{padding:10px 15px;line-height:1.5em;font-weight:bold;}
 .ie6 .tipsy{width:250px;}
+#hourSlider{margin-left: 15px;}
+#minuteSlider{margin-left: 23px;}
