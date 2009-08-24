@@ -3,7 +3,6 @@
 	<td><%= link_to "Snorby #{report.rtype.capitalize} Report", report %></td>
   <td><%=h DateTime.parse(report.from_time).strftime('%B %d %Y') %></td>
 	<td><%=h DateTime.parse(report.to_time).strftime('%B %d %Y') %></td>
-	<td><%= link_to "#{image_tag('export/pdf.png')}", report_path(report, :format => 'pdf') %></td>
 	<td><%= link_to "#{image_tag('export/xml.png')}", report_path(report, :format => 'xml') %></td>
 	<td><%= link_to "#{image_tag('export/email.png')}", send_report_path(report), :rel => 'facebox' %></td>
 </tr>
