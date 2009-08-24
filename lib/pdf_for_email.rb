@@ -508,7 +508,7 @@ class Pdf_for_email
       end
 
       unless search.events.blank?
-        move_down(10)
+        move_down(45)
         text "Event Severity vs Event Count", :size => 15, :style => :bold, :align => :center
         text "Outlined by this pie chart, it displays a comparison of the severity level in an executive format of events received. Typically, a large number of high-severity events is a cause for concern and warrants an investigation.", :size => 9
         move_down(20)
