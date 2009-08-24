@@ -18,14 +18,6 @@ jQuery(document).ready(function($) {
                 opacity: '1'
             })
         });
-
-        // Menu
-        $('#menubar a').hover(function() {
-            $(this).stop().fadeTo(1000, 0.6)
-        },
-        function() {
-            $(this).stop().fadeTo(1000, 1)
-        });
     };
 
     //Scroll
