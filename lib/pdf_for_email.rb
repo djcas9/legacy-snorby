@@ -106,8 +106,8 @@ class Pdf_for_email
       end
 
       unless events.blank?
-        move_down(15)
-        text "Event Severity vs Time", :size => 15, :style => :bold, :align => :center
+        move_down(20)
+        text "Event Count vs Time", :size => 15, :style => :bold, :align => :center
         text "This line graph below describes events separated by time. Abnormal events and/or unexpected spikes in the number of events should be researched further.", :size => 9
         move_down(15)
         
