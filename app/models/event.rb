@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base
   set_table_name 'event'
   set_primary_keys :sid, :cid
+  has_activity :by => "timestamp"
   has_one :importance, :class_name => 'Importance', :foreign_key => [:sid, :cid], :dependent => :destroy
   has_many :comments, :foreign_key => [:sid, :cid], :dependent => :destroy
   belongs_to :sensor, :class_name => "Sensor", :foreign_key => 'sid'

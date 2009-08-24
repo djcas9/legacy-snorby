@@ -1,0 +1,139 @@
+h1. HasActivity
+---------------
+
+A simple way to grab recent activity on a given model from a table grouped by day, hour,
+or week with only 1 SQL query and giving the ability to pad the results for days/weeks/hours with no activity.
+
+The plugin offers the ability to...
+  * Present as a Google Chart (line or bar)
+  * Scope your model to given :conditions
+  * Pad your results for days with no activity
+
+NOTE: MySQL only because of date functions use.
+
+"Example Google Chart Generated":http://chart.apis.google.com/chart?cht=bvs&chs=200x50&chd=t:0,10,15,3,8,4,0,3,2,3,0,11,4,23,14,0,0,0,13,0,4,8,19,10,12,21,1&chco=336699&chbh=a,2&chds=0,23&chf=bg,s,EFEFEF&
+
+h2. USAGE / INSTALLATION
+------------------------
+
+<pre><code>script/plugin install git://github.com/cdunn/has_activity.git</pre></code>
+
+<pre><code>
+  class Feed < ActiveRecord::Base
+    # Defaults to created_at
+    has_activity
+    
+    ...
+  end
+</code></pre>
+
+<pre><code>
+  class Feed < ActiveRecord::Base
+    # Change the timestamp DB field to something custom
+    has_activity :by => "published_at"
+    
+    ...
+  end
+</code></pre>
+  
+<pre><code>
+  # Get all activity since 1 week ago grouped by day (default) 
+  Feed.activity_since(1.week.ago)
+  => [{:activity=>0, :offset=>7, :created_at=>Mon Mar 09 10:27:34 -0700 2009}, {:activity=>0, :offset=>6, :created_at=>Tue Mar 10 10:27:34 -0700 2009}, {:activity=>8, :offset=>5, :created_at=>Wed Mar 11 01:19:09 -0700 2009}, {:activity=>2, :offset=>4, :created_at=>Thu Mar 12 04:26:09 -0700 2009}, {:activity=>0, :offset=>3, :created_at=>Fri Mar 13 10:27:34 -0700 2009}, {:activity=>0, :offset=>2, :created_at=>Sat Mar 14 10:27:34 -0700 2009}, {:activity=>0, :offset=>1, :created_at=>Sun Mar 15 10:27:34 -0700 2009}, {:activity=>0, :offset=>0, :created_at=>Mon Mar 16 10:27:34 -0700 2009}]
+</code></pre>
+
+SQL generated for previous statement...
+<pre><code>
+SELECT
+ published_at AS timestamp,
+ COUNT(*) AS activity_count,
+ DATEDIFF(now(), published_at) as days_ago
+ FROM feeds
+ WHERE 1=1 AND published_at > '2009-03-09 17:27:33'
+ GROUP BY days_ago
+ ORDER BY published_at ASC
+</code></pre>
+
+<pre><code>
+  # Get all activity since 1 day ago grouped by hour scoped to a certain user
+  Feed.activity_since(1.week.ago, :conditions => ["user_id = ?", current_user.id], :group_by => :hour)
+  => [{:activity=>0, :offset=>24, :created_at=>Sun Mar 15 10:29:47 -0700 2009}, {:activity=>0, :offset=>23, :created_at=>Sun Mar 15 11:29:47 -0700 2009}, {:activity=>0, :offset=>22, :created_at=>Sun Mar 15 12:29:47 -0700 2009}, {:activity=>0, :offset=>21, :created_at=>Sun Mar 15 13:29:47 -0700 2009}, {:activity=>0, :offset=>20, :created_at=>Sun Mar 15 14:29:47 -0700 2009}, {:activity=>0, :offset=>19, :created_at=>Sun Mar 15 15:29:47 -0700 2009}, {:activity=>0, :offset=>18, :created_at=>Sun Mar 15 16:29:47 -0700 2009}, {:activity=>0, :offset=>17, :created_at=>Sun Mar 15 17:29:47 -0700 2009}, {:activity=>0, :offset=>16, :created_at=>Sun Mar 15 18:29:47 -0700 2009}, {:activity=>0, :offset=>15, :created_at=>Sun Mar 15 19:29:47 -0700 2009}, {:activity=>0, :offset=>14, :created_at=>Sun Mar 15 20:29:47 -0700 2009}, {:activity=>0, :offset=>13, :created_at=>Sun Mar 15 21:29:47 -0700 2009}, {:activity=>0, :offset=>12, :created_at=>Sun Mar 15 22:29:47 -0700 2009}, {:activity=>0, :offset=>11, :created_at=>Sun Mar 15 23:29:47 -0700 2009}, {:activity=>0, :offset=>10, :created_at=>Mon Mar 16 00:29:47 -0700 2009}, {:activity=>0, :offset=>9, :created_at=>Mon Mar 16 01:29:47 -0700 2009}, {:activity=>0, :offset=>8, :created_at=>Mon Mar 16 02:29:47 -0700 2009}, {:activity=>0, :offset=>7, :created_at=>Mon Mar 16 03:29:47 -0700 2009}, {:activity=>0, :offset=>6, :created_at=>Mon Mar 16 04:29:47 -0700 2009}, {:activity=>0, :offset=>5, :created_at=>Mon Mar 16 05:29:47 -0700 2009}, {:activity=>0, :offset=>4, :created_at=>Mon Mar 16 06:29:47 -0700 2009}, {:activity=>0, :offset=>3, :created_at=>Mon Mar 16 07:29:47 -0700 2009}, {:activity=>0, :offset=>2, :created_at=>Mon Mar 16 08:29:47 -0700 2009}, {:activity=>0, :offset=>1, :created_at=>Mon Mar 16 09:29:47 -0700 2009}, {:activity=>0, :offset=>0, :created_at=>Mon Mar 16 10:29:47 -0700 2009}]\
+</code></pre>
+
+SQL generated for previous statement...
+<pre><code>
+SELECT
+ published_at AS timestamp,
+ COUNT(*) AS activity_count,
+ ((((YEAR(now()) - YEAR(published_at))*365)+(DAYOFYEAR(now())-DAYOFYEAR(published_at)))*24)+(HOUR(now())-HOUR(published_at)) as hours_ago,
+ CONCAT(YEAR(published_at), CONCAT(DAYOFYEAR(published_at), HOUR(published_at))) AS unique_hour
+ FROM feeds
+ WHERE user_id = 1 AND published_at > '2009-03-15 17:29:47'
+ GROUP BY unique_hour
+ ORDER BY published_at ASC
+</code></pre>
+
+<pre><code>
+  # Get all activity since 2 months ago grouped by week and order it from current week to oldest week
+  Feed.activity_since(2.months.ago, :group_by => :week, :order => :desc)
+  => [{:activity=>0, :offset=>0, :created_at=>Mon Mar 16 10:34:28 -0700 2009}, {:activity=>0, :offset=>1, :created_at=>Mon Mar 09 10:34:28 -0700 2009}, {:activity=>0, :offset=>2, :created_at=>Mon Mar 02 10:34:28 -0800 2009}, {:activity=>0, :offset=>3, :created_at=>Mon Feb 23 10:34:28 -0800 2009}, {:activity=>0, :offset=>4, :created_at=>Mon Feb 16 10:34:28 -0800 2009}, {:activity=>0, :offset=>5, :created_at=>Mon Feb 09 10:34:28 -0800 2009}, {:activity=>0, :offset=>6, :created_at=>Mon Feb 02 10:34:28 -0800 2009}, {:activity=>0, :offset=>7, :created_at=>Mon Jan 26 10:34:28 -0800 2009}, {:activity=>0, :offset=>8, :created_at=>Mon Jan 19 10:34:28 -0800 2009}]
+</code></pre>
+
+SQL generated for previous statement...
+<pre><code>
+  SELECT
+   published_at AS timestamp,
+   COUNT(*) AS activity_count,
+   ((YEAR(now()) - YEAR(published_at))*52)+(WEEK(now())-WEEK(published_at)) as weeks_ago,
+   YEARWEEK(published_at) AS unique_week
+   FROM feeds
+   WHERE 1=1 AND published_at > '2009-01-16 17:34:28'
+   GROUP BY unique_week
+   ORDER BY published_at ASC
+</code></pre>
+
+h2. CONVERT DATA INTO GOOGLE CHART
+
+<pre><code>
+Feed.activity_since(6.months.ago, :group_by => :week, :order => :desc).to_activity_gchart
+=> "http://chart.apis.google.com/chart?cht=bvs&chs=200x50&chd=t:0,10,15,3,8,4,0,3,2,3,0,11,4,23,14,0,0,0,13,0,4,8,19,10,12,21,1&chco=336699&chbh=a,2&chds=0,23&chf=bg,s,EFEFEF&"
+</code></pre>
+
+h2. OTHER OPTIONS
+
+<pre><code>
+  # Grabs a hash of the activity since <time ago> grouped by <hour/day/week>
+  # 
+  #   * :conditions
+  #       same as the standard Rails finder. Used to scope your activity to a particular user, etc.
+  #   * :padding
+  #       true/false
+  #   * :group_by
+  #       :hour, :day, :week
+  # 
+  def activity_since(since=1.week.ago, options={})
+</code></pre>
+
+<pre><code>
+  # Returns a URL to a simple google chart the represents the activity returned by the plugin
+  # 
+  #   * :type => :bar/:line
+  #   * :size => "200x50"
+  #   * :bgcolor => "EFEFEF"
+  #   * :chart_color => "336699"
+  #   * :area_color => "DFEBFF" (only for :line)
+  #   * :line_color => "0077CC" (only for :line)
+  #   * :line_width => "2" (only for :line)
+  # 
+  def to_activity_gchart(options={})
+</code></pre>
+
+h2. INDEX THE TIMESTAMP YOU USE
+
+Obviously there is not "one index fits all" but you should include an index on at least the timestamp that fits the conditions you are using.
+
+<pre><code>
+add_index :model, [:created_at]
+</code></pre>
+
+Copyright (c) 2009 Cary Dunn <cary.dunn@gmail.com> "http://elctech.com":http://elctech.com, released under the MIT license

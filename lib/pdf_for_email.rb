@@ -107,14 +107,22 @@ class Pdf_for_email
 
       unless events.blank?
         move_down(15)
-        text "Event Severity vs Sessions", :size => 15, :style => :bold, :align => :center
-        text "This line graph describes events separated by their severity levels. Reoccurring events should be filtered out using the snorby front-end, and abnormal events or unexpected spikes in the number of events should be researched further.", :size => 9
+        text "Event Severity vs Time", :size => 15, :style => :bold, :align => :center
+        text "This line graph below describes events separated by time. Abnormal events and/or unexpected spikes in the number of events should be researched further.", :size => 9
         move_down(15)
-        if report.from_time.blank? || report.to_time.blank?
-          image open(Gchart.line(:axis_labels => ["#{events.first.timestamp.strftime('%D - %I:%M %p')}|#{Time.now.strftime('%D - %I:%M %p')}"], :axis_with_labels => ['x','y'], :line_color => @_line_color, :data => @_line_data, :size => '500x230')), :position => :center
+        
+        if report.rtype == 'daily'
+          image open(Event.activity_since(Time.parse(report.from_time), :end_time => DateTime.parse(report.to_time)).to_activity_gchart(:bgcolor => "FFFFFF", :size => "500x150", :type => :line, :lbs => "0:|#{DateTime.parse(report.from_time).strftime('%A, %B %d, %Y')}|#{DateTime.parse(report.to_time).strftime('%A, %B %d, %Y')}"))
+        elsif report.rtype == 'weekly'
+          image open(Event.activity_since(Time.parse(report.from_time), :end_time => DateTime.parse(report.to_time)).to_activity_gchart(:bgcolor => "FFFFFF", :size => "500x150", :type => :line, :lbs => "0:|#{DateTime.parse(report.from_time).strftime('%A, %B %d, %Y')}|#{DateTime.parse(report.to_time).strftime('%A, %B %d, %Y')}"))
+        elsif report.rtype == 'monthly'
+          image open(Event.activity_since(Time.parse(report.from_time), :end_time => DateTime.parse(report.to_time)).to_activity_gchart(:bgcolor => "FFFFFF", :size => "500x150", :type => :line, :lbs => "0:|#{DateTime.parse(report.from_time).strftime('%A, %B %d, %Y')}|#{DateTime.parse(report.to_time).strftime('%A, %B %d, %Y')}"))
         else
-          image open(Gchart.line(:axis_labels => ["#{Time.parse(report.from_time).strftime('%D - %I:%M %p')}|#{Time.parse(report.to_time).strftime('%D - %I:%M %p')}"], :axis_with_labels => ['x','y'], :line_color => @_line_color, :data => @_line_data, :size => '500x230')), :position => :center
+          text "Error"
         end
+        
+        #:group_by => :hour
+        #image open(Event.activity_since(4.week.ago).to_activity_gchart(:bgcolor => "FFFFFF", :size => "500x150", :type => :line))
         move_down(5)
       end
       unless events.blank?
@@ -150,7 +158,8 @@ class Pdf_for_email
 
 
       if events.blank?
-        text "NO DATA", :size => 30, :style => :bold, :align => :center, :color => :red
+        move_down 30
+        text "No Data was recorded for this report. Make sure snorby is collecting data from snort properly.", :size => 30, :style => :bold, :align => :center, :color => :red
       else
         move_down 10
         text "Events listed below are categorized by severity levels. Common events have been placed into sessions for easy review.", :size => 8, :align => :center, :style => :italic
@@ -498,18 +507,6 @@ class Pdf_for_email
         @_line_label << "High"
       end
 
-      unless search.events.blank?
-        move_down(15)
-        text "Event Severity vs Sessions", :size => 15, :style => :bold, :align => :center
-        text "This line graph describes events separated by their severity levels. Reoccurring events should be filtered out using the snorby front-end, and abnormal events or unexpected spikes in the number of events should be researched further.", :size => 9
-        move_down(15)
-        if search.start_time.blank? || search.end_time.blank?
-          image open(Gchart.line(:axis_labels => ["#{Event.first.timestamp.strftime('%D - %I:%M %p')}|#{Time.now.strftime('%D - %I:%M %p')}"], :axis_with_labels => ['x','y'], :line_color => @_line_color, :data => @_line_data, :size => '500x230')), :position => :center
-        else
-          image open(Gchart.line(:axis_labels => ["#{Time.parse(search.start_time).strftime('%D - %I:%M %p')}|#{Time.parse(search.end_time).strftime('%D - %I:%M %p')}"], :axis_with_labels => ['x','y'], :line_color => @_line_color, :data => @_line_data, :size => '500x230')), :position => :center
-        end
-        move_down(5)
-      end
       unless search.events.blank?
         move_down(10)
         text "Event Severity vs Event Count", :size => 15, :style => :bold, :align => :center
