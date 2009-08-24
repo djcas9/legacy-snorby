@@ -112,11 +112,11 @@ class Pdf_for_email
         move_down(15)
         
         if report.rtype == 'daily'
-          image open(Event.activity_since(Time.parse(report.from_time), :end_time => DateTime.parse(report.to_time)).to_activity_gchart(:bgcolor => "FFFFFF", :size => "500x150", :type => :line, :lbs => "0:|#{DateTime.parse(report.from_time).strftime('%A, %B %d, %Y')}|#{DateTime.parse(report.to_time).strftime('%A, %B %d, %Y')}"))
+          image open(Event.activity_since(Time.parse(report.from_time), :end_time => DateTime.parse(report.to_time)).to_activity_gchart(:bgcolor => "FFFFFF", :size => "600x200", :type => :line, :lbs => "0:|#{DateTime.parse(report.from_time).strftime('%A, %B %d, %Y')}|#{DateTime.parse(report.to_time).strftime('%A, %B %d, %Y')}")), :position => :center
         elsif report.rtype == 'weekly'
-          image open(Event.activity_since(Time.parse(report.from_time), :end_time => DateTime.parse(report.to_time)).to_activity_gchart(:bgcolor => "FFFFFF", :size => "500x150", :type => :line, :lbs => "0:|#{DateTime.parse(report.from_time).strftime('%A, %B %d, %Y')}|#{DateTime.parse(report.to_time).strftime('%A, %B %d, %Y')}"))
+          image open(Event.activity_since(Time.parse(report.from_time), :end_time => DateTime.parse(report.to_time)).to_activity_gchart(:bgcolor => "FFFFFF", :size => "600x200", :type => :line, :lbs => "0:|#{DateTime.parse(report.from_time).strftime('%A, %B %d, %Y')}|#{DateTime.parse(report.to_time).strftime('%A, %B %d, %Y')}")), :position => :center
         elsif report.rtype == 'monthly'
-          image open(Event.activity_since(Time.parse(report.from_time), :end_time => DateTime.parse(report.to_time)).to_activity_gchart(:bgcolor => "FFFFFF", :size => "500x150", :type => :line, :lbs => "0:|#{DateTime.parse(report.from_time).strftime('%A, %B %d, %Y')}|#{DateTime.parse(report.to_time).strftime('%A, %B %d, %Y')}"))
+          image open(Event.activity_since(Time.parse(report.from_time), :end_time => DateTime.parse(report.to_time)).to_activity_gchart(:bgcolor => "FFFFFF", :size => "600x200", :type => :line, :lbs => "0:|#{DateTime.parse(report.from_time).strftime('%A, %B %d, %Y')}|#{DateTime.parse(report.to_time).strftime('%A, %B %d, %Y')}")), :position => :center
         else
           text "Error"
         end

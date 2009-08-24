@@ -3,6 +3,7 @@
 
 jQuery(document).ready(function($) {
     var currentPage = 2
+
     // Hide Loading
     $('#loading').hide()
 
@@ -84,6 +85,8 @@ jQuery(document).ready(function($) {
 	    });
 			return false;
     });
+
+		//
 
     //autocomplete
     $("input#search_keywords").autocomplete("auto_complete_for_search_keywords");
