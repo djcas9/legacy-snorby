@@ -275,6 +275,28 @@ div#comment_body{color:#707070;margin-top:5px;margin-bottom:5px;margin-left:5px;
 .comment{border-bottom:1px solid #eee;margin-bottom:5px;}
 #comment_text{font-size:small;color:#2a2a2a;margin-bottom:-10px;}
 /* @end */
+#hourSlider{margin-left: 15px;}
+#minuteSlider{margin-left: 23px;}
+
+/* @group Passsword */
+
+.password-strength-bar {
+font-size : 12px;
+width : 50%;
+font-family : arial, sans-serif;
+color: #383838;
+height: 15px;
+margin-top: 5px;
+padding: 1px; 
+}
+.password-min-char {
+font-size : 10px;
+}
+
+/* @end */
+
+/* @group Tipsy */
+
 .tipsy{opacity:.8;filter:alpha(opacity=80);background-repeat:no-repeat;padding:5px;z-index:999;}
 .tipsy-inner{padding:8px 8px;max-width:200px;font:11px 'Lucida Grande',sans-serif;font-weight:bold;-moz-border-radius:4px;-khtml-border-radius:4px;-webkit-border-radius:4px;border-radius:4px;background-color:#000;color:white;text-align:left;}
 .tipsy-north{background-image:url(../images/tipsy/tipsy-north.gif);background-position:top center;}
@@ -283,5 +305,7 @@ div#comment_body{color:#707070;margin-top:5px;margin-bottom:5px;margin-left:5px;
 .tipsy-west{background-image:url(../images/tipsy/tipsy-west.gif);background-position:left center;}
 .tipsy-inner{padding:10px 15px;line-height:1.5em;font-weight:bold;}
 .ie6 .tipsy{width:250px;}
-#hourSlider{margin-left: 15px;}
-#minuteSlider{margin-left: 23px;}
+
+
+
+/* @end */

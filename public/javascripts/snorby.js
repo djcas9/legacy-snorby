@@ -1,6 +1,7 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
+
 jQuery(document).ready(function($) {
     var currentPage = 2
 
@@ -154,5 +155,8 @@ jQuery(document).ready(function($) {
             this.checked = checked_status;
         });
     });
+
+		//Password
+		$('.password').pstrength();
 
 });

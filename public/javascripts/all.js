@@ -319,6 +319,257 @@ jQuery.effects||(function(d){d.effects={version:"1.7.2",save:function(g,h){for(v
 
 (function($){$.ajaxSettings.accepts._default="text/javascript, text/html, application/xml, text/xml, */*"})(jQuery);(function($){$.fn.reset=function(){return this.each(function(){if(typeof this.reset=="function"||(typeof this.reset=="object"&&!this.reset.nodeType)){this.reset()}})};$.fn.enable=function(){return this.each(function(){this.disabled=false})};$.fn.disable=function(){return this.each(function(){this.disabled=true})}})(jQuery);(function($){$.extend({fieldEvent:function(el,obs){var field=el[0]||el,e="change";if(field.type=="radio"||field.type=="checkbox"){e="click"}else{if(obs&&(field.type=="text"||field.type=="textarea"||field.type=="password")){e="keyup"}}return e}});$.fn.extend({delayedObserver:function(delay,callback){var el=$(this);if(typeof window.delayedObserverStack=="undefined"){window.delayedObserverStack=[]}if(typeof window.delayedObserverCallback=="undefined"){window.delayedObserverCallback=function(stackPos){var observed=window.delayedObserverStack[stackPos];if(observed.timer){clearTimeout(observed.timer)}observed.timer=setTimeout(function(){observed.timer=null;observed.callback(observed.obj,observed.obj.formVal())},observed.delay*1000);observed.oldVal=observed.obj.formVal()}}window.delayedObserverStack.push({obj:el,timer:null,delay:delay,oldVal:el.formVal(),callback:callback});var stackPos=window.delayedObserverStack.length-1;if(el[0].tagName=="FORM"){$(":input",el).each(function(){var field=$(this);field.bind($.fieldEvent(field,delay),function(){var observed=window.delayedObserverStack[stackPos];if(observed.obj.formVal()==observed.oldVal){return}else{window.delayedObserverCallback(stackPos)}})})}else{el.bind($.fieldEvent(el,delay),function(){var observed=window.delayedObserverStack[stackPos];if(observed.obj.formVal()==observed.oldVal){return}else{window.delayedObserverCallback(stackPos)}})}},formVal:function(){var el=this[0];if(el.tagName=="FORM"){return this.serialize()}if(el.type=="checkbox"||el.type=="radio"){return this.filter("input:checked").val()||""}else{return this.val()}}})})(jQuery);(function($){$.fn.extend({visualEffect:function(o,options){if(options){speed=options.duration*1000}else{speed=null}e=o.replace(/\_(.)/g,function(m,l){return l.toUpperCase()});return eval("$(this)."+e+"("+speed+")")},appear:function(speed,callback){return this.fadeIn(speed,callback)},blindDown:function(speed,callback){return this.show("blind",{direction:"vertical"},speed,callback)},blindUp:function(speed,callback){return this.hide("blind",{direction:"vertical"},speed,callback)},blindRight:function(speed,callback){return this.show("blind",{direction:"horizontal"},speed,callback)},blindLeft:function(speed,callback){this.hide("blind",{direction:"horizontal"},speed,callback);return this},dropOut:function(speed,callback){return this.hide("drop",{direction:"down"},speed,callback)},dropIn:function(speed,callback){return this.show("drop",{direction:"up"},speed,callback)},fade:function(speed,callback){return this.fadeOut(speed,callback)},fadeToggle:function(speed,callback){return this.animate({opacity:"toggle"},speed,callback)},fold:function(speed,callback){return this.hide("fold",{},speed,callback)},foldOut:function(speed,callback){return this.show("fold",{},speed,callback)},grow:function(speed,callback){return this.show("scale",{},speed,callback)},highlight:function(speed,callback){return this.show("highlight",{},speed,callback)},puff:function(speed,callback){return this.hide("puff",{},speed,callback)},pulsate:function(speed,callback){return this.show("pulsate",{},speed,callback)},shake:function(speed,callback){return this.show("shake",{},speed,callback)},shrink:function(speed,callback){return this.hide("scale",{},speed,callback)},squish:function(speed,callback){return this.hide("scale",{origin:["top","left"]},speed,callback)},slideUp:function(speed,callback){return this.hide("slide",{direction:"up"},speed,callback)},slideDown:function(speed,callback){return this.show("slide",{direction:"up"},speed,callback)},switchOff:function(speed,callback){return this.hide("clip",{},speed,callback)},switchOn:function(speed,callback){return this.show("clip",{},speed,callback)}})})(jQuery);
 
+/*! Copyright (c) 2008 Brandon Aaron (http://brandonaaron.net)
+ * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) 
+ * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
+ *
+ * Version: 1.0.3
+ * Requires jQuery 1.1.3+
+ * Docs: http://docs.jquery.com/Plugins/livequery
+ */
+
+(function($) {
+	
+$.extend($.fn, {
+	livequery: function(type, fn, fn2) {
+		var self = this, q;
+		
+		// Handle different call patterns
+		if ($.isFunction(type))
+			fn2 = fn, fn = type, type = undefined;
+			
+		// See if Live Query already exists
+		$.each( $.livequery.queries, function(i, query) {
+			if ( self.selector == query.selector && self.context == query.context &&
+				type == query.type && (!fn || fn.$lqguid == query.fn.$lqguid) && (!fn2 || fn2.$lqguid == query.fn2.$lqguid) )
+					// Found the query, exit the each loop
+					return (q = query) && false;
+		});
+		
+		// Create new Live Query if it wasn't found
+		q = q || new $.livequery(this.selector, this.context, type, fn, fn2);
+		
+		// Make sure it is running
+		q.stopped = false;
+		
+		// Run it immediately for the first time
+		q.run();
+		
+		// Contnue the chain
+		return this;
+	},
+	
+	expire: function(type, fn, fn2) {
+		var self = this;
+		
+		// Handle different call patterns
+		if ($.isFunction(type))
+			fn2 = fn, fn = type, type = undefined;
+			
+		// Find the Live Query based on arguments and stop it
+		$.each( $.livequery.queries, function(i, query) {
+			if ( self.selector == query.selector && self.context == query.context && 
+				(!type || type == query.type) && (!fn || fn.$lqguid == query.fn.$lqguid) && (!fn2 || fn2.$lqguid == query.fn2.$lqguid) && !this.stopped )
+					$.livequery.stop(query.id);
+		});
+		
+		// Continue the chain
+		return this;
+	}
+});
+
+$.livequery = function(selector, context, type, fn, fn2) {
+	this.selector = selector;
+	this.context  = context || document;
+	this.type     = type;
+	this.fn       = fn;
+	this.fn2      = fn2;
+	this.elements = [];
+	this.stopped  = false;
+	
+	// The id is the index of the Live Query in $.livequery.queries
+	this.id = $.livequery.queries.push(this)-1;
+	
+	// Mark the functions for matching later on
+	fn.$lqguid = fn.$lqguid || $.livequery.guid++;
+	if (fn2) fn2.$lqguid = fn2.$lqguid || $.livequery.guid++;
+	
+	// Return the Live Query
+	return this;
+};
+
+$.livequery.prototype = {
+	stop: function() {
+		var query = this;
+		
+		if ( this.type )
+			// Unbind all bound events
+			this.elements.unbind(this.type, this.fn);
+		else if (this.fn2)
+			// Call the second function for all matched elements
+			this.elements.each(function(i, el) {
+				query.fn2.apply(el);
+			});
+			
+		// Clear out matched elements
+		this.elements = [];
+		
+		// Stop the Live Query from running until restarted
+		this.stopped = true;
+	},
+	
+	run: function() {
+		// Short-circuit if stopped
+		if ( this.stopped ) return;
+		var query = this;
+		
+		var oEls = this.elements,
+			els  = $(this.selector, this.context),
+			nEls = els.not(oEls);
+		
+		// Set elements to the latest set of matched elements
+		this.elements = els;
+		
+		if (this.type) {
+			// Bind events to newly matched elements
+			nEls.bind(this.type, this.fn);
+			
+			// Unbind events to elements no longer matched
+			if (oEls.length > 0)
+				$.each(oEls, function(i, el) {
+					if ( $.inArray(el, els) < 0 )
+						$.event.remove(el, query.type, query.fn);
+				});
+		}
+		else {
+			// Call the first function for newly matched elements
+			nEls.each(function() {
+				query.fn.apply(this);
+			});
+			
+			// Call the second function for elements no longer matched
+			if ( this.fn2 && oEls.length > 0 )
+				$.each(oEls, function(i, el) {
+					if ( $.inArray(el, els) < 0 )
+						query.fn2.apply(el);
+				});
+		}
+	}
+};
+
+$.extend($.livequery, {
+	guid: 0,
+	queries: [],
+	queue: [],
+	running: false,
+	timeout: null,
+	
+	checkQueue: function() {
+		if ( $.livequery.running && $.livequery.queue.length ) {
+			var length = $.livequery.queue.length;
+			// Run each Live Query currently in the queue
+			while ( length-- )
+				$.livequery.queries[ $.livequery.queue.shift() ].run();
+		}
+	},
+	
+	pause: function() {
+		// Don't run anymore Live Queries until restarted
+		$.livequery.running = false;
+	},
+	
+	play: function() {
+		// Restart Live Queries
+		$.livequery.running = true;
+		// Request a run of the Live Queries
+		$.livequery.run();
+	},
+	
+	registerPlugin: function() {
+		$.each( arguments, function(i,n) {
+			// Short-circuit if the method doesn't exist
+			if (!$.fn[n]) return;
+			
+			// Save a reference to the original method
+			var old = $.fn[n];
+			
+			// Create a new method
+			$.fn[n] = function() {
+				// Call the original method
+				var r = old.apply(this, arguments);
+				
+				// Request a run of the Live Queries
+				$.livequery.run();
+				
+				// Return the original methods result
+				return r;
+			}
+		});
+	},
+	
+	run: function(id) {
+		if (id != undefined) {
+			// Put the particular Live Query in the queue if it doesn't already exist
+			if ( $.inArray(id, $.livequery.queue) < 0 )
+				$.livequery.queue.push( id );
+		}
+		else
+			// Put each Live Query in the queue if it doesn't already exist
+			$.each( $.livequery.queries, function(id) {
+				if ( $.inArray(id, $.livequery.queue) < 0 )
+					$.livequery.queue.push( id );
+			});
+		
+		// Clear timeout if it already exists
+		if ($.livequery.timeout) clearTimeout($.livequery.timeout);
+		// Create a timeout to check the queue and actually run the Live Queries
+		$.livequery.timeout = setTimeout($.livequery.checkQueue, 20);
+	},
+	
+	stop: function(id) {
+		if (id != undefined)
+			// Stop are particular Live Query
+			$.livequery.queries[ id ].stop();
+		else
+			// Stop all Live Queries
+			$.each( $.livequery.queries, function(id) {
+				$.livequery.queries[ id ].stop();
+			});
+	}
+});
+
+// Register core DOM manipulation methods
+$.livequery.registerPlugin('append', 'prepend', 'after', 'before', 'wrap', 'attr', 'removeAttr', 'addClass', 'removeClass', 'toggleClass', 'empty', 'remove');
+
+// Run Live Queries when the Document is ready
+$(function() { $.livequery.play(); });
+
+
+// Save a reference to the original init method
+var init = $.prototype.init;
+
+// Create a new init method that exposes two new properties: selector and context
+$.prototype.init = function(a,c) {
+	// Call the original init and save the result
+	var r = init.apply(this, arguments);
+	
+	// Copy over properties if they exist already
+	if (a && a.selector)
+		r.context = a.context, r.selector = a.selector;
+		
+	// Set properties
+	if ( typeof a == 'string' )
+		r.context = c || document, r.selector = a;
+	
+	// Return the result
+	return r;
+};
+
+// Give the init function the jQuery prototype for later instantiation (needed after Rev 4091)
+$.prototype.init.prototype = $.prototype;
+	
+})(jQuery);
+
 /*
  * Autocomplete - jQuery plugin 1.0.2
  *
@@ -352,165 +603,6 @@ if(options.matchSubset){for(var i=q.length-1;i>=options.minChars;i--){var c=data
 	This software is released under the MIT License <http://www.opensource.org/licenses/mit-license.php>
 */
 var swfobject=function(){var Z="undefined",P="object",B="Shockwave Flash",h="ShockwaveFlash.ShockwaveFlash",W="application/x-shockwave-flash",K="SWFObjectExprInst",G=window,g=document,N=navigator,f=[],H=[],Q=null,L=null,T=null,S=false,C=false;var a=function(){var l=typeof g.getElementById!=Z&&typeof g.getElementsByTagName!=Z&&typeof g.createElement!=Z&&typeof g.appendChild!=Z&&typeof g.replaceChild!=Z&&typeof g.removeChild!=Z&&typeof g.cloneNode!=Z,t=[0,0,0],n=null;if(typeof N.plugins!=Z&&typeof N.plugins[B]==P){n=N.plugins[B].description;if(n){n=n.replace(/^.*\s+(\S+\s+\S+$)/,"$1");t[0]=parseInt(n.replace(/^(.*)\..*$/,"$1"),10);t[1]=parseInt(n.replace(/^.*\.(.*)\s.*$/,"$1"),10);t[2]=/r/.test(n)?parseInt(n.replace(/^.*r(.*)$/,"$1"),10):0}}else{if(typeof G.ActiveXObject!=Z){var o=null,s=false;try{o=new ActiveXObject(h+".7")}catch(k){try{o=new ActiveXObject(h+".6");t=[6,0,21];o.AllowScriptAccess="always"}catch(k){if(t[0]==6){s=true}}if(!s){try{o=new ActiveXObject(h)}catch(k){}}}if(!s&&o){try{n=o.GetVariable("$version");if(n){n=n.split(" ")[1].split(",");t=[parseInt(n[0],10),parseInt(n[1],10),parseInt(n[2],10)]}}catch(k){}}}}var v=N.userAgent.toLowerCase(),j=N.platform.toLowerCase(),r=/webkit/.test(v)?parseFloat(v.replace(/^.*webkit\/(\d+(\.\d+)?).*$/,"$1")):false,i=false,q=j?/win/.test(j):/win/.test(v),m=j?/mac/.test(j):/mac/.test(v);/*@cc_on i=true;@if(@_win32)q=true;@elif(@_mac)m=true;@end@*/return{w3cdom:l,pv:t,webkit:r,ie:i,win:q,mac:m}}();var e=function(){if(!a.w3cdom){return }J(I);if(a.ie&&a.win){try{g.write("<script id=__ie_ondomload defer=true src=//:><\/script>");var i=c("__ie_ondomload");if(i){i.onreadystatechange=function(){if(this.readyState=="complete"){this.parentNode.removeChild(this);V()}}}}catch(j){}}if(a.webkit&&typeof g.readyState!=Z){Q=setInterval(function(){if(/loaded|complete/.test(g.readyState)){V()}},10)}if(typeof g.addEventListener!=Z){g.addEventListener("DOMContentLoaded",V,null)}M(V)}();function V(){if(S){return }if(a.ie&&a.win){var m=Y("span");try{var l=g.getElementsByTagName("body")[0].appendChild(m);l.parentNode.removeChild(l)}catch(n){return }}S=true;if(Q){clearInterval(Q);Q=null}var j=f.length;for(var k=0;k<j;k++){f[k]()}}function J(i){if(S){i()}else{f[f.length]=i}}function M(j){if(typeof G.addEventListener!=Z){G.addEventListener("load",j,false)}else{if(typeof g.addEventListener!=Z){g.addEventListener("load",j,false)}else{if(typeof G.attachEvent!=Z){G.attachEvent("onload",j)}else{if(typeof G.onload=="function"){var i=G.onload;G.onload=function(){i();j()}}else{G.onload=j}}}}}function I(){var l=H.length;for(var j=0;j<l;j++){var m=H[j].id;if(a.pv[0]>0){var k=c(m);if(k){H[j].width=k.getAttribute("width")?k.getAttribute("width"):"0";H[j].height=k.getAttribute("height")?k.getAttribute("height"):"0";if(O(H[j].swfVersion)){if(a.webkit&&a.webkit<312){U(k)}X(m,true)}else{if(H[j].expressInstall&&!C&&O("6.0.65")&&(a.win||a.mac)){D(H[j])}else{d(k)}}}}else{X(m,true)}}}function U(m){var k=m.getElementsByTagName(P)[0];if(k){var p=Y("embed"),r=k.attributes;if(r){var o=r.length;for(var n=0;n<o;n++){if(r[n].nodeName.toLowerCase()=="data"){p.setAttribute("src",r[n].nodeValue)}else{p.setAttribute(r[n].nodeName,r[n].nodeValue)}}}var q=k.childNodes;if(q){var s=q.length;for(var l=0;l<s;l++){if(q[l].nodeType==1&&q[l].nodeName.toLowerCase()=="param"){p.setAttribute(q[l].getAttribute("name"),q[l].getAttribute("value"))}}}m.parentNode.replaceChild(p,m)}}function F(i){if(a.ie&&a.win&&O("8.0.0")){G.attachEvent("onunload",function(){var k=c(i);if(k){for(var j in k){if(typeof k[j]=="function"){k[j]=function(){}}}k.parentNode.removeChild(k)}})}}function D(j){C=true;var o=c(j.id);if(o){if(j.altContentId){var l=c(j.altContentId);if(l){L=l;T=j.altContentId}}else{L=b(o)}if(!(/%$/.test(j.width))&&parseInt(j.width,10)<310){j.width="310"}if(!(/%$/.test(j.height))&&parseInt(j.height,10)<137){j.height="137"}g.title=g.title.slice(0,47)+" - Flash Player Installation";var n=a.ie&&a.win?"ActiveX":"PlugIn",k=g.title,m="MMredirectURL="+G.location+"&MMplayerType="+n+"&MMdoctitle="+k,p=j.id;if(a.ie&&a.win&&o.readyState!=4){var i=Y("div");p+="SWFObjectNew";i.setAttribute("id",p);o.parentNode.insertBefore(i,o);o.style.display="none";G.attachEvent("onload",function(){o.parentNode.removeChild(o)})}R({data:j.expressInstall,id:K,width:j.width,height:j.height},{flashvars:m},p)}}function d(j){if(a.ie&&a.win&&j.readyState!=4){var i=Y("div");j.parentNode.insertBefore(i,j);i.parentNode.replaceChild(b(j),i);j.style.display="none";G.attachEvent("onload",function(){j.parentNode.removeChild(j)})}else{j.parentNode.replaceChild(b(j),j)}}function b(n){var m=Y("div");if(a.win&&a.ie){m.innerHTML=n.innerHTML}else{var k=n.getElementsByTagName(P)[0];if(k){var o=k.childNodes;if(o){var j=o.length;for(var l=0;l<j;l++){if(!(o[l].nodeType==1&&o[l].nodeName.toLowerCase()=="param")&&!(o[l].nodeType==8)){m.appendChild(o[l].cloneNode(true))}}}}}return m}function R(AE,AC,q){var p,t=c(q);if(typeof AE.id==Z){AE.id=q}if(a.ie&&a.win){var AD="";for(var z in AE){if(AE[z]!=Object.prototype[z]){if(z=="data"){AC.movie=AE[z]}else{if(z.toLowerCase()=="styleclass"){AD+=' class="'+AE[z]+'"'}else{if(z!="classid"){AD+=" "+z+'="'+AE[z]+'"'}}}}}var AB="";for(var y in AC){if(AC[y]!=Object.prototype[y]){AB+='<param name="'+y+'" value="'+AC[y]+'" />'}}t.outerHTML='<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"'+AD+">"+AB+"</object>";F(AE.id);p=c(AE.id)}else{if(a.webkit&&a.webkit<312){var AA=Y("embed");AA.setAttribute("type",W);for(var x in AE){if(AE[x]!=Object.prototype[x]){if(x=="data"){AA.setAttribute("src",AE[x])}else{if(x.toLowerCase()=="styleclass"){AA.setAttribute("class",AE[x])}else{if(x!="classid"){AA.setAttribute(x,AE[x])}}}}}for(var w in AC){if(AC[w]!=Object.prototype[w]){if(w!="movie"){AA.setAttribute(w,AC[w])}}}t.parentNode.replaceChild(AA,t);p=AA}else{var s=Y(P);s.setAttribute("type",W);for(var v in AE){if(AE[v]!=Object.prototype[v]){if(v.toLowerCase()=="styleclass"){s.setAttribute("class",AE[v])}else{if(v!="classid"){s.setAttribute(v,AE[v])}}}}for(var u in AC){if(AC[u]!=Object.prototype[u]&&u!="movie"){E(s,u,AC[u])}}t.parentNode.replaceChild(s,t);p=s}}return p}function E(k,i,j){var l=Y("param");l.setAttribute("name",i);l.setAttribute("value",j);k.appendChild(l)}function c(i){return g.getElementById(i)}function Y(i){return g.createElement(i)}function O(k){var j=a.pv,i=k.split(".");i[0]=parseInt(i[0],10);i[1]=parseInt(i[1],10);i[2]=parseInt(i[2],10);return(j[0]>i[0]||(j[0]==i[0]&&j[1]>i[1])||(j[0]==i[0]&&j[1]==i[1]&&j[2]>=i[2]))?true:false}function A(m,j){if(a.ie&&a.mac){return }var l=g.getElementsByTagName("head")[0],k=Y("style");k.setAttribute("type","text/css");k.setAttribute("media","screen");if(!(a.ie&&a.win)&&typeof g.createTextNode!=Z){k.appendChild(g.createTextNode(m+" {"+j+"}"))}l.appendChild(k);if(a.ie&&a.win&&typeof g.styleSheets!=Z&&g.styleSheets.length>0){var i=g.styleSheets[g.styleSheets.length-1];if(typeof i.addRule==P){i.addRule(m,j)}}}function X(k,i){var j=i?"visible":"hidden";if(S){c(k).style.visibility=j}else{A("#"+k,"visibility:"+j)}}return{registerObject:function(l,i,k){if(!a.w3cdom||!l||!i){return }var j={};j.id=l;j.swfVersion=i;j.expressInstall=k?k:false;H[H.length]=j;X(l,false)},getObjectById:function(l){var i=null;if(a.w3cdom&&S){var j=c(l);if(j){var k=j.getElementsByTagName(P)[0];if(!k||(k&&typeof j.SetVariable!=Z)){i=j}else{if(typeof k.SetVariable!=Z){i=k}}}}return i},embedSWF:function(n,u,r,t,j,m,k,p,s){if(!a.w3cdom||!n||!u||!r||!t||!j){return }r+="";t+="";if(O(j)){X(u,false);var q=(typeof s==P)?s:{};q.data=n;q.width=r;q.height=t;var o=(typeof p==P)?p:{};if(typeof k==P){for(var l in k){if(k[l]!=Object.prototype[l]){if(typeof o.flashvars!=Z){o.flashvars+="&"+l+"="+k[l]}else{o.flashvars=l+"="+k[l]}}}}J(function(){R(q,o,u);if(q.id==u){X(u,true)}})}else{if(m&&!C&&O("6.0.65")&&(a.win||a.mac)){X(u,false);J(function(){var i={};i.id=i.altContentId=u;i.width=r;i.height=t;i.expressInstall=m;D(i)})}}},getFlashPlayerVersion:function(){return{major:a.pv[0],minor:a.pv[1],release:a.pv[2]}},hasFlashPlayerVersion:O,createSWF:function(k,j,i){if(a.w3cdom&&S){return R(k,j,i)}else{return undefined}},createCSS:function(j,i){if(a.w3cdom){A(j,i)}},addDomLoadEvent:J,addLoadEvent:M,getQueryParamValue:function(m){var l=g.location.search||g.location.hash;if(m==null){return l}if(l){var k=l.substring(1).split("&");for(var j=0;j<k.length;j++){if(k[j].substring(0,k[j].indexOf("="))==m){return k[j].substring((k[j].indexOf("=")+1))}}}return""},expressInstallCallback:function(){if(C&&L){var i=c(K);if(i){i.parentNode.replaceChild(L,i);if(T){X(T,true);if(a.ie&&a.win){L.style.display="block"}}L=null;T=null;C=false}}}}}();
-
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
-
-jQuery(document).ready(function($) {
-    var currentPage = 2
-
-    // Hide Loading
-    $('#loading').hide()
-
-    if (!jQuery.browser.msie) {
-        $('#snorby_logo').hover(function() {
-            $(this).stop().animate({
-                opacity: '0.5'
-            })
-        },
-        function() {
-            $(this).stop().animate({
-                opacity: '1'
-            })
-        });
-    };
-
-    //Scroll
-    $('#scroll_to_comment').click(function() {
-        $.scrollTo($('#comment_form'), 800);
-    });
-
-    // Remove Event
-		$("#update_image_refresh").livequery(function () {
-			$(this).tipsy({
-	      gravity: "w",
-	      offsetBottom: 7
-	  });
-		return false;
-	});
-		
-		$('#snorby_news, #snorby_bugs, #snorby_wiki, #snorby_footer_info, .add_tipsy').livequery(function () {
-			$(this).tipsy({
-	      gravity: "s",
-	      offsetBottom: 7
-	  });
-		return false;
-	});
-
-		$('#filter_box_link').livequery(function () {
-			$(this).tipsy({
-	      gravity: "e",
-	      offsetBottom: 7
-	  });
-		return false;
-	});
-
-    // DatePicker
-
-    $("#start_datepicker").livequery(function () {
-    	$(this).datepicker({
-	        duration: '',
-	        showTime: true,
-	        stepMinutes: 1,
-	        stepHours: 1,
-	        time24h: false,
-	        dateFormat: 'MM d, yy',
-					constrainInput: false
-	    });
-			return false;
-    });
-
-    $("#end_datepicker").livequery(function () {
-    	$(this).datepicker({
-	        duration: '',
-	        showTime: true,
-	        stepMinutes: 1,
-	        stepHours: 1,
-	        time24h: false,
-	        dateFormat: 'MM d, yy',
-					constrainInput: false
-	    });
-			return false;
-    });
-
-		//
-
-    //autocomplete
-    $("input#search_keywords").autocomplete("auto_complete_for_search_keywords");
-    $("input#search_ip_src").autocomplete("auto_complete_for_search_ip_src");
-    $('input#search_ip_dst').autocomplete("auto_complete_for_search_ip_dst");
-
-    // Flash Notice/Error
-    $('#flash_notice').animate({
-        opacity: '0.9'
-    });
-    $('#flash_error').animate({
-        opacity: '0.9'
-    });
-    $('#flash_notice').animate({
-        opacity: '0.9'
-    },
-    3000).fadeOut('slow');
-    $('#flash_error').animate({
-        opacity: '0.9'
-    },
-    3000).fadeOut('slow');
-
-    $('#flash_notice').click(function() {
-        $(this).remove()
-    });
-    $('#flash_error').click(function() {
-        $(this).remove()
-    });
-
-    // Links
-    $('#remove_fade_in').click(function() {
-        // $('#event_show_page').animate({opacity: '0.2'})
-        });
-
-    // FaceBox
-    $('a[rel*=facebox]').livequery(function (event) {
-    	$(this).facebox({
-	        loading_image: 'loading.gif',
-	        close_image: 'closelabel.gif'
-	    });
-	return false;
-    });
-
-    // More
-    $('#more').livequery("click", function() {
-        var B = $(this);
-        B.blur();
-        var A = B.attr("href");
-        $.ajax({
-            url: A + 'page=' + currentPage++,
-            type: 'GET',
-            dataType: 'script',
-            beforeSend: function() {
-                $("#more").addClass("loading").html("")
-            },
-            complete: function() {
-                $("#more").removeClass("loading").html("more")
-            },
-            error: function() {
-                alert("Whoops! Something went wrong. Please try refreshing the page.");
-            }
-        });
-			return false;
-    });
-
-
-    // Check ALL
-    $("#checkboxall").click(function()
-    {
-        var checked_status = this.checked;
-        $("input[type=checkbox]").each(function()
-        {
-            this.checked = checked_status;
-        });
-    });
-
-});
 
 /*
  * Facebox (for jQuery)
@@ -895,256 +987,13 @@ jQuery(document).ready(function($) {
 })(jQuery);
 
 
-/*! Copyright (c) 2008 Brandon Aaron (http://brandonaaron.net)
- * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) 
- * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
- *
- * Version: 1.0.3
- * Requires jQuery 1.1.3+
- * Docs: http://docs.jquery.com/Plugins/livequery
+/* @projectDescription jQuery Password Strength Plugin - A jQuery plugin to provide accessibility functions
+ * @author Tane Piper (digitalspaghetti@gmail.com)
+ * @version 2.0
+ * @website: http://digitalspaghetti.me.uk/digitalspaghetti
+ * @license MIT License: http://www.opensource.org/licenses/mit-license.php
  */
-
-(function($) {
-	
-$.extend($.fn, {
-	livequery: function(type, fn, fn2) {
-		var self = this, q;
-		
-		// Handle different call patterns
-		if ($.isFunction(type))
-			fn2 = fn, fn = type, type = undefined;
-			
-		// See if Live Query already exists
-		$.each( $.livequery.queries, function(i, query) {
-			if ( self.selector == query.selector && self.context == query.context &&
-				type == query.type && (!fn || fn.$lqguid == query.fn.$lqguid) && (!fn2 || fn2.$lqguid == query.fn2.$lqguid) )
-					// Found the query, exit the each loop
-					return (q = query) && false;
-		});
-		
-		// Create new Live Query if it wasn't found
-		q = q || new $.livequery(this.selector, this.context, type, fn, fn2);
-		
-		// Make sure it is running
-		q.stopped = false;
-		
-		// Run it immediately for the first time
-		q.run();
-		
-		// Contnue the chain
-		return this;
-	},
-	
-	expire: function(type, fn, fn2) {
-		var self = this;
-		
-		// Handle different call patterns
-		if ($.isFunction(type))
-			fn2 = fn, fn = type, type = undefined;
-			
-		// Find the Live Query based on arguments and stop it
-		$.each( $.livequery.queries, function(i, query) {
-			if ( self.selector == query.selector && self.context == query.context && 
-				(!type || type == query.type) && (!fn || fn.$lqguid == query.fn.$lqguid) && (!fn2 || fn2.$lqguid == query.fn2.$lqguid) && !this.stopped )
-					$.livequery.stop(query.id);
-		});
-		
-		// Continue the chain
-		return this;
-	}
-});
-
-$.livequery = function(selector, context, type, fn, fn2) {
-	this.selector = selector;
-	this.context  = context || document;
-	this.type     = type;
-	this.fn       = fn;
-	this.fn2      = fn2;
-	this.elements = [];
-	this.stopped  = false;
-	
-	// The id is the index of the Live Query in $.livequery.queries
-	this.id = $.livequery.queries.push(this)-1;
-	
-	// Mark the functions for matching later on
-	fn.$lqguid = fn.$lqguid || $.livequery.guid++;
-	if (fn2) fn2.$lqguid = fn2.$lqguid || $.livequery.guid++;
-	
-	// Return the Live Query
-	return this;
-};
-
-$.livequery.prototype = {
-	stop: function() {
-		var query = this;
-		
-		if ( this.type )
-			// Unbind all bound events
-			this.elements.unbind(this.type, this.fn);
-		else if (this.fn2)
-			// Call the second function for all matched elements
-			this.elements.each(function(i, el) {
-				query.fn2.apply(el);
-			});
-			
-		// Clear out matched elements
-		this.elements = [];
-		
-		// Stop the Live Query from running until restarted
-		this.stopped = true;
-	},
-	
-	run: function() {
-		// Short-circuit if stopped
-		if ( this.stopped ) return;
-		var query = this;
-		
-		var oEls = this.elements,
-			els  = $(this.selector, this.context),
-			nEls = els.not(oEls);
-		
-		// Set elements to the latest set of matched elements
-		this.elements = els;
-		
-		if (this.type) {
-			// Bind events to newly matched elements
-			nEls.bind(this.type, this.fn);
-			
-			// Unbind events to elements no longer matched
-			if (oEls.length > 0)
-				$.each(oEls, function(i, el) {
-					if ( $.inArray(el, els) < 0 )
-						$.event.remove(el, query.type, query.fn);
-				});
-		}
-		else {
-			// Call the first function for newly matched elements
-			nEls.each(function() {
-				query.fn.apply(this);
-			});
-			
-			// Call the second function for elements no longer matched
-			if ( this.fn2 && oEls.length > 0 )
-				$.each(oEls, function(i, el) {
-					if ( $.inArray(el, els) < 0 )
-						query.fn2.apply(el);
-				});
-		}
-	}
-};
-
-$.extend($.livequery, {
-	guid: 0,
-	queries: [],
-	queue: [],
-	running: false,
-	timeout: null,
-	
-	checkQueue: function() {
-		if ( $.livequery.running && $.livequery.queue.length ) {
-			var length = $.livequery.queue.length;
-			// Run each Live Query currently in the queue
-			while ( length-- )
-				$.livequery.queries[ $.livequery.queue.shift() ].run();
-		}
-	},
-	
-	pause: function() {
-		// Don't run anymore Live Queries until restarted
-		$.livequery.running = false;
-	},
-	
-	play: function() {
-		// Restart Live Queries
-		$.livequery.running = true;
-		// Request a run of the Live Queries
-		$.livequery.run();
-	},
-	
-	registerPlugin: function() {
-		$.each( arguments, function(i,n) {
-			// Short-circuit if the method doesn't exist
-			if (!$.fn[n]) return;
-			
-			// Save a reference to the original method
-			var old = $.fn[n];
-			
-			// Create a new method
-			$.fn[n] = function() {
-				// Call the original method
-				var r = old.apply(this, arguments);
-				
-				// Request a run of the Live Queries
-				$.livequery.run();
-				
-				// Return the original methods result
-				return r;
-			}
-		});
-	},
-	
-	run: function(id) {
-		if (id != undefined) {
-			// Put the particular Live Query in the queue if it doesn't already exist
-			if ( $.inArray(id, $.livequery.queue) < 0 )
-				$.livequery.queue.push( id );
-		}
-		else
-			// Put each Live Query in the queue if it doesn't already exist
-			$.each( $.livequery.queries, function(id) {
-				if ( $.inArray(id, $.livequery.queue) < 0 )
-					$.livequery.queue.push( id );
-			});
-		
-		// Clear timeout if it already exists
-		if ($.livequery.timeout) clearTimeout($.livequery.timeout);
-		// Create a timeout to check the queue and actually run the Live Queries
-		$.livequery.timeout = setTimeout($.livequery.checkQueue, 20);
-	},
-	
-	stop: function(id) {
-		if (id != undefined)
-			// Stop are particular Live Query
-			$.livequery.queries[ id ].stop();
-		else
-			// Stop all Live Queries
-			$.each( $.livequery.queries, function(id) {
-				$.livequery.queries[ id ].stop();
-			});
-	}
-});
-
-// Register core DOM manipulation methods
-$.livequery.registerPlugin('append', 'prepend', 'after', 'before', 'wrap', 'attr', 'removeAttr', 'addClass', 'removeClass', 'toggleClass', 'empty', 'remove');
-
-// Run Live Queries when the Document is ready
-$(function() { $.livequery.play(); });
-
-
-// Save a reference to the original init method
-var init = $.prototype.init;
-
-// Create a new init method that exposes two new properties: selector and context
-$.prototype.init = function(a,c) {
-	// Call the original init and save the result
-	var r = init.apply(this, arguments);
-	
-	// Copy over properties if they exist already
-	if (a && a.selector)
-		r.context = a.context, r.selector = a.selector;
-		
-	// Set properties
-	if ( typeof a == 'string' )
-		r.context = c || document, r.selector = a;
-	
-	// Return the result
-	return r;
-};
-
-// Give the init function the jQuery prototype for later instantiation (needed after Rev 4091)
-$.prototype.init.prototype = $.prototype;
-	
-})(jQuery);
+window.digitalspaghetti=window.digitalspaghetti||{};digitalspaghetti.password={defaults:{displayMinChar:true,minChar:8,minCharText:"You must enter a minimum of %d characters",colors:["#f00","#c06","#f60","#3c0","#3f0"],scores:[20,30,43,50],verdicts:["Weak","Normal","Medium","Strong","Very Strong"],raisePower:1.4},ruleScores:{length:0,lowercase:1,uppercase:3,one_number:3,three_numbers:5,one_special_char:3,two_special_char:5,upper_lower_combo:2,letter_number_combo:2,letter_number_char_combo:2},rules:{length:true,lowercase:true,uppercase:true,one_number:true,three_numbers:true,one_special_char:true,two_special_char:true,upper_lower_combo:true,letter_number_combo:true,letter_number_char_combo:true},validationRules:{length:function(C,D){var A=C.length;var B=Math.pow(A,digitalspaghetti.password.options.raisePower);if(A<digitalspaghetti.password.options.minChar){B=(B-100)}return B},lowercase:function(A,B){return A.match(/[a-z]/)&&B},uppercase:function(A,B){return A.match(/[A-Z]/)&&B},one_number:function(A,B){return A.match(/\d+/)&&B},three_numbers:function(A,B){return A.match(/(.*[0-9].*[0-9].*[0-9])/)&&B},one_special_char:function(A,B){return A.match(/.[!,@,#,$,%,\^,&,*,?,_,~]/)&&B},two_special_char:function(A,B){return A.match(/(.*[!,@,#,$,%,\^,&,*,?,_,~].*[!,@,#,$,%,\^,&,*,?,_,~])/)&&B},upper_lower_combo:function(A,B){return A.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)&&B},letter_number_combo:function(A,B){return A.match(/([a-zA-Z])/)&&A.match(/([0-9])/)&&B},letter_number_char_combo:function(A,B){return A.match(/([a-zA-Z0-9].*[!,@,#,$,%,\^,&,*,?,_,~])|([!,@,#,$,%,\^,&,*,?,_,~].*[a-zA-Z0-9])/)&&B}},attachWidget:function(B){var A=['<div id="password-strength">'];if(digitalspaghetti.password.options.displayMinChar){A.push('<span class="password-min-char">'+digitalspaghetti.password.options.minCharText.replace("%d",digitalspaghetti.password.options.minChar)+"</span>")}A.push('<span class="password-strength-bar"></span>');A.push("</div>");A=A.join("");jQuery(B).after(A)},addRule:function(A,D,C,B){digitalspaghetti.password.rules[A]=B;digitalspaghetti.password.ruleScores[A]=C;digitalspaghetti.password.validationRules[A]=D},init:function(B,A){digitalspaghetti.password.options=jQuery.extend({},digitalspaghetti.password.defaults,A);digitalspaghetti.password.attachWidget(B);jQuery(B).keyup(function(){digitalspaghetti.password.calculateScore(jQuery(this).val())})},calculateScore:function(C){digitalspaghetti.password.totalscore=0;digitalspaghetti.password.width=0;for(var B in digitalspaghetti.password.rules){if(digitalspaghetti.password.rules.hasOwnProperty(B)){if(digitalspaghetti.password.rules[B]===true){var D=digitalspaghetti.password.ruleScores[B];var A=digitalspaghetti.password.validationRules[B](C,D);if(A){digitalspaghetti.password.totalscore+=A}}if(digitalspaghetti.password.totalscore===-200){digitalspaghetti.password.strColor="#f00";digitalspaghetti.password.strText=digitalspaghetti.password.options.verdicts[0];digitalspaghetti.password.width="0"}else{if(digitalspaghetti.password.totalscore<0&&digitalspaghetti.password.totalscore>-199){digitalspaghetti.password.strColor="#f00";digitalspaghetti.password.strText=digitalspaghetti.password.options.verdicts[0];digitalspaghetti.password.width="1"}else{if(digitalspaghetti.password.totalscore<=digitalspaghetti.password.options.scores[0]){digitalspaghetti.password.strColor=digitalspaghetti.password.options.colors[0];digitalspaghetti.password.strText=digitalspaghetti.password.options.verdicts[0];digitalspaghetti.password.width="1"}else{if(digitalspaghetti.password.totalscore>digitalspaghetti.password.options.scores[0]&&digitalspaghetti.password.totalscore<=digitalspaghetti.password.options.scores[1]){digitalspaghetti.password.strColor=digitalspaghetti.password.options.colors[1];digitalspaghetti.password.strText=digitalspaghetti.password.options.verdicts[1];digitalspaghetti.password.width="25"}else{if(digitalspaghetti.password.totalscore>digitalspaghetti.password.options.scores[1]&&digitalspaghetti.password.totalscore<=digitalspaghetti.password.options.scores[2]){digitalspaghetti.password.strColor=digitalspaghetti.password.options.colors[2];digitalspaghetti.password.strText=digitalspaghetti.password.options.verdicts[2];digitalspaghetti.password.width="50"}else{if(digitalspaghetti.password.totalscore>digitalspaghetti.password.options.scores[2]&&digitalspaghetti.password.totalscore<=digitalspaghetti.password.options.scores[3]){digitalspaghetti.password.strColor=digitalspaghetti.password.options.colors[3];digitalspaghetti.password.strText=digitalspaghetti.password.options.verdicts[3];digitalspaghetti.password.width="75"}else{digitalspaghetti.password.strColor=digitalspaghetti.password.options.colors[4];digitalspaghetti.password.strText=digitalspaghetti.password.options.verdicts[4];digitalspaghetti.password.width="99"}}}}}}jQuery(".password-strength-bar").stop();jQuery(".password-strength-bar").animate({opacity:0.5},"fast","linear",function(){jQuery(this).css({display:"block","background-color":digitalspaghetti.password.strColor,width:digitalspaghetti.password.width+"%"}).text(digitalspaghetti.password.strText);jQuery(this).animate({opacity:1},"fast","linear")})}}}};jQuery.extend(jQuery.fn,{pstrength:function(A){return this.each(function(){digitalspaghetti.password.init(this,A)})}});
 
 /*!
  * jQuery UI Timepicker 0.2.1
@@ -1559,3 +1408,167 @@ $.timepicker = new Timepicker();
 $('document').ready(function () {$.timepicker.init();});
 
 })(jQuery);
+
+
+// Place your application-specific JavaScript functions and classes here
+// This file is automatically included by javascript_include_tag :defaults
+
+
+jQuery(document).ready(function($) {
+    var currentPage = 2
+
+    // Hide Loading
+    $('#loading').hide()
+
+    if (!jQuery.browser.msie) {
+        $('#snorby_logo').hover(function() {
+            $(this).stop().animate({
+                opacity: '0.5'
+            })
+        },
+        function() {
+            $(this).stop().animate({
+                opacity: '1'
+            })
+        });
+    };
+
+    //Scroll
+    $('#scroll_to_comment').click(function() {
+        $.scrollTo($('#comment_form'), 800);
+    });
+
+    // Remove Event
+		$("#update_image_refresh").livequery(function () {
+			$(this).tipsy({
+	      gravity: "w",
+	      offsetBottom: 7
+	  });
+		return false;
+	});
+		
+		$('#snorby_news, #snorby_bugs, #snorby_wiki, #snorby_footer_info, .add_tipsy').livequery(function () {
+			$(this).tipsy({
+	      gravity: "s",
+	      offsetBottom: 7
+	  });
+		return false;
+	});
+
+		$('#filter_box_link').livequery(function () {
+			$(this).tipsy({
+	      gravity: "e",
+	      offsetBottom: 7
+	  });
+		return false;
+	});
+
+    // DatePicker
+
+    $("#start_datepicker").livequery(function () {
+    	$(this).datepicker({
+	        duration: '',
+	        showTime: true,
+	        stepMinutes: 1,
+	        stepHours: 1,
+	        time24h: false,
+	        dateFormat: 'MM d, yy',
+					constrainInput: false
+	    });
+			return false;
+    });
+
+    $("#end_datepicker").livequery(function () {
+    	$(this).datepicker({
+	        duration: '',
+	        showTime: true,
+	        stepMinutes: 1,
+	        stepHours: 1,
+	        time24h: false,
+	        dateFormat: 'MM d, yy',
+					constrainInput: false
+	    });
+			return false;
+    });
+
+		//
+
+    //autocomplete
+    $("input#search_keywords").autocomplete("auto_complete_for_search_keywords");
+    $("input#search_ip_src").autocomplete("auto_complete_for_search_ip_src");
+    $('input#search_ip_dst').autocomplete("auto_complete_for_search_ip_dst");
+
+    // Flash Notice/Error
+    $('#flash_notice').animate({
+        opacity: '0.9'
+    });
+    $('#flash_error').animate({
+        opacity: '0.9'
+    });
+    $('#flash_notice').animate({
+        opacity: '0.9'
+    },
+    3000).fadeOut('slow');
+    $('#flash_error').animate({
+        opacity: '0.9'
+    },
+    3000).fadeOut('slow');
+
+    $('#flash_notice').click(function() {
+        $(this).remove()
+    });
+    $('#flash_error').click(function() {
+        $(this).remove()
+    });
+
+    // Links
+    $('#remove_fade_in').click(function() {
+        // $('#event_show_page').animate({opacity: '0.2'})
+        });
+
+    // FaceBox
+    $('a[rel*=facebox]').livequery(function (event) {
+    	$(this).facebox({
+	        loading_image: 'loading.gif',
+	        close_image: 'closelabel.gif'
+	    });
+	return false;
+    });
+
+    // More
+    $('#more').livequery("click", function() {
+        var B = $(this);
+        B.blur();
+        var A = B.attr("href");
+        $.ajax({
+            url: A + 'page=' + currentPage++,
+            type: 'GET',
+            dataType: 'script',
+            beforeSend: function() {
+                $("#more").addClass("loading").html("")
+            },
+            complete: function() {
+                $("#more").removeClass("loading").html("more")
+            },
+            error: function() {
+                alert("Whoops! Something went wrong. Please try refreshing the page.");
+            }
+        });
+			return false;
+    });
+
+
+    // Check ALL
+    $("#checkboxall").click(function()
+    {
+        var checked_status = this.checked;
+        $("input[type=checkbox]").each(function()
+        {
+            this.checked = checked_status;
+        });
+    });
+
+		//Password
+		$('.password').pstrength();
+
+});

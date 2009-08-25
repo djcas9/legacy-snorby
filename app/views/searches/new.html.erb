@@ -11,19 +11,19 @@
 			</tr>
 			<tr>
 				<td>
-					<%= f.text_field :keywords, :class => 'search', :autocomplete =>"off" %>
+					<%= f.text_field :keywords, :autocomplete =>"off", :class => 'search textfield' %>
 				</td>
 				<td>
-					<%= f.text_field :start_time, :id => 'start_datepicker' %>
+					<%= f.text_field :start_time, :id => 'start_datepicker', :class => 'textfield' %>
 				</td>
 				<td>
-					<%= f.text_field :end_time, :id => 'end_datepicker', :value => Time.now.strftime('%B %d, %Y %I:%M %p').sub(/(AM)/, "am").sub(/(PM)/, "PM") %>
+					<%= f.text_field :end_time, :id => 'end_datepicker', :value => Time.now.strftime('%B %d, %Y %I:%M %p').sub(/(AM)/, "am").sub(/(PM)/, "PM"), :class => 'textfield' %>
 				</td>
 			</tr>
 		</table>
 
 	<br />
-		<table class='form'>
+		<table class='form move_more'>
 			<tr>
 				<th><%= f.label :sid, "Sensor" %>:</th>
 				<th><%= f.label :sid_class_id, "Event Category" %>:</th>
@@ -46,10 +46,10 @@
 		</tr>
 		<tr>
 			<td>
-				<%= f.text_field :ip_src, :autocomplete =>"off" %>
+				<%= f.text_field :ip_src, :autocomplete =>"off", :class => 'textfield' %>
 			</td>
 			<td>
-				<%= f.text_field :ip_dst, :autocomplete =>"off" %>
+				<%= f.text_field :ip_dst, :autocomplete =>"off", :class => 'textfield' %>
 			</td>
 		</tr>
 	</table>
@@ -62,8 +62,8 @@
 			<th><%= f.label :dport, "Destination Port" %>:</th>
 		</tr>
 		<tr>
-			<td><%= f.text_field :sport %></td>
-			<td><%= f.text_field :dport %></td>
+			<td><%= f.text_field :sport, :class => 'textfield' %></td>
+			<td><%= f.text_field :dport, :class => 'textfield' %></td>
 		</tr>
 	</table>
 
