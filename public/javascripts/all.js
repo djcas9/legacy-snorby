@@ -1499,32 +1499,18 @@ jQuery(document).ready(function($) {
     $('input#search_ip_dst').autocomplete("auto_complete_for_search_ip_dst");
 
     // Flash Notice/Error
-    $('#flash_notice').animate({
-        opacity: '0.9'
-    });
-    $('#flash_error').animate({
-        opacity: '0.9'
-    });
-    $('#flash_notice').animate({
-        opacity: '0.9'
-    },
-    3000).fadeOut('slow');
-    $('#flash_error').animate({
-        opacity: '0.9'
-    },
-    3000).fadeOut('slow');
+		$('#flash_notice').stop().fadeIn('slow');
+		$('#flash_error').stop().fadeIn('slow');
+		setTimeout("$('#flash_notice').fadeOut('slow');", 3000);
+		setTimeout("$('#flash_error').fadeOut('slow');", 3000);
 
-    $('#flash_notice').click(function() {
-        $(this).remove()
-    });
-    $('#flash_error').click(function() {
-        $(this).remove()
-    });
-
-    // Links
-    $('#remove_fade_in').click(function() {
-        // $('#event_show_page').animate({opacity: '0.2'})
-        });
+		// Click Destroy Flash Message
+		$('#flash_notice').click(function() {
+			$(this).remove();
+		});
+		$('#flash_error').click(function() {
+			$(this).remove();
+		});
 
     // FaceBox
     $('a[rel*=facebox]').livequery(function (event) {

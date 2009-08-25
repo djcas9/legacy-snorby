@@ -8,12 +8,13 @@
   </head>
 
   <body>
+	
 		<div id="wrapper">
 			
 			<%= render :partial => 'layouts/header' %>
 
 			<%- flash.each do |name, msg| -%>
-				<div id="flash_<%= name %>" class='round'>
+				<div id="flash_<%= name %>" class='round' style='display:none;'>
 					<%- if name.to_s =~ /error/ -%>
 						<center><%= image_tag('other/slash.png', :size=>'14x14', :class=> 'flash_icon') %> <%= msg %></center>
 					<%- else -%>
