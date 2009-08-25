@@ -14,10 +14,11 @@ class UserSessionsController < ApplicationController
           flash[:notice] = "Login successful - Welcome back #{@user_session.login.capitalize}!"
           redirect_back_or_default dashboard_path
         else
-          render :action => :new
+          flash[:error] = "Incorrect User and/or Password."
+          redirect_to login_path
         end
       end
-      format.js { render :action => 'validate' }
+      format.js
     end
   end
   
