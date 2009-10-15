@@ -38,7 +38,7 @@ class Event < ActiveRecord::Base
     when 'Low'
       self.find(:all, :limit => 20, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr], :conditions => ['signature.sig_priority = ?', 3])
     when 'Medium'
-      self.find(:all, :limit => 20, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr], :conditions => ['signature.sig_priority = ?', 2])
+      self.find(:all, :limit => 20, :order => 'timestamp DESC', :joins => [:sig, :sensor, :iphdr], :conditions => ['signature.sig_priority = ?', 2])
     when 'High'
       self.find(:all, :limit => 20, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr], :conditions => ['signature.sig_priority = ?', 1])
     else

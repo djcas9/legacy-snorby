@@ -1,10 +1,10 @@
 class SettingsController < ApplicationController
   before_filter :require_admin, :only => [:sensor_delete_multiple, :user_delete_multiple, :set_ids_name, :administration, :delete_events_for_sensor, :sensor_settings]
-  
+
   def index
     @user = @current_user
   end
-  
+
   def administration
     @settings = Setting
   end
@@ -96,12 +96,18 @@ class SettingsController < ApplicationController
   end
 
   def user_delete_multiple
-    @remove_users = User.find(params[:user_ids])
-    @remove_users.each do |rm_user|
-      rm_user.destroy
+    unless params[:user_ids].nil?
+      @remove_users = User.find(params[:user_ids])
+      @remove_users.each do |rm_user|
+        rm_user.destroy
+      end
+      flash[:notice] = "User(s) Successfully Removed!"
+      redirect_to settings_path
+    else
+      flash[:error] = "No Users Were Selected."
+      redirect_to users_path
     end
-    flash[:notice] = "User(s) successfully removed!"
-    redirect_to settings_path
+
   end
 
 end
