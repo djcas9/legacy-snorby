@@ -1,8 +1,17 @@
-<h1><%= image_tag @user.avatar.url(:medium) %> Edit My Account</h1>
-<br />
 <% form_for @user, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
+
+	<div id='user_data_and_stats'>
+		<%= image_tag @user.avatar.url(:medium) %>
+		<div id="user_data_info" class='round'>
+			<h1><%= @user.name %> <%= link_to '(rename)', '#' %></h1>
+			<h2><%= @user.email %></h2>
+			<strong>Login Count:</strong> <%=h @user.login_count %><br />
+			<strong>Current Login IP:</strong> <%=h @user.current_login_ip %><br />
+			<strong>Last Request At:</strong> <%=h @user.last_request_at.strftime('%A, %B %d %Y at %I:%M:%S %p') %><br />
+		</div>
+	</div>
+
   <%= render :partial => "form", :object => f %><br />
-<br />
   <%= f.submit "Update »" %>
 <% end %>

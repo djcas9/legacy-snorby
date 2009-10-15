@@ -5,7 +5,8 @@
 	
 	<div id="menubar">
 		<ul class="menu">
-			<li class='first'><%= link_to "Dashboard", dashboard_path %></li>
+			<li class='start'></li>
+			<li class='first'><span><%= link_to "Dashboard", dashboard_path %></span></li>
 			<li><%= link_to "LiveLook", livelook_path %></li>
 			<li><%= link_to "Events", events_path %></li>
 			<li><%= link_to "Reports", reports_path %></li>
@@ -24,7 +25,7 @@
 		
 	<div id='user_box'>
 		<div id='user_data'>
-			<div id='user_avatar'><%= image_tag current_user.avatar.url(:menu_bar) %></div>
+			<div id='user_avatar'><%= link_to "#{image_tag current_user.avatar.url(:menu_bar)}", { :controller => 'users', :action => 'edit', :id => current_user } %></div>
 			<div id='user_name'><%= truncate(current_user.name, :omission => "...", :length => 30) %></div>
 			<div id='user_links'>
 				<%= link_to "Inbox (0)", '#' %> |

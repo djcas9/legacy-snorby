@@ -1,21 +1,20 @@
-<%- if current_user.admin -%>
-<%= form.check_box :admin %> <%= form.label :admin, "System Administrator" %><br />
-<br />
-<%- end -%>
-<%= form.check_box :accept_email %> <%= form.label :accept_email, "Accept email notifications and reports" %><br />
-<br />
-<%= form.check_box :resolve_ips %> <%= form.label :resolve_ips, "Attempt To Resolve Addresses. (faster loading when disabled)" %><br />
-<br />
-<%= form.label :avatar, 'Profile Image' %><br />
-<%= form.file_field :avatar %><br />
-<br />
-<%= form.label :name %><br />
-<%= form.text_field :name %><br />
-<br />
-<%= form.label :email %><br />
-<%= form.text_field :email %><br />
-<br />
-<%= form.label :password, form.object.new_record? ? nil : "Change password" %><br />
-<%= form.password_field :password, :class => 'password' %><br />
-<%= form.label :password_confirmation %><br />
-<%= form.password_field :password_confirmation, :class => 'password_confirmation' %>
+<ul id='form'>
+	
+	<%- if current_user.admin -%>
+	<%= form.check_box :admin %> <%= form.label :admin, "System Administrator" %><br />
+	<%- end -%>
+	<%= form.check_box :accept_email %> <%= form.label :accept_email, "Accept email notifications and reports" %><br />
+	<%= form.check_box :resolve_ips %> <%= form.label :resolve_ips, "Attempt To Resolve Addresses. (faster loading when disabled)" %><br />
+	<br />
+	<%= form.label :avatar, 'Profile Image:' %><br />
+	<%= form.file_field :avatar %><br />
+	<br />
+	<%= form.label :email %><br />
+	<%= form.text_field :email %><br />
+	<br />
+	<%= form.label :password, form.object.new_record? ? nil : "Change password" %><br />
+	<%= form.password_field :password, :class => 'password' %><br />
+	<%= form.label :password_confirmation %><br />
+	<%= form.password_field :password_confirmation, :class => 'password_confirmation' %>
+	
+</ul>
