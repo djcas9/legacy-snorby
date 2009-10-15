@@ -11,7 +11,7 @@
 			<%- for user in User.find(:all) -%>
 				<%- if user.accept_email -%>
 					<%= check_box_tag "[user_id][]", user.id, user.id %>
-			  	<%= user.login.capitalize %>
+			  	<%= user.name.capitalize %>
 				<%- end -%>
 			<%- end -%>
 		<%- end -%>
