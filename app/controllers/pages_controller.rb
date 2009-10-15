@@ -1,18 +1,6 @@
 class PagesController < ApplicationController
-  before_filter :update_cache
-
-  def update_cache
-    if session[:refresh_time].nil? || session[:refresh_time] < Time.now
-      Rails.cache.delete('SnorbyCalcCache')
-      spawn do
-        CalcCache.update_cache
-      end
-      session[:refresh_time] = 15.minutes.since
-    end
-  end
 
   def force_update_cache
-    Rails.cache.delete('SnorbyCalcCache')
     spawn do
       CalcCache.update_cache
     end
@@ -24,8 +12,6 @@ class PagesController < ApplicationController
 
   def dashboard
     @calc = CalcCache.first
-    @g_event_severity ||= open_flash_chart_object(400,200, pie_event_severity_graph_url(:high => @calc.high_severity, :medium => @calc.medium_severity, :low => @calc.low_severity))
-    @g_category_information ||= open_flash_chart_object(400,200, bar_event_severity_graph_url(:high => @calc.high_severity, :medium => @calc.medium_severity, :low => @calc.low_severity, :all => @calc.total_event_count))
     @high ||= @calc.high_severity
     @medium ||= @calc.medium_severity
     @low ||= @calc.low_severity
@@ -34,6 +20,9 @@ class PagesController < ApplicationController
     @uniq_adds ||= @calc.unique_address_count
     @categories ||= @calc.category_cache
     @sensors ||= @calc.sensor_cache
+    @pie_event_severity ||= open_flash_chart_object(400,200, pie_event_severity_graph_url(:high => @high, :medium => @medium, :low => @low), true, "/", "open-flash-chart-bar-clicking.swf")
+    @bar_event_severity ||= open_flash_chart_object(400,200, bar_event_severity_graph_url(:high => @high, :medium => @medium, :low => @low, :all => @events), true, "/", "open-flash-chart-bar-clicking.swf")
+  
   end
 
   def credits

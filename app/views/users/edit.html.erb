@@ -1,6 +1,6 @@
-<h1><%= image_tag('other/user.png', :class => 'box') %> Edit My Account</h1>
+<h1><%= image_tag @user.avatar.url(:medium) %> Edit My Account</h1>
 <br />
-<% form_for @user do |f| %>
+<% form_for @user, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %><br />
 <br />

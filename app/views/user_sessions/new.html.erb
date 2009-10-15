@@ -3,8 +3,8 @@
 	<div id="login_header"></div>
 	<div id="login_data">
 		<% form_for @user_session, :url => user_session_path, :html => { :id => 'login_form' } do |f| %>
-		  <%= f.label :login %><br />
-		  <%= f.text_field :login, :class => 'login_field' %><br />
+		  <%= f.label :email %><br />
+		  <%= f.text_field :email, :class => 'login_field' %><br />
 		  <br />
 		  <%= f.label :password %><br />
 		  <%= f.password_field :password, :class => 'login_field' %><br />

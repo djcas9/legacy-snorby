@@ -1,11 +1,16 @@
+<%- @update_time ||= params[:frequency] || 60 -%>
+<%- @update_severity ||= params[:severity] || 'All' -%>
+
 <%- content_for :outside_content do -%>
 	<%- cache "filter_box" do -%>
 		<% form_tag livelook_path, :method => :get do %>
 		<div id="filter_box" class='move_right'>
 			<%= submit_tag "Apply Settings", :name => nil, :class => 'not_round', :title => 'Select a severity filter and apply for real-time updates.', :id => 'filter_box_link' %>
 		</div>
-		<%= select_tag("severity", options_for_select([['All Severities', 'All'], ['High Severity', 1], ['Medium Severity', 2], ['Low Severity', 3]], params[:severity])) %>
+		<%= select_tag("severity", options_for_select([["All Severities", 'All'], ['High Severity', 'High'], ['Medium Severity', 'Medium'], ['Low Severity', 'Low']], params[:severity])) %> 
+		<%= select_tag("frequency", options_for_select([["Update Every #{@update_time} Seconds", @update_time], ['Every 60 Seconds', 60], ['Every 300 Seconds', 300], ['Every 600 Seconds', 600]], params[:severity])) %>
 		<%- end -%>
+		<div id="count_down" class='left'>Last Updated: <%= Time.now.strftime('%A, %B %d %Y at %I:%M:%S %p') %></div>
 	<%- end -%>
 <%- end -%>
 
@@ -14,8 +19,8 @@
 	<%= render :partial => @events %>
 </div>
 
-<%= periodically_call_remote(:url => { :action => 'livelook', :severity => params[:severity] },
- 		:frequency => 60,
-		:loading => "$('#loading_livelook').show()", 
-		:complete => "$('#loading_livelook').hide()",
+<%= periodically_call_remote(:url => { :action => 'livelook', :severity => @update_severity, :frequency => @update_time },
+ 		:frequency => @update_time,
+		:loading => "$('#loading_livelook').hide();$('#loading_livelook').show();", 
+		:complete => "$('#loading_livelook').hide();$('#count_down').html('Last Updated: #{Time.now.strftime('%A, %B %d %Y at %I:%M:%S %p')}');$('#loading_livelook').hide();",
 		:update => { :success => "#events" }) %>

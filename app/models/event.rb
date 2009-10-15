@@ -32,12 +32,15 @@ class Event < ActiveRecord::Base
   end
 
   def self.livelook(severity)
-    if severity
-      if severity == 'All'
-        self.find(:all, :limit => 20, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr])
-      else
-        self.find(:all, :limit => 20, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr], :conditions => ['signature.sig_priority = ?', severity])
-      end
+    case severity
+    when 'All'
+      self.find(:all, :limit => 20, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr])
+    when 'Low'
+      self.find(:all, :limit => 20, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr], :conditions => ['signature.sig_priority = ?', 3])
+    when 'Medium'
+      self.find(:all, :limit => 20, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr], :conditions => ['signature.sig_priority = ?', 2])
+    when 'High'
+      self.find(:all, :limit => 20, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr], :conditions => ['signature.sig_priority = ?', 1])
     else
       self.find(:all, :limit => 20, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr])
     end

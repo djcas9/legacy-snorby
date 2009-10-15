@@ -1,7 +1,6 @@
 <h1><%= image_tag('other/user.png', :class => 'box') %> New User Setup</h1>
 <br />
-<% error_message_on :user, :base %>
-<% form_for @user, :url => account_path, :html => { :id => 'user_form' } do |f| %>
+<% form_for @user, :url => account_path, :html => { :multipart => true, :id => 'user_form' } do |f| %>
   <%= render :partial => "form", :object => f %><br />
   <br />
 	<%= f.submit "Register »" %> <span id='user_base'></span>

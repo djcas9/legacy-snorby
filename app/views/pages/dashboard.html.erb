@@ -4,6 +4,7 @@
 </div>
 <h1>Snorby Dashboard</h1>
 <br />
+
 <div id='dashboard'>
 	
 	<div id="statistics">
@@ -17,17 +18,17 @@
 					</tr>
 					<tr>
 						<td><%= image_tag('severity/high.png', :size=>'10x10') %> High Severity</td>
-						<td><%= link_to "#{pluralize(@high, "Event")}", severity_path(:severity_id => 1) %></td>
+						<td><%= link_to "#{pluralize(number_with_delimiter(@high), "Event")}", severity_path(:severity_id => 1) %></td>
 					</tr>
 				
 					<tr>
 						<td><%= image_tag('severity/warn.png', :size=>'10x10') %> Medium Severity</td>
-						<td><%= link_to "#{pluralize(@medium, "Event")}", severity_path(:severity_id => 2) %></td>
+						<td><%= link_to "#{pluralize(number_with_delimiter(@medium), "Event")}", severity_path(:severity_id => 2) %></td>
 					</tr>
 				
 					<tr>
 						<td><%= image_tag('severity/low.png', :size=>'10x10') %> Low Severity</td>
-						<td><%= link_to "#{pluralize(@low, "Event")}", severity_path(:severity_id => 3) %></td>
+						<td><%= link_to "#{pluralize(number_with_delimiter(@low), "Event")}", severity_path(:severity_id => 3) %></td>
 					</tr>
 
 				</table>
@@ -43,17 +44,17 @@
 					</tr>
 					<tr>
 						<td><%= image_tag('dashboard/box.png', :size=>'10x10') %> Total Event Count:</td>
-						<td><%= pluralize(@events, "Event") %></td>
+						<td><%= pluralize(number_with_delimiter(@events), "Event") %></td>
 					</tr>
 				
 					<tr>
 						<td><%= image_tag('dashboard/box.png', :size=>'10x10') %> Unique Events Types</td>
-						<td><%= pluralize(@uniq_events, "Unique Event Type") %></td>
+						<td><%= pluralize(number_with_delimiter(@uniq_events), "Unique Event Type") %></td>
 					</tr>
 				
 					<tr>
 						<td><%= image_tag('dashboard/box.png', :size=>'10x10') %> Unique Addresses</td>
-						<td><%= pluralize(@uniq_adds, "Unique Address") %></td>
+						<td><%= pluralize(number_with_delimiter(@uniq_adds), "Unique Address") %></td>
 					</tr>
 
 				</table>
@@ -65,12 +66,13 @@
 	<div id="graph_holder">		
 
 		<%- unless @events == 0 -%>
-			<div class='graph_1'><%= @g_event_severity %></div>
+			<div class='graph_1'><%= @pie_event_severity %></div>
 
-			<div class='graph_2'><%= @g_category_information %></div>
+			<div class='graph_2'><%= @bar_event_severity %></div>
 		<%- end -%>
 
 	</div>
+	<br />
 	
 	<div id="dash_table">
 		<h3>Sensor Information:</h3><br />
@@ -108,18 +110,19 @@
 		<h3>Event Category Information:</h3><br />
 		<div id="dash_table_in">
 			<table>
-				<tr>
-					<th>Event Category</th>
-					<th>Event Count For Category</th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th>Event Percentage</th>
-				</tr>
+					<tr>
+						<th>Event Category</th>
+						<th>Event Count For Category</th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th>Event Percentage</th>
+					</tr>
+				<tbody>
 				<%- @categories.each do |c, hash_values| -%>
 				<tr class="<%= cycle('even', 'odd') %>">
 					<td><%= image_tag('other/category.png', :size=>'10x10') %> <%= link_to "#{@categories[c][:name]}", category_path(:category_id => @categories[c][:id]) %></td>
-					<td><%= pluralize(@categories[c][:event_total], "Event") %></td>
+					<td><%= pluralize(number_with_delimiter(@categories[c][:event_total]), "Event") %></td>
 					<td></td>
 					<td></td>
 					<td></td>
@@ -130,6 +133,7 @@
 					<%- end -%>
 				</tr>
 				<%- end -%>
+				</tbody>
 			</table>
 		</div>
 	</div>

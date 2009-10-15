@@ -1,36 +1,49 @@
 class GraphController < ApplicationController
 
   def pie_event_severity
-    title = Title.new("Event Severity")
-
     data = []
-    color = []
+    data_labels = []
+    %w(High Medium Low).each do |x|
+      sym = x.downcase.to_sym
+      unless params[sym].blank?
+        data << params[sym].to_i
+        data_labels << "#{x} Severity"
+      end
+    end
 
     pie = Pie.new
+    pie.on_click = 'alert(blah)'
     pie.start_angle = 35
-    pie.animate = false
+    pie.animate = true
     pie.tooltip = '#val# Events of #total# Total.<br>#percent# of 100%<br>'
 
-    unless params[:low].to_i == 0
-      data << PieValue.new(params[:low].to_i, "Low Severity")
-      color << ["#adffa2"]
-    end
-    unless params[:medium].to_i == 0
-      data << PieValue.new(params[:medium].to_i, "Medium Severity")
-      color << ["#f8f9a4"]
-    end
-    unless params[:high].to_i == 0
-      data << PieValue.new(params[:high].to_i, "High Severity")
-      color << ["#fb9c9c"]
+    colours = ['#fb9c9c', '#f8f9a4', '#adffa2']
+    values = []
+    
+    [params[:high].to_i, params[:medium].to_i, params[:low].to_i].each_with_index do |v,i|
+      case i
+      when 0
+        p = PieValue.new(v, "High Severity")
+        p.on_click = "#{severity_url(:severity_id => i+1)}"
+        p.colour = colours[i]
+        values << p
+      when 1
+        p = PieValue.new(v, "Medium Severity")
+        p.on_click = "#{severity_url(:severity_id => i+1)}"
+        p.colour = colours[i]
+        values << p
+      when 2
+        p = PieValue.new(v, "Low Severity")
+        p.on_click = "#{severity_url(:severity_id => i+1)}"
+        p.colour = colours[i]
+        values << p
+      end
     end
 
-
-    pie.colours = color
-
-    pie.values  = data
+    pie.values  = values
 
     chart = OpenFlashChart.new
-    chart.title = title
+    chart.title = Title.new("Event Severity - Pie Chart")
     chart.set_bg_colour('#FFFFFF')
     chart.add_element(pie)
 
@@ -42,57 +55,47 @@ class GraphController < ApplicationController
   def bar_event_severity
     data = []
     data_labels = []
-    unless params[:high].blank?
-      data << params[:high].to_i
-      data_labels << "High Severity"
+    %w(High Medium Low).each do |x|
+      sym = x.downcase.to_sym
+      unless params[sym].blank?
+        data << params[sym].to_i
+        data_labels << "#{x} Severity"
+      end
     end
-    unless params[:medium].blank?
-      data << params[:medium].to_i
-      data_labels << "Medium Severity"
+ 
+    colours = ['#fb9c9c', '#f8f9a4', '#adffa2']
+    values = []
+ 
+    bar = Bar3d.new
+    [params[:high].to_i, params[:medium].to_i, params[:low].to_i].each_with_index do |v,i|
+      b = BarValue.new(v)
+      b.colour = colours[i]
+      b.tooltip = '#val# Events'
+      b.on_click = "#{severity_url(:severity_id => i+1)}"
+      values << b
     end
-    unless params[:low].blank?
-      data << params[:low].to_i
-      data_labels << "Low Severity"
-    end
-
+    bar.values = values
+ 
     x = XAxis.new
     x.grid_colour= '#FFFFFF'
     x.set_3d 5
     x.offset= true
     x.colour= '#909090'
-    x.labels= data_labels
-
+    x.labels = data_labels
+ 
     y = YAxis.new
     y.grid_colour= '#FFFFFF'
-
-
-    if params[:all].to_i >= 50000
-      y.set_range(0, params[:all].to_i, 10000)
-    elsif params[:all].to_i >= 10000
-      y.set_range(0, params[:all].to_i, 5000)
-    elsif params[:all].to_i >= 5000
-      y.set_range(0, params[:all].to_i, 1000)
-    elsif params[:all].to_i >= 1000
-      y.set_range(0, params[:all].to_i, 500)
-    elsif params[:all].to_i >= 100
-      y.set_range(0, params[:all].to_i, 100)
-    else
-      y.set_range(0, params[:all].to_i, 10)
-    end
-
-    bar = Bar3d.new
-    #bar.set_values(@data)
-
-    bar.values= data
-    bar.colour= '#28d2fc'
-    bar.tooltip = '#val# Events'
-
+ 
+    highest = []
+    highest = [params[:high].to_i, params[:medium].to_i, params[:low].to_i].sort!
+    y.set_range(0, highest.last, ((highest.last/100).round*100)/10)
+ 
     chart = OpenFlashChart.new
-    chart.title= Title.new('Event Severity')
-    chart << bar
+    chart.title= Title.new('Event Severity - Bar Chart')
     chart.bg_colour = '#FFFFFF'
     chart.x_axis= x
     chart.y_axis= y
+    chart.elements = [bar]
     render :text => chart.render
   end
 

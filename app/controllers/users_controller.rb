@@ -12,16 +12,15 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    respond_to do |format|
-      format.html do
-        if @user.save
-          flash[:notice] = "New user was successfully created!"
-          redirect_to settings_path
-        else
-          render :action => :new
-        end
+    if @user.save
+      if params[:user][:avatar].blank?
+        flash[:notice] = "New User Successfully Created!"
+        redirect_to settings_path
+      else
+        render :action => "crop"
       end
-      format.js { render :action => 'validate' }
+    else
+      render :action => 'new'
     end
   end
 
@@ -32,10 +31,14 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      flash[:notice] = "User account updated successfully!"
-      redirect_to settings_path
+      if params[:user][:avatar].blank?
+        flash[:notice] = "User Updated Successfully!"
+        redirect_to settings_path
+      else
+        render :action => "crop"
+      end
     else
-      render :action => :edit
+      render :action => 'edit'
     end
   end
 

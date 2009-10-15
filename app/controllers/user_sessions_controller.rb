@@ -11,7 +11,7 @@ class UserSessionsController < ApplicationController
     respond_to do |format|
       format.html do
         if @user_session.save
-          flash[:notice] = "Login successful - Welcome back #{@user_session.login.capitalize}!"
+          flash[:notice] = "Login successful - Welcome back!"
           redirect_back_or_default dashboard_path
         else
           flash[:error] = "Incorrect User and/or Password."

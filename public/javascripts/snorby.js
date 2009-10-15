@@ -87,8 +87,6 @@ jQuery(document).ready(function($) {
     $('input#search_ip_dst').autocomplete("auto_complete_for_search_ip_dst");
 
     // Flash Notice/Error
-		$('#flash_notice').stop().fadeIn('slow');
-		$('#flash_error').stop().fadeIn('slow');
 		setTimeout("$('#flash_notice').fadeOut('slow');", 3000);
 		setTimeout("$('#flash_error').fadeOut('slow');", 3000);
 

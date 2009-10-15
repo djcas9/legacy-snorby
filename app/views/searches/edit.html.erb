@@ -1,3 +1,7 @@
+<%- content_for :head do -%>
+	<%= javascript_include_tag 'jquery-ui', 'timepicker', :cache => false %>
+<%- end -%>
+
 <% form_for @search do |f| %>
 <%= f.error_messages %>
 <%= f.text_field :title, :class => 'full_form' %>

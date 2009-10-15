@@ -2,7 +2,7 @@ class CreateUsers < ActiveRecord::Migration
   def self.up
     create_table :users do |t|
       t.timestamps
-      t.string :login, :null => false
+      t.string :name
       t.string :email, :null => false
       t.string :crypted_password, :null => false
       t.string :password_salt, :null => false
@@ -19,8 +19,8 @@ class CreateUsers < ActiveRecord::Migration
       t.boolean :admin, :null => false
     end
         
-    user = User.create(:login => 'snorby', 
-    :email => 'change_me@example.com', 
+    user = User.create(:name => 'Snorby Administrator', 
+    :email => 'snorby@snorby.org', 
     :password => 'admin', 
     :password_confirmation => 'admin', 
     :admin => true,
@@ -28,12 +28,13 @@ class CreateUsers < ActiveRecord::Migration
     :accept_email => true)    
     user.save!
     
-    add_index :users, :login
+    add_index :users, :name
+    add_index :users, :email
     add_index :users, :persistence_token
     add_index :users, :last_request_at
     
   end
-
+ 
   def self.down
     drop_table :users
   end

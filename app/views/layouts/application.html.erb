@@ -2,7 +2,7 @@
 <html>
   <head>
     <title><%= h(yield(:title) || "Snorby - #{Setting.device_name}") %></title>
-		<%= javascript_include_tag 'jquery', 'jquery-ui', 'jrails', 'jquery.livequery', 'jquery.autocomplete', 'jquery.scrollTo', 'swfobject', 'facebox', 'jquery.tipsy', 'jquery.pstrength', 'timepicker', 'snorby', :cache => true %>
+		<%= javascript_include_tag 'jquery', 'jrails', 'jquery.livequery', 'jquery.autocomplete', 'jquery.scrollTo', 'swfobject', 'facebox', 'jquery.tipsy', 'jquery.pstrength', 'snorby', :cache => true %>
 		<%= stylesheet_link_tag 'snorby', 'facebox', 'jquery.autocomplete', 'jquery.ui' %>
     <%= yield(:head) %>
   </head>
@@ -14,7 +14,7 @@
 			<%= render :partial => 'layouts/header' %>
 
 			<%- flash.each do |name, msg| -%>
-				<div id="flash_<%= name %>" class='round' style='display:none;'>
+				<div id="flash_<%= name %>" class='round'>
 					<%- if name.to_s =~ /error/ -%>
 						<center><%= image_tag('other/slash.png', :size=>'14x14', :class=> 'flash_icon') %> <%= msg %></center>
 					<%- else -%>

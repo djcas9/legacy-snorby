@@ -1,22 +1,39 @@
 <div id="header">
 	<%- if current_user -%>
+	
+	<div id="logo"><%= link_to image_tag('snorby_logo.png', :id => 'snorby_logo'), dashboard_path %></div>
+	
 	<div id="menubar">
 		<ul class="menu">
-			<li><%= link_to "Dashboard", dashboard_path %></li>
+			<li class='first'><%= link_to "Dashboard", dashboard_path %></li>
 			<li><%= link_to "LiveLook", livelook_path %></li>
 			<li><%= link_to "Events", events_path %></li>
 			<li><%= link_to "Reports", reports_path %></li>
 			<li><%= link_to "Search", new_search_path %></li>
 			<li><%= link_to "Settings", settings_path %></li>
+			
 			<% if !current_user %>
 			  <li><%= link_to "Log In", login_path %></li>
 			<% else %>
-			  <li><%= link_to "Logout", logout_path, :method => :delete, :confirm => "Are you sure you want to logout?" %></li>
+			  <li class='last'><%= link_to "Logout", logout_path, :method => :delete, :confirm => "Are you sure you want to logout?" %></li>
 			<% end %>
+			
 		</ul>
+		
 	</div>
-	
-	<div id="logo"><%= link_to image_tag('snorby_logo.png', :id => 'snorby_logo'), dashboard_path %></div>
+		
+	<div id='user_box'>
+		<div id='user_data'>
+			<div id='user_avatar'><%= image_tag current_user.avatar.url(:menu_bar) %></div>
+			<div id='user_name'><%= truncate(current_user.name, :omission => "...", :length => 30) %></div>
+			<div id='user_links'>
+				<%= link_to "Inbox (0)", '#' %> |
+				<%= link_to "Profile", { :controller => 'users', :action => 'edit', :id => current_user } %> |
+				<%= link_to "My Events", my_events_path %>
+			</div>
+		</div>
+	</div>
+
 	
 	<%- else -%>
 

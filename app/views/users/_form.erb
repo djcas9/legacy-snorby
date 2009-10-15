@@ -6,8 +6,11 @@
 <br />
 <%= form.check_box :resolve_ips %> <%= form.label :resolve_ips, "Attempt To Resolve Addresses. (faster loading when disabled)" %><br />
 <br />
-<%= form.label :login %><br />
-<%= form.text_field :login %><br />
+<%= form.label :avatar, 'Profile Image' %><br />
+<%= form.file_field :avatar %><br />
+<br />
+<%= form.label :name %><br />
+<%= form.text_field :name %><br />
 <br />
 <%= form.label :email %><br />
 <%= form.text_field :email %><br />

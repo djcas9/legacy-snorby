@@ -1,3 +1,7 @@
+<%- content_for :head do -%>
+	<%= javascript_include_tag 'jquery-ui', 'timepicker', :cache => false %>
+<%- end -%>
+
 <h1>Search (<%= link_to "View Saved Searches", searches_path %>)</h1>
 <br />
 <% form_for @search do |f| %>
@@ -68,6 +72,6 @@
 	</table>
 
 	<br />
-  <p><%= f.submit "Search »", :onclick => "$('#loading').show();" %> <div id='loading' style="display:none;"><%= image_tag('other/loading.gif', :size => '22x22') %></div></p>
+  <p><%= f.submit "Search", :onclick => "$('#loading').show();" %> <div id='loading' style="display:none;"><%= image_tag('other/loading.gif', :size => '22x22') %></div></p>
 <% end %>
 
