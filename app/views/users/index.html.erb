@@ -14,7 +14,7 @@
 			<%- for user in @users -%>
 			<tr class="<%= cycle('odd', 'even') %>">
 				<td><%= check_box_tag "user_ids[]", user.id %></td>
-				<td><%= image_tag('dashboard/user.png', :size=>'12x12') %> <%= user.login.capitalize %></td>
+				<td><%= image_tag('dashboard/user.png', :size=>'12x12') %> <%= user.name.capitalize %></td>
 				<td><%= user.email %></td>
 				<%- if user.admin -%>
 				<td><%= image_tag('yes.png', :size=>'12x12') %></td>
