@@ -15,6 +15,15 @@ class CreateSearches < ActiveRecord::Migration
       t.boolean :show_search, :null => false
       t.timestamps
     end
+    
+    add_index :searches, :sid
+    add_index :searches, :sid_class_id
+    add_index :searches, :ip_src
+    add_index :searches, :ip_dst
+    add_index :searches, :sport
+    add_index :searches, :dport
+    add_index :searches, :sig_priority
+    
   end
   
   def self.down

@@ -8,7 +8,7 @@
 			<%= submit_tag "Apply Settings", :name => nil, :class => 'not_round', :title => 'Select a severity filter and apply for real-time updates.', :id => 'filter_box_link' %>
 		</div>
 		<%= select_tag("severity", options_for_select([["All Severities", 'All'], ['High Severity', 'High'], ['Medium Severity', 'Medium'], ['Low Severity', 'Low']], params[:severity])) %> 
-		<%= select_tag("frequency", options_for_select([["Update Every #{@update_time} Seconds", @update_time], ['Every 60 Seconds', 60], ['Every 300 Seconds', 300], ['Every 600 Seconds', 600]], params[:severity])) %>
+		<%= select_tag("frequency", options_for_select([["Refresh Every 60 Seconds", 60], ['Refresh Every 300 Seconds', 300], ['Refresh Every 600 Seconds', 600], ['Refresh Every 900 Seconds', 900]], params[:frequency].to_i)) %>
 		<%- end -%>
 		<div id="count_down" class='left'>Last Updated: <%= Time.now.strftime('%A, %B %d %Y at %I:%M:%S %p') %></div>
 	<%- end -%>

@@ -8,6 +8,11 @@ class CreateComments < ActiveRecord::Migration
       t.integer :user_id
       t.timestamps
     end
+    
+    add_index :comments, :sid
+    add_index :comments, :cid
+    add_index :comments, :user_id
+    
   end
   
   def self.down
