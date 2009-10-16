@@ -786,9 +786,9 @@ div#user_box{
 	display: block;
 	position: relative;
 	overflow: hidden;
-	padding-left: 20px;
+	padding-left: 15px;
 	float: left;
-	width: 250px;
+	width: 220px;
 }
 
 div#user_avatar{
@@ -860,11 +860,16 @@ ul,li {
 	height: 39px;
 	float: left;
 	line-height: 39px;
-	/*background: url(../images/menu/li_bg.png) repeat-x 0 bottom;*/
+	padding-right: 1px;
+	padding-left: 1px;
 }
 
 #menubar .menu li:hover {
 	background: url(../images/menu/li_bg.png) repeat-x 0 bottom;
+	border-left: 1px solid #676767;
+	border-right: 1px solid #676767;
+	padding-right: 0;
+	padding-left: 0;
 }
 
 #menubar .menu li.start {
@@ -876,8 +881,6 @@ ul,li {
 }
 
 #menubar .menu li.first{
-	padding-left: 0;
-	margin-left: 0;
 	left: 0;
 }
 /*#menubar .menu li.last{

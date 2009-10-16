@@ -3,7 +3,7 @@
 <% if @reports.blank? %>
 <div id="report_table">
 	<div id="report_table_in">
-		<table>
+		<table cellspacing="0" cellpadding="0">
 		  <tr>
 		    <th></th>
 		  </tr>
@@ -21,7 +21,7 @@
 		<%= will_paginate @reports %>
 	</div>
 	<div id="report_table_in">
-		<table class='grid'>
+		<table cellspacing="0" cellpadding="0" class='grid'>
 		  <tr>
 		    <th></th>
 				<th>Report Type</th>
