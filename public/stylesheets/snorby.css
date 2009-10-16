@@ -389,6 +389,12 @@ a:hover {
 	font-variant: normal;
 }
 
+html{
+	width: 100%;
+  	background-color: #ededed;
+	height: 100%;
+}
+
 body {
   	font-family: Verdana, Helvetica, Arial;
   	font-size: 12px;
