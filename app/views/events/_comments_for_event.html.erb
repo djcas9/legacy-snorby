@@ -7,13 +7,12 @@
 </div>
 
 <div id="comment_form">
-	<%- remote_form_for [@event, Comment.new], { :loading => "$('#loading_comment').show();", :complete => "$('#loading_comment').hide();" } do |f| -%>
+	<%- remote_form_for [@event, Comment.new], { :loading => "$('textarea#comment_body').addClass('loading');", :complete => "$('textarea#comment_body').removeClass('loading');" } do |f| -%>
 		<%= f.label :body, "New Comment" %><br />
-		<%= f.text_area :body, :rows => 10, :cols => 80 %><br />
+		<%= f.text_area :body, :rows => 10, :cols => 80, :class => '' %><br />
 		<br />
 		<p>
-		<%= f.submit "Add Comment »" %> 
-		<div id='loading_comment' style='display:none;'><%= image_tag('other/loading.gif', :size => '22x22') %></div>
+		<%= f.submit "Add Comment" %> 
 		</p>
 	<%- end -%>
 </div>

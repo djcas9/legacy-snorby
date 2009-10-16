@@ -1,10 +1,10 @@
-<%- div_for comment do -%>
+<%- div_for comment, :class => "will_load_#{comment.id}" do -%>
 	<div id="comment_text">
 		<div id="user_id_header">
 			<div id="comment_options" class='round'>
 				<%- if User.is_admin_or_owner(current_user, comment) && !current_page?(:action => "index") && !current_page?(:controller => "searches", :action => 'show') && !current_page?(:controller => "reports", :action => 'show') && !current_page?(:action => 'livelook') && !current_page?(:action => 'severity') && !current_page?(:action => 'category') && !current_page?(:action => 'my_events') -%>
 					<%= link_to "#{image_tag('other/edit.png', :size=>'8x8')} Edit", edit_comment_path(comment) %> |
-					<%= link_to_remote "#{image_tag('other/slash.png', :size=>'8x8', :class => 'destroy_image')} Remove", :url => comment_path(comment), :loading => "$('#remove_comment_#{comment.id}').show();", :complete => "$('#remove_comment_#{comment.id}').hide();", :method => :delete %>
+					<%= link_to_remote "#{image_tag('other/slash.png', :size=>'8x8', :class => 'destroy_image')} Remove", :url => comment_path(comment), :loading => "$('.will_load_#{comment.id}').addClass('loading');", :method => :delete %>
 			<%- end -%>
 			</div>
 			<div id='comment_user_name'><%= image_tag current_user.avatar.url(:small), :class => 'user_image' %><%= comment.user.name %></div>
@@ -12,7 +12,6 @@
 		</div>
 		<div id='comment_body'>
 			<%=h comment.body %>
-			<div id='remove_comment_<%= comment.id %>' class='loading_remove_comment' style='display:none;'><%= image_tag('other/loading.gif', :size => '18x18') %></div>
 		</div>
 		<br />
 	</div>

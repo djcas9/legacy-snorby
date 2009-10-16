@@ -43,6 +43,10 @@ div.dialog {
 	top: -3px;
 }
 
+.loading{
+	background: url(../images/loading.gif) no-repeat center center;
+}
+
 #loading {
 	float: left;
 	margin-top: -25px;
@@ -89,6 +93,31 @@ div.dialog {
 
 .move_image_right img {
 	padding-right: 5px;
+}
+
+div#box{
+	border: 1px solid #e2e3e6;
+	border-top: 1px none #edf0f0;
+	border-bottom: 1px solid #e0e1e3;
+	border-right-style: none;
+	border-left-style: none;
+	background: #ededed url(../images/box_bg.png) repeat-x 0 bottom;
+	width: 876px;
+	margin-left: -27px;
+	display: block;
+	position: relative;
+	padding-bottom: 2px;
+	margin-bottom: 10px;
+}
+div#box p{
+	padding: 0;
+	margin: 0 0 1px;
+}
+
+#box_inside{
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 10px;
 }
 
 .box {
@@ -1802,22 +1831,20 @@ div#user_data_and_stats{
 	display: block;
 	position: relative;
 	overflow: hidden;
-	margin-bottom: 15px;
 	width: 100%;
 }
 
 div#user_data_info{
 	text-shadow: #f6faff 1px 1px 1px;
 	float: left;
-	height: 90px;
-	padding-left: 10px;
-	padding-right: 5px;
-	border: 1px solid #e2e3e6;
-	background: #ededed url(../images/input_bg.png) repeat-x 0 bottom;
-	padding-top: 1px;
 	color: #616263;
-	width: 700px;
+	width: 100%;
+	padding-left: 5px;
+	display: block;
+	position: relative;
+	overflow: hidden;
 }
+
 div#user_data_info a{
 	color: #258fff;
 	font-weight: normal;
@@ -1840,8 +1867,8 @@ div#user_data_info strong{
 
 div#user_data_and_stats img{
 	float: left;
-	border: 1px solid #313232;
-	margin-right: 5px;
+	border: 1px solid #f6faff;
+	margin-right: 10px;
 }
 div#user_data_and_stats h1{
 	font-size: x-large;

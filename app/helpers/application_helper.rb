@@ -133,5 +133,29 @@ module ApplicationHelper
       "#{a}"
     end
   end
+  
+  def box(msg, *links)
+    sidebox_html = <<-EOF
+    <div id='sidebox'>
+    <ul id='sidebox_menu'>
+    <span class='loading' style='display:none;'>#{image_tag('icons/sidebox_loading.gif')}</span>
+    EOF
+    unless links.nil?
+      x = 0
+      links.each do |link|
+        sidebox_html += <<-EOF
+        <li class='sidebox_list_item_#{x+=1}'>#{link}</li>
+        EOF
+      end
+    end
+    sidebox_html += <<-EOF
+    </ul>
+    <span class='sidebox_title'>#{msg}</span>
+    <div id='left_corner'></div>
+    <div id='right_corner'></div>
+    </div>
+    EOF
+    return sidebox_html
+  end
 
 end

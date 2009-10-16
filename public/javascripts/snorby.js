@@ -140,7 +140,4 @@ jQuery(document).ready(function($) {
         });
     });
 
-		//Password
-		$('.password').pstrength();
-
 });
