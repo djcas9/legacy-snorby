@@ -19,6 +19,11 @@ class CreateUsers < ActiveRecord::Migration
       t.boolean :admin, :null => false
     end
     
+    add_column :users, :avatar_file_name, :string
+    add_column :users, :avatar_content_type, :string
+    add_column :users, :avatar_file_size, :integer
+    add_column :users, :avatar_updated_at, :datetime
+    
     add_index :users, :name
     add_index :users, :email
     add_index :users, :persistence_token

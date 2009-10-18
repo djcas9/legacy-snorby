@@ -59,6 +59,7 @@ namespace :snorby do
     # Users
     system('rake db:migrate:down RAILS_ENV=production VERSION=20090628215615') # User
     system('rake db:migrate:up RAILS_ENV=production VERSION=20090628215615') # User
+    system('rake db:migrate:up RAILS_ENV=production VERSION=20091013224615') # User Image
     
     ### END
     Rake::Task['db:migrate'].invoke

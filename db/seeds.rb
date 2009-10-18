@@ -7,4 +7,4 @@ user = User.create(:name => 'Snorby Administrator',
 :admin => true,
 :resolve_ips => true, 
 :accept_email => true)    
-user.save!
+user.save
