@@ -18,15 +18,6 @@ class CreateUsers < ActiveRecord::Migration
       t.boolean :accept_email, :null => false
       t.boolean :admin, :null => false
     end
-        
-    user = User.create(:name => 'Snorby Administrator', 
-    :email => 'snorby@snorby.org', 
-    :password => 'admin', 
-    :password_confirmation => 'admin', 
-    :admin => true,
-    :resolve_ips => true, 
-    :accept_email => true)    
-    user.save!
     
     add_index :users, :name
     add_index :users, :email
@@ -38,4 +29,5 @@ class CreateUsers < ActiveRecord::Migration
   def self.down
     drop_table :users
   end
+  
 end

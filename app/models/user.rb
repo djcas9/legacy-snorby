@@ -12,9 +12,12 @@ class User < ActiveRecord::Base
   :path => ":rails_root/public/assets/users/:id/:style/:basename.:extension",
   :default_url => "/images/default/avatar.png"
 
-  validates_attachment_size :avatar, :less_than => 5.megabytes
-  validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png', 'image/jpg']
+  
+  # Not Working
+  #validates_attachment_size :avatar, :less_than => 5.megabytes
+  #validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png', 'image/jpg']
 
+  
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   after_update :reprocess_avatar, :if => :cropping?
   
