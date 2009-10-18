@@ -3,11 +3,10 @@
 	<%= form.file_field :avatar %><br />
 	<br />
 	<%- if current_user.admin -%>
-	<%= form.check_box :admin %> <%= form.label :admin, "System Administrator" %><br />
+	<p><%= form.check_box :admin %> <%= form.label :admin, "System Administrator" %></p>
 	<%- end -%>
-	<%= form.check_box :accept_email %> <%= form.label :accept_email, "Accept email notifications and reports" %><br />
-	<br />
-	<%= form.check_box :resolve_ips %> <%= form.label :resolve_ips, "Attempt To Resolve Addresses. (faster loading when disabled)" %><br />
+	<p><%= form.check_box :accept_email %> <%= form.label :accept_email, "Accept email notifications and reports" %></p>
+	<p><%= form.check_box :resolve_ips %> <%= form.label :resolve_ips, "Attempt To Resolve Addresses. (faster loading when disabled)" %></p>
 	<br />
 	<%= form.label :email %><br />
 	<%= form.text_field :email %><br />

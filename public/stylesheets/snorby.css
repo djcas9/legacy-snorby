@@ -1048,6 +1048,8 @@ strong.title {
 }
 
 .event {
+	/*background-color: #efefef;*/
+	border: 1px solid #e6e9e9;
 	margin-bottom: 10px;
 	position: relative;
 	hasLayout: true;
@@ -1062,11 +1064,11 @@ strong.title {
 }
 
 #event_holder {
-	background-color: #efefef;
-	border: 1px solid #dcdcdc;
+	border: 1px solid #fff;
 	padding: 5px;
 	position: relative;
 	overflow: hidden;
+	background: url(../images/event_bg.png) repeat-x 0 bottom;
 }
 
 #event_holder_body {
@@ -1877,9 +1879,10 @@ div#user_data_info strong{
 
 div#user_data_and_stats img{
 	float: left;
-	border: 1px solid #f6faff;
+	border: 1px solid #fff;
 	margin-right: 10px;
 }
+
 div#user_data_and_stats h1{
 	font-size: x-large;
 	color: #454545;
