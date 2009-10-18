@@ -45,6 +45,10 @@ div.dialog {
 
 .loading{
 	background: url(../images/loading.gif) no-repeat center center;
+	display: block;
+	position: relative;
+	overflow: hidden;
+	z-index: 1000;
 }
 
 #loading {
@@ -1052,7 +1056,8 @@ strong.title {
 	border: 1px solid #e6e9e9;
 	margin-bottom: 10px;
 	position: relative;
-	hasLayout: true;
+	display: block;
+	overflow: hidden;
 }
 
 #events {
