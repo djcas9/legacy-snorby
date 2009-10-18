@@ -113,6 +113,14 @@ div#box{
 	padding-bottom: 2px;
 	margin-bottom: 10px;
 }
+div#box input{
+	float: left;
+	position: relative;
+	overflow: hidden;
+	padding-top: 0;
+	padding-bottom: 0;
+	margin: 0;
+}
 div#box p{
 	padding: 0;
 	margin: 0 0 1px;
@@ -1875,6 +1883,10 @@ div#user_data_info a:hover{
 	font-style: normal;
 	text-decoration: none;
 	font-variant: normal;
+}
+
+span#edit_name{
+	margin-bottom: 5px;
 }
 
 div#user_data_info strong{

@@ -2,7 +2,7 @@
 <html>
   <head>
     <title><%= h(yield(:title) || "Snorby - #{Setting.device_name}") %></title>
-		<%= javascript_include_tag 'jquery', 'jrails', 'jquery.livequery', 'jquery.autocomplete', 'jquery.scrollTo', 'swfobject', 'facebox', 'jquery.tipsy', 'snorby', :cache => true %>
+		<%= javascript_include_tag 'jquery', 'jrails', 'jquery.livequery', 'jquery.autocomplete', 'jquery.scrollTo', 'swfobject', 'facebox', 'jquery.tipsy', 'jquery.editable', 'snorby', :cache => true %>
 		<%= stylesheet_link_tag 'snorby', 'facebox', 'jquery.autocomplete', 'jquery.ui' %>
     <%= yield(:head) %>
   </head>

@@ -33,8 +33,12 @@ namespace :snorby do
     ### VERSION SPECIFIC MIGRATIONS
     puts '[~] Updating Snorby...'
     puts '[~] Please Wait...'
+    # User
     system('rake db:migrate:down RAILS_ENV=production VERSION=20090628215615')
     system('rake db:migrate:up RAILS_ENV=production VERSION=20090628215615')
+    # settings
+    system('rake db:migrate:down RAILS_ENV=production VERSION=20090626044640')
+    system('rake db:migrate:up RAILS_ENV=production VERSION=20090626044640')
     ### END
     Rake::Task['db:migrate'].invoke
     Rake::Task['snorby:cache'].invoke
