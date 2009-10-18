@@ -1107,8 +1107,9 @@ strong.title {
 }
 
 strong.event_title {
-	font-size: large;
+	text-shadow: #fff 0 1px 0;
 	color: #262626;
+	font-size: 1.7em;
 }
 
 #summary_info_in {
