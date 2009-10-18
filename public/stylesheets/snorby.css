@@ -793,8 +793,8 @@ div#user_box{
 	position: relative;
 	overflow: hidden;
 	padding-left: 15px;
-	float: left;
-	width: 220px;
+	float: right;
+	width: 250px;
 }
 
 div#user_avatar{
@@ -817,7 +817,7 @@ div#user_name{
 	text-shadow: #000 0 1px 0;
 	font-size: small;
 	color: #fff;
-	padding: 2px 0 0;
+	padding: 3px 0 0;
 	margin-top: 0;
 	text-decoration: none;
 	font-variant: normal;
@@ -825,9 +825,9 @@ div#user_name{
 
 div#user_links{
 	text-shadow: #000 0 1px 0;
-	font-size: x-small;
-	color: #fff;
-	padding-top: 1px;
+	font-size: xx-small;
+	color: #868888;
+	padding-top: 2px;
 }
 div#user_links a{
 	color: #d9dcdc;
@@ -853,6 +853,7 @@ ul,li {
 	overflow: hidden;
 	line-height: 30px;
 	padding: 0;
+	margin-left: 10px;
 }
 
 #menubar ul{
@@ -872,11 +873,11 @@ ul,li {
 
 #menubar .menu li:hover {
 	background: url(../images/menu/li_bg.png) repeat-x 0 bottom;
-	border-left: 1px solid #676767;
+	border-left: 1px solid #373838;
 	border-right: 1px solid #676767;
 	padding-right: 0;
 	padding-left: 0;
-}
+	}
 
 #menubar .menu li.start {
 	height: 39px;
