@@ -855,6 +855,7 @@ div#user_data img{
 }
 
 div#user_name{
+	text-overflow: ellipsis;
 	text-shadow: #000 0 1px 0;
 	font-size: small;
 	color: #fff;
@@ -1746,6 +1747,8 @@ div#event_options_inside{
 	margin-right: 5px;
 	border-width: 1px;
 	border-style: solid;
+	width: 30px;
+	height: 30px;
 }
 
 div#comment_timestamp {
