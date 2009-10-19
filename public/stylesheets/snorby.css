@@ -21,18 +21,6 @@ div.dialog {
 	margin: 10px auto;
 }
 
-.loading_remove_comment {
-	float: left;
-	margin-left: -30px;
-}
-
-#loading_comment {
-	float: left;
-	margin-top: -25px;
-	display: inline;
-	margin-left: 115px;
-}
-
 #loading_livelook {
 	display: inline;
 	position: absolute;
@@ -49,6 +37,8 @@ div.dialog {
 	position: relative;
 	overflow: hidden;
 	z-index: 1000;
+	margin: 0;
+	padding: 0;
 }
 
 #loading {
@@ -251,6 +241,9 @@ textarea#comment_body{
 	padding: 5px;
 	width: 75%;
 	height: 130px;
+	display: block;
+	position: relative;
+	overflow: hidden;
 }
 
 textarea#send_event_textarea{
@@ -546,17 +539,17 @@ table.form td {
 /* @group H1 Stuff */
 
 h1 {
-	text-shadow: #f9fcff 0 1px 0;
-	font-size: large;
-	color: #444545;
+	text-shadow: #fff 0 1px 0;
+	color: #212222;
+	font-size: 1.6em;
 }
 
 h2 {
-	color: #555;
-	font-size: medium;
+	text-shadow: #fff 0 1px 0;
+	color: #393a3a;
 	text-decoration: none;
-	font-weight: normal;
-	font-style: normal;
+	font-weight: bold;
+	font-size: 1.0em;
 }
 
 h3 {
@@ -1102,6 +1095,7 @@ strong.title {
 	position: relative;
 	display: block;
 	overflow: hidden;
+	background-color: #fbfbfb;
 }
 
 #events {
@@ -1704,7 +1698,7 @@ div#event_options_inside{
 	margin: 20px auto auto;
 	background-color: transparent;
 	font-size: small;
-	max-height: 300px;
+	max-height: 200px;
 	overflow: auto;
 	padding-right: 20px;
 }
@@ -1718,8 +1712,12 @@ div#event_options_inside{
 	margin-bottom: 15px;
 }
 
+#comment_form{
+	margin-top: 20px;
+}
+
 #comments {
-	margin-bottom: 20px;
+	margin-bottom: 5px;
 	padding-left: 10px;
 	padding-right: 10px;
 }
@@ -1729,6 +1727,7 @@ div#event_options_inside{
 	color: #373737;
 	text-transform: capitalize;
 	font-size: 1.0em;
+	font-weight: bold;
 }
 
 #comment_user_info {
@@ -1750,10 +1749,10 @@ div#event_options_inside{
 }
 
 div#comment_timestamp {
-	font-size: xx-small;
 	color: #919191;
 	text-transform: capitalize;
 	font-style: italic;
+	font-size: 0.8em;
 }
 
 div#add_comment {

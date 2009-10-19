@@ -1,9 +1,7 @@
 <% form_for @comment do |f| %>
   <%= f.error_messages %>
-  <p>
-    <%= f.label :body %><br />
-    <%= f.text_area :body, :rows => 10, :cols => 70 %>
-  </p>
-<br />
+	<%= f.label :body, "New Comment" %><br />
+	<%= f.text_area :body %>
+  <br />
   <p><%= f.submit "Submit" %> - <%= link_to "Cancel", :back %></p>
 <% end %>

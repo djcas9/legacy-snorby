@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_filter :require_admin, :only => [:remove_event]
 
   def index
-    @events ||= Event.paginate(:page => params[:page], :per_page => Setting.events_per_page, 
+    @events ||= Event.paginate(:page => params[:page], :per_page => Setting.events_per_page,
     :include => [:sensor, :iphdr, {:sig => :sig_class }], :order => 'timestamp DESC')
     respond_to do |format|
       format.html
@@ -66,6 +66,7 @@ class EventsController < ApplicationController
   end
 
   def livelook
+    params[:frequency] = 60 unless [60,300,600,900].include?(params[:frequency].to_i)
     @events ||= Event.livelook(params[:severity])
     respond_to do |format|
       format.html
