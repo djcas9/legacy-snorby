@@ -9,7 +9,7 @@
 <div id="comment_form">
 	<%- remote_form_for [@event, Comment.new], { :loading => "$('textarea#comment_body').addClass('loading');", :complete => "$('textarea#comment_body').removeClass('loading');" } do |f| -%>
 		<%= f.label :body, "New Comment" %><br />
-		<%= f.text_area :body, :rows => 10, :cols => 80, :class => '' %><br />
+		<%= f.text_area :body, :class => 'round' %><br />
 		<br />
 		<p>
 		<%= f.submit "Add Comment" %> 

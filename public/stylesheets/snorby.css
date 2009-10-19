@@ -242,12 +242,23 @@ input,textarea {
 	padding: 5px;
 }
 
+textarea#comment_body{
+	background: #f2f9f6 url(../images/input_bg.png) repeat-x 0 bottom;
+	border: 1px solid #d3d8da;
+	color: rgb(51,51,51);
+	font: normal normal normal 12px/normal 'Lucida Grande',Helvetica,Arial,Verdana,sans-serif;
+	margin: 0px;
+	padding: 5px;
+	width: 75%;
+	height: 130px;
+}
+
 select,select:focus{
 	margin: 0px;
 	font: normal normal normal 12px/normal 'Lucida Grande',Helvetica,Arial,Verdana,sans-serif;
-	background: #edf2ef;
 	border: 1px solid #bdc0c0;
 }
+
 input[type=file]{
 	border-style: none;
 	background: none;
@@ -274,6 +285,20 @@ input[type=submit]:hover {
 	background: #fff url(../images/submit_hover_bg.png) repeat-x 0 top;
 }
 
+input[type=submit]:focus {
+	cursor: pointer;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	text-shadow: #f9fcff 0 1px 0;
+	font-weight: bold;
+	text-align: center;
+	padding: 7px 10px;
+	text-shadow: #f3f4ff 0 1px 0;
+	color: #5f6162;
+	font-weight: bold;
+	text-align: center;
+	background: #fff url(../images/submit_hover_bg.png) repeat-x 0 top;
+}
 
 input:focus{
 	background: #fdffc8;
