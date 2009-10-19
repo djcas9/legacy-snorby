@@ -253,6 +253,17 @@ textarea#comment_body{
 	height: 130px;
 }
 
+textarea#send_event_textarea{
+	background: #f2f9f6 url(../images/input_bg.png) repeat-x 0 bottom;
+	border: 1px solid #d3d8da;
+	color: rgb(51,51,51);
+	font: normal normal normal 12px/normal 'Lucida Grande',Helvetica,Arial,Verdana,sans-serif;
+	margin: 0px;
+	padding: 5px;
+	width: 320px;
+	height: 130px;	
+}
+
 select,select:focus{
 	margin: 0px;
 	font: normal normal normal 12px/normal 'Lucida Grande',Helvetica,Arial,Verdana,sans-serif;
