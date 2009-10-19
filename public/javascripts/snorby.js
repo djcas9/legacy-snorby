@@ -140,12 +140,4 @@ jQuery(document).ready(function($) {
         });
     });
 
-		// Edit OnClcik
-		
-		$('.edit_name').editable(this.rel, {
-        indicator : 'Saving...',
-				name : 'name',
-        tooltip   : 'Click to edit...'
-    });
-
 });

@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(params[:user])
       if params[:user][:avatar].blank?
         flash[:notice] = "User Updated Successfully!"
-        redirect_to settings_path
+        redirect_to edit_user_path(@user)
       else
         render :action => "crop"
       end

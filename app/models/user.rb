@@ -10,9 +10,8 @@ class User < ActiveRecord::Base
   :processors => [:cropper],
   :url  => "/assets/users/:id/:style/:basename.:extension",
   :path => ":rails_root/public/assets/users/:id/:style/:basename.:extension",
-  :default_url => "/images/default/avatar.png"
+  :default_url => "/images/default/avatar.jpg"
 
-  
   # Not Working
   # validates_attachment_size :avatar, :less_than => 5.megabytes
   # validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png', 'image/jpg']

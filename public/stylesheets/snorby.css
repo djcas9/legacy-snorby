@@ -1696,27 +1696,28 @@ pre {
 	color: #373737;
 	text-transform: capitalize;
 	font-size: 1.0em;
+	float: left;
 }
 
-#user_id_header {
-	margin-bottom: 5px;
-	background-color: rgba(255,249,199,0.51);
-	width: 100%;
-	display: block;
-	position: relative;
+#comment_user_info {
+	font-size: 85%;
+	min-height: 30px;
 	overflow: hidden;
-	border-bottom: 1px solid #fbf8f8;
+	position: absolute;
+	text-overflow: ellipsis;
+	top: 10px;
+	width: 155px;
+	left: 2px;
 }
-#user_id_header img.user_image{
+#comment_user_info img{
 	float: left;
-	margin-top: 3px;
 	margin-right: 5px;
-	margin-left: 5px;
-	border: 1px solid #f2f5b9;
+	border-width: 1px;
+	border-style: solid;
 }
 
 div#comment_timestamp {
-	font-size: x-small;
+	font-size: xx-small;
 	color: #919191;
 	text-transform: capitalize;
 	font-style: italic;
@@ -1728,30 +1729,40 @@ div#add_comment {
 }
 
 div#comment_body {
-	color: #707070;
-	margin-top: 5px;
-	margin-bottom: 5px;
-	margin-left: 5px;
+	padding-bottom: 6px;
+	padding-right: 10px;
+	color: #9a9a9a;
 }
 
 #comment_options {
 	float: right;
-	font-size: x-small;
-	margin-top: 2px;
-	margin-right: 5px;
+	font-size: 85%;
+	min-width: 90px;
+	padding: 0px 10px 4px 15px;
+	text-align: right;
+	color: #989898;
 }
 
 #comment_options a {
-	font-size: x-small;
+	font-size: xx-small;
 	text-decoration: none;
 	font-weight: normal;
 	font-style: normal;
 	font-variant: normal;
+	color: #1fa2ff;
+}
+#comment_options a:hover {
+	color: #82cbfc;
 }
 
 .comment {
-	border-bottom: 1px solid #eee;
-	margin-bottom: 5px;
+	min-height: 35px;
+	border-top: 1px solid #e8ebeb;
+	overflow: hidden;
+	position: relative;
+	text-overflow: ellipsis;
+	display: block;
+	padding: 8px 0px 10px 155px;
 }
 
 #comment_text {

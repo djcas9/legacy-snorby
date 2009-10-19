@@ -1,18 +1,25 @@
 <%- div_for comment, :class => "will_load_#{comment.id}" do -%>
-	<div id="comment_text">
-		<div id="user_id_header">
-			<div id="comment_options" class='round'>
-				<%- if User.is_admin_or_owner(current_user, comment) && !current_page?(:action => "index") && !current_page?(:controller => "searches", :action => 'show') && !current_page?(:controller => "reports", :action => 'show') && !current_page?(:action => 'livelook') && !current_page?(:action => 'severity') && !current_page?(:action => 'category') && !current_page?(:action => 'my_events') -%>
-					<%= link_to "#{image_tag('other/edit.png', :size=>'8x8')} Edit", edit_comment_path(comment) %> |
-					<%= link_to_remote "#{image_tag('other/slash.png', :size=>'8x8', :class => 'destroy_image')} Remove", :url => comment_path(comment), :loading => "$('.will_load_#{comment.id}').addClass('loading');", :method => :delete %>
-			<%- end -%>
-			</div>
-			<div id='comment_user_name'><%= image_tag current_user.avatar.url(:small), :class => 'user_image' %><%= comment.user.name %></div>
-			<div id='comment_timestamp'><%= time_ago_in_words(Time.parse(comment.comment_time).getutc.in_time_zone('UTC')) %> ago</div>
-		</div>
-		<div id='comment_body'>
-			<%=h comment.body %>
-		</div>
-		<br />
-	</div>
+
+  <div id="comment_options">
+    	<%- if User.is_admin_or_owner(current_user, comment) && !current_page?(:action => "index") && !current_page?(:controller => "searches", :action => 'show') && !current_page?(:controller => "reports", :action => 'show') && !current_page?(:action => 'livelook') && !current_page?(:action => 'severity') && !current_page?(:action => 'category') && !current_page?(:action => 'my_events') -%>
+				
+				<%= link_to "Edit", edit_comment_path(comment) %>
+				/
+				<%= link_to_remote "Remove", :url => comment_path(comment), :loading => "$('.will_load_#{comment.id}').addClass('loading');", :method => :delete %>
+		
+		<%- end -%>
+  </div>
+
+  <div id="comment_user_info">
+    <%= image_tag comment.user.avatar.url(:menu_bar), :class => 'user_image' %>
+    <div id='comment_user_name' title="<%=h comment.user.name -%>"><%= truncate(comment.user.name, :omission => "...", :length => 23) %></div>
+		<div id='comment_timestamp'><%= time_ago_in_words(Time.parse(comment.comment_time).getutc.in_time_zone('UTC')) %> ago</div>
+  </div>
+
+
+  <div id="comment_body">
+    <div id='comment_body'><%=h comment.body %></div>
+  </div>
+	
+	
 <%- end -%>
