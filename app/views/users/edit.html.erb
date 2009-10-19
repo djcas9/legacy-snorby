@@ -6,14 +6,16 @@
 			<div id='user_data_and_stats'>
 				<div id="user_data_info">
 					<%= image_tag @user.avatar.url(:medium) %>
-					<h1><span class='edit_name'><%= @user.name %></span></h1><br />
-				 	<h2><%= @user.email %></h2>
-					<p><strong>Current Login IP:</strong> <%=h @user.current_login_ip %></p>
-					<%- if @user.last_request_at.blank? -%>
-					  <p><strong>Last Request At:</strong> N/A</p>
-					<%- else -%>
-					  <p><strong>Last Request At:</strong> <%=h @user.last_request_at.strftime('%A, %B %d %Y at %I:%M:%S %p') %></p>
-					<%- end -%>
+					<h1><span class='edit_name'><%= @user.name %></span></h1>
+				 	<div id="user_data_info_under">
+				 	  <h2><%= @user.email %></h2>
+  					<p><strong>Current Login IP:</strong> <%=h @user.current_login_ip %></p>
+  					<%- if @user.last_request_at.blank? -%>
+  					  <p><strong>Last Request At:</strong> N/A</p>
+  					<%- else -%>
+  					  <p><strong>Last Request At:</strong> <%=h @user.last_request_at.strftime('%A, %B %d %Y at %I:%M:%S %p') %></p>
+  					<%- end -%>
+				 	</div>
 				</div>
 			</div>
 		</div>

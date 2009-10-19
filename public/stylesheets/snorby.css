@@ -1637,16 +1637,22 @@ pre {
 }
 
 .event_options {
-	border: 1px solid rgba(253,247,88,0.49);
-	color: #373737;
+	/*border: 1px solid rgba(253,247,88,0.49);
+	background: #fefbc8 0 bottom;
+	color: #373737;*/
+	
 	position: relative;
 	float: right;
+	margin-top: 10px;
+	background: #fefbc8 0 bottom;
+	border: 1px solid #fdfdac;
+}
+
+div#event_options_inside{
 	padding-right: 5px;
 	padding-top: 2px;
 	padding-left: 5px;
-	background: #fefbc8 0 bottom;
-	hasLayout: true;
-	margin-top: 10px;
+	border: 1px solid #fff;
 }
 
 .event_options img {
@@ -1659,29 +1665,20 @@ pre {
 /* @group Comments */
 
 .comment_box {
-	-moz-border-radius-bottomleft: 5px;
-	-webkit-border-bottom-left-radius: 5px;
-	-moz-border-radius-bottomright: 5px;
-	-webkit-border-bottom-right-radius: 5px;
-	border-right: 1px solid rgba(0,0,0,0.12);
-	border-left: 1px solid rgba(0,0,0,0.12);
-	border-bottom: 1px solid rgba(0,0,0,0.12);
-	border-top: 1px solid #f6f6f6;
-	margin: auto;
-	width: 750px;
-	background-color: #fdfdfd;
-	padding: 10px 20px;
+	margin: 20px auto auto;
+	background-color: transparent;
 	font-size: small;
 	max-height: 300px;
 	overflow: auto;
+	padding-right: 20px;
 }
 
 #comments_for {
 	color: #363636;
 	font-size: small;
 	text-align: center;
-	background-color: #f2f4f0;
-	border: 1px solid rgba(208,213,210,0.63);
+	/*background-color: #f2f4f0;
+	border: 1px solid rgba(208,213,210,0.63);*/
 	margin-bottom: 15px;
 }
 
@@ -1696,7 +1693,6 @@ pre {
 	color: #373737;
 	text-transform: capitalize;
 	font-size: 1.0em;
-	float: left;
 }
 
 #comment_user_info {
@@ -1708,6 +1704,7 @@ pre {
 	top: 10px;
 	width: 155px;
 	left: 2px;
+	float: left;
 }
 #comment_user_info img{
 	float: left;
@@ -1721,7 +1718,6 @@ div#comment_timestamp {
 	color: #919191;
 	text-transform: capitalize;
 	font-style: italic;
-	float: left;
 }
 
 div#add_comment {
@@ -1869,6 +1865,13 @@ div#user_data_and_stats{
 	position: relative;
 	overflow: hidden;
 	width: 100%;
+}
+
+div#user_data_info_under{
+	display: block;
+	position: relative;
+	overflow: hidden;
+	margin-top: 5px;
 }
 
 div#user_data_info{

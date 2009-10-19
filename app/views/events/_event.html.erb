@@ -12,36 +12,35 @@
     		</div>
 
     		<div id='event_options_<%= event.sid + event.cid %>' class='event_options round'>
-    			<%- if event.comments.blank? -%>
-    				<%= image_tag('other/no_comment.png', :size=>'14x14') %>
-    			<%- else -%>
-    				<span id='show_comments_icon_<%= event.sid + event.cid %>' style='display:visible;'>
-    				<%= link_to_function "#{image_tag('other/comment.png', :size=>'14x14')}", show_comments("#comments_for_#{event.sid + event.cid}", "#show_comments_icon_#{event.sid + event.cid}", "#hide_comments_icon_#{event.sid + event.cid}") %>
-    				</span>
-    				<span id='hide_comments_icon_<%= event.sid + event.cid %>' style='display:none;'>
-    				<%= link_to_function "#{image_tag('other/hide_comments.png', :size=>'14x14')}", hide_comments("#comments_for_#{event.sid + event.cid}", "#show_comments_icon_#{event.sid + event.cid}", "#hide_comments_icon_#{event.sid + event.cid}") %>
-    				</span>
-    			<%- end -%>
+          <div id="event_options_inside" class='round'>
+            <%- if event.comments.blank? -%>
+      				<%= image_tag('other/no_comment.png', :size=>'14x14') %>
+      			<%- else -%>
+      				<span id='show_comments_icon_<%= event.sid + event.cid %>' style='display:visible;'>
+      				<%= link_to_function "#{image_tag('other/comment.png', :size=>'14x14')}", show_comments("#comments_for_#{event.sid + event.cid}", "#show_comments_icon_#{event.sid + event.cid}", "#hide_comments_icon_#{event.sid + event.cid}") %>
+      				</span>
+      				<span id='hide_comments_icon_<%= event.sid + event.cid %>' style='display:none;'>
+      				<%= link_to_function "#{image_tag('other/hide_comments.png', :size=>'14x14')}", hide_comments("#comments_for_#{event.sid + event.cid}", "#show_comments_icon_#{event.sid + event.cid}", "#hide_comments_icon_#{event.sid + event.cid}") %>
+      				</span>
+      			<%- end -%>
 
-    			<%- if event.importance.present? -%>
+      			<%- if event.importance.present? -%>
 
-    			<span id='important_load_<%= event.sid + event.cid %>' style='display:none;'><%= image_tag('ajax.gif', :size=>'14x14') %></span>
-    			<%= link_to_remote image_tag('other/is_important.png', :size=>'14x14', :id => "important_#{event.sid + event.cid}"), :url => { :controller => 'events', :action => "important", :id => event }, :loading => "$('#load_on_change_#{event.sid + event.cid}').addClass('loading');$('#important_#{event.sid + event.cid}').hide();$('#important_load_#{event.sid + event.cid}').show();", :complete => "$('#load_on_change_#{event.sid + event.cid}').removeClass('loading');$('#important_load_#{event.sid + event.cid}').hide();" %>
+      			<span id='important_load_<%= event.sid + event.cid %>' style='display:none;'><%= image_tag('ajax.gif', :size=>'14x14') %></span>
+      			<%= link_to_remote image_tag('other/is_important.png', :size=>'14x14', :id => "important_#{event.sid + event.cid}"), :url => { :controller => 'events', :action => "important", :id => event }, :loading => "$('#load_on_change_#{event.sid + event.cid}').addClass('loading');$('#important_#{event.sid + event.cid}').hide();$('#important_load_#{event.sid + event.cid}').show();", :complete => "$('#load_on_change_#{event.sid + event.cid}').removeClass('loading');$('#important_load_#{event.sid + event.cid}').hide();" %>
 
-    			<%- else -%>
+      			<%- else -%>
 
-    			<span id='important_load_<%= event.sid + event.cid %>' style='display:none;'><%= image_tag('ajax.gif', :size=>'14x14') %></span>
-    			<%= link_to_remote image_tag('other/is_not_important.png', :size=>'14x14', :id => "important_#{event.sid + event.cid}"), :url => { :controller => 'events', :action => "important", :id => event }, :loading => "$('#load_on_change_#{event.sid + event.cid}').addClass('loading');$('#important_#{event.sid + event.cid}').hide();$('#important_load_#{event.sid + event.cid}').show()", :complete => "$('#load_on_change_#{event.sid + event.cid}').removeClass('loading');$('#important_load_#{event.sid + event.cid}').hide();" %>
+      			<span id='important_load_<%= event.sid + event.cid %>' style='display:none;'><%= image_tag('ajax.gif', :size=>'14x14') %></span>
+      			<%= link_to_remote image_tag('other/is_not_important.png', :size=>'14x14', :id => "important_#{event.sid + event.cid}"), :url => { :controller => 'events', :action => "important", :id => event }, :loading => "$('#load_on_change_#{event.sid + event.cid}').addClass('loading');$('#important_#{event.sid + event.cid}').hide();$('#important_load_#{event.sid + event.cid}').show()", :complete => "$('#load_on_change_#{event.sid + event.cid}').removeClass('loading');$('#important_load_#{event.sid + event.cid}').hide();" %>
 
-    			<%- end -%>
+      			<%- end -%>
 
-          <!-- $('#load_on_change').addClass('loading');
-          $('#load_on_change').removeClass('loading'); -->
-
-    			<%- if current_user.admin -%>
-    			<span id='remove_event_<%= event.sid + event.cid %>' style='display:none;'><%= image_tag('ajax.gif', :size=>'14x14') %></span>
-    			<%= link_to_remote "#{image_tag('other/slash.png', :size=>'13x13', :id => "destroy_event_#{event.sid + event.cid}", :class => 'destroy_image')}", :url => { :controller => 'events', :action => "remove_event", :id => event }, :html => { :id => 'remove_event', :title => "Destroy Event: #{event.sig.sig_name}" }, :loading => "$('#load_on_change_#{event.sid + event.cid}').addClass('loading');$('#destroy_event_#{event.sid + event.cid}').remove();$('#remove_event_#{event.sid + event.cid}').show();" %>
-    			<%- end -%>
+      			<%- if current_user.admin -%>
+      			<span id='remove_event_<%= event.sid + event.cid %>' style='display:none;'><%= image_tag('ajax.gif', :size=>'14x14') %></span>
+      			<%= link_to_remote "#{image_tag('other/slash.png', :size=>'13x13', :id => "destroy_event_#{event.sid + event.cid}", :class => 'destroy_image')}", :url => { :controller => 'events', :action => "remove_event", :id => event }, :html => { :id => 'remove_event', :title => "Destroy Event: #{event.sig.sig_name}" }, :loading => "$('#load_on_change_#{event.sid + event.cid}').addClass('loading');$('#destroy_event_#{event.sid + event.cid}').remove();$('#remove_event_#{event.sid + event.cid}').show();" %>
+      			<%- end -%>
+          </div>
     		</div> 
 
     		<div id='event_holder_body'>
@@ -66,9 +65,6 @@
     		</div>
     	</div>
     	<div id="comments_for_<%= event.sid + event.cid %>" class='comment_box' style='display: none;'>
-    		<div id="comments_for" class='round'>
-    			<%= image_tag('other/comment.png', :size=>'10x10') %> <%= pluralize(event.comments.size, 'Comment') %> Posted for Event: <%= event.sig.sig_name %>
-    		</div>
     		<div id="comments">
     			<%= render :partial => event.comments %>
     		</div>
