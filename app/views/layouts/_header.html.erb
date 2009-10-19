@@ -20,7 +20,7 @@
 	<div id='user_box'>
 		<div id='user_data'>
 			<div id='user_avatar'><%= link_to "#{image_tag current_user.avatar.url(:menu_bar)}", { :controller => 'users', :action => 'edit', :id => current_user } %></div>
-			<div id='user_name'><%= truncate(current_user.name, :omission => "...", :length => 30) %></div>
+			<div id='user_name'><%=h truncate(current_user.name, :omission => "...", :length => 30) %></div>
 			<div id='user_links'>
 				<%= link_to "Profile", { :controller => 'users', :action => 'edit', :id => current_user } %> |
 				<%= link_to "My Events", my_events_path %> |

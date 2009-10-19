@@ -56,7 +56,10 @@ namespace :snorby do
     # Settings
     system('rake db:migrate:down RAILS_ENV=production VERSION=20090626044640') # Settings
     system('rake db:migrate:up RAILS_ENV=production VERSION=20090626044640') # Settings
-    # Users
+    # Reports
+    system('rake db:migrate:down RAILS_ENV=production VERSION=20090630040338') # Reports
+    system('rake db:migrate:up RAILS_ENV=production VERSION=20090630040338') # Reports
+    # Users    
     system('rake db:migrate:down RAILS_ENV=production VERSION=20090628215615') # User
     system('rake db:migrate:up RAILS_ENV=production VERSION=20090628215615') # User
     
