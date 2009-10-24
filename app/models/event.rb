@@ -17,6 +17,12 @@ class Event < ActiveRecord::Base
   named_scope :in_last_day, lambda {
   {:conditions => ["timestamp > ?", 1.day.ago]} }
 
+  named_scope :in_last_week, lambda {
+  {:conditions => ["timestamp > ?", 1.week.ago]} }
+  
+  named_scope :in_last_month, lambda {
+  {:conditions => ["timestamp > ?", 1.month.ago]} }
+
   named_scope :between, lambda { |date, older_data|
   {:conditions => ["timestamp > ? and timestamp < ?", date, older_data]} }
 
@@ -62,7 +68,7 @@ class Event < ActiveRecord::Base
   end
 
   def self.run_daily_report
-    @events = self.find(:all, :conditions => ['timestamp >= ?', Chronic.parse('one day ago')])
+    @events = self.in_last_day
     report = Report.new(:event_count => @events.size, :title => "Daily Report For #{Chronic.parse('one day ago')}", :rtype => 'daily', :from_time => "#{Chronic.parse('one day ago')}", :to_time => "#{Time.now}")
     if report.save!
       Pdf_for_email.make_pdf(report, @events)
@@ -71,7 +77,7 @@ class Event < ActiveRecord::Base
   end
 
   def self.run_weekly_report
-    @events = self.find(:all, :conditions => ['timestamp >= ?', Chronic.parse('one week ago')])
+    @events = self.in_last_week
     report = Report.new(:event_count => @events.size, :title => "Weekly Report For #{Chronic.parse('one week ago')}", :rtype => 'weekly', :from_time => "#{Chronic.parse('one week ago')}", :to_time => "#{Time.now}")
     if report.save!
       Pdf_for_email.make_pdf(report, @events)
@@ -80,7 +86,7 @@ class Event < ActiveRecord::Base
   end
 
   def self.run_monthly_report
-    @events = self.find(:all, :conditions => ['timestamp >= ?', Chronic.parse('one month ago')])
+    @events = self.in_last_month
     report = Report.new(:event_count => @events.size, :title => "Monthly Report For #{Chronic.parse('one month ago')}", :rtype => 'monthly', :from_time => "#{Chronic.parse('one month ago')}", :to_time => "#{Time.now}")
     if report.save!
       Pdf_for_email.make_pdf(report, @events)

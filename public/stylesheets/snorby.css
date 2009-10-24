@@ -1150,7 +1150,7 @@ strong.title {
 strong.event_title {
 	text-shadow: #fff 0 1px 0;
 	color: #262626;
-	font-size: 1.7em;
+	font-size: 1.6em;
 }
 
 #summary_info_in {
@@ -1847,9 +1847,6 @@ div.visualize {
 	font-size: 10px;
 }
 
-/* @
-end */
-
 /* @group Tipsy */
 
 .tipsy {
@@ -1982,6 +1979,49 @@ ul#form{
 	position: relative;
 	display: block;
 	overflow: hidden;
+}
+
+a.button{
+	font: -webkit-small-control;
+	font-weight: bold;
+}
+
+.button {
+	cursor: pointer;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	text-shadow: #f9fcff 0 1px 0;
+	border: 1px solid #cdcccd;
+	color: #3d3d3d;
+	text-align: center;
+	padding: 7px 10px;
+	background: #fff url(../images/submit_bg.png) repeat-x 0 bottom;
+	text-decoration: none;
+	font-variant: normal;
+}
+
+.button:hover {
+	text-shadow: #f3f4ff 0 1px 0;
+	color: #5f6162;
+	text-align: center;
+	background: #fff url(../images/submit_hover_bg.png) repeat-x 0 top;
+	text-decoration: none;
+	font-variant: normal;
+}
+
+.button:focus {
+	cursor: pointer;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	text-shadow: #f9fcff 0 1px 0;
+	text-align: center;
+	padding: 7px 10px;
+	text-shadow: #f3f4ff 0 1px 0;
+	color: #5f6162;
+	text-align: center;
+	background: #fff url(../images/submit_hover_bg.png) repeat-x 0 top;
+	text-decoration: none;
+	font-variant: normal;
 }
 
 /* @end */

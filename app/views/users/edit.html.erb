@@ -22,5 +22,5 @@
 	</div>
 
   <%= render :partial => "form", :object => f %><br />
-  <%= f.submit "Update »" %>
+  <%= f.submit "Update" %> <%= link_to "Cancel", :back, :class => 'button' %>
 <% end %>

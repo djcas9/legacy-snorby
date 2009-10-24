@@ -29,7 +29,7 @@
 				<td><%= @sensors[s][:last_cid] %></td>
 				<td><%= pluralize(@sensors[s][:event_total], 'Event') %></td>
 				<td>
-					<span id='load_link'><%= link_to "#{image_tag('other/slash.png', :size=>'12x12')}", :action => 'delete_events_for_sensor', :sensor => @sensors[s][:sensor_id], :id => 1 %>
+					<span id='load_link'><%= link_to "#{image_tag('other/slash.png', :size=>'12x12')}", { :action => 'delete_events_for_sensor', :sensor => @sensors[s][:sensor_id], :id => 1 }, :confirm => "Are you sure you want to remove all events?" %>
 						</span>
 				</td>
 			</tr>
@@ -38,5 +38,5 @@
 	</div>
 </div>
 <br />
-<p><%= submit_tag "Remove Sensor(s) »", :onclick => "$('loading_sensor').show();" %> <div id='loading_sensor' style='display:none;'><%= image_tag('other/loading.gif', :size => '22x22') %></div></p>
+<p><%= submit_tag "Remove", :class => 'remove' %> <%= link_to "Cancel", settings_path, :class => 'button' %></p>
 <% end %>
