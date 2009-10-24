@@ -2,12 +2,12 @@
 	<h2><%= image_tag('other/comment.png', :size=>'16x16') %> <%= pluralize(@event.comments.size, 'Comment') %></h2>
 </div>
 <br />
-<div id="comments">
+<div id="comments" class=''>
 		<%= render :partial => @event.comments %>
 </div>
 
 <div id="comment_form">
-	<%- remote_form_for [@event, Comment.new], { :loading => "$('div#comment_loading').addClass('loading');", :complete => "$('div#comment_loading').removeClass('loading');" } do |f| -%>
+	<%- remote_form_for [@event, Comment.new], { :loading => "$('div#comments').addClass('loading');", :complete => "$('div#comments').removeClass('loading');" } do |f| -%>
 		<%= f.label :body, "New Comment" %><br />
 		<%= f.text_area :body %>
 		<br />
