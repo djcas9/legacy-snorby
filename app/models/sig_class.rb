@@ -34,5 +34,15 @@ class SigClass < ActiveRecord::Base
     end
     return @cat.signatures.collect { |sig| sig.events }.flatten.size
   end
+  
+  ### TEST
+  def self.cache_event_count_for(c, cid)
+    if c == 0
+      return Event.last_cid(cid).count(:include => :sig, :conditions => ['signature.sig_class_id = 0'])
+    else
+      @cat = SigClass.find(c)
+    end
+    return @cat.signatures.collect { |sig| sig.events }.flatten.size
+  end
 
 end

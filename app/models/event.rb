@@ -14,6 +14,18 @@ class Event < ActiveRecord::Base
   belongs_to :sig, :class_name => "Signature", :foreign_key => 'signature' #, :dependent => :destroy
   belongs_to :sig_reference, :class_name => "SigReference", :foreign_key => 'signature', :dependent => :destroy
 
+  named_scope :in_last_day, lambda {
+  {:conditions => ["timestamp > ?", 1.day.ago]} }
+
+  named_scope :between, lambda { |date, older_data|
+  {:conditions => ["timestamp > ? and timestamp < ?", date, older_data]} }
+
+  named_scope :quarterly_data, lambda {
+  {:conditions => ["timestamp > ?", 90.days.ago]} }
+
+  named_scope :last_cid, lambda { |last_cid|
+  {:conditions => ["cid > ?", last_cid]} }
+
   def self.all_uniq_signatures_like(sig_name)
     find(:all, :include => [:sig], :conditions => ['signature.sig_name LIKE ?', "%#{sig_name}%"]).map{ |event| event.sig.sig_name }.uniq.sort
   end

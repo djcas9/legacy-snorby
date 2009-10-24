@@ -541,7 +541,7 @@ table.form td {
 h1 {
 	text-shadow: #fff 0 1px 0;
 	color: #212222;
-	font-size: 1.6em;
+	font: 1.9em "Myriad Pro", "Lucida Grande", Lucida, Verdana, sans-serif;
 }
 
 h2 {
@@ -914,6 +914,12 @@ ul,li {
 }
 
 #menubar .menu li:hover {
+	/*background: url(../images/menu/li_bg.png) repeat-x 0 bottom;*/
+	padding-right: 1px;
+	padding-left: 1px;
+}
+
+#menubar .menu li:active {
 	background: url(../images/menu/li_bg.png) repeat-x 0 bottom;
 	border-left: 1px solid #373838;
 	border-right: 1px solid #676767;
@@ -1774,7 +1780,7 @@ div#comment_body {
 	min-width: 90px;
 	padding: 0px 10px 4px 15px;
 	text-align: right;
-	color: #989898;
+	color: #babcbc;
 }
 
 #comment_options a {
