@@ -3,5 +3,5 @@
 <% form_for @user, :url => account_path, :html => { :multipart => true, :id => 'user_form' } do |f| %>
   <%= render :partial => "form", :object => f %><br />
   <br />
-	<%= f.submit "Register »" %> <span id='user_base'></span>
+	<%= f.submit "Create User" %>
 <% end %>

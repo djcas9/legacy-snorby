@@ -1981,23 +1981,24 @@ ul#form{
 	overflow: hidden;
 }
 
-a.button{
-	font: -webkit-small-control;
-	font-weight: bold;
+span.button_text{
+	text-shadow: #f9fcff 0 1px 0;
+	font-weight: normal;
+	font-style: normal;
+	text-decoration: none;
+	font-variant: normal;
+	font-size: small;
+	text-shadow: #f9fcff 0 1px 0;	
 }
 
 .button {
+	padding: 7px 10px;
 	cursor: pointer;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
-	text-shadow: #f9fcff 0 1px 0;
 	border: 1px solid #cdcccd;
 	color: #3d3d3d;
-	text-align: center;
-	padding: 7px 10px;
 	background: #fff url(../images/submit_bg.png) repeat-x 0 bottom;
-	text-decoration: none;
-	font-variant: normal;
 }
 
 .button:hover {
