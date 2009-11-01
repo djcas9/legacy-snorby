@@ -1,0 +1,106 @@
+= Snorby - All about simplicity.
+
+Snorby is a new and modern Snort IDS front-end. The basic fundamental concepts behind snorby are simplicity and power. The project goal is to create a free, open source and highly competitive application for network monitoring for both private and enterprise use. Snorby is currently stable and ready for production environments.
+
+== Snorby Setup
+
+<b>Get Snorby:</b>
+
+ git clone git://github.com/mephux/Snorby.git
+	
+<b>Snorby Database Configuration:</b>
+
+You will need to edit and rename /config/database.yml.example to /config/database.yml
+	
+Example Database Config: (spacing is important to .yml files and it will error if changed)
+	
+ production:
+   adapter: mysql
+   database: name_of_snort_database_here
+   username: my_user
+   password: my_password
+   host: localhost
+	
+<b>Snorby Email Configuration:</b>
+
+You will need to edit and rename /config/email.yml.example to /config/email.yml
+	
+Example Email Config: (spacing is important in .yml files and it will error if changed)
+
+ production:
+   :address: smtp.gmail.com
+   :port: 25
+   :authentication: plain
+   :user_name: user
+   :password: pass
+
+for a relay setup simply:
+
+ production:
+   :address: smtp.gmail.com
+   :domain: localhost
+
+If this is your first time installing Snorby, setup the snorby database and cron jobs with:
+
+ rake snorby:setup RAILS_ENV=production
+
+Update:
+
+ rake snorby:update RAILS_ENV=production
+
+Reset:
+
+ rake snorby:reset RAILS_ENV=production   # ALL DATA WILL BE LOST
+
+
+<b>Gems</b>
+
+Snorby is packaged with the needed gems however you may need to install the following in some cases:
+
+ sudo gem install mysql
+ sudo gem install prawn
+
+<b>Setup Snorby With Apache:</b>	
+
+http://wiki.github.com/mephux/Snorby/snorby-recipe-with-barnyard2-unified2-and-apache-jjc
+
+<b>Start Snorby:</b>
+
+ ruby script/server -e production -b 127.0.0.1 -p 80 -d
+
+ -b = bind address [Default: loopback]
+ -p = port number [Default: 3000]
+ -e = environment
+ -d = Run server as daemon
+	
+MAKE SURE IT IS RAN IN PRODUCTION MODE ONLY! SPEED!!!
+	
+ -e production
+
+The default User Name and Password for Snorby:
+	
+ User: snorby
+ Password: admin
+
+PLEASE MAKE SURE YOU CHANGE THIS!
+
+== TODO
+
+* Link for dashboard graphs
+* Session view for events
+* Tune events
+* Better XML Support
+
+== Helpful links
+
+* <b>Official Website:</b> http://www.snorby.org
+* <b>Snort Official Website:</b> http://www.snort.org
+* <b>Snort User Group:</b> http://groups.google.com/group/snorby
+* <b>IRC:</b> #snorby - irc.freenode.net
+
+<b>Before contacting me directly, please read:</b>
+
+If you find a bug or a problem please post it on the snorby issues page. If you need help with something, please use google groups. I check both regularly and get emails when anything happens, so that is the best place to get help. This also benefits other people in the future with the same questions / problems. Thank you.
+
+==
+Copyright (c) 2009 Dustin Webber & Wes Garrison [http://www.Snorby.org], released under the GPL license
