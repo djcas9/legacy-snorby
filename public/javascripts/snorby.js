@@ -140,4 +140,14 @@ jQuery(document).ready(function($) {
         });
     });
 
+		// Dashboard
+		$(".sortable").sortable({
+			axis: 'y',
+			placeholder: 'loading_move',
+			tolerance: 'pointer',
+			opacity: 0.6,
+			items: 'div.ditem',
+			handle: 'div.table_header'
+		});
+
 });

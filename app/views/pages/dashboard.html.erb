@@ -3,44 +3,50 @@
 		<span id='load_link' style='display:visible;'><%= link_to_remote "#{image_tag('other/update.png', :id => 'update_image_refresh', :title => 'Update Cache')}", :url => update_cache_path, :loading => "$('#loading_dash').show()", :complete => "$('#loading_dash').hide();document.location.reload()", :html => { :id => 'update_link_refresh' } %></span>
 </div>
 <h1>Snorby Dashboard</h1>
-<br />
 
-<div id='dashboard'>
+<div id='dashboard' class='sortable'>
 	
-	<div id="statistics">
+	<div id="statistics" class='ditem'>
 	
 		<div id="dash_table" class='grid_1'>
+		  <div class='table_header top_round'>Severity Statistics</div>
 			<div id="dash_table_in">
 				<table cellspacing="0" cellpadding="0">
-					<tr>
-						<th>Severity Statistics</th>
-						<th></th>
-					</tr>
-					<tr>
-						<td><%= image_tag('severity/high.png', :size=>'10x10') %> High Severity</td>
-						<td><%= link_to "#{pluralize(number_with_delimiter(@high), "Event")}", severity_path(:severity_id => 1) %></td>
-					</tr>
-				
-					<tr>
-						<td><%= image_tag('severity/warn.png', :size=>'10x10') %> Medium Severity</td>
-						<td><%= link_to "#{pluralize(number_with_delimiter(@medium), "Event")}", severity_path(:severity_id => 2) %></td>
-					</tr>
-				
-					<tr>
-						<td><%= image_tag('severity/low.png', :size=>'10x10') %> Low Severity</td>
-						<td><%= link_to "#{pluralize(number_with_delimiter(@low), "Event")}", severity_path(:severity_id => 3) %></td>
-					</tr>
+					
+					<thead>
+					 	<tr>
+  						<th>Severity</th>
+  						<th>Severity Event Count</th>
+  					</tr>
+					</thead>
+					
+					<tbody>
+					 	<tr>
+  						<td><%= image_tag('severity/high.png', :size=>'10x10') %> High Severity</td>
+  						<td><%= link_to "#{pluralize(number_with_delimiter(@high), "Event")}", severity_path(:severity_id => 1) %></td>
+  					</tr>
 
+  					<tr>
+  						<td><%= image_tag('severity/warn.png', :size=>'10x10') %> Medium Severity</td>
+  						<td><%= link_to "#{pluralize(number_with_delimiter(@medium), "Event")}", severity_path(:severity_id => 2) %></td>
+  					</tr>
+
+  					<tr>
+  						<td><%= image_tag('severity/low.png', :size=>'10x10') %> Low Severity</td>
+  						<td><%= link_to "#{pluralize(number_with_delimiter(@low), "Event")}", severity_path(:severity_id => 3) %></td>
+  					</tr>
+					</tbody>
 				</table>
 			</div>
 		</div>
 	
 		<div id="dash_table" class='grid_2'>
+		  <div class='table_header top_round'>Event Statistics</div>
 			<div id="dash_table_in">
 				<table cellspacing="0" cellpadding="0">
 					<tr>
-						<th>Event Statistics</th>
-						<th></th>
+						<th>Event Type</th>
+						<th>Event Count</th>
 					</tr>
 					<tr>
 						<td><%= image_tag('dashboard/box.png', :size=>'10x10') %> Total Event Count:</td>
@@ -63,19 +69,28 @@
 	
 	</div>
 	
-	<div id="graph_holder">		
-
-		<%- unless @events == 0 -%>
-			<div class='graph_1'><%= @pie_event_severity %></div>
-
-			<div class='graph_2'><%= @bar_event_severity %></div>
-		<%- end -%>
-
+	<div id="graph_holder" class='ditem'>		
+    <div class='table_header top_round'>Severity Statistics</div>
+    <div id="graph_holder_frame">
+      <div id="graph_holder_inside">
+        <%- unless @events == 0 -%>
+        <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <th>Event Severity VS Event Count (Pie Chart)</th>
+            <th>Event Severity VS Event Count (Bar Chart)</th>
+          </tr>
+          <tr>
+            <td><%= @pie_event_severity %></td>
+            <td><%= @bar_event_severity %></td>
+          </tr>
+        </table>
+    		<%- end -%>
+      </div>
+    </div>
 	</div>
-	<br />
 	
-	<div id="dash_table">
-		<h3>Sensor Information:</h3><br />
+	<div id="dash_table" class='ditem'>
+		<div class='table_header top_round'>Sensor Information</div>
 		<div id="dash_table_in">
 			<table cellspacing="0" cellpadding="0">
 				<tr>
@@ -104,10 +119,8 @@
 		</div>
 	</div>
 	
-	<br />
-	
-	<div id="dash_table">
-		<h3>Event Category Information:</h3><br />
+	<div id="dash_table" class='ditem'>
+	  <div class='table_header top_round'>Event Category Information</div>
 		<div id="dash_table_in">
 			<table cellspacing="0" cellpadding="0">
 					<tr>

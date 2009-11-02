@@ -43,8 +43,8 @@ class GraphController < ApplicationController
     pie.values  = values
 
     chart = OpenFlashChart.new
-    chart.title = Title.new("Event Severity - Pie Chart")
-    chart.set_bg_colour('#FFFFFF')
+    #chart.title = Title.new("Event Severity - Pie Chart")
+    chart.set_bg_colour('#f6f8f8')
     chart.add_element(pie)
 
     chart.x_axis = nil
@@ -77,22 +77,22 @@ class GraphController < ApplicationController
     bar.values = values
  
     x = XAxis.new
-    x.grid_colour= '#FFFFFF'
+    x.grid_colour= '#f6f8f8'
     x.set_3d 5
     x.offset= true
     x.colour= '#909090'
     x.labels = data_labels
  
     y = YAxis.new
-    y.grid_colour= '#FFFFFF'
+    y.grid_colour= '#f6f8f8'
  
     highest = []
     highest = [params[:high].to_i, params[:medium].to_i, params[:low].to_i].sort!
     y.set_range(0, highest.last, ((highest.last/100).round*100)/10)
  
     chart = OpenFlashChart.new
-    chart.title= Title.new('Event Severity - Bar Chart')
-    chart.bg_colour = '#FFFFFF'
+    #chart.title= Title.new('Event Severity - Bar Chart')
+    chart.bg_colour = '#f6f8f8'
     chart.x_axis= x
     chart.y_axis= y
     chart.elements = [bar]
