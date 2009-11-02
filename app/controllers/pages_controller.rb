@@ -11,6 +11,7 @@ class PagesController < ApplicationController
   end
 
   def dashboard
+    @comments = Comment.recent_comments
     @calc = CalcCache.first
     @high ||= @calc.high_severity
     @medium ||= @calc.medium_severity

@@ -1518,6 +1518,12 @@ div#dash_table .full{
 	margin-left: -20px;
 }
 
+#statistics_holder{
+	position: relative;
+	overflow: hidden;
+	display: block;
+}
+
 .grid_1 {
 	width: 400px;
 	float: left;
@@ -1573,14 +1579,28 @@ div#dash_table .full{
 	border-top: 1px solid #fff;
 }
 
+#header_options{
+	height: 16px;
+	line-height: 16px;
+	padding-top: 1px;
+	margin-right: -2px;
+	display: block;
+	position: relative;
+	overflow: hidden;
+}
+
+#header_options a{
+}
+
 div.table_header{
 	cursor: move;
 	text-shadow: #000 0 1px 0;
 	color: #fff;
 	background: rgb(102, 102, 102) url(../images/dashboard/gripper.gif) no-repeat 10px center;
 	font-size: 1.2em;
-	padding: 3px 30px 3px 22px;
 	border-bottom: 1px solid #353535;
+	padding: 3px 10px 3px 22px;
+	height: 16px;
 }
 
 /* @end */

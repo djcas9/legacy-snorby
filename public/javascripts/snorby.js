@@ -143,11 +143,41 @@ jQuery(document).ready(function($) {
 		// Dashboard
 		$(".sortable").sortable({
 			axis: 'y',
+			helper: 'clone',
+			cursor: 'crosshair',
 			placeholder: 'loading_move',
 			tolerance: 'pointer',
 			opacity: 0.6,
 			items: 'div.ditem',
-			handle: 'div.table_header'
+			handle: 'div.table_header',
+			start: function(event, ui) { 
+				//$('object').hide();
+			},
+			stop: function(event, ui) {
+				//$('object').show();
+			},
+			update: function(event, ui) {
+				//console.log(ui);
+				//console.log(event);
+			},
+			change: function(event, ui) {
+				console.log(current_id);
+			}
 		});
+		
+		$('.d_hide').bind('click', function(event) {
+			var i = ".hide_" + $(this).attr('item_name');
+			$(i).slideToggle();
+			return false;
+		});
+		
+		$('.d_remove').bind('click', function(event) {
+			var i = "." + $(this).attr('item_name');
+			if (confirm("Are You Sure You Want To Remove This Widget?")) {
+				$(i).fadeOut();
+			};
+			return false;
+		});
+		
 
 });

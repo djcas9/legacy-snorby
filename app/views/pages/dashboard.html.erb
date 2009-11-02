@@ -6,72 +6,87 @@
 
 <div id='dashboard' class='sortable'>
 	
-	<div id="statistics" class='ditem'>
-	
-		<div id="dash_table" class='grid_1'>
-		  <div class='table_header top_round'>Severity Statistics</div>
-			<div id="dash_table_in">
-				<table cellspacing="0" cellpadding="0">
-					
-					<thead>
-					 	<tr>
-  						<th>Severity</th>
-  						<th>Severity Event Count</th>
+	<div id="statistics" class='ditem event_data'>
+	  <div id="statistics_holder">
+	    <div id="dash_table" class='grid_1'>
+  		  <div class='table_header top_round'>
+  		    <div id="header_options" class='right'>
+    		    <%= link_to image_tag('../images/dashboard/hide.png', :size => '16x16'), '#', :item_name => 'event_data', :class => 'd_hide' %>
+    		  </div>
+  		    Severity Statistics
+  		  </div>
+  			<div id="dash_table_in" class='hide_event_data'>
+  				<table cellspacing="0" cellpadding="0">
+
+  					<thead>
+  					 	<tr>
+    						<th>Severity</th>
+    						<th>Severity Event Count</th>
+    					</tr>
+  					</thead>
+
+  					<tbody>
+  					 	<tr>
+    						<td><%= image_tag('severity/high.png', :size=>'10x10') %> High Severity</td>
+    						<td><%= link_to "#{pluralize(number_with_delimiter(@high), "Event")}", severity_path(:severity_id => 1) %></td>
+    					</tr>
+
+    					<tr>
+    						<td><%= image_tag('severity/warn.png', :size=>'10x10') %> Medium Severity</td>
+    						<td><%= link_to "#{pluralize(number_with_delimiter(@medium), "Event")}", severity_path(:severity_id => 2) %></td>
+    					</tr>
+
+    					<tr>
+    						<td><%= image_tag('severity/low.png', :size=>'10x10') %> Low Severity</td>
+    						<td><%= link_to "#{pluralize(number_with_delimiter(@low), "Event")}", severity_path(:severity_id => 3) %></td>
+    					</tr>
+  					</tbody>
+  				</table>
+  			</div>
+  		</div>
+
+  		<div id="dash_table" class='grid_2'>
+  		  <div class='table_header top_round'>
+  		    <div id="header_options" class='right'>
+    		    <%= link_to image_tag('../images/dashboard/hide.png', :size => '16x16'), '#', :item_name => 'event_data', :class => 'd_hide' %>
+    		  </div>
+  		    Event Statistics
+  		  </div>
+  			<div id="dash_table_in" class='hide_event_data'>
+  				<table cellspacing="0" cellpadding="0">
+  					<tr>
+  						<th>Event Type</th>
+  						<th>Event Count</th>
   					</tr>
-					</thead>
-					
-					<tbody>
-					 	<tr>
-  						<td><%= image_tag('severity/high.png', :size=>'10x10') %> High Severity</td>
-  						<td><%= link_to "#{pluralize(number_with_delimiter(@high), "Event")}", severity_path(:severity_id => 1) %></td>
+  					<tr>
+  						<td><%= image_tag('dashboard/box.png', :size=>'10x10') %> Total Event Count:</td>
+  						<td><%= pluralize(number_with_delimiter(@events), "Event") %></td>
   					</tr>
 
   					<tr>
-  						<td><%= image_tag('severity/warn.png', :size=>'10x10') %> Medium Severity</td>
-  						<td><%= link_to "#{pluralize(number_with_delimiter(@medium), "Event")}", severity_path(:severity_id => 2) %></td>
+  						<td><%= image_tag('dashboard/box.png', :size=>'10x10') %> Unique Events Types</td>
+  						<td><%= pluralize(number_with_delimiter(@uniq_events), "Unique Event Type") %></td>
   					</tr>
 
   					<tr>
-  						<td><%= image_tag('severity/low.png', :size=>'10x10') %> Low Severity</td>
-  						<td><%= link_to "#{pluralize(number_with_delimiter(@low), "Event")}", severity_path(:severity_id => 3) %></td>
+  						<td><%= image_tag('dashboard/box.png', :size=>'10x10') %> Unique Addresses</td>
+  						<td><%= pluralize(number_with_delimiter(@uniq_adds), "Unique Address") %></td>
   					</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	
-		<div id="dash_table" class='grid_2'>
-		  <div class='table_header top_round'>Event Statistics</div>
-			<div id="dash_table_in">
-				<table cellspacing="0" cellpadding="0">
-					<tr>
-						<th>Event Type</th>
-						<th>Event Count</th>
-					</tr>
-					<tr>
-						<td><%= image_tag('dashboard/box.png', :size=>'10x10') %> Total Event Count:</td>
-						<td><%= pluralize(number_with_delimiter(@events), "Event") %></td>
-					</tr>
-				
-					<tr>
-						<td><%= image_tag('dashboard/box.png', :size=>'10x10') %> Unique Events Types</td>
-						<td><%= pluralize(number_with_delimiter(@uniq_events), "Unique Event Type") %></td>
-					</tr>
-				
-					<tr>
-						<td><%= image_tag('dashboard/box.png', :size=>'10x10') %> Unique Addresses</td>
-						<td><%= pluralize(number_with_delimiter(@uniq_adds), "Unique Address") %></td>
-					</tr>
 
-				</table>
-			</div>
-		</div>
-	
+  				</table>
+  			</div>
+  		</div>
+	  </div>
 	</div>
 	
-	<div id="graph_holder" class='ditem'>		
-    <div class='table_header top_round'>Severity Statistics</div>
-    <div id="graph_holder_frame">
+	<div id="graph_holder" class='ditem graph_data'>		
+    <div class='table_header top_round'>
+      <div id="header_options" class='right'>
+		    <%= link_to image_tag('../images/dashboard/hide.png', :size => '16x16'), '#', :item_name => 'graph_data', :class => 'd_hide' %>
+		  </div>
+      Severity Statistics
+    </div>
+    <div id="graph_holder_frame" class='hide_graph_data'>
       <div id="graph_holder_inside">
         <%- unless @events == 0 -%>
         <table border="0" cellspacing="0" cellpadding="0">
@@ -89,9 +104,39 @@
     </div>
 	</div>
 	
-	<div id="dash_table" class='ditem'>
-		<div class='table_header top_round'>Sensor Information</div>
-		<div id="dash_table_in">
+	<div id="dash_table" class='ditem recent_comments'>
+		<div class='table_header top_round'>
+		  <div id="header_options" class='right'>
+		    <%= link_to image_tag('../images/dashboard/hide.png', :size => '16x16'), '#', :item_name => 'recent_comments', :class => 'd_hide' %>
+		  </div>
+		  Recent Comments
+		</div>
+		<div id="dash_table_in" class='hide_recent_comments'>
+			<table cellspacing="0" cellpadding="0">
+				<tr>
+				  <th>Comment Author</th>
+					<th>Event Name</th>
+					<th>Comment</th>
+				</tr>
+				  <%- @comments.each do |comment| -%>
+				  <tr>
+            <td><%= mail_to comment.user.email, comment.user.name %></td>
+            <td><%= link_to truncate(comment.event.sig.sig_name, :omission => "...", :length => 50), event_url(comment.event), :title => "#{comment.event.sig.sig_name}" %></td>
+            <td><%=h truncate(comment.body, :omission => "...", :length => 50) %></td>
+          </tr>
+          <%- end -%>
+			</table>
+		</div>
+	</div>
+	
+	<div id="dash_table" class='ditem sensor_data'>
+		<div class='table_header top_round'>
+		  <div id="header_options" class='right'>
+		    <%= link_to image_tag('../images/dashboard/hide.png', :size => '16x16'), '#', :item_name => 'sensor_data', :class => 'd_hide' %>
+		  </div>
+		  Sensor Information
+		</div>
+		<div id="dash_table_in" class='hide_sensor_data'>
 			<table cellspacing="0" cellpadding="0">
 				<tr>
 					<th>Sensor</th>
@@ -119,9 +164,14 @@
 		</div>
 	</div>
 	
-	<div id="dash_table" class='ditem'>
-	  <div class='table_header top_round'>Event Category Information</div>
-		<div id="dash_table_in">
+	<div id="dash_table" class='ditem category_data'>
+	  <div class='table_header top_round'>
+	    <div id="header_options" class='right'>
+		    <%= link_to image_tag('../images/dashboard/hide.png', :size => '16x16'), '#', :item_name => 'category_data', :class => 'd_hide' %>
+		  </div>
+	    Event Category Information
+	  </div>
+		<div id="dash_table_in" class='hide_category_data'>
 			<table cellspacing="0" cellpadding="0">
 					<tr>
 						<th>Event Category</th>
