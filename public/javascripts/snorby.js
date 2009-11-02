@@ -1,7 +1,6 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
-
 jQuery(document).ready(function($) {
     var currentPage = 2
 
@@ -87,15 +86,24 @@ jQuery(document).ready(function($) {
     $('input#search_ip_dst').autocomplete("auto_complete_for_search_ip_dst");
 
     // Flash Notice/Error
-		setTimeout("$('#flash_notice').fadeOut('slow');", 3000);
-		setTimeout("$('#flash_error').fadeOut('slow');", 3000);
+		$('#flash_notice').slideDown('slow');
+		$('#flash_error').slideDown('slow');
+		setTimeout("$('#flash_notice').slideUp('slow');", 3000);
+		setTimeout("$('#flash_error').slideUp('slow');", 3000);
 
 		// Click Destroy Flash Message
-		$('#flash_notice').click(function() {
-			$(this).remove();
+		$('#flash_notice').live('click', function(event) {
+			$(this).slideUp('slow', function () {
+				$(this).remove();
+			});
+			return false;
 		});
-		$('#flash_error').click(function() {
-			$(this).remove();
+		
+		$('#flash_error').live('click', function(event) {
+			$(this).slideUp('slow', function () {
+				$(this).remove();
+			});
+			return false;
 		});
 
     // FaceBox
@@ -147,7 +155,7 @@ jQuery(document).ready(function($) {
 			cursor: 'crosshair',
 			placeholder: 'loading_move',
 			tolerance: 'pointer',
-			opacity: 0.6,
+			opacity: 0.4,
 			items: 'div.ditem',
 			handle: 'div.table_header',
 			start: function(event, ui) { 
@@ -161,23 +169,23 @@ jQuery(document).ready(function($) {
 				//console.log(event);
 			},
 			change: function(event, ui) {
-				console.log(current_id);
 			}
 		});
 		
-		$('.d_hide').bind('click', function(event) {
+		$('a.d_hide').live('click', function(event) {
 			var i = ".hide_" + $(this).attr('item_name');
-			$(i).slideToggle();
+			$(this).removeClass('d_hide');$(this).addClass('d_show');
+			$(this).html("<img alt='Show' width='16' height='16' src='../images/dashboard/show.png' />");
+			$(i).slideToggle('slow');
 			return false;
 		});
 		
-		$('.d_remove').bind('click', function(event) {
-			var i = "." + $(this).attr('item_name');
-			if (confirm("Are You Sure You Want To Remove This Widget?")) {
-				$(i).fadeOut();
-			};
+		$('a.d_show').live('click', function(event) {
+			var i = ".hide_" + $(this).attr('item_name');
+			$(this).removeClass('d_show');$(this).addClass('d_hide');
+			$(this).html("<img alt='Hide' width='16' height='16' src='../images/dashboard/hide.png' />");
+			$(i).slideToggle('slow');
 			return false;
 		});
-		
 
 });

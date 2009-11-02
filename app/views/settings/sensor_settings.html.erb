@@ -38,5 +38,8 @@
 	</div>
 </div>
 <br />
-<p><%= submit_tag "Remove", :class => 'remove' %></p>
+  <p>
+    <%= submit_tag "Remove", :class => 'remove' %>
+    <%= submit_tag "Cancel", :onclick => 'history.go(-1);return false;' %>
+  </p>
 <% end %>

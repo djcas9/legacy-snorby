@@ -4,4 +4,5 @@
   <%= render :partial => "form", :object => f %><br />
   <br />
 	<%= f.submit "Create User" %>
+	<%= f.submit "Cancel", :onclick => 'history.go(-1);return false;' %>
 <% end %>

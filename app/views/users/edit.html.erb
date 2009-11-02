@@ -23,4 +23,5 @@
 
   <%= render :partial => "form", :object => f %><br />
   <%= f.submit "Update" %>
+  <%= f.submit "Cancel", :onclick => 'history.go(-1);return false;' %>
 <% end %>
