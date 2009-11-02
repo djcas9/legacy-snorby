@@ -977,7 +977,7 @@ ul,li {
 	padding-left: 1px;
 }
 
-#menubar .menu li:active {
+#menubar .menu li.hover {
 	background: url(../images/menu/li_bg.png) repeat-x 0 bottom;
 	border-left: 1px solid #373838;
 	border-right: 1px solid #676767;
@@ -1135,6 +1135,12 @@ ul,li {
 /* @group Events */
 
 /* Events */
+
+#whois_data{
+	max-height: 400px;
+	overflow: auto;
+	width: auto;
+}
 
 span#ip_address {
 	font-size: small;
@@ -1905,6 +1911,7 @@ div#event_options_inside {
 	text-transform: capitalize;
 	font-size: 1.0em;
 	font-weight: bold;
+	vertical-align: top;
 }
 
 #comment_user_info {
@@ -1969,7 +1976,7 @@ div#comment_body {
 
 .comment {
 	min-height: 35px;
-	border-top: 1px solid #e8ebeb;
+	border-top: 1px dotted #e8ebeb;
 	overflow: hidden;
 	position: relative;
 	text-overflow: ellipsis;

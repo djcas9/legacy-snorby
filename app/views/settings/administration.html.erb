@@ -7,6 +7,6 @@
 	Events Per Page: <%= select_tag('settings[events_per_page]', options_for_select([['10 Events', 10], ['20 Events', 20], ['50 Events', 50], ['100 Events', 100]], @settings.events_per_page)) %><br />
 	<br />
 	<br />
-	<%= submit_tag "Update" %>
+	<%= submit_tag "Save" %>
 	<%= submit_tag "Cancel", :onclick => 'history.go(-1);return false;' %>
 <%- end -%>

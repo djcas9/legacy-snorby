@@ -6,12 +6,12 @@
 	<div id="menubar">
 		<ul class="menu">
 			<li class='start'></li>
-			<li class='first'><span><%= link_to "Dashboard", dashboard_path %></span></li>
-			<li><%= link_to "LiveLook", livelook_path %></li>
-			<li><%= link_to "Events", events_path %></li>
-			<li><%= link_to "Reports", reports_path %></li>
-			<li><%= link_to "Search", new_search_path %></li>
-			<li class='last'><%= link_to "Settings", settings_path %></li>
+			<li class='first'><span><%= link_to "<span>Dashboard</span>", dashboard_path %></span></li>
+			<li><%= link_to "<span>LiveLook</span>", livelook_path %></li>
+			<li><%= link_to "<span>Events</span>", events_path %></li>
+			<li><%= link_to "<span>Reports</span>", reports_path %></li>
+			<li><%= link_to "<span>Search</span>", new_search_path %></li>
+			<li class='last'><%= link_to "<span>Settings</span>", settings_path %></li>
 		</ul>
 		
 	</div>
@@ -22,7 +22,7 @@
 			<div id='user_name'><%=h truncate(current_user.name, :omission => "...", :length => 25) %></div>
 			<div id='user_links'>
 				<%= link_to "Profile", { :controller => 'users', :action => 'edit', :id => current_user } %> |
-				<%= link_to "My Events", my_events_path %> |
+				<%= link_to "My Events (0)", my_events_path %> |
 				<%= link_to "Logout", logout_path, :method => :delete, :confirm => "Are you sure you want to logout?" %>
 			</div>
 		</div>

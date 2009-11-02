@@ -109,8 +109,8 @@ jQuery(document).ready(function($) {
     // FaceBox
     $('a[rel*=facebox]').livequery(function (event) {
     	$(this).facebox({
-	        loading_image: 'loading.gif',
-	        close_image: 'closelabel.gif'
+					overlay: true,
+					opacity: 0.4
 	    });
 	return false;
     });
@@ -187,5 +187,11 @@ jQuery(document).ready(function($) {
 			$(i).slideToggle('slow');
 			return false;
 		});
+
+		// $('#menubar li').hover(function() {
+		// 	$(this).stop().fadeTo(500, 1);
+		// }, function() {
+		// 	$(this).stop().fadeTo(500, 0);
+		// });
 
 });

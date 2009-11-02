@@ -18,8 +18,8 @@
 		<br /><br />
 		Notes:<br />
 		<%= text_area_tag :msg, nil, :id => 'send_event_textarea' %><br /><br />
-		<%= submit_tag'Send Event »', :name => nil %>
-
+		<%= submit_tag'Send Event', :name => nil %>
+    <%= submit_tag "Cancel", :onclick => 'jQuery(document).trigger("close.facebox");return false;' %>
 	<%- end -%>
 </div>
 

@@ -39,6 +39,7 @@
 	<input id="checkboxall" name="check_all" type="checkbox"> Select All</input>
 </div>
 <%= submit_tag "Remove Checked" %>
+<%= submit_tag "Cancel", :onclick => 'history.go(-1);return false;' %>
 <% end %>
 
 <% end %>
