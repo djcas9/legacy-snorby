@@ -3,11 +3,11 @@
 	<div id="settings_menu">
 		<br />
 		<div id="b_settings">
-		<%= link_to "Important Events", my_events_path, :class => 'round more blah', :id => 'option_item' %>
+		<%= link_to "My Important Events", my_events_path, :class => 'round more blah', :id => 'option_item' %>
 		</div>
 		<br />
 		<div id="b_settings">
-		<%= link_to "My Settings", {:controller => 'users', :action => 'edit', :id => @user.id}, :class => 'round more blah', :id => 'option_item' %>
+		<%= link_to "My Profile Settings", {:controller => 'users', :action => 'edit', :id => @user.id}, :class => 'round more blah', :id => 'option_item' %>
 		</div>
 		<%- if @user.admin -%>
 		<br />
@@ -16,11 +16,11 @@
 		</div>
 		<br />
 		<div id="b_settings">
-		<%= link_to "Global Settings", administration_settings_path, :class => 'round more blah', :id => 'option_item' %>
+		<%= link_to "Add & Remove Users", users_path, :class => 'round more blah', :id => 'option_item' %>
 		</div>
 		<br />
 		<div id="b_settings">
-		<%= link_to "Add/Remove Users", users_path, :class => 'round more blah', :id => 'option_item' %>
+		<%= link_to "Administrator Settings", administration_settings_path, :class => 'round more blah', :id => 'option_item' %>
 		</div>
 		<%- end -%>
 	</div>

@@ -6,17 +6,17 @@ class SettingsController < ApplicationController
   end
 
   def administration
-    @settings = Setting
+    @settings = Setting.first
   end
 
   def save_settings
     @settings = Setting
     if @settings.update_attributes(params[:settings])
       flash[:notice] = 'Global Settings Successfully Saved.'
-      redirect_to settings_path
+      redirect_to administration_settings_path
     else
       flash[:error] = 'Error - Global Settings NOT Saved'
-      redirect_to settings_path
+      redirect_to administration_settings_path
     end
   end
 

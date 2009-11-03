@@ -928,6 +928,19 @@ div#user_links {
 div#user_links a {
 	color: #d9dcdc;
 	font-size: xx-small;
+	font-variant: normal;
+	text-decoration: none;
+	font-weight: normal;
+	font-style: normal;
+}
+
+div#user_links a:hover {
+	color: #f9fcff;
+	font-size: xx-small;
+	text-decoration: none;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
 }
 
 ul,li {

@@ -10,7 +10,7 @@ pdf.tags :h1 => { :font_size => "2em", :font_weight => :bold },
 :high => { :color => "red", :align => :left },
 :medium => { :color => 'yellow', :align => :left },
 :low => { :color => 'green', :align => :left }
-snorby_logo = "#{RAILS_ROOT}/public/images/PDF/snorby_logo.png"
+snorby_logo = "#{Setting.first.logo.path(:large)}"
 pdf.line_width(1)
 
 ### GET DATA
@@ -19,8 +19,9 @@ pdf.line_width(1)
 
 ### Start Of Cover
 
-pdf.move_down(100)
-pdf.image snorby_logo, :scale=>0.7, :position => :center
+pdf.move_down(90)
+pdf.image snorby_logo, :scale => 0.7, :position => :center
+pdf.move_down(15)
 pdf.text "#{@event.sig.sig_name}", :size => 15, :style => :bold, :align => :center
 pdf.text "This report was generated: #{Time.now.strftime('%A, %B %d, %Y')}", :size => 12, :align => :center
 pdf.text "Device: #{Setting.device_name}", :size => 12, :align => :center
