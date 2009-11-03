@@ -12,10 +12,12 @@
 
   <div id="comment_user_info">
     <%= image_tag comment.user.avatar.url(:menu_bar), :class => 'user_image' %>
-    <div id='comment_user_name' title="<%=h comment.user.name -%>"><%= truncate(comment.user.name, :omission => "...", :length => 23) %></div>
+    <div id='comment_user_name' title="<%=h comment.user.name -%>">
+      <%= truncate(comment.user.name, :omission => "...", :length => 20) %>
+    </div>
 		<div id='comment_timestamp'>
 		  <%= comment.created_at.strftime('%B, %d, %Y') %><br />
-		<%= time_ago_in_words(Time.parse(comment.comment_time).getutc.in_time_zone('UTC')) %> ago
+		  <%= time_ago_in_words(Time.parse(comment.comment_time).getutc.in_time_zone('UTC')) %> ago
 		</div>
   </div>
 

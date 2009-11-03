@@ -1925,6 +1925,7 @@ div#event_options_inside {
 	font-size: 1.0em;
 	font-weight: bold;
 	vertical-align: top;
+	width: 145px;
 }
 
 #comment_user_info {
@@ -1937,6 +1938,7 @@ div#event_options_inside {
 	width: 155px;
 	left: 2px;
 	float: left;
+	display: block;
 }
 
 #comment_user_info img {
@@ -1953,6 +1955,10 @@ div#comment_timestamp {
 	text-transform: capitalize;
 	font-style: italic;
 	font-size: 0.8em;
+	display: block;
+	position: relative;
+	overflow: hidden;
+	height: 30px;
 }
 
 div#add_comment {
@@ -1988,13 +1994,15 @@ div#comment_body {
 }
 
 .comment {
-	min-height: 35px;
+	min-height: 45px;
 	border-top: 1px dotted #e8ebeb;
 	overflow: hidden;
 	position: relative;
 	text-overflow: ellipsis;
 	display: block;
-	padding: 8px 0px 10px 155px;
+	margin-top: 5px;
+	padding: 8px 0px 5px 155px;
+	margin-bottom: 5px;
 }
 
 #comment_text {
