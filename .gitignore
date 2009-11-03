@@ -3,6 +3,7 @@ log/*.log
 tmp/**/*
 config/database.yml
 config/email.yml
+tmp
 tmp/tmp*
 tmp/*.pdf
 config/environments/
