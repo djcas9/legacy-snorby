@@ -1,6 +1,8 @@
 class CachedStats < ActiveRecord::Base
 
-  alias last_cached updated_at
+  def last_cached
+    (self.updated_at || self.created_at || Time.now)
+  end
 
   #
   # Specifies whether the cached statistic is out of date,
