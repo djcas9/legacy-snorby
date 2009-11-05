@@ -11,5 +11,6 @@ db/*.sqlite3
 public/assets/*
 public/signatures/
 db/schema.rb
+development
 Capfile
 config/deploy.rb
