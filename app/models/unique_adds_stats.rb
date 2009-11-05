@@ -2,6 +2,9 @@ require 'app/model/cached_stats'
 
 class UniqueAddsStats < CachedStats
 
+  #
+  # Calculates the statistics of all previously seen unique IP addresses.
+  #
   def calculate!
     super do
       sources = Iphdr.find(
