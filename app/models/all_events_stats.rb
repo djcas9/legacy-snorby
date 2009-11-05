@@ -14,7 +14,7 @@ class AllEventsStats < CachedStats
       )
 
       self.statistic = events.size
-      self.last_cid = events.map { |e| e.cid }.max
+      self.last_cid = max_cid(events)
     end
   end
 
