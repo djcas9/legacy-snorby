@@ -1,15 +1,38 @@
-<div id="search_options" class='round'>
-	<%= link_to "#{image_tag('other/save.png', :title => 'Save This Search Report.', :class => 'add_tipsy')}", edit_search_path(@search), :title => 'Save Search' %>
-	<%= link_to "#{image_tag('export/xml.png', :title => 'Export To XML.', :class => 'add_tipsy')}", { :format => 'xml' }, :title => 'Export XML' %>
-	<%= link_to "#{image_tag('export/email.png', :title => 'Email This Report.', :class => 'add_tipsy')}", send_search_path(@search), :rel => 'facebox', :title => 'Send Email' %>
-	<%= link_to "#{image_tag('other/slash.png', :size => '14x14', :title => 'Delete All Events For This Search.', :class => 'add_tipsy')}", { :action => 'remove_all_results', :id => @search }, :title => "Destroy All Search Results" %>
-</div>
+
 <%- if @events.total_pages.to_i <= 10 -%>
-<h1>Search Results <span class='search_event_count'>(<%= pluralize(number_with_delimiter(@search.events.size), 'matching event') %> found)</span></h1>
+
+  <% box_header "Search Results <span class='search_event_count'>(#{pluralize(number_with_delimiter(@search.events.size), 'matching event')} found)</span>" do %>
+
+  <div id="search_options" class='round'>
+    <div id="search_options_inside" class='round'>
+      	<%= link_to "#{image_tag('other/save.png', :title => 'Save This Search Report.', :class => 'add_tipsy')}", edit_search_path(@search), :title => 'Save Search' %>
+      	<%= link_to "#{image_tag('export/xml.png', :title => 'Export To XML.', :class => 'add_tipsy')}", { :format => 'xml' }, :title => 'Export XML' %>
+      	<%= link_to "#{image_tag('export/email.png', :title => 'Email This Report.', :class => 'add_tipsy')}", send_search_path(@search), :rel => 'facebox', :title => 'Send Email' %>
+      	<%= link_to "#{image_tag('other/slash.png', :size => '14x14', :title => 'Delete All Events For This Search.', :class => 'add_tipsy')}", { :action => 'remove_all_results', :id => @search }, :title => "Destroy All Search Results" %>
+    </div>
+  </div>
+
+  <%- end -%>
+
 <%- else -%>
-<h1>Search Results <span class='search_event_count'>(<%= pluralize(number_with_delimiter((@events.total_pages.to_i * 20).to_i), 'matching event') %> found)</span></h1>
+
+  <% box_header "Search Results <span class='search_event_count'>(#{pluralize(number_with_delimiter((@events.total_pages.to_i * 20).to_i), 'matching event')} found)</span>" do %>
+
+  <div id="search_options" class='round'>
+    <div id="search_options_inside" class='round'>
+      	<%= link_to "#{image_tag('other/save.png', :title => 'Save This Search Report.', :class => 'add_tipsy')}", edit_search_path(@search), :title => 'Save Search' %>
+      	<%= link_to "#{image_tag('export/xml.png', :title => 'Export To XML.', :class => 'add_tipsy')}", { :format => 'xml' }, :title => 'Export XML' %>
+      	<%= link_to "#{image_tag('export/email.png', :title => 'Email This Report.', :class => 'add_tipsy')}", send_search_path(@search), :rel => 'facebox', :title => 'Send Email' %>
+      	<%= link_to "#{image_tag('other/slash.png', :size => '14x14', :title => 'Delete All Events For This Search.', :class => 'add_tipsy')}", { :action => 'remove_all_results', :id => @search }, :title => "Destroy All Search Results" %>
+    </div>
+  </div>
+
+  <%- end -%>
+
+
 <%- end -%>
-<br />
+
+
 <div id="events" class='events'>
 	<%= render :partial => @events %>
 	<%- if @search.page_events(params[:page]).empty? -%>

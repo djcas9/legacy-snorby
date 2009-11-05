@@ -1,9 +1,7 @@
-<%- content_for :head do -%>
-	<%= javascript_include_tag 'jquery-ui', 'timepicker', :cache => false %>
+<% box_header('Search') do %>
+  <%= link_to "View Saved Searches", searches_path, :class => 'in_box button right' %>
 <%- end -%>
 
-<h1>Search (<%= link_to "View Saved Searches", searches_path %>)</h1>
-<br />
 <% form_for @search do |f| %>
   <%= f.error_messages %>
 

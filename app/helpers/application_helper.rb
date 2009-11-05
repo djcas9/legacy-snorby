@@ -123,17 +123,17 @@ module ApplicationHelper
   def get_address_for_dash?(a)
     begin
       if user.resolve_ips
-      "#{Resolv.getname(a)}"
-    else
-      return a
-    end
+        "#{Resolv.getname(a)}"
+      else
+        return a
+      end
     rescue Resolv::ResolvError
       "#{a}"
     rescue => e
       "#{a}"
     end
   end
-  
+
   def box(msg, *links)
     sidebox_html = <<-EOF
     <div id='sidebox'>
@@ -156,6 +156,31 @@ module ApplicationHelper
     </div>
     EOF
     return sidebox_html
+  end
+
+  def box_header(title,&block)
+    if block_given?
+      box_header = <<-EOF
+      <div id="box_header">
+        <div id="box_header_inside">
+      EOF
+      box_footer = <<-EOF
+        </div>
+      </div>
+      EOF
+      concat(box_header + capture(&block) + "<h1>#{title}</h1>" + box_footer, block.binding)
+    else
+      box_header = <<-EOF
+      <div id="box_header">
+      <div id="box_header_inside">
+      <h1>
+      #{title}
+      </h1>
+      </div>
+      </div>
+      EOF
+      return box_header
+    end
   end
 
 end
