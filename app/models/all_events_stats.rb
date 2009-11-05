@@ -1,6 +1,6 @@
 require 'app/model/cached_stats'
 
-class AllEventStats < CachedStats
+class AllEventsStats < CachedStats
 
   #
   # Calculates the statistics for events of all severities that have been
