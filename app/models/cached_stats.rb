@@ -1,5 +1,8 @@
 class CachedStats < ActiveRecord::Base
 
+  #
+  # Determines the time the statistic was last cached at.
+  #
   def last_cached
     (self.updated_at || self.created_at || Time.now)
   end
