@@ -1,12 +1,7 @@
-<% content_for("page_scripts") do %>
-  Event.observe(window, 'load',
-    function() { $('loading_sensor').hide() }
-  );
-<% end %>
+<%= box_header "Sensor Settings" -%>
 
 <% form_tag sensor_delete_multiple_settings_path do %>
 <div id="settings_table">
-	<h1>Sensor Settings:</h1><br />
 	<div id="settings_table_in">
 		<table cellspacing="0" cellpadding="0">
 			<tr>

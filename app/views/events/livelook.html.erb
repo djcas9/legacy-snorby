@@ -1,33 +1,32 @@
 <%- @update_time ||= params[:frequency] || 60 -%>
 <%- @update_severity ||= params[:severity] || 'All' -%>
 
-
-<%- box_header "" do -%>
-
-  <%- cache "filter_box" do -%>
-		<% form_tag livelook_path, :method => :get do %>		
-		<div id="filter_box" class='move_right'>
-			<%= submit_tag "Apply Settings", :name => nil, :class => 'not_round', :title => 'Select a severity filter and apply for real-time updates.', :id => 'filter_box_link' %>
-		</div>		
-		<div id="filter_options" class='left'>
-		  <%= select_tag("severity", options_for_select([["All Severities", 'All'], ['High Severity', 'High'], ['Medium Severity', 'Medium'], ['Low Severity', 'Low']], params[:severity])) %> 
-  		<%= select_tag("frequency", options_for_select([["Refresh Every 60 Seconds", 60], ['Refresh Every 300 Seconds', 300], ['Refresh Every 600 Seconds', 600], ['Refresh Every 900 Seconds', 900]], params[:frequency].to_i)) %>
-		</div>
-		<br />
-		<div id="count_down">Last Updated: <%= Time.now.strftime('%A, %B %d %Y at %I:%M:%S %p') %></div>
-		
-		<%- end -%>
-	<%- end -%>
-
-<%- end -%>
-
 <div id="events">
+  <%- box_header "" do -%>
+
+    <%- cache "filter_box" do -%>
+  		<% form_tag livelook_path, :method => :get do %>		
+  		<div id="filter_box" class='move_right'>
+  			<%= submit_tag "Apply Settings", :name => nil, :class => 'not_round', :title => 'Select a severity filter and apply for real-time updates.', :id => 'filter_box_link' %> <!-- <%= submit_tag "Close", :id => 'fade_filter', :onclick => "return false;" %> -->
+  		</div>		
+  		<div id="filter_options" class='left'>
+  		  <%= select_tag("severity", options_for_select([["All Severities", 'All'], ['High Severity', 'High'], ['Medium Severity', 'Medium'], ['Low Severity', 'Low']], params[:severity])) %> 
+    		<%= select_tag("frequency", options_for_select([["Refresh Every 60 Seconds", 60], ['Refresh Every 300 Seconds', 300], ['Refresh Every 600 Seconds', 600], ['Refresh Every 900 Seconds', 900]], params[:frequency].to_i)) %>
+  		</div>
+  		<br />
+  		<div id="count_down">Last Updated: <%= Time.now.strftime('%A, %B %d %Y at %I:%M:%S %p') %></div>
+
+  		<%- end -%>
+  	<%- end -%>
+
+  <%- end -%>
+  
 	<div id='loading_livelook' style='display:none;'><%= image_tag('other/small_loading.gif') %></div>	
 	<%= render :partial => @events %>
 </div>
 
 <%= periodically_call_remote(:url => { :action => 'livelook', :severity => @update_severity, :frequency => @update_time },
  		:frequency => @update_time,
-		:loading => "$('#loading_livelook').hide();$('#loading_livelook').show();", 
-		:complete => "$('#loading_livelook').hide();$('#count_down').html('Last Updated: #{Time.now.strftime('%A, %B %d %Y at %I:%M:%S %p')}');$('#loading_livelook').hide();",
+		:loading => "$('div#box_header').addClass('loading');", 
+		:complete => "$('div#box_header').removeClass('loading');$('#count_down').html('Last Updated: #{Time.now.strftime('%A, %B %d %Y at %I:%M:%S %p')}');",
 		:update => { :success => "#events" }) %>

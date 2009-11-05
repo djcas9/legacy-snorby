@@ -54,15 +54,15 @@ class Event < ActiveRecord::Base
   def self.livelook(severity)
     case severity
     when 'All'
-      self.find(:all, :limit => 20, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr])
+      self.find(:all, :limit => 10, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr])
     when 'Low'
-      self.find(:all, :limit => 20, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr], :conditions => ['signature.sig_priority = ?', 3])
+      self.find(:all, :limit => 10, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr], :conditions => ['signature.sig_priority = ?', 3])
     when 'Medium'
-      self.find(:all, :limit => 20, :order => 'timestamp DESC', :joins => [:sig, :sensor, :iphdr], :conditions => ['signature.sig_priority = ?', 2])
+      self.find(:all, :limit => 10, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr], :conditions => ['signature.sig_priority = ?', 2])
     when 'High'
-      self.find(:all, :limit => 20, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr], :conditions => ['signature.sig_priority = ?', 1])
+      self.find(:all, :limit => 10, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr], :conditions => ['signature.sig_priority = ?', 1])
     else
-      self.find(:all, :limit => 20, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr])
+      self.find(:all, :limit => 10, :order => 'timestamp DESC', :include => [:sig, :sensor, :iphdr])
     end
   end
 

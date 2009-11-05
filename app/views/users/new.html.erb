@@ -1,5 +1,5 @@
-<h1><%= image_tag('other/user.png', :class => 'box') %> New User Setup</h1>
-<br />
+<%= box_header "New User Setup" -%>
+
 <% form_for @user, :url => account_path, :html => { :multipart => true, :id => 'user_form' } do |f| %>
   <%= render :partial => "form", :object => f %><br />
   <br />

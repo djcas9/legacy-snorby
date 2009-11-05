@@ -1,5 +1,7 @@
-<h1>Snorby Administration (<%= link_to "Add User", new_user_path %>)</h1>
-<br />
+<%- box_header "Snorby Administration" do -%>
+  <%= link_to "Add User", new_user_path, :class => 'button right' %>
+<%- end -%>
+
 <% form_tag user_delete_multiple_settings_path do %>
 <div id="settings_table">
 	<div id="settings_table_in">

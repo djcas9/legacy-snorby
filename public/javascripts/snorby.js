@@ -1,5 +1,5 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
+// SNORBY!
+
 
 jQuery(document).ready(function($) {
     var currentPage = 2
@@ -218,5 +218,16 @@ jQuery(document).ready(function($) {
 			});
 			return false;
 		});
+		
+		// $('input#fade_filter').click(function() {
+		// 	$('div#box_header_inside').fadeTo('slow', 0.0, function () {
+		// 		$(this).html('<center><h1>Snorby LiveLook</h1></center>');
+		// 		$(this).fadeTo('slow', 1.0, function () {
+		// 			$(this).fadeOut('slow');
+		// 		});
+		// 	});
+		// 	return false;
+		// });
+		
 
 });
