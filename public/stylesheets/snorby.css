@@ -1786,14 +1786,13 @@ div.table_header {
 #search_options {
 	position: relative;
 	float: right;
-	margin-top: -4px;
-	background-color: #e9ffff;
+	background-color: #efeeec;
 	border: 1px solid #fff;
 }
 
 #search_options_inside {
 	vertical-align: middle;
-	border: 1px solid #dde5e4;
+	border: 1px solid #ced8d8;
 	padding: 5px;
 }
 
@@ -1805,6 +1804,7 @@ div.table_header {
 	vertical-align: middle;
 	padding-right: 5px;
 	padding-left: 5px;
+	padding-bottom: 2px;
 }
 
 /* @end */
@@ -2203,7 +2203,7 @@ span.button_text {
 }
 
 .in_box{
-	margin-top: -4px;
+
 }
 
 .button {

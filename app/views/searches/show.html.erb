@@ -5,9 +5,9 @@
 
   <div id="search_options" class='round'>
     <div id="search_options_inside" class='round'>
-      	<%= link_to "#{image_tag('other/save.png', :title => 'Save This Search Report.', :class => 'add_tipsy')}", edit_search_path(@search), :title => 'Save Search' %>
-      	<%= link_to "#{image_tag('export/xml.png', :title => 'Export To XML.', :class => 'add_tipsy')}", { :format => 'xml' }, :title => 'Export XML' %>
-      	<%= link_to "#{image_tag('export/email.png', :title => 'Email This Report.', :class => 'add_tipsy')}", send_search_path(@search), :rel => 'facebox', :title => 'Send Email' %>
+      	<%= link_to "#{image_tag('other/save.png', :size => '14x14', :title => 'Save This Search Report.', :class => 'add_tipsy')}", edit_search_path(@search), :title => 'Save Search' %>
+      	<%= link_to "#{image_tag('export/xml.png', :size => '14x14', :title => 'Export To XML.', :class => 'add_tipsy')}", { :format => 'xml' }, :title => 'Export XML' %>
+      	<%= link_to "#{image_tag('export/email.png', :size => '14x14', :title => 'Email This Report.', :class => 'add_tipsy')}", send_search_path(@search), :rel => 'facebox', :title => 'Send Email' %>
       	<%= link_to "#{image_tag('other/slash.png', :size => '14x14', :title => 'Delete All Events For This Search.', :class => 'add_tipsy')}", { :action => 'remove_all_results', :id => @search }, :title => "Destroy All Search Results" %>
     </div>
   </div>
@@ -20,9 +20,9 @@
 
   <div id="search_options" class='round'>
     <div id="search_options_inside" class='round'>
-      	<%= link_to "#{image_tag('other/save.png', :title => 'Save This Search Report.', :class => 'add_tipsy')}", edit_search_path(@search), :title => 'Save Search' %>
-      	<%= link_to "#{image_tag('export/xml.png', :title => 'Export To XML.', :class => 'add_tipsy')}", { :format => 'xml' }, :title => 'Export XML' %>
-      	<%= link_to "#{image_tag('export/email.png', :title => 'Email This Report.', :class => 'add_tipsy')}", send_search_path(@search), :rel => 'facebox', :title => 'Send Email' %>
+      	<%= link_to "#{image_tag('other/save.png', :size => '14x14', :title => 'Save This Search Report.', :class => 'add_tipsy')}", edit_search_path(@search), :title => 'Save Search' %>
+      	<%= link_to "#{image_tag('export/xml.png', :size => '14x14', :title => 'Export To XML.', :class => 'add_tipsy')}", { :format => 'xml' }, :title => 'Export XML' %>
+      	<%= link_to "#{image_tag('export/email.png', :size => '14x14', :title => 'Email This Report.', :class => 'add_tipsy')}", send_search_path(@search), :rel => 'facebox', :title => 'Send Email' %>
       	<%= link_to "#{image_tag('other/slash.png', :size => '14x14', :title => 'Delete All Events For This Search.', :class => 'add_tipsy')}", { :action => 'remove_all_results', :id => @search }, :title => "Destroy All Search Results" %>
     </div>
   </div>
