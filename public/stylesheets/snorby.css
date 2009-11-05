@@ -96,7 +96,6 @@ div.dialog {
 }
 
 div#box_header{
-	min-height: 50px;
 	border: 1px solid #e2e3e6;
 	border-top: 1px none #edf0f0;
 	border-bottom: 1px solid #e0e1e3;
@@ -107,15 +106,16 @@ div#box_header{
 	margin-left: -27px;
 	display: block;
 	position: relative;
-	margin-bottom: 10px;
 	vertical-align: middle;
+	overflow: hidden;
+	margin-bottom: 15px;
 }
 
 #box_header_inside {
 	display: block;
 	position: relative;
-	overflow: visible;
-	padding: 15px 20px 10px;
+	overflow: hidden;
+	padding: 15px 20px;
 }
 
 #box_header_inside h1{
@@ -858,44 +858,20 @@ h8 {
 }
 
 #count_down {
-	text-shadow: #717376 0 1px 0;
-	margin-right: 5px;
-	color: #fefcff;
+	text-shadow: #fff 0 1px 0;
+	color: #363537;
 	position: relative;
 	display: block;
 	overflow: hidden;
-	margin-top: 8px;
-	font-size: x-small;
+	font-size: 0.8em;
+	margin-left: 2px;
+	margin-top: 15px;
 }
 
-#filter_text_content {
-	width: 850px;
-	height: 50px;
+#filter_options{
 	position: relative;
-	margin: auto;
-	padding-top: 10px;
-	padding: 20px;
-}
-
-#filter_text_content select {
-	margin-right: 5px;
-}
-
-#filter_text_content label {
-	font-size: x-small;
-	color: #fff;
-}
-
-#filter_text_content input {
-	padding: 10px;
-}
-
-#filter_content {
-	width: 900px;
-	height: 80px;
-	background-image: url(../images/filter_content.png);
-	margin-bottom: -15px;
-	margin-top: -5px;
+	display: block;
+	overflow: hidden;
 }
 
 #c_footer {
@@ -1811,13 +1787,13 @@ div.table_header {
 	position: relative;
 	float: right;
 	margin-top: -4px;
-	background-color: #eaeaed;
+	background-color: #e9ffff;
 	border: 1px solid #fff;
 }
 
 #search_options_inside {
 	vertical-align: middle;
-	border: 1px solid #cccdcf;
+	border: 1px solid #dde5e4;
 	padding: 5px;
 }
 
