@@ -171,6 +171,31 @@ jQuery(document).ready(function($) {
 			change: function(event, ui) {
 			}
 		});
+		
+		// Important
+		$('a.important').live('click', function() {
+			var cid = $(this).attr('event_cid');
+			var link = this;
+			$(this).html("<img alt='Loading' width='14' height='14' src='../images/ajax.gif' />");
+			$('#load_on_change_' + cid).addClass('loading');
+			$.get(this.href, function(xml){
+				$(link).removeClass('important').addClass('not_important').html("<img alt='Is_not_important' width='14' height='14' src='../images/other/is_not_important.png' />");
+			 	$('#load_on_change_' + cid).removeClass('loading');
+			});
+			return false;
+		});
+		
+		$('a.not_important').live('click', function() {
+			var cid = $(this).attr('event_cid');
+			var link = this;
+			$(this).html("<img alt='Loading' width='14' height='14' src='../images/ajax.gif' />");
+			$('#load_on_change_' + cid).addClass('loading');
+			$.get(this.href, function(xml){
+				$(link).removeClass('not_important').addClass('important').html("<img alt='Is_important' width='14' height='14' src='../images/other/is_important.png' />");
+			 	$('#load_on_change_' + cid).removeClass('loading');
+			});
+			return false;
+		});
 
 		$('a.d_hide').live('click', function(event) {
 			var i = ".hide_" + $(this).attr('item_name');

@@ -1,5 +1,0 @@
-if @event.importance.present?
-  page.replace "#important_#{@event.sid + @event.cid}", "#{image_tag('other/is_not_important.png', :size=>'14x14', :id => "important_#{@event.sid + @event.cid}")}", :locals => {:event=>@event}
-else
-  page.replace "#important_#{@event.sid + @event.cid}", "#{image_tag('other/is_important.png', :size=>'14x14', :id => "important_#{@event.sid + @event.cid}")}", :locals => {:event=>@event}
-end

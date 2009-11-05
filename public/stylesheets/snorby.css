@@ -119,7 +119,9 @@ div#box_header{
 }
 
 #box_header_inside h1{
-	float: left;
+	vertical-align: baseline;
+	text-overflow: ellipsis;
+	padding-right: 30px;
 }
 
 #box_header_inside img {
@@ -915,11 +917,6 @@ div#user_avatar {
 	margin-top: 3px;
 }
 
-div#user_data img {
-
-
-}
-
 div#user_name {
 	text-overflow: ellipsis;
 	text-shadow: #000 0 1px 0;
@@ -1037,7 +1034,7 @@ ul,li {
 	font-variant: normal;
 	font-weight: normal;
 	font-style: normal;
-	padding: 0 10px;
+	padding: 0 12px 0 10px;
 }
 
 #menubar .menu li a:hover {
@@ -1878,7 +1875,7 @@ div.table_header {
 .event_options {
 	position: relative;
 	float: right;
-	margin-top: 10px;
+	margin-top: 8px;
 	background: #fefbc8 0 bottom;
 	border: 1px solid #fdfdac;
 }
@@ -1900,12 +1897,16 @@ div#event_options_inside {
 /* @group Comments */
 
 .comment_box {
-	margin: 20px auto auto;
 	background-color: transparent;
 	font-size: small;
 	max-height: 200px;
 	overflow: auto;
 	padding-right: 20px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: auto;
+	display: block;
+	position: relative;
 }
 
 #comments_for {
@@ -2119,6 +2120,8 @@ div#user_data_and_stats {
 	position: relative;
 	overflow: hidden;
 	width: 100%;
+	padding-top: 15px;
+	padding-bottom: 10px;
 }
 
 div#user_data_info_under {
@@ -2166,7 +2169,7 @@ div#user_data_info strong {
 
 div#user_data_and_stats img {
 	float: left;
-	border: 1px solid #fff;
+	border: 1px solid #444545;
 	margin-right: 10px;
 }
 
@@ -2239,6 +2242,21 @@ span.button_text {
 	background: #fff url(../images/submit_hover_bg.png) repeat-x 0 top;
 	text-decoration: none;
 	font-variant: normal;
+}
+
+/* @end */
+
+/* @group Crop */
+
+
+#crop_image_holder{
+	display: block;
+	position: relative;
+	overflow: hidden;
+}
+
+#crop_image_cropper{
+	float: right;
 }
 
 /* @end */

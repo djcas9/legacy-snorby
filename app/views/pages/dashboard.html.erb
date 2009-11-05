@@ -105,7 +105,7 @@
     </div>
 	</div>
 	
-	<%- unless @comments.blank? && @comments.size >= 5 -%>
+	<%- unless @comments.blank? or @comments.size >= 5 -%>
 	
 	<div id="dash_table" class='ditem recent_comments'>
 		<div class='table_header top_round'>

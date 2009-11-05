@@ -1,4 +1,4 @@
-require 'app/model/cached_stats'
+# require 'app/model/cached_stats.rb'
 
 class AllEventsStats < CachedStats
 

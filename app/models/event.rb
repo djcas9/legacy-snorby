@@ -2,7 +2,10 @@ class Event < ActiveRecord::Base
   set_table_name 'event'
   set_primary_keys :sid, :cid
   has_activity :by => "timestamp"
-  has_one :importance, :class_name => 'Importance', :foreign_key => [:sid, :cid], :dependent => :destroy
+  
+  has_many :importance, :class_name => 'Importance', :foreign_key => [:sid, :cid]
+  has_many :users, :through => :importance
+  
   has_many :comments, :foreign_key => [:sid, :cid], :dependent => :destroy
   belongs_to :sensor, :class_name => "Sensor", :foreign_key => 'sid'
   belongs_to :iphdr, :class_name => "Iphdr", :foreign_key => [:sid, :cid], :dependent => :destroy
@@ -31,8 +34,6 @@ class Event < ActiveRecord::Base
 
   named_scope :last_cid, lambda { |last_cid|
   {:conditions => ["cid > ?", last_cid]} }
-  
-  named_scope :important_events, lambda { { :conditions => ["importance = true"] } }
 
   def self.all_uniq_signatures_like(sig_name)
     find(:all, :include => [:sig], :conditions => ['signature.sig_name LIKE ?', "%#{sig_name}%"]).map{ |event| event.sig.sig_name }.uniq.sort

@@ -22,7 +22,7 @@
 			<div id='user_name'><%=h truncate(current_user.name, :omission => "...", :length => 25) %></div>
 			<div id='user_links'>
 				<%= link_to "Profile", { :controller => 'users', :action => 'edit', :id => current_user } %> |
-				<%= link_to "My Events (#{current_user.importance.count})", my_events_path %> |
+				<%= link_to "My Events (#{current_user.events.count})", my_events_path %> |
 				<%= link_to "Logout", logout_path, :method => :delete, :confirm => "Are you sure you want to logout?" %>
 			</div>
 		</div>

@@ -2,8 +2,11 @@ class User < ActiveRecord::Base
   acts_as_authentic do |c|
     c.login_field = :email
   end
+  
+  has_many :importance
+  has_many :events, :through => :importance, :class_name => 'Event', :foreign_key => [:sid, :cid]
+  
   has_many :comments, :dependent => :destroy
-  has_many :importance, :dependent => :destroy
   
   has_attached_file :avatar,
   :styles => { :menu_bar => "30x30", :small => "20x20#", :medium => "90x90#", :large => "500x500>" },

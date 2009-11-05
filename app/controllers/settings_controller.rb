@@ -36,7 +36,7 @@ class SettingsController < ApplicationController
   end
 
   def my_events
-    @events = Importance.all_event_for_user(current_user)
+    @events = current_user.events
   end
 
   def create

@@ -3,7 +3,7 @@ class EventsController < ApplicationController
 
   def index
     @events ||= Event.paginate(:page => params[:page], :per_page => Setting.events_per_page,
-    :include => [:sensor, :iphdr, {:sig => :sig_class }], :order => 'timestamp DESC')
+    :include => [:sensor, :comments, :users, :iphdr, {:sig => :sig_class }], :order => 'timestamp DESC')
     respond_to do |format|
       format.html
       format.js
@@ -51,16 +51,15 @@ class EventsController < ApplicationController
   end
 
   def important
-    @event = Event.find(params[:id], :include => [:sensor, {:sig => :sig_class }])
-    if @event.importance.present?
-      imp = Importance.find(@event.id)
-      imp.destroy
+    @event = Event.find(params[:id])
+    if @event.users(true).include? current_user
+      t = Importance.find(:first, :conditions => {:user_id => current_user, :cid => @event.cid, :sid => @event.sid})
+      t.destroy
     else
-      event = Importance.new(:sid => @event.sid, :cid => @event.cid, :important => true, :user_id => current_user.id)
-      event.save!
+      @event.importance.create(:event => @event, :user => current_user)
     end
     respond_to do |format|
-      format.html { redirect_to event_path(@event) }
+      format.html { redirect_to events_path }
       format.js
     end
   end

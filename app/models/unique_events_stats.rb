@@ -1,4 +1,4 @@
-require 'app/models/cached_stats'
+#require 'app/models/cached_stats'
 
 class UniqueEventsStats < CachedStats
 

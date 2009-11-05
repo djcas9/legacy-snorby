@@ -65,6 +65,9 @@ namespace :snorby do
     # CalcCache
     system('rake db:migrate:down RAILS_ENV=production VERSION=20090714183801') # Cache
     system('rake db:migrate:up RAILS_ENV=production VERSION=20090714183801') # Cache
+    # Importance
+    system('rake db:migrate:down RAILS_ENV=production VERSION=20090716015313') # Importance
+    system('rake db:migrate:up RAILS_ENV=production VERSION=20090716015313') # Importance
     
     ### END
     Rake::Task['db:migrate'].invoke
