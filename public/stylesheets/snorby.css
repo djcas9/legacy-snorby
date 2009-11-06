@@ -1174,12 +1174,16 @@ span#ip_address img {
 	margin-bottom: -2px;
 }
 
-strong.title {
-	font-weight: normal;
-	text-decoration: none;
-	font-variant: normal;
-	font-style: normal;
-	font-size: 1em;
+strong.title a{
+	text-shadow: #fff 0 1px 0;
+	color: #2a2b2b;
+	font-size: 1.1em !important;
+}
+
+strong.title a:hover{
+	text-shadow: #fff 0 1px 0;
+	color: #828485;
+	font-size: 1.1em !important;
 }
 
 .event {
@@ -1211,8 +1215,8 @@ strong.title {
 }
 
 #event_holder_body {
-	font-size: small;
 	color: #7f7f7f;
+	font-size: 0.9em;
 }
 
 #event_timestamp {
@@ -1896,17 +1900,37 @@ div#event_options_inside {
 
 /* @group Comments */
 
+
+strong#comment_count{
+	vertical-align: top;
+	text-shadow: #fff 0 1px 0;
+	color: #585959;
+	padding: 2px;
+	font-size: 1.1em;
+	line-height: 16px;
+}
+
+strong#important_count{
+	line-height: 16px;
+	vertical-align: top;
+	text-shadow: #fff 0 1px 0;
+	color: #585959;
+	padding: 2px;
+	font-size: 1.1em;
+}
+
 .comment_box {
 	background-color: transparent;
 	font-size: small;
 	max-height: 200px;
 	overflow: auto;
 	padding-right: 20px;
+	display: block;
+	position: relative;
 	margin-right: auto;
 	margin-left: auto;
 	margin-bottom: auto;
-	display: block;
-	position: relative;
+	padding-top: 10px;
 }
 
 #comments_for {

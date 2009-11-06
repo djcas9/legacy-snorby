@@ -3,7 +3,7 @@ class EventsController < ApplicationController
 
   def index
     @events ||= Event.paginate(:page => params[:page], :per_page => Setting.events_per_page,
-    :include => [:sensor, :comments, :users, :iphdr, {:sig => :sig_class }], :order => 'timestamp DESC')
+    :include => [:sensor,:importance, :comments, :users, :iphdr, {:sig => :sig_class }], :order => 'timestamp DESC')
     respond_to do |format|
       format.html
       format.js
@@ -65,8 +65,9 @@ class EventsController < ApplicationController
   end
 
   def livelook
-    params[:frequency] = 60 unless [60,300,600,900].include?(params[:frequency].to_i)
+    #params[:frequency] = 60 unless [60,300,600,900].include?(params[:frequency].to_i)
     @events ||= Event.livelook(params[:severity])
+    @json = @events.to_json
     respond_to do |format|
       format.html
       format.js { render :layout => false }

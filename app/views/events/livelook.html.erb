@@ -1,6 +1,8 @@
 <%- @update_time ||= params[:frequency] || 60 -%>
 <%- @update_severity ||= params[:severity] || 'All' -%>
 
+<%= @blah = ActiveSupport::JSON.decode(@json) %>
+
 <div id="events">
   <%- box_header "" do -%>
 
@@ -25,8 +27,12 @@
 	<%= render :partial => @events %>
 </div>
 
+<script type="text/javascript" charset="utf-8">
+  var updateData = { last: "<%= Time.now.strftime('%A, %B %d %Y at %I:%M:%S %p') %>", token: 'token' };
+</script>
+
 <%= periodically_call_remote(:url => { :action => 'livelook', :severity => @update_severity, :frequency => @update_time },
  		:frequency => @update_time,
 		:loading => "$('div#box_header').addClass('loading');", 
-		:complete => "$('div#box_header').removeClass('loading');$('#count_down').html('Last Updated: #{Time.now.strftime('%A, %B %d %Y at %I:%M:%S %p')}');",
-		:update => { :success => "#events" }) %>
+		:complete => "$('div#box_header').removeClass('loading');$('#count_down').html('Last Updated: ' + updateData.last);",
+		:update => { :success => "#c_content_holder" }) %>

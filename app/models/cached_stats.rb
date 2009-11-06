@@ -12,7 +12,7 @@ class CachedStats < ActiveRecord::Base
   # and needs re-calculating.
   #
   def stale?
-    (Time.now - self.last_cached) > self.expiration
+    (Time.now >= self.expiration)
   end
 
   #
@@ -20,7 +20,7 @@ class CachedStats < ActiveRecord::Base
   #
   def calculate!(&block)
     block.call() if block
-
+    self.expiration ||= 20.seconds.from_now
     self.save!
   end
 

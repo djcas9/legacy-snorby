@@ -6,7 +6,7 @@ class CreateCachedStats < ActiveRecord::Migration
       t.string :name
       t.integer :last_cid, :default => 0
       t.integer :statistic
-      t.integer :expiration
+      t.datetime :expiration
 
       t.timestamps
     end
