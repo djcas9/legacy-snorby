@@ -4,6 +4,7 @@ class CreateCachedStats < ActiveRecord::Migration
       t.string :type
 
       t.string :name
+      t.integer :start_cid, :default => 1
       t.integer :last_cid, :default => 0
       t.integer :statistic
       t.integer :expiration
