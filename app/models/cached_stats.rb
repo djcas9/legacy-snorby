@@ -79,6 +79,30 @@ class CachedStats < ActiveRecord::Base
   end
 
   #
+  # Returns +true+ if the statistic represents daily data, returns +false+
+  # otherwise.
+  #
+  def daily?
+    duration == :daily
+  end
+
+  #
+  # Returns +true+ if the statistic represents weekly data, returns +false+
+  # otherwise.
+  #
+  def weekly?
+    duration == :weekly
+  end
+
+  #
+  # Returns +true+ if the statistic represents monthly data, returns +false+
+  # otherwise.
+  #
+  def monthly?
+    duration == :monthly
+  end
+
+  #
   # The starting point of the cached statistic.
   #
   def starting_time
