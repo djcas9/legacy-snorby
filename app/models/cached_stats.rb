@@ -1,6 +1,22 @@
 class CachedStats < ActiveRecord::Base
 
   #
+  # Finds all cached statistics that relate to the given _sid_ and _cid_.
+  #
+  def self.related_stats(sid,cid)
+    self.find(
+      :all,
+      :conditions => [
+        'sid = :sid AND start_cid <= :cid AND last_cid >= :cid',
+        {
+          :sid => sid,
+          :cid => cid
+        }
+      ]
+    )
+  end
+
+  #
   # Determines the time the statistic was last cached at.
   #
   def last_cached
