@@ -1,5 +1,46 @@
 class CachedStats < ActiveRecord::Base
 
+  DURATION_KEYS = {1 => :daily, 2 => :weekly, 4 => :monthly}
+  DURATION_NAMES = {:daily => 1, :weekly => 2, :monthly => 4}
+
+  def initialize(attributes={})
+    if (duration_name = attributes.delete(:duration))
+      attributes.merge!(:duration => DURATION_NAMES[duration_name])
+    end
+
+    super(attributes)
+  end
+
+  #
+  # Finds all daily statistics.
+  #
+  def self.daily
+    self.find(
+      :all,
+      :conditions => {:duration_key => DURATION_NAMES[:daily]}
+    )
+  end
+
+  #
+  # Finds all weekly statistics.
+  #
+  def self.weekly
+    self.find(
+      :all,
+      :conditions => {:duration_key => DURATION_NAMES[:weekly]}
+    )
+  end
+
+  #
+  # Finds all monthly statistics.
+  #
+  def self.monthly
+    self.find(
+      :all,
+      :conditions => {:duration_key => DURATION_NAMES[:monthly]}
+    )
+  end
+
   #
   # Finds all cached statistics that cover the given _timestamp_.
   #
@@ -14,6 +55,27 @@ class CachedStats < ActiveRecord::Base
         {:timestamp => timestamp}
       ]
     )
+  end
+
+  #
+  # Specifies the duration of the statistic.
+  #
+  #   stat.duration
+  #   # => :daily
+  #
+  def duration
+    DURATION_KEYS[self.duration_key]
+  end
+
+  #
+  # Sets the duration to the given _name_.
+  #
+  #   stats.duration = :daily
+  #   # => :daily
+  #
+  def duration=(name)
+    self.duration_key = DURATION_NAMES[name]
+    return name
   end
 
   #

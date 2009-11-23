@@ -3,6 +3,7 @@ class CreateCachedStats < ActiveRecord::Migration
     create_table :cached_stats do |t|
       t.string :type
 
+      t.integer :duration_key
       t.string :name
       t.integer :statistic
 
