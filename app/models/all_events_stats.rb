@@ -1,5 +1,3 @@
-# require 'app/model/cached_stats.rb'
-
 class AllEventsStats < CachedStats
 
   #
