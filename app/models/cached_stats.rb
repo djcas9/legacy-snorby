@@ -26,11 +26,4 @@ class CachedStats < ActiveRecord::Base
 
   alias recalculate! calculate!
 
-  #
-  # Finds the largest cid value of the given _rows_.
-  #
-  def max_cid(rows)
-    rows.max { |a,b| a.cid <=> b.cid }.cid
-  end
-
 end
