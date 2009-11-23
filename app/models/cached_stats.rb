@@ -3,6 +3,9 @@ class CachedStats < ActiveRecord::Base
   #
   # Finds all cached statistics that cover the given _timestamp_.
   #
+  #   CachedStats.covering(event.timestamp)
+  #   # => [...]
+  #
   def self.covering(timestamp)
     self.find(
       :all,
@@ -42,7 +45,7 @@ class CachedStats < ActiveRecord::Base
   # Rebases the starting_time and stopping_time of the statistics using the
   # new _start_time_.
   #
-  #   stat.rebase(Date.today)
+  #   stat.rebase(Time.at_beginning_of_day)
   #
   def rebase(start_time)
     delta = (self.stopped_at - self.started_at)
