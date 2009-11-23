@@ -1,12 +1,14 @@
 class CachedStats < ActiveRecord::Base
 
   DURATION_KEYS = {
+    0 => :forever,
     1 => :daily,
     2 => :weekly,
     4 => :monthly
   }
 
   DURATION_NAMES = {
+    :forever => 0,
     :daily => 1,
     :weekly => 2,
     :monthly => 4
@@ -18,6 +20,16 @@ class CachedStats < ActiveRecord::Base
     end
 
     super(attributes)
+  end
+
+  #
+  # Finds all statistics that persist forever.
+  #
+  def self.forever
+    self.find(
+      :all,
+      :conditions => {:duration_key => DURATION_NAMES[:forever]}
+    )
   end
 
   #
@@ -85,6 +97,14 @@ class CachedStats < ActiveRecord::Base
   def duration=(name)
     self.duration_key = DURATION_NAMES[name]
     return name
+  end
+
+  #
+  # Returns +true+ if the statistic represents timeless data, returns +false+
+  # otherwise.
+  #
+  def forever?
+    duration == :forever
   end
 
   #
