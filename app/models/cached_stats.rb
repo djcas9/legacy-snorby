@@ -1,7 +1,16 @@
 class CachedStats < ActiveRecord::Base
 
-  DURATION_KEYS = {1 => :daily, 2 => :weekly, 4 => :monthly}
-  DURATION_NAMES = {:daily => 1, :weekly => 2, :monthly => 4}
+  DURATION_KEYS = {
+    1 => :daily,
+    2 => :weekly,
+    4 => :monthly
+  }
+
+  DURATION_NAMES = {
+    :daily => 1,
+    :weekly => 2,
+    :monthly => 4
+  }
 
   def initialize(attributes={})
     if (duration_name = attributes.delete(:duration))
