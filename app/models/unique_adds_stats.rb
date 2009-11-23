@@ -10,17 +10,28 @@ class UniqueAddsStats < CachedStats
       sources = Iphdr.find(
         :all,
         :group => 'ip_src',
-        :conditions => ['cid > ?', self.last_cid]
+        :conditions => [
+          'timestamp >= :starting_time AND timestamp < :stopping_time',
+          {
+            :starting_time => self.starting_time,
+            :stopping_time => self.stopping_time
+          }
+        ]
       ).uniq
       
       dests = Iphdr.find(
         :all,
         :group => 'ip_dst',
-        :conditions => ['cid > ?', self.last_cid]
+        :conditions => [
+          'timestamp >= :starting_time AND timestamp < :stopping_time',
+          {
+            :starting_time => self.starting_time,
+            :stopping_time => self.stopping_time
+          }
+        ]
       ).uniq
 
       self.statistic = sources.size + dests.size
-      self.last_cid = max_cid(sources + dests)
     end
   end
 

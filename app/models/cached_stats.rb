@@ -1,34 +1,30 @@
 class CachedStats < ActiveRecord::Base
 
   #
-  # Finds all cached statistics that relate to the given _sid_ and _cid_.
+  # Finds all cached statistics that cover the given _timestamp_.
   #
-  def self.related_stats(sid,cid)
+  def self.covering(timestamp)
     self.find(
       :all,
       :conditions => [
-        'sid = :sid AND start_cid <= :cid AND last_cid >= :cid',
-        {
-          :sid => sid,
-          :cid => cid
-        }
+        'started_at <= :timestamp AND stopped_at > :timestamp',
+        {:timestamp => timestamp}
       ]
     )
   end
 
   #
-  # Determines the time the statistic was last cached at.
+  # The starting point of the cached statistic.
   #
-  def last_cached
-    (self.updated_at || self.created_at || Time.now)
+  def starting_time
+    self.started_at
   end
 
   #
-  # Specifies whether the cached statistic is out of date,
-  # and needs re-calculating.
+  # The stopping point for the cached statistic.
   #
-  def stale?
-    (Time.now - self.last_cached) > self.expiration
+  def stopping_time
+    self.stopped_at
   end
 
   #

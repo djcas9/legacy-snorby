@@ -10,11 +10,16 @@ class AllEventsStats < CachedStats
     super do
       events = Event.all(
         :include => :sig,
-        :conditions => ['cid > ?', self.last_cid]
+        :conditions => [
+          'timestamp >= :starting_time AND timestamp < :stopping_time',
+          {
+            :starting_time => self.starting_time,
+            :stopping_time => self.stopping_time
+          }
+        ]
       )
 
       self.statistic = events.size
-      self.last_cid = max_cid(events)
     end
   end
 
