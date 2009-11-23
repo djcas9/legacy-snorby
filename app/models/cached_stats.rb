@@ -14,7 +14,7 @@ class CachedStats < ActiveRecord::Base
 
   def initialize(attributes={})
     if (duration_name = attributes.delete(:duration))
-      attributes.merge!(:duration => DURATION_NAMES[duration_name])
+      attributes.merge!(:duration_key => DURATION_NAMES[duration_name])
     end
 
     super(attributes)
