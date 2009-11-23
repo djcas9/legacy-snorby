@@ -13,4 +13,15 @@ class SensorCountStats < CachedStats
     end
   end
 
+  #
+  # Adjusts the Sensor Event count statistics, if the given _event_
+  # belongs to the Sensor and is being removed.
+  #
+  def adjust(event)
+    if self.sid == event.sid
+      self.statistic -= 1
+      save!
+    end
+  end
+
 end
