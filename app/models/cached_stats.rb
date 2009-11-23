@@ -42,6 +42,8 @@ class CachedStats < ActiveRecord::Base
   # Rebases the starting_time and stopping_time of the statistics using the
   # new _start_time_.
   #
+  #   stat.rebase(Date.today)
+  #
   def rebase(start_time)
     delta = (self.stopped_at - self.started_at)
 
