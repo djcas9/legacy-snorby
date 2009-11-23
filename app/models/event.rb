@@ -35,6 +35,8 @@ class Event < ActiveRecord::Base
   named_scope :last_cid, lambda { |last_cid|
   {:conditions => ["cid > ?", last_cid]} }
 
+  after_destroy :recalculate_stats
+
   def self.all_uniq_signatures_like(sig_name)
     find(:all, :include => [:sig], :conditions => ['signature.sig_name LIKE ?', "%#{sig_name}%"]).map{ |event| event.sig.sig_name }.uniq.sort
   end
@@ -114,6 +116,12 @@ class Event < ActiveRecord::Base
       return self.find(:all, :include => :sig, :conditions => ["signature.sig_class_id = #{sig_class}"]).size
     else
       return 0
+    end
+  end
+
+  def recalculate_stats
+    CachedStats.covering(event.timestamp).each do |stat|
+      stat.recalculate!
     end
   end
 
