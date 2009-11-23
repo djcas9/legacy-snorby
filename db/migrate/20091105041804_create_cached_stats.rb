@@ -7,6 +7,8 @@ class CreateCachedStats < ActiveRecord::Migration
       t.string :name
       t.integer :statistic
 
+      t.integer :sid
+
       t.timestamp :started_at
       t.timestamp :stopped_at
       t.timestamps
