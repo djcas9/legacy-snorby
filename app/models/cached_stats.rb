@@ -51,7 +51,7 @@ class CachedStats < ActiveRecord::Base
     self.find(
       :all,
       :conditions => [
-        'started_at <= :timestamp AND stopped_at > :timestamp',
+        '(started_at <= :timestamp AND stopped_at > :timestamp) OR duration_key = 0',
         {:timestamp => timestamp}
       ]
     )
