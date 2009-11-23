@@ -174,4 +174,11 @@ class CachedStats < ActiveRecord::Base
     return self
   end
 
+  #
+  # Adjusts the statistics, in the case where an Event has been removed.
+  #
+  def adjust(event)
+    recalculate!
+  end
+
 end

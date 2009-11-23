@@ -121,7 +121,7 @@ class Event < ActiveRecord::Base
 
   def recalculate_stats
     CachedStats.covering(event.timestamp).each do |stat|
-      stat.recalculate!
+      stat.adjust(self)
     end
   end
 
