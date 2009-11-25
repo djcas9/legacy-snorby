@@ -22,6 +22,23 @@ class CachedStats < ActiveRecord::Base
     super(attributes)
   end
 
+  def self.full_count(attributes={})
+    count_all = self.new(attributes.merge(
+                      :duration => :forever,
+                      :started_at => Event.oldest,
+                      :stopped_at => Time.now
+    ))
+    count_all.calculate!
+    return count_all
+  end
+
+  #
+  # Clear CacheStats Table
+  #
+  def self.clear_cache
+    self.delete_all
+  end
+
   #
   # Initializes a new daily statistic with the given _attributes_.
   #
@@ -29,9 +46,9 @@ class CachedStats < ActiveRecord::Base
     t1 = Time.now
 
     return self.new(attributes.merge(
-      :duration => :daily,
-      :started_at => t1,
-      :stopped_at => t1 + 1.day
+                      :duration => :daily,
+                      :started_at => t1,
+                      :stopped_at => t1 + 1.day
     ))
   end
 
@@ -42,9 +59,9 @@ class CachedStats < ActiveRecord::Base
     t1 = Time.now
 
     return self.new(attributes.merge(
-      :duration => :weekly,
-      :started_at => t1,
-      :stopped_at => t1 + 1.week
+                      :duration => :weekly,
+                      :started_at => t1,
+                      :stopped_at => t1 + 1.week
     ))
   end
 
@@ -55,9 +72,9 @@ class CachedStats < ActiveRecord::Base
     t1 = Time.now
 
     return self.new(attributes.merge(
-      :duration => :monthly,
-      :started_at => t1,
-      :stopped_at => t1 + 1.month
+                      :duration => :monthly,
+                      :started_at => t1,
+                      :stopped_at => t1 + 1.month
     ))
   end
 

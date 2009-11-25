@@ -124,5 +124,10 @@ class Event < ActiveRecord::Base
       stat.adjust(self)
     end
   end
+  
+  def self.oldest
+    Event.first(:order => 'timestamp ASC').timestamp
+  end
+  
 
 end

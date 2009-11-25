@@ -7,9 +7,10 @@ class UniqueAddsStats < CachedStats
     super do
       sources = Iphdr.find(
         :all,
+        :joins => :event,
         :group => 'ip_src',
         :conditions => [
-          'timestamp >= :starting_time AND timestamp < :stopping_time',
+          'event.timestamp >= :starting_time AND event.timestamp < :stopping_time',
           {
             :starting_time => self.starting_time,
             :stopping_time => self.stopping_time
@@ -19,9 +20,10 @@ class UniqueAddsStats < CachedStats
       
       dests = Iphdr.find(
         :all,
+        :joins => :event,
         :group => 'ip_dst',
         :conditions => [
-          'timestamp >= :starting_time AND timestamp < :stopping_time',
+          'event.timestamp >= :starting_time AND event.timestamp < :stopping_time',
           {
             :starting_time => self.starting_time,
             :stopping_time => self.stopping_time

@@ -1,4 +1,6 @@
-class SensorCountStats < CachedStats
+class SensorStats < CachedStats
+
+  belongs_to :sensor, :class_name => 'Sensor', :foreign_key => 'sid'
 
   def initialize(attributes={})
     super(attributes.merge(:duration => :forever))
@@ -9,7 +11,7 @@ class SensorCountStats < CachedStats
   #
   def calculate!
     super do
-      self.statistic = Event.count(:sid => self.sid)
+      self.statistic = Event.count(:conditions => { :sid => self.sid })
     end
   end
 
