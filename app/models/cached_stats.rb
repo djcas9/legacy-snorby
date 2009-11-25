@@ -23,6 +23,45 @@ class CachedStats < ActiveRecord::Base
   end
 
   #
+  # Initializes a new daily statistic with the given _attributes_.
+  #
+  def self.new_day(attributes={})
+    t1 = Time.now
+
+    return self.new(attributes.merge(
+      :duration => :daily,
+      :started_at => t1,
+      :stopped_at => t1 + 1.day
+    ))
+  end
+
+  #
+  # Initializes a new weekly statistic with the given _attributes_.
+  #
+  def self.new_week(attributes={})
+    t1 = Time.now
+
+    return self.new(attributes.merge(
+      :duration => :weekly,
+      :started_at => t1,
+      :stopped_at => t1 + 1.week
+    ))
+  end
+
+  #
+  # Initializes a new monthly statistic with the given _attributes_.
+  #
+  def self.new_month(attributes={})
+    t1 = Time.now
+
+    return self.new(attributes.merge(
+      :duration => :monthly,
+      :started_at => t1,
+      :stopped_at => t1 + 1.month
+    ))
+  end
+
+  #
   # Finds all statistics that persist forever.
   #
   def self.forever
