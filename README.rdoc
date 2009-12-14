@@ -84,10 +84,6 @@ The default User Name and Password for Snorby:
 
 PLEASE MAKE SURE YOU CHANGE THIS!
 
-== Images
-
-hhttp://dl.dropbox.com/u/38088/map.png
-
 == TODO
 
 * Link for dashboard graphs
