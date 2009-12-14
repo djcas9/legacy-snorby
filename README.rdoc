@@ -84,6 +84,10 @@ The default User Name and Password for Snorby:
 
 PLEASE MAKE SURE YOU CHANGE THIS!
 
+== Images
+
+http://www.cryptolife.org/images/thumb/2/2a/Snorby2.png/798px-Snorby2.png
+
 == TODO
 
 * Link for dashboard graphs
